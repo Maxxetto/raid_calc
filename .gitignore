@@ -3,6 +3,8 @@
 .packages
 .pub-cache/
 .pub/
+.flutter-plugins
+.flutter-plugins-dependencies
 build/
 coverage/
 flutter_*.png
