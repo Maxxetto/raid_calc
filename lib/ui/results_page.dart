@@ -15,271 +15,279 @@ class ResultsPage extends StatelessWidget {
     required this.labels,
   });
 
-  String t(String k, String fallback) => labels[k] ?? fallback;
+  // Target e costanti milestone
+  static const int kTargetPoints = 1000000000; // 1B
+  static const int kFreeEnergies = 34;
+  static const int kPackSize = 40;
+  static const int kPackCostGems = 90;
 
-  // ===== Piano gemme (ceil) =====
-  static const int _targetPoints = 1000000000; // 1B
-  static const int _freeEnergies = 34;
-  static const int _packSize = 40;
-  static const int _packCost = 90;
+  // Colori richiesti
+  static const Color _meanColor = Color(0xFF7E57C2); // purple 400
+  static const Color _minColor = Color(0xFF5865F2); // blurple
+  static const Color _maxColor = Colors.red; // rosso
 
-  static ({int runs, int extra, int packs, int gems, int leftover}) _plan({
-    required int target,
-    required num perRun,
-    int free = _freeEnergies,
-    int packSize = _packSize,
-    int packCost = _packCost,
-  }) {
-    if (perRun <= 0) return (runs: 0, extra: 0, packs: 0, gems: 0, leftover: 0);
-    final runs = (target / perRun).ceil(); // attacchi totali
-    final extra = (runs - free) > 0 ? (runs - free) : 0; // da comprare
-    final packs = extra > 0 ? (extra / packSize).ceil() : 0; // pacchi×40
-    final gems = packs * packCost; // gemme
-    final leftover = (free + packs * packSize) - runs; // residui
-    return (
-      runs: runs,
-      extra: extra,
-      packs: packs,
-      gems: gems,
-      leftover: leftover,
-    );
+  String t(String key, [String? fb]) => labels[key] ?? fb ?? key;
+  String tAny(List<String> keys, String fb) {
+    for (final k in keys) {
+      final v = labels[k];
+      if (v != null) return v;
+    }
+    return fb;
   }
 
   @override
   Widget build(BuildContext context) {
-    final raidTxt = pre.meta.raidMode ? 'Raid' : 'Blitz';
-    final adv = pre.meta.advVsKnights.map((e) => fmtDouble(e)).join(', ');
-
-    final pMed = _plan(target: _targetPoints, perRun: stats.median);
-    final pMean = _plan(target: _targetPoints, perRun: stats.mean);
+    final cs = Theme.of(context).colorScheme;
 
     return Scaffold(
-      appBar: AppBar(title: Text(t('report_title', 'Report simulazione'))),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          // ===== Setup =====
-          Text(
-            '== == Setup == ==',
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-          const SizedBox(height: 8),
-          _kv('Boss', '${t('level', 'Level')} ${pre.meta.level} | $raidTxt'),
-          _kv(
-            'Boss Stats',
-            '${t('attack', 'Attack')} ${fmtDouble(pre.stats.attack)} | '
-                '${t('defense', 'Defense')} ${fmtDouble(pre.stats.defense)} | '
-                'HP ${fmtInt(pre.stats.hp)}',
-          ),
-          _kv('Boss Advantage vs Knights', adv),
-          _kv('[Debug] Multiplier', fmtDouble(pre.multiplierM)),
-          const Divider(height: 24),
+      appBar: AppBar(title: Text(t('report_title'))),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _sectionTitle(t('setup'), cs.primary),
+            const SizedBox(height: 8),
+            _setupTable(context),
 
-          // ===== Knights table =====
-          Text(
-            t('knights_title', 'Knights (Atk | Def | HP)'),
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-          const SizedBox(height: 8),
-          _knightsTable(context),
+            const SizedBox(height: 16),
+            Text(
+              tAny(
+                  ['knights_title', 'knights_hdr'], 'Knights (Atk | Def | HP)'),
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            const SizedBox(height: 6),
+            _knightsTable(context),
 
-          const Divider(height: 24),
+            const SizedBox(height: 16),
+            Text('${t('points_per_run')} (${t('baseline')})',
+                style: Theme.of(context).textTheme.titleMedium),
+            const SizedBox(height: 6),
+            _pointsTable(context), // <— NUOVA TABELLA
 
-          // ===== Punti per run =====
-          Text(
-            t('points_per_run', 'Punti/run') + ' ([Punti per run (baseline)])',
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'median=${fmtInt(stats.median)}   '
-            'mean=${fmtInt(stats.mean)}   '
-            'min=${fmtInt(stats.min)}   '
-            'max=${fmtInt(stats.max)}',
-          ),
+            const SizedBox(height: 16),
+            Text(t('milestone_title'),
+                style: Theme.of(context).textTheme.titleMedium),
+            const SizedBox(height: 6),
+            _milestoneTable(context),
 
-          const SizedBox(height: 16),
+            const SizedBox(height: 8),
+            Text(
+              '${t('note')} '
+              '$kFreeEnergies ${t('free')}, '
+              '${t('pack').toLowerCase()} = $kPackSize ${t('energies').toLowerCase()}, '
+              '${t('cost').toLowerCase()} $kPackCostGems ${t('gems')}.',
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
-          // ===== Milestone / Gemme =====
-          Text(
-            '${t('milestone_title', 'Milestone — Stima gemme')}  (${fmtInt(_targetPoints)} pts)',
-            style: Theme.of(context).textTheme.titleMedium,
+  Widget _sectionTitle(String text, Color color) =>
+      Text(text, style: TextStyle(fontWeight: FontWeight.w700, color: color));
+
+  // ===== Setup table =====
+  Widget _setupTable(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    final headerStyle = Theme.of(context).textTheme.bodySmall;
+
+    final level = pre.meta.level;
+    final mode = pre.meta.raidMode ? t('raid') : t('blitz');
+    final atk = fmtDouble(pre.stats.attack);
+    final def = fmtDouble(pre.stats.defense);
+    final hp = fmtInt(pre.stats.hp);
+    final a1 = fmtDouble(pre.meta.advVsKnights[0]);
+    final a2 = fmtDouble(pre.meta.advVsKnights[1]);
+    final a3 = fmtDouble(pre.meta.advVsKnights[2]);
+
+    Widget modeChip() => Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          decoration: BoxDecoration(
+            color: cs.primaryContainer,
+            borderRadius: BorderRadius.circular(999),
           ),
-          const SizedBox(height: 8),
-          _gemTable(
-            context,
+          child: Text(
+            mode,
+            style: TextStyle(
+              color: cs.onPrimaryContainer,
+              fontWeight: FontWeight.w600,
+              height: 1.0,
+            ),
+          ),
+        );
+
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: DataTable(
+            columnSpacing: 16,
+            headingRowHeight: 28,
+            dataRowMinHeight: 32,
+            columns: [
+              DataColumn(label: Text(t('level'), style: headerStyle)),
+              DataColumn(label: Text(t('mode'), style: headerStyle)),
+              DataColumn(label: Text(t('attack'), style: headerStyle)),
+              DataColumn(label: Text(t('defense'), style: headerStyle)),
+              DataColumn(label: Text(t('hp'), style: headerStyle)),
+              DataColumn(label: Text(t('boss_vs_k1'), style: headerStyle)),
+              DataColumn(label: Text(t('boss_vs_k2'), style: headerStyle)),
+              DataColumn(label: Text(t('boss_vs_k3'), style: headerStyle)),
+            ],
             rows: [
-              _gemRow('median', stats.median, pMed),
-              _gemRow('mean', stats.mean, pMean),
+              DataRow(cells: [
+                DataCell(Text('$level')),
+                DataCell(modeChip()),
+                DataCell(Text(atk)),
+                DataCell(Text(def)),
+                DataCell(Text(hp)),
+                DataCell(Text(a1)),
+                DataCell(Text(a2)),
+                DataCell(Text(a3)),
+              ]),
             ],
           ),
-          const SizedBox(height: 6),
-          Text(
-            'Note: ${fmtInt(_freeEnergies)} ${t('free', 'Free')}, '
-            '${t('pack', 'pacco')} = $_packSize ${t('energies', 'energie')}, '
-            '${t('cost', 'costo')} $_packCost ${t('gems', 'Gemme')}.',
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
-        ],
+        ),
       ),
     );
   }
 
   // ===== Knights table =====
   Widget _knightsTable(BuildContext context) {
-    final th = Theme.of(context);
-    final head = th.textTheme.bodySmall!.copyWith(fontWeight: FontWeight.w600);
-    final body = th.textTheme.bodySmall;
-    Center h(String s) => Center(
-      child: Text(s, style: head, textAlign: TextAlign.center),
-    );
-
-    final columns = [
-      DataColumn(label: h(t('k', 'K'))),
-      DataColumn(label: h(t('attack', 'Attack'))),
-      DataColumn(label: h(t('defense', 'Defense'))),
-      DataColumn(label: h(t('hp', 'HP'))),
-      DataColumn(label: h(t('adv', 'Adv'))),
-      DataColumn(label: h(t('stun_chance', 'Stun'))),
-      DataColumn(label: h(t('damage_dealt', 'Dmg→Boss (special)'))),
-      DataColumn(label: h(t('incoming_damage', 'Incoming (norm/crit)'))),
-    ];
-
-    Center c(String s) => Center(child: Text(s, style: body));
-
+    final headerStyle = Theme.of(context).textTheme.bodySmall;
     final rows = List<DataRow>.generate(3, (i) {
-      final n = i + 1;
-      final atk = fmtDouble(pre.k_atk[i]);
-      final def = fmtDouble(pre.k_def[i]);
-      final hp = fmtInt(pre.k_hp[i]);
-      final adv = fmtDouble(pre.k_adv[i]);
-      final stn = fmtDouble(pre.k_stun[i]);
-      final hit = fmtInt(pre.k_hitBoss_special[i]);
-      final inc =
-          '${fmtInt(pre.incomingNormal[i])}/${fmtInt(pre.incomingCrit[i])}';
-      return DataRow(
-        cells: [
-          DataCell(c('$n')),
-          DataCell(c(atk)),
-          DataCell(c(def)),
-          DataCell(c(hp)),
-          DataCell(c(adv)),
-          DataCell(c(stn)),
-          DataCell(c(hit)),
-          DataCell(c(inc)),
-        ],
-      );
+      return DataRow(cells: [
+        DataCell(Text('${i + 1}')),
+        DataCell(Text(fmtDouble(pre.k_atk[i]))),
+        DataCell(Text(fmtDouble(pre.k_def[i]))),
+        DataCell(Text(fmtInt(pre.k_hp[i]))),
+        DataCell(Text(fmtDouble(pre.k_adv[i]))),
+        DataCell(Text(fmtDouble(pre.k_stun[i]))),
+        DataCell(Text(fmtInt(pre.k_hitBoss_special[i]))),
+        DataCell(Text(fmtInt(pre.incomingNormal[i]))),
+        DataCell(Text(fmtInt(pre.incomingCrit[i]))),
+      ]);
     });
 
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.black12),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: DataTable(
-          columns: columns,
-          rows: rows,
-          columnSpacing: 22,
-          horizontalMargin: 12,
-          dividerThickness: 0.7,
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: DataTable(
+            columnSpacing: 16,
+            headingRowHeight: 28,
+            dataRowMinHeight: 28,
+            columns: [
+              DataColumn(label: Text(t('k'), style: headerStyle)),
+              DataColumn(label: Text(t('attack'), style: headerStyle)),
+              DataColumn(label: Text(t('defense'), style: headerStyle)),
+              DataColumn(label: Text(t('hp'), style: headerStyle)),
+              DataColumn(label: Text(t('adv'), style: headerStyle)),
+              DataColumn(label: Text(t('stun_chance'), style: headerStyle)),
+              DataColumn(
+                  label: Text(t('hit_boss_special'), style: headerStyle)),
+              DataColumn(label: Text(t('incoming_normal'), style: headerStyle)),
+              DataColumn(label: Text(t('incoming_crit'), style: headerStyle)),
+            ],
+            rows: rows,
+          ),
         ),
       ),
     );
   }
 
-  // ===== Gem table =====
-  Map<String, String> _gemRow(
-    String statName,
-    int perRun,
-    ({int runs, int extra, int packs, int gems, int leftover}) p,
-  ) {
-    return {
-      'stat': statName,
-      'points': fmtInt(perRun),
-      'runs': fmtInt(p.runs),
-      'free': fmtInt(_freeEnergies),
-      'extra': fmtInt(p.extra),
-      'packs': fmtInt(p.packs), // ceil( (runs - free) / 40 )
-      'gems': fmtInt(p.gems),
-      'left': fmtInt(p.leftover),
-    };
-  }
+  // ===== Points (baseline) table =====
+  Widget _pointsTable(BuildContext context) {
+    final headerStyle = Theme.of(context).textTheme.bodySmall;
 
-  Widget _gemTable(
-    BuildContext context, {
-    required List<Map<String, String>> rows,
-  }) {
-    final theme = Theme.of(context);
-    final headingStyle = theme.textTheme.bodySmall?.copyWith(
-      fontWeight: FontWeight.w600,
-    );
-    final dataStyle = theme.textTheme.bodySmall;
-    Center h(String s) => Center(
-      child: Text(s, style: headingStyle, textAlign: TextAlign.center),
-    );
-    Center c(String s) => Center(child: Text(s, style: dataStyle));
+    DataRow row(String label, int value, Color color) => DataRow(cells: [
+          DataCell(Text(label)),
+          DataCell(Text(
+            fmtInt(value),
+            style: TextStyle(color: color, fontWeight: FontWeight.w600),
+          )),
+        ]);
 
-    final columns = [
-      DataColumn(label: h(t('stat', 'Stat'))),
-      DataColumn(label: h(t('points_run', 'Punti/run'))),
-      DataColumn(label: h(t('attacks', 'Attacchi'))),
-      DataColumn(label: h(t('free', 'Free'))),
-      DataColumn(label: h(t('extra', 'Extra'))),
-      DataColumn(label: h(t('packs_x40', 'Pacchi×40'))),
-      DataColumn(label: h(t('gems', 'Gemme'))),
-      DataColumn(label: h(t('leftovers', 'Residui'))),
-    ];
-
-    final dataRows = rows
-        .map(
-          (r) => DataRow(
-            cells: [
-              DataCell(c(r['stat']!)),
-              DataCell(c(r['points']!)),
-              DataCell(c(r['runs']!)),
-              DataCell(c(r['free']!)),
-              DataCell(c(r['extra']!)),
-              DataCell(c(r['packs']!)),
-              DataCell(c(r['gems']!)),
-              DataCell(c(r['left']!)),
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: DataTable(
+            columnSpacing: 16,
+            headingRowHeight: 28,
+            dataRowMinHeight: 28,
+            columns: [
+              DataColumn(label: Text(t('stat'), style: headerStyle)),
+              DataColumn(label: Text(t('points_run'), style: headerStyle)),
+            ],
+            rows: [
+              row(t('median'), stats.median,
+                  Theme.of(context).colorScheme.primary),
+              row(t('mean'), stats.mean, _meanColor),
+              row(t('min'), stats.min, _minColor),
+              row(t('max'), stats.max, _maxColor),
             ],
           ),
-        )
-        .toList();
-
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.black12),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: DataTable(
-          columns: columns,
-          rows: dataRows,
-          columnSpacing: 22,
-          horizontalMargin: 12,
-          dividerThickness: 0.7,
         ),
       ),
     );
   }
 
-  // ===== simple key-value row =====
-  Widget _kv(String k, String v) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          width: 160,
-          child: Text(k, style: const TextStyle(fontWeight: FontWeight.w600)),
+  // ===== Milestone table =====
+  Widget _milestoneTable(BuildContext context) {
+    DataRow buildRow(String label, int pointsPerRun) {
+      final runs = (kTargetPoints / pointsPerRun).ceil();
+      final attacks = runs;
+      final extra = (attacks - kFreeEnergies).clamp(0, 1 << 31);
+      final packs = (extra / kPackSize).ceil();
+      final gems = packs * kPackCostGems;
+      final leftovers = (packs * kPackSize) - extra;
+
+      return DataRow(cells: [
+        DataCell(Text(label)),
+        DataCell(Text(fmtInt(pointsPerRun))),
+        DataCell(Text(fmtInt(attacks))),
+        DataCell(Text(fmtInt(kFreeEnergies))),
+        DataCell(Text(fmtInt(extra))),
+        DataCell(Text(fmtInt(packs))),
+        DataCell(Text(fmtInt(gems))),
+        DataCell(Text(fmtInt(leftovers))),
+      ]);
+    }
+
+    final headerStyle = Theme.of(context).textTheme.bodySmall;
+
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: DataTable(
+            columnSpacing: 16,
+            headingRowHeight: 28,
+            dataRowMinHeight: 28,
+            columns: [
+              DataColumn(label: Text(t('stat'), style: headerStyle)),
+              DataColumn(label: Text(t('points_run'), style: headerStyle)),
+              DataColumn(label: Text(t('attacks'), style: headerStyle)),
+              DataColumn(label: Text(t('free'), style: headerStyle)),
+              DataColumn(label: Text(t('extra'), style: headerStyle)),
+              DataColumn(label: Text(t('packs_x40'), style: headerStyle)),
+              DataColumn(label: Text(t('gems'), style: headerStyle)),
+              DataColumn(label: Text(t('leftovers'), style: headerStyle)),
+            ],
+            rows: [
+              buildRow(t('median'), stats.median),
+              buildRow(t('mean'), stats.mean),
+            ],
+          ),
         ),
-        Expanded(child: Text(v)),
-      ],
+      ),
     );
   }
 }

@@ -15,6 +15,11 @@ import 'widgets/mode_toggle.dart';
 import 'widgets/boss_level_dropdown.dart';
 import '../util/ad_helper.dart';
 
+// Consente di scrivere _lang['chiave'] come alias di _lang.t('chiave')
+extension I18nIndexing on I18n {
+  String operator [](String key) => t(key);
+}
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
   @override
@@ -59,7 +64,7 @@ class _HomePageState extends State<HomePage> {
     _loadLang('it');
 
     // Ads (safe): se fallisce, le ads si spengono e si va avanti
-    AdHelper.bootstrap();
+    AdHelper.bootstrap(enableAds: false);
   }
 
   @override
@@ -144,7 +149,7 @@ class _HomePageState extends State<HomePage> {
     final t = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(L['app_title'] ?? 'Raid Calc (Safe)'),
+        title: Text(_lang['app_title'] ?? 'Raid Calc (Safe)'),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 8),

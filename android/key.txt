@@ -1,0 +1,4 @@
+storeFile=C:/Users/maxxe/.keystores/raidcalc.jks
+storePassword=njadfeipa7nkd2
+keyAlias=raidcalc
+keyPassword=njadfeipa7nkd2raidcalc

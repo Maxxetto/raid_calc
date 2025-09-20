@@ -40,8 +40,7 @@ class DamageModel {
 
     // Boss -> Knight (normal/crit), con M del JSON
     final incomingNormal = List<int>.generate(n, (i) {
-      final raw =
-          (boss.stats.attack / (kDef[i] <= 0 ? 1e-9 : kDef[i])) *
+      final raw = (boss.stats.attack / (kDef[i] <= 0 ? 1e-9 : kDef[i])) *
           boss.meta.advVsKnights[i] *
           _BASE_CONST /
           (boss.multiplierM == 0 ? 1e-9 : boss.multiplierM);
@@ -49,8 +48,7 @@ class DamageModel {
     }, growable: false);
 
     final incomingCrit = List<int>.generate(n, (i) {
-      final raw =
-          (boss.stats.attack / (kDef[i] <= 0 ? 1e-9 : kDef[i])) *
+      final raw = (boss.stats.attack / (kDef[i] <= 0 ? 1e-9 : kDef[i])) *
           boss.meta.advVsKnights[i] *
           _BASE_CONST /
           (boss.multiplierM == 0 ? 1e-9 : boss.multiplierM);
@@ -72,70 +70,88 @@ class DamageModel {
     );
   }
 
-  /// Monte Carlo con callback di progresso (~1%).
+  @override
   Future<SimStats> simulate(
     Precomputed pre, {
     required int runs,
     void Function(int done, int total)? onProgress,
   }) async {
+    const double kEvasion = 0.10; // evasion fissa
+    const double kBossSpecialChance =
+        0.10; // special/crit del boss (non evadibile)
+
     final rng = Random();
-    final totalPts = List<int>.filled(runs, 0, growable: false);
-    final total = runs;
-    final step = total < 100 ? 1 : (total ~/ 100);
+    final pts = List<int>.filled(runs, 0, growable: false);
 
-    for (var r = 0; r < runs; r++) {
-      var bossHp = pre.stats.hp;
-      final hp = List<int>.from(pre.k_hp);
-      var i = 0; // cavaliere in testa
-      var pts = 0; // punti = danni inflitti
+    final int step = (runs ~/ 100).clamp(1, runs);
+    int done = 0;
 
-      while (i < hp.length && bossHp > 0) {
-        // === fase Knight (stun chain) ===
-        while (true) {
-          final dmg = pre.k_hitBoss_special[i];
-          bossHp -= dmg;
-          pts += dmg;
+    final bossHpBase = pre.stats.hp;
 
-          if (bossHp <= 0) break;
-          if (rng.nextDouble() < pre.k_stun[i]) {
-            continue; // altra hit (stun)
-          } else {
-            break; // passa al boss
-          }
-        }
+    for (int r = 0; r < runs; r++) {
+      int bossHp = bossHpBase;
+      final kHp = [pre.k_hp[0], pre.k_hp[1], pre.k_hp[2]];
+      int kIndex = 0;
+      bool bossStunned = false;
+      int score = 0; // <-- BASELINE: NIENTE multiplierM qui
+
+      while (bossHp > 0 && kIndex < 3) {
+        // --- Turno Cavaliere (sempre SPECIAL, non evadibile) ---
+        final hitToBoss = pre.k_hitBoss_special[kIndex];
+        bossHp -= hitToBoss;
+        score += hitToBoss; // <-- baseline
 
         if (bossHp <= 0) break;
 
-        // === fase Boss ===
-        if (rng.nextDouble() > pre.k_evasion[i]) {
-          final isCrit = rng.nextDouble() < _BOSS_CRIT_PROB;
-          final incoming = isCrit ? pre.incomingCrit[i] : pre.incomingNormal[i];
-          hp[i] -= incoming;
-          if (hp[i] <= 0) {
-            i++; // entra il successivo PRIMA del prossimo turno
-          }
+        // Stun roll: se riesce, il boss salta il prossimo attacco
+        final pStun = pre.k_stun[kIndex];
+        if (pStun > 0 && rng.nextDouble() < pStun) {
+          bossStunned = true;
+        }
+
+        // --- Turno Boss (salta se stunnato) ---
+        if (bossStunned) {
+          bossStunned = false;
+          continue; // stesso cavaliere attacca di nuovo
+        }
+
+        // Boss attacca il cavaliere in testa
+        final bool bossSpecial = rng.nextDouble() < kBossSpecialChance;
+        int incoming;
+        if (bossSpecial) {
+          // Special del boss: NON evadibile
+          incoming = pre.incomingCrit[kIndex];
+        } else {
+          // Normale: 10% di evasion del cavaliere
+          final bool evaded = rng.nextDouble() < kEvasion;
+          incoming = evaded ? 0 : pre.incomingNormal[kIndex];
+        }
+
+        kHp[kIndex] -= incoming;
+        if (kHp[kIndex] <= 0) {
+          kIndex++; // subentra il prossimo PRIMA del prossimo attacco del boss
         }
       }
 
-      totalPts[r] = pts;
-      if (onProgress != null && (r % step == 0 || r + 1 == total)) {
-        onProgress(r + 1, total);
+      pts[r] = score;
+
+      // Progress ~1%
+      done++;
+      if (onProgress != null && (done % step == 0 || done == runs)) {
+        onProgress(done, runs);
+        await Future<void>.delayed(Duration.zero);
       }
     }
 
     // Statistiche
-    totalPts.sort();
-    final minPts = totalPts.first;
-    final maxPts = totalPts.last;
-    final mid = runs ~/ 2;
-    final median = runs.isOdd
-        ? totalPts[mid]
-        : ((totalPts[mid - 1] + totalPts[mid]) / 2).round();
+    pts.sort();
+    final int min = pts.first;
+    final int max = pts.last;
+    final int median = pts.length.isOdd
+        ? pts[pts.length >> 1]
+        : ((pts[pts.length >> 1] + pts[(pts.length >> 1) - 1]) ~/ 2);
+    final int mean = (pts.reduce((a, b) => a + b) ~/ pts.length);
 
-    var sum = 0;
-    for (final v in totalPts) sum += v;
-    final mean = (sum / runs).round();
-
-    return SimStats(median: median, mean: mean, min: minPts, max: maxPts);
+    return SimStats(mean: mean, median: median, min: min, max: max);
   }
 }
