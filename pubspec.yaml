@@ -14,10 +14,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/raidComplete_data.json
-    - assets/lang/it.json
-    - assets/lang/en.json
-    - assets/lang/de.json
-    - assets/lang/fr.json
-    - assets/lang/es.json
-    - assets/lang/ru.json
-    - assets/lang/nl.json
+    - assets/lang/

@@ -29,7 +29,7 @@ class AdHelper {
 
   /// Chiamare una sola volta (es. in initState di HomePage).
   static Future<void> bootstrap({bool enableAds = true}) async {
-    enabled = enableAds && Platform.isAndroid;
+    enabled = enableAds && kReleaseMode && Platform.isAndroid;
     if (!_bootstrapped && enabled) {
       await MobileAds.instance.initialize();
       _bootstrapped = true;
