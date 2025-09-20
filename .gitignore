@@ -35,5 +35,23 @@ ios/Runner/GoogleService-Info.plist
 .idea/
 *.iml
 
+# --- Artifact binari di distribuzione (non versionare) ---
+*.aab
+*.apk
+*.apks
+*.ipa
+
+# --- Log/temporanei vari ---
+*.log
+*.orig
+*.rej
+
+# --- macOS/Windows/Linux ephemeral (se presenti) ---
+macos/Flutter/ephemeral/
+macos/Flutter/GeneratedPluginRegistrant.swift
+windows/runner/Debug/
+windows/runner/Release/
+linux/flutter/ephemeral/
+
 # --- Secrets opzionali (se li userai) ---
 lib/util/secrets.dart

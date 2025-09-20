@@ -1,81 +1,77 @@
 // lib/data/config_loader.dart
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
-import 'config_models.dart';
+import '../data/config_models.dart';
 
+/// Carica le stats del boss da assets e restituisce un RECORD:
+/// ({BossStats stats, BossMeta meta, double multiplierM})
 class ConfigLoader {
-  /// Carica le stats del Boss da assets/raidComplete_data.json
-  /// usando SEMPRE la tabella corretta (Raid/Blitz) + il livello selezionato.
-  static Future<BossConfig> loadBossFromAssets({
-    required int bossLevel,
+  static const String _defaultAsset = 'assets/raidComplete_data.json';
+
+  /// Esempio d'uso:
+  /// final loaded = await ConfigLoader.loadBossFromAssets(
+  ///   raidMode: true, bossLevel: 7,
+  ///   overrideBossAdv: [1.0, 1.0, 1.0],
+  /// );
+  /// final boss = BossConfig(stats: loaded.stats, meta: loaded.meta, multiplierM: loaded.multiplierM);
+  static Future<({BossStats stats, BossMeta meta, double multiplierM})>
+      loadBossFromAssets({
     required bool raidMode,
+    required int bossLevel,
     List<double>? overrideBossAdv,
-    String assetPath = 'assets/raidComplete_data.json',
+    String assetPath = _defaultAsset,
   }) async {
     final raw = await rootBundle.loadString(assetPath);
-    final Map<String, dynamic> data = jsonDecode(raw);
+    final map = json.decode(raw) as Map<String, dynamic>;
 
-    // --- Default: advantage dal blocco "boss" (se presente), MA NON il level ---
-    List<double> advDefault;
-    try {
-      final lst =
-          (data['boss']?['adv_vs_knights'] as List?) ?? const [1.0, 1.0, 1.0];
-      advDefault = lst
-          .map((e) => (e as num).toDouble())
-          .toList(growable: false);
-      if (advDefault.length != 3) {
-        advDefault = const [1.0, 1.0, 1.0];
-      }
-    } catch (_) {
-      advDefault = const [1.0, 1.0, 1.0];
-    }
-    final advVsKnights = overrideBossAdv ?? advDefault;
+    final tables = (map['tables'] as Map<String, dynamic>);
+    final tableKey = raidMode ? 'Raid' : 'Blitz';
+    final list = (tables[tableKey] as List).cast<Map<String, dynamic>>();
 
-    // --- Selezione tabella per modalità ---
-    final tables = (data['tables'] as Map<String, dynamic>?);
-    if (tables == null) {
-      throw StateError('JSON: manca la chiave "tables"');
-    }
-    final modeKey = raidMode ? 'Raid' : 'Blitz';
-    final listDyn = tables[modeKey];
-    if (listDyn == null || listDyn is! List) {
-      throw StateError('JSON: manca la tabella "$modeKey"');
-    }
-    final List<Map<String, dynamic>> table = listDyn
-        .map<Map<String, dynamic>>((e) => Map<String, dynamic>.from(e as Map))
-        .toList(growable: false);
+    // Clamp del livello ai range disponibili in tabella
+    final minLvl = 1;
+    final maxLvl = list.fold<int>(
+        1,
+        (m, e) =>
+            (e['level'] as num).toInt() > m ? (e['level'] as num).toInt() : m);
+    final lvl = bossLevel.clamp(minLvl, maxLvl);
 
-    // --- Clamp del livello e lookup by level ---
-    final maxLevel = table.length; // Raid=7, Blitz=6
-    var lv = bossLevel.clamp(1, maxLevel);
-    Map<String, dynamic>? row = table.firstWhere(
-      (e) => (e['level'] as num).toInt() == lv,
-      orElse: () => <String, dynamic>{},
+    // Trova la riga corrispondente al livello (fallback: ultima disponibile)
+    Map<String, dynamic> row = list.firstWhere(
+      (e) => (e['level'] as num).toInt() == lvl,
+      orElse: () => list.last,
     );
-    if (row.isEmpty) {
-      // fallback per sicurezza (index-based)
-      row = table[lv - 1];
-    }
 
-    final atk = (row['attack'] as num).toDouble();
-    final def = (row['defense'] as num).toDouble();
-    final hp = (row['hp'] as num).toInt();
+    final stats = BossStats(
+      attack: (row['attack'] as num).toDouble(),
+      defense: (row['defense'] as num).toDouble(),
+      hp: (row['hp'] as num).toInt(),
+    );
 
-    // --- Multiplier (debug) ---
-    final mult = (data['Multiplier'] is num)
-        ? (data['Multiplier'] as num).toDouble()
+    // Multiplier opzionale
+    final multiplierM = (map['Multiplier'] is num)
+        ? (map['Multiplier'] as num).toDouble()
         : 1.0;
 
+    // Adv default dall'asset "boss.adv_vs_knights" se presente
+    List<double> advDefault = const [1.0, 1.0, 1.0];
+    if (map['boss'] is Map) {
+      final b = (map['boss'] as Map)['adv_vs_knights'];
+      if (b is List && b.length == 3) {
+        advDefault = b.map((e) => (e as num).toDouble()).toList();
+      }
+    }
+
+    final adv = (overrideBossAdv != null && overrideBossAdv.length == 3)
+        ? overrideBossAdv
+        : advDefault;
+
     final meta = BossMeta(
-      level: lv,
+      level: lvl,
       raidMode: raidMode,
-      advVsKnights: advVsKnights,
+      advVsKnights: adv,
     );
 
-    return BossConfig(
-      stats: BossStats(attack: atk, defense: def, hp: hp),
-      meta: meta,
-      multiplierM: mult,
-    );
+    return (stats: stats, meta: meta, multiplierM: multiplierM);
   }
 }

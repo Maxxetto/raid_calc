@@ -5,14 +5,14 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
-        android:label="raid_calc"
+        android:label="Raid Calculator"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 
         <!-- ID di test AdMob (sostituire con il tuo prima della pubblicazione) -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-1939059393159677~5464841712"/>
+            android:value="${admobAppId}"/>
 
         <activity
             android:name=".MainActivity"

@@ -1,5 +1,6 @@
 name: raid_calc
-description: Raid Calc (Safe)
+description: Raid Calculator
+version: 1.0.0+1 # +1 = versionCode
 environment:
   sdk: ">=3.3.0 <4.0.0"
 
