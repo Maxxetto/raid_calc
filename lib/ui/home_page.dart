@@ -65,7 +65,11 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     _loadLang('it');
 
-    unawaited(AdHelper.bootstrap(enableAds: true, forceTest: kDebugMode));
+    if (kDebugMode) {
+      unawaited(AdHelper.bootstrap(enableAds: true, forceTest: true));
+    } else {
+      unawaited(AdHelper.bootstrap(enableAds: true));
+    }
     if (kDebugMode) {
       _adsStatusTicker = Timer.periodic(const Duration(seconds: 1), (_) {
         if (mounted) setState(() {});
@@ -147,7 +151,7 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> _onSimulatePressed() async {
     if (_running) return;
-    debugPrint('[UI] Simulate clicked');
+    debugPrint('I/flutter [UI] Simulate clicked');
     await AdHelper.tryShow();
     await _runSimulation();
   }
@@ -189,6 +193,27 @@ class _HomePageState extends State<HomePage> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
+          if (kDebugMode)
+            Align(
+              alignment: Alignment.centerRight,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.play_arrow),
+                    tooltip: 'Show Test Ad',
+                    onPressed: () async {
+                      await AdHelper.tryShow();
+                    },
+                  ),
+                  const Text(
+                    'Show Test Ad',
+                    style: TextStyle(fontSize: 11),
+                  ),
+                ],
+              ),
+            ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
