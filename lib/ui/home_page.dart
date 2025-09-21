@@ -63,8 +63,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     _loadLang('it');
 
-    // Ads (safe): se fallisce, le ads si spengono e si va avanti
-    AdHelper.bootstrap(enableAds: false);
+    AdHelper.I.bootstrap();
   }
 
   @override
@@ -73,7 +72,7 @@ class _HomePageState extends State<HomePage> {
     for (final c in [..._kAtk, ..._kDef, ..._kHp, ..._kStun]) {
       c.dispose();
     }
-    AdHelper.dispose();
+    unawaited(AdHelper.I.dispose());
     super.dispose();
   }
 
@@ -138,10 +137,10 @@ class _HomePageState extends State<HomePage> {
     ));
   }
 
-  void _onSimulatePressed() {
+  void _onSimulatePressed() async {
     if (_running) return;
-    AdHelper.tryShow(); // non blocca
-    _runSimulation();
+    await AdHelper.I.show(context: context);
+    await _runSimulation();
   }
 
   @override

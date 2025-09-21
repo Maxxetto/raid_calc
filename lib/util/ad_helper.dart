@@ -1,102 +1,116 @@
-// lib/util/ad_helper.dart
+import 'dart:async';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-/// Gestione Interstitial:
-/// - In DEBUG usa gli unitId di TEST ufficiali.
-/// - In RELEASE usa i TUOI unitId.
-/// - Non blocca mai la run; in caso di errore fa no-op.
 class AdHelper {
   AdHelper._();
-  static bool enabled = kReleaseMode;
+  static final AdHelper I = AdHelper._();
 
-  static bool _bootstrapped = false;
-  static InterstitialAd? _interstitial;
-  static DateTime? _lastShown;
-  static const Duration _cooldown = Duration(seconds: 2);
+  // Test IDs (debug/emulatore)
+  static const _testInterstitialAndroid = 'ca-app-pub-3940256099942544/1033173712';
+  static const _testInterstitialIOS     = 'ca-app-pub-3940256099942544/4411468910';
 
-  static String get _interstitialUnitId {
-    if (!Platform.isAndroid) return ''; // per sicurezza
-    if (kReleaseMode) {
-      // === TUO AD UNIT (RELEASE) ===
-      return 'ca-app-pub-1939059393159677/9611970283';
-    } else {
-      // === TEST AD UNIT ANDROID (GOOGLE) ===
-      return 'ca-app-pub-3940256099942544/1033173712';
+  // Production IDs
+  static const _prodInterstitialAndroid = 'ca-app-pub-1939059393159677/9611970283';
+  static const _prodInterstitialIOS     = _testInterstitialIOS; // TODO: inserisci quando disponibile
+
+  String get _interstitialId {
+    if (!kReleaseMode) {
+      return Platform.isAndroid ? _testInterstitialAndroid : _testInterstitialIOS;
     }
+    return Platform.isAndroid ? _prodInterstitialAndroid : _prodInterstitialIOS;
   }
 
-  /// Chiamare una sola volta (es. in initState di HomePage).
-  static Future<void> bootstrap({bool enableAds = true}) async {
-    enabled = enableAds && Platform.isAndroid;
-    if (!_bootstrapped && enabled) {
-      await MobileAds.instance.initialize();
-      _bootstrapped = true;
-      await _preload();
-    }
-  }
+  InterstitialAd? _ad;
+  Completer<void>? _loading;
+  bool _bootstrapped = false;
 
-  static Future<void> _preload() async {
-    if (!enabled || _interstitialUnitId.isEmpty) return;
-    try {
-      await InterstitialAd.load(
-        adUnitId: _interstitialUnitId,
-        request: const AdRequest(),
-        adLoadCallback: InterstitialAdLoadCallback(
-          onAdLoaded: (ad) {
-            _interstitial?.dispose();
-            _interstitial = ad..setImmersiveMode(true);
-          },
-          onAdFailedToLoad: (err) {
-            _interstitial = null;
-          },
-        ),
-      );
-    } catch (_) {
-      _interstitial = null;
-    }
-  }
+  Future<void> bootstrap() async {
+    if (_bootstrapped) return;
+    _bootstrapped = true;
+    debugPrint('[Ads] MobileAds.initialize…');
 
-  /// Non blocca: se disponibile mostra, altrimenti ricarica e prosegue.
-  static void tryShow() {
-    if (!enabled) return;
-    final ad = _interstitial;
-    if (ad == null) {
-      _preload();
-      return;
-    }
-    // anticipo per evitare doppio tap ravvicinato
-    final now = DateTime.now();
-    if (_lastShown != null && now.difference(_lastShown!) < _cooldown) return;
-    _lastShown = now;
+    final status = await MobileAds.instance.initialize();
+    status.adapterStatuses.forEach((name, s) {
+      debugPrint("[Ads] adapter[$name] = ${s.state} | ${s.description}");
+    });
 
-    ad.fullScreenContentCallback = FullScreenContentCallback(
-      onAdDismissedFullScreenContent: (a) {
-        a.dispose();
-        _interstitial = null;
-        _preload();
-      },
-      onAdFailedToShowFullScreenContent: (a, e) {
-        a.dispose();
-        _interstitial = null;
-        _preload();
-      },
+    await MobileAds.instance.updateRequestConfiguration(
+      RequestConfiguration(testDeviceIds: const <String>['EMULATOR']),
     );
 
-    try {
-      ad.show();
-    } catch (_) {
-      // ignora errori e ricarica
-      _interstitial = null;
-      _preload();
-    }
+    debugPrint('[Ads] init OK; preloading…');
+    unawaited(_load());
   }
 
-  static void dispose() {
-    try {
-      _interstitial?.dispose();
-    } catch (_) {}
-    _interstitial = null;
+  Future<void> _load() async {
+    if (_ad != null || _loading != null) return;
+    _loading = Completer<void>();
+
+    debugPrint('[Ads] Interstitial.load… (${_interstitialId})');
+    await InterstitialAd.load(
+      adUnitId: _interstitialId,
+      request: const AdRequest(nonPersonalizedAds: true),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          debugPrint('[Ads] onAdLoaded');
+          _ad = ad;
+          _setupCallbacks(ad);
+          _loading?.complete();
+          _loading = null;
+        },
+        onAdFailedToLoad: (error) {
+          debugPrint('[Ads] onAdFailedToLoad: $error');
+          _ad?.dispose();
+          _ad = null;
+          _loading?.completeError(error);
+          _loading = null;
+        },
+      ),
+    );
+  }
+
+  void _setupCallbacks(InterstitialAd ad) {
+    ad.fullScreenContentCallback = FullScreenContentCallback(
+      onAdShowedFullScreenContent: (ad) => debugPrint('[Ads] onAdShowedFullScreenContent'),
+      onAdDismissedFullScreenContent: (ad) {
+        debugPrint('[Ads] onAdDismissedFullScreenContent → dispose + preload');
+        ad.dispose();
+        _ad = null;
+        unawaited(_load());
+      },
+      onAdFailedToShowFullScreenContent: (ad, error) {
+        debugPrint('[Ads] onAdFailedToShowFullScreenContent: $error');
+        ad.dispose();
+        _ad = null;
+        unawaited(_load());
+      },
+      onAdImpression: (ad) => debugPrint('[Ads] onAdImpression'),
+      onAdClicked: (ad) => debugPrint('[Ads] onAdClicked'),
+    );
+  }
+
+  Future<void> show({BuildContext? context}) async {
+    if (_ad == null) {
+      unawaited(_load());
+      final c = _loading;
+      if (c != null) {
+        try { await c.future.timeout(const Duration(seconds: 2)); } catch (_) {}
+      }
+    }
+    final ad = _ad;
+    if (ad == null) {
+      debugPrint('[Ads] show(): no Ad ready after wait');
+      return;
+    }
+    debugPrint('[Ads] show()');
+    await ad.show();
+  }
+
+  Future<void> dispose() async {
+    _ad?.dispose();
+    _ad = null;
   }
 }
