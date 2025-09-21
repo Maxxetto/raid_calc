@@ -1,6 +1,6 @@
-name: raid_calc
+﻿name: raid_calc
 description: Raid Calculator
-version: 1.0.0+1 # +1 = versionCode
+version: 1.0.0+2
 environment:
   sdk: ">=3.3.0 <4.0.0"
 
@@ -8,7 +8,7 @@ dependencies:
   flutter:
     sdk: flutter
   google_mobile_ads: ^5.0.0
-  # …le altre tue dipendenze (i18n, ecc.)
+  # â€¦le altre tue dipendenze (i18n, ecc.)
 
 flutter:
   uses-material-design: true
