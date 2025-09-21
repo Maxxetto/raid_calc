@@ -17,6 +17,10 @@ val keystoreProperties = Properties().apply {
     }
 }
 
+// AdMob App IDs (debug = test, release = produzione)
+private val admobTestAppId = "ca-app-pub-3940256099942544~3347511713"
+private val admobProdAppId = "ca-app-pub-1939059393159677~5464841712"
+
 android {
     namespace = "com.maxxe.raidcalc"          // il tuo package definitivo
     compileSdk = flutter.compileSdkVersion
@@ -45,13 +49,13 @@ android {
     buildTypes {
         getByName("debug") {
             // App ID di TEST AdMob
-            manifestPlaceholders["admobAppId"] = "ca-app-pub-3940256099942544~3347511713"
+            manifestPlaceholders["admobAppId"] = admobTestAppId
             isMinifyEnabled = false
             isShrinkResources = false
         }
         getByName("release") {
             // App ID reale AdMob
-            manifestPlaceholders["admobAppId"] = "ca-app-pub-1939059393159677~5464841712"
+            manifestPlaceholders["admobAppId"] = admobProdAppId
             signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
             isShrinkResources = true

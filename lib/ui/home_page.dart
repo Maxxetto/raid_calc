@@ -1,5 +1,6 @@
 // lib/ui/home_page.dart
 import 'dart:async';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../core/damage_model.dart';
@@ -57,14 +58,21 @@ class _HomePageState extends State<HomePage> {
 
   bool _running = false;
   int _done = 0, _total = 1;
+  Timer? _adsStatusTicker;
 
   @override
   void initState() {
     super.initState();
     _loadLang('it');
 
-    // Ads (safe): se fallisce, le ads si spengono e si va avanti
-    AdHelper.bootstrap(enableAds: false);
+    if (kDebugMode) {
+      unawaited(AdHelper.bootstrap(enableAds: true, forceTest: true));
+      _adsStatusTicker = Timer.periodic(const Duration(seconds: 1), (_) {
+        if (mounted) setState(() {});
+      });
+    } else {
+      unawaited(AdHelper.bootstrap());
+    }
   }
 
   @override
@@ -73,6 +81,7 @@ class _HomePageState extends State<HomePage> {
     for (final c in [..._kAtk, ..._kDef, ..._kHp, ..._kStun]) {
       c.dispose();
     }
+    _adsStatusTicker?.cancel();
     AdHelper.dispose();
     super.dispose();
   }
@@ -138,10 +147,11 @@ class _HomePageState extends State<HomePage> {
     ));
   }
 
-  void _onSimulatePressed() {
+  Future<void> _onSimulatePressed() async {
     if (_running) return;
-    AdHelper.tryShow(); // non blocca
-    _runSimulation();
+    debugPrint('[UI] Simulate clicked');
+    await AdHelper.tryShow();
+    await _runSimulation();
   }
 
   @override
@@ -151,6 +161,16 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text(_lang['app_title'] ?? 'Raid Calc (Safe)'),
         actions: [
+          if (kDebugMode)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Center(
+                child: Text(
+                  'Ads: ${AdHelper.statusString}',
+                  style: const TextStyle(fontSize: 11),
+                ),
+              ),
+            ),
           Padding(
             padding: const EdgeInsets.only(right: 8),
             child: DropdownButtonHideUnderline(
@@ -319,7 +339,11 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             height: 48,
             child: ElevatedButton(
-              onPressed: _running ? null : _onSimulatePressed,
+              onPressed: _running
+                  ? null
+                  : () {
+                      unawaited(_onSimulatePressed());
+                    },
               child: Text(L['simulate'] ?? 'Simula'),
             ),
           ),
