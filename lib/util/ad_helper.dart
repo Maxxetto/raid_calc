@@ -1,10 +1,12 @@
 import 'dart:async';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart' show debugPrint, kReleaseMode;
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AdHelper {
   static const _testInterstitial = 'ca-app-pub-3940256099942544/1033173712';
   static const _prodInterstitial = 'ca-app-pub-1939059393159677/9611970283';
+  static String get interstitialId =>
+      kReleaseMode ? _prodInterstitial : _testInterstitial;
   static const Duration _minInterval = Duration(seconds: 5);
 
   static bool _bootstrapped = false;
@@ -27,7 +29,8 @@ class AdHelper {
     return 'Empty';
   }
 
-  static String get _unitId => (_forceTest || kDebugMode) ? _testInterstitial : _prodInterstitial;
+  static String get _unitId =>
+      _forceTest ? _testInterstitial : interstitialId;
 
   static Future<void> bootstrap({bool? enableAds, bool forceTest = false}) async {
     if (_bootstrapped || _bootstrapping) return;
@@ -50,7 +53,10 @@ class AdHelper {
       });
 
       await MobileAds.instance.updateRequestConfiguration(
-        RequestConfiguration(testDeviceIds: <String>[]),
+        RequestConfiguration(
+          testDeviceIds:
+              kReleaseMode ? <String>[] : <String>['TEST-DEVICE-HASH-OPTIONAL'],
+        ),
       );
 
       _bootstrapped = true;
