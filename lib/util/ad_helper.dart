@@ -46,11 +46,11 @@ class AdHelper {
       final status = await MobileAds.instance.initialize();
       // stampa stato adapter (utile per emulatori senza Play Services)
       status.adapterStatuses.forEach((n, s) {
-        debugPrint('I/flutter [Ads] adapter[$n]=${s.description}, init=${s.initializationState}');
+        debugPrint('I/flutter [Ads] adapter[$n]=${s.description}, init=${s.state}');
       });
 
       await MobileAds.instance.updateRequestConfiguration(
-        const RequestConfiguration(testDeviceIds: <String>[]),
+        RequestConfiguration(testDeviceIds: <String>[]),
       );
 
       _bootstrapped = true;
@@ -135,7 +135,13 @@ class AdHelper {
 
     if (_ad == null) {
       unawaited(_load());
-      try { await (_loading?.future).timeout(const Duration(seconds: 2)); } catch (_) {}
+      if (_loading != null) {
+        try {
+          await _loading!.future.timeout(const Duration(seconds: 2));
+        } catch (_) {
+          // timeout o load fallito: va bene, proseguirà con i controlli successivi
+        }
+      }
     }
 
     final ad = _ad;
