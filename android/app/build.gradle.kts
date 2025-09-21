@@ -18,8 +18,8 @@ val keystoreProperties = Properties().apply {
 }
 
 // AdMob App IDs (debug = test, release = produzione)
-private val admobTestAppId = "ca-app-pub-3940256099942544~3347511713"
-private val admobProdAppId = "ca-app-pub-1939059393159677~5464841712"
+private const val admobTestAppId = "ca-app-pub-3940256099942544~3347511713"
+private const val admobProdAppId = "ca-app-pub-1939059393159677~5464841712"
 
 android {
     namespace = "com.maxxe.raidcalc"          // il tuo package definitivo

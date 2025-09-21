@@ -65,13 +65,11 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     _loadLang('it');
 
+    unawaited(AdHelper.bootstrap(enableAds: true, forceTest: kDebugMode));
     if (kDebugMode) {
-      unawaited(AdHelper.bootstrap(enableAds: true, forceTest: true));
       _adsStatusTicker = Timer.periodic(const Duration(seconds: 1), (_) {
         if (mounted) setState(() {});
       });
-    } else {
-      unawaited(AdHelper.bootstrap());
     }
   }
 
