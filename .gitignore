@@ -46,6 +46,7 @@ ios/Runner/GoogleService-Info.plist
 *.orig
 *.rej
 *.bak
+pubspec.yaml.bak
 
 # --- macOS/Windows/Linux ephemeral (se presenti) ---
 macos/Flutter/ephemeral/
