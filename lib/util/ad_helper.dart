@@ -1,169 +1,124 @@
-import 'dart:async';
-import 'package:flutter/foundation.dart' show debugPrint, kReleaseMode;
+// lib/util/ad_helper.dart
+import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
+/// Interstitial Ads helper:
+/// - In DEBUG usa gli unitId di TEST ufficiali Google.
+/// - In RELEASE usa i tuoi unitId reali (Android/iOS).
+/// - MAI crash: ogni eccezione spegne le ads e prosegue.
 class AdHelper {
-  static const _testInterstitial = 'ca-app-pub-3940256099942544/1033173712';
-  static const _prodInterstitial = 'ca-app-pub-1939059393159677/9611970283';
-  static String get interstitialId =>
-      kReleaseMode ? _prodInterstitial : _testInterstitial;
-  static const Duration _minInterval = Duration(seconds: 5);
+  static bool enabled = true;
 
   static bool _bootstrapped = false;
   static bool _bootstrapping = false;
-  static bool _enabled = true;
-  static bool _forceTest = false;
-
-  static InterstitialAd? _ad;
+  static InterstitialAd? _interstitial;
   static DateTime? _lastShown;
-  static Completer<void>? _loading;
-  static String _lastError = '';
 
-  static String get statusString {
-    if (!_enabled) return 'Disabled';
-    if (_bootstrapping) return 'Init…';
-    if (!_bootstrapped) return 'Idle';
-    if (_ad != null) return 'Ready';
-    if (_loading != null && !_loading!.isCompleted) return 'Loading…';
-    if (_lastError.isNotEmpty) return 'Failed: $_lastError';
-    return 'Empty';
+  // ====== TUO ID INTERSTITIAL (ANDROID, REALE) ======
+  static const String _androidInterstitialRelease =
+      'ca-app-pub-1939059393159677/9611970283';
+
+  // iOS non ancora creato → lascialo vuoto: in release iOS le ads restano OFF
+  static const String _iosInterstitialRelease = '';
+
+  static bool get _isAndroid => defaultTargetPlatform == TargetPlatform.android;
+  static bool get _isIOS => defaultTargetPlatform == TargetPlatform.iOS;
+
+  static String? get _interstitialUnitId {
+    if (_isAndroid) {
+      return kReleaseMode
+          ? _androidInterstitialRelease
+          : 'ca-app-pub-3940256099942544/1033173712'; // test
+    }
+    if (_isIOS) {
+      if (kReleaseMode) {
+        return _iosInterstitialRelease.isEmpty ? null : _iosInterstitialRelease;
+      }
+      return 'ca-app-pub-3940256099942544/4411468910'; // test
+    }
+    return null; // non mobile
   }
 
-  static String get _unitId =>
-      _forceTest ? _testInterstitial : interstitialId;
-
-  static Future<void> bootstrap({bool? enableAds, bool forceTest = false}) async {
-    if (_bootstrapped || _bootstrapping) return;
-    _enabled = enableAds ?? true;
-    _forceTest = forceTest;
-
-    if (!_enabled) {
-      debugPrint('I/flutter [Ads] disabled');
-      _bootstrapped = true;
-      return;
-    }
-
+  /// Init sicuro: se fallisce → enabled=false (niente crash).
+  static Future<void> bootstrap() async {
+    if (_bootstrapped || _bootstrapping || !enabled) return;
     _bootstrapping = true;
     try {
-      debugPrint('I/flutter [Ads] MobileAds.initialize…');
-      final status = await MobileAds.instance.initialize();
-      // stampa stato adapter (utile per emulatori senza Play Services)
-      status.adapterStatuses.forEach((n, s) {
-        debugPrint('I/flutter [Ads] adapter[$n]=${s.description}, init=${s.state}');
-      });
-
-      await MobileAds.instance.updateRequestConfiguration(
-        RequestConfiguration(
-          testDeviceIds:
-              kReleaseMode ? <String>[] : <String>['TEST-DEVICE-HASH-OPTIONAL'],
-        ),
-      );
-
+      await MobileAds.instance.initialize();
       _bootstrapped = true;
-      debugPrint('I/flutter [Ads] init OK; preloading…');
-      await _load();
+      _bootstrapping = false;
+      await preloadInterstitial();
     } catch (e, st) {
-      _lastError = 'init: $e';
-      debugPrint('I/flutter [Ads] init FAILED: $e\n$st');
-      _enabled = false;
+      debugPrint('Ads init failed, disabling. $e\n$st');
+      enabled = false;
       _bootstrapped = true;
-    } finally {
       _bootstrapping = false;
     }
   }
 
-  static Future<void> _load() async {
-    if (!_enabled || _ad != null) return;
-    if (_loading != null && !_loading!.isCompleted) return _loading!.future;
+  static Future<void> preloadInterstitial() async {
+    if (!enabled || !_bootstrapped || _interstitial != null) return;
+    final unitId = _interstitialUnitId;
+    if (unitId == null || unitId.isEmpty) return; // es. iOS non configurato
 
-    _lastError = '';
-    final c = Completer<void>();
-    _loading = c;
-
-    debugPrint('I/flutter [Ads] loading interstitial: $_unitId');
     try {
       await InterstitialAd.load(
-        adUnitId: _unitId,
+        adUnitId: unitId,
         request: const AdRequest(),
         adLoadCallback: InterstitialAdLoadCallback(
           onAdLoaded: (ad) {
-            debugPrint('I/flutter [Ads] onAdLoaded');
-            _ad = ad;
-            _attachCallbacks(ad);
-            if (!c.isCompleted) c.complete();
+            _interstitial = ad;
+            ad.fullScreenContentCallback = FullScreenContentCallback(
+              onAdDismissedFullScreenContent: (ad) {
+                ad.dispose();
+                _interstitial = null;
+                preloadInterstitial();
+              },
+              onAdFailedToShowFullScreenContent: (ad, err) {
+                debugPrint('Interstitial show failed: $err');
+                ad.dispose();
+                _interstitial = null;
+                preloadInterstitial();
+              },
+            );
           },
           onAdFailedToLoad: (err) {
-            _lastError = 'load code=${err.code} domain=${err.domain} msg=${err.message}';
-            debugPrint('I/flutter [Ads] onAdFailedToLoad: $_lastError');
-            _ad = null;
-            if (!c.isCompleted) c.complete();
+            debugPrint('Interstitial load failed: $err'); // NO_FILL ecc.
+            _interstitial = null;
           },
         ),
       );
     } catch (e, st) {
-      _lastError = 'load ex: $e';
-      debugPrint('I/flutter [Ads] load exception: $e\n$st');
-      _ad = null;
-      if (!c.isCompleted) c.complete();
-    } finally {
-      Future.microtask(() => _loading = null);
+      debugPrint('Interstitial load exception: $e\n$st');
+      _interstitial = null;
     }
   }
 
-  static void _attachCallbacks(InterstitialAd ad) {
-    ad.fullScreenContentCallback = FullScreenContentCallback(
-      onAdShowedFullScreenContent: (_) => debugPrint('I/flutter [Ads] onAdShowed'),
-      onAdImpression: (_) => debugPrint('I/flutter [Ads] onAdImpression'),
-      onAdClicked: (_) => debugPrint('I/flutter [Ads] onAdClicked'),
-      onAdFailedToShowFullScreenContent: (ad, err) {
-        _lastError = 'show code=${err.code} msg=${err.message}';
-        debugPrint('I/flutter [Ads] onAdFailedToShow: $_lastError');
-        ad.dispose(); _ad = null; _load();
-      },
-      onAdDismissedFullScreenContent: (ad) {
-        debugPrint('I/flutter [Ads] onAdDismissed');
-        ad.dispose(); _ad = null; _lastShown = DateTime.now(); _load();
-      },
-    );
-  }
+  /// Prova a mostrare l’interstitial se pronto.
+  /// Rispetta cooldown locale (2 min) per allinearsi ai cap AdMob.
+  static void tryShow({Duration cooldown = const Duration(minutes: 2)}) {
+    if (!enabled || !_bootstrapped) return;
+    final now = DateTime.now();
+    if (_lastShown != null && now.difference(_lastShown!) < cooldown) return;
 
-  static Future<void> tryShow() async {
-    if (!_enabled) { debugPrint('I/flutter [Ads] tryShow: disabled'); return; }
-    if (!_bootstrapped) {
-      debugPrint('I/flutter [Ads] tryShow: bootstrap first');
-      await bootstrap(enableAds: true, forceTest: _forceTest);
-    }
-
-    if (_lastShown != null && DateTime.now().difference(_lastShown!) < _minInterval) {
-      debugPrint('I/flutter [Ads] tryShow: capped');
+    final ad = _interstitial;
+    if (ad == null) {
+      preloadInterstitial();
       return;
     }
-
-    if (_ad == null) {
-      unawaited(_load());
-      if (_loading != null) {
-        try {
-          await _loading!.future.timeout(const Duration(seconds: 2));
-        } catch (_) {
-          // timeout o load fallito: va bene, proseguirà con i controlli successivi
-        }
-      }
-    }
-
-    final ad = _ad;
-    if (ad == null) { debugPrint('I/flutter [Ads] tryShow: not ready (${statusString})'); return; }
-
+    _interstitial = null;
+    _lastShown = now;
     try {
-      debugPrint('I/flutter [Ads] show()');
       ad.show();
-    } catch (e, st) {
-      _lastError = 'show ex: $e';
-      debugPrint('I/flutter [Ads] show exception: $e\n$st');
-      try { ad.dispose(); } catch (_) {}
-      _ad = null;
-      _load();
+    } catch (e) {
+      debugPrint('Interstitial show exception: $e');
     }
   }
 
-  static void dispose() { try { _ad?.dispose(); } catch (_) {} _ad = null; }
+  static void dispose() {
+    try {
+      _interstitial?.dispose();
+    } catch (_) {}
+    _interstitial = null;
+  }
 }

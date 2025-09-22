@@ -1,6 +1,5 @@
 // lib/ui/home_page.dart
 import 'dart:async';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../core/damage_model.dart';
@@ -15,11 +14,6 @@ import 'ui_consts.dart';
 import 'widgets/mode_toggle.dart';
 import 'widgets/boss_level_dropdown.dart';
 import '../util/ad_helper.dart';
-
-// Consente di scrivere _lang['chiave'] come alias di _lang.t('chiave')
-extension I18nIndexing on I18n {
-  String operator [](String key) => t(key);
-}
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -58,23 +52,14 @@ class _HomePageState extends State<HomePage> {
 
   bool _running = false;
   int _done = 0, _total = 1;
-  Timer? _adsStatusTicker;
 
   @override
   void initState() {
     super.initState();
     _loadLang('it');
 
-    if (kDebugMode) {
-      unawaited(AdHelper.bootstrap(enableAds: true, forceTest: true));
-    } else {
-      unawaited(AdHelper.bootstrap(enableAds: true));
-    }
-    if (kDebugMode) {
-      _adsStatusTicker = Timer.periodic(const Duration(seconds: 1), (_) {
-        if (mounted) setState(() {});
-      });
-    }
+    // Ads (safe): se fallisce, le ads si spengono e si va avanti
+    AdHelper.bootstrap();
   }
 
   @override
@@ -83,7 +68,6 @@ class _HomePageState extends State<HomePage> {
     for (final c in [..._kAtk, ..._kDef, ..._kHp, ..._kStun]) {
       c.dispose();
     }
-    _adsStatusTicker?.cancel();
     AdHelper.dispose();
     super.dispose();
   }
@@ -149,11 +133,10 @@ class _HomePageState extends State<HomePage> {
     ));
   }
 
-  Future<void> _onSimulatePressed() async {
+  void _onSimulatePressed() {
     if (_running) return;
-    debugPrint('I/flutter [UI] Simulate clicked');
-    await AdHelper.tryShow();
-    await _runSimulation();
+    AdHelper.tryShow(); // non blocca
+    _runSimulation();
   }
 
   @override
@@ -161,18 +144,8 @@ class _HomePageState extends State<HomePage> {
     final t = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(_lang['app_title'] ?? 'Raid Calc (Safe)'),
+        title: Text(L['app_title'] ?? 'Raid Calc (Safe)'),
         actions: [
-          if (kDebugMode)
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Center(
-                child: Text(
-                  'Ads: ${AdHelper.statusString}',
-                  style: const TextStyle(fontSize: 11),
-                ),
-              ),
-            ),
           Padding(
             padding: const EdgeInsets.only(right: 8),
             child: DropdownButtonHideUnderline(
@@ -193,27 +166,6 @@ class _HomePageState extends State<HomePage> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          if (kDebugMode)
-            Align(
-              alignment: Alignment.centerRight,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.play_arrow),
-                    tooltip: 'Show Test Ad',
-                    onPressed: () async {
-                      await AdHelper.tryShow();
-                    },
-                  ),
-                  const Text(
-                    'Show Test Ad',
-                    style: TextStyle(fontSize: 11),
-                  ),
-                ],
-              ),
-            ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -362,11 +314,7 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             height: 48,
             child: ElevatedButton(
-              onPressed: _running
-                  ? null
-                  : () {
-                      unawaited(_onSimulatePressed());
-                    },
+              onPressed: _running ? null : _onSimulatePressed,
               child: Text(L['simulate'] ?? 'Simula'),
             ),
           ),
