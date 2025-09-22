@@ -1,0 +1,23 @@
+﻿name: raid_calc
+description: Raid Calculator
+version: 1.0.0+2
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_mobile_ads: ^5.0.0
+  # â€¦le altre tue dipendenze (i18n, ecc.)
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/raidComplete_data.json
+    - assets/lang/it.json
+    - assets/lang/en.json
+    - assets/lang/de.json
+    - assets/lang/fr.json
+    - assets/lang/es.json
+    - assets/lang/ru.json
+    - assets/lang/nl.json
