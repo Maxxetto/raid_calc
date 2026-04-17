@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(flutter test:*)",
+      "Bash(ls -lh /c/Users/maxxe/raid_calc/android/app/src/main/res/mipmap-*/ic_launcher.png)",
+      "Bash(grep -E \"\\\\.\\(py|dart\\)$\")",
+      "Bash(ls -lh /c/Users/maxxe/raid_calc/android/app/src/main/res/mipmap-*/)",
+      "Bash(file /c/Users/maxxe/raid_calc/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-*.png)",
+      "Bash(flutter pub:*)",
+      "Bash(flutter analyze:*)",
+      "Bash(find /c/Users/maxxe/raid_calc -name \"*.dart\" -type f -exec grep -l \"^class Precomputed\" {} \\\\;)"
+    ]
+  }
+}

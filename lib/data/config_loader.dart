@@ -1,81 +1,184 @@
 // lib/data/config_loader.dart
-import 'dart:convert';
-import 'package:flutter/services.dart' show rootBundle;
+import 'boss_tables_loader.dart';
 import 'config_models.dart';
+import 'elixirs_loader.dart';
+import 'knight_bar_rules_loader.dart';
+import 'ocr_defaults_loader.dart';
+import 'pet_bar_rules_loader.dart';
+import 'sim_rules_loader.dart';
+import 'war_points_loader.dart';
 
 class ConfigLoader {
-  /// Carica le stats del Boss da assets/raidComplete_data.json
-  /// usando SEMPRE la tabella corretta (Raid/Blitz) + il livello selezionato.
-  static Future<BossConfig> loadBossFromAssets({
-    required int bossLevel,
+  static Future<BossConfig> loadBoss({
     required bool raidMode,
-    List<double>? overrideBossAdv,
-    String assetPath = 'assets/raidComplete_data.json',
+    required int bossLevel,
+    required List<double> adv,
+    String? fightModeKey,
   }) async {
-    final raw = await rootBundle.loadString(assetPath);
-    final Map<String, dynamic> data = jsonDecode(raw);
+    final rows = await BossTablesLoader.loadBossTable(raidMode: raidMode);
 
-    // --- Default: advantage dal blocco "boss" (se presente), MA NON il level ---
-    List<double> advDefault;
-    try {
-      final lst =
-          (data['boss']?['adv_vs_knights'] as List?) ?? const [1.0, 1.0, 1.0];
-      advDefault = lst
-          .map((e) => (e as num).toDouble())
-          .toList(growable: false);
-      if (advDefault.length != 3) {
-        advDefault = const [1.0, 1.0, 1.0];
-      }
-    } catch (_) {
-      advDefault = const [1.0, 1.0, 1.0];
-    }
-    final advVsKnights = overrideBossAdv ?? advDefault;
-
-    // --- Selezione tabella per modalità ---
-    final tables = (data['tables'] as Map<String, dynamic>?);
-    if (tables == null) {
-      throw StateError('JSON: manca la chiave "tables"');
-    }
-    final modeKey = raidMode ? 'Raid' : 'Blitz';
-    final listDyn = tables[modeKey];
-    if (listDyn == null || listDyn is! List) {
-      throw StateError('JSON: manca la tabella "$modeKey"');
-    }
-    final List<Map<String, dynamic>> table = listDyn
-        .map<Map<String, dynamic>>((e) => Map<String, dynamic>.from(e as Map))
-        .toList(growable: false);
-
-    // --- Clamp del livello e lookup by level ---
-    final maxLevel = table.length; // Raid=7, Blitz=6
-    var lv = bossLevel.clamp(1, maxLevel);
-    Map<String, dynamic>? row = table.firstWhere(
-      (e) => (e['level'] as num).toInt() == lv,
-      orElse: () => <String, dynamic>{},
-    );
-    if (row.isEmpty) {
-      // fallback per sicurezza (index-based)
-      row = table[lv - 1];
-    }
-
-    final atk = (row['attack'] as num).toDouble();
-    final def = (row['defense'] as num).toDouble();
-    final hp = (row['hp'] as num).toInt();
-
-    // --- Multiplier (debug) ---
-    final mult = (data['Multiplier'] is num)
-        ? (data['Multiplier'] as num).toDouble()
-        : 1.0;
-
-    final meta = BossMeta(
-      level: lv,
-      raidMode: raidMode,
-      advVsKnights: advVsKnights,
+    final row = rows.firstWhere(
+      (r) => r.level == bossLevel,
+      orElse: () => rows.first,
     );
 
-    return BossConfig(
-      stats: BossStats(attack: atk, defense: def, hp: hp),
-      meta: meta,
-      multiplierM: mult,
+    final simRules = await SimRulesLoader.loadRaw();
+    final petBarRaw = await PetBarRulesLoader.loadRaw();
+    final knightBarRaw = await KnightBarRulesLoader.loadRaw();
+    final petBar = PetBarRulesLoader.resolveScoped(
+      raw: petBarRaw,
+      bossTypeKey: raidMode ? 'raid' : 'blitz',
+      fightModeKey: fightModeKey ?? 'normal',
     );
+    final knightBar = KnightBarRulesLoader.resolveScoped(
+      raw: knightBarRaw,
+      bossTypeKey: raidMode ? 'raid' : 'blitz',
+      fightModeKey: fightModeKey ?? 'normal',
+    );
+    final meta = BossMeta.fromSources(
+      simRules: simRules,
+      petTicksBar: petBar,
+      knightSpecialBar: knightBar,
+      overrides: <String, Object?>{
+        'raidMode': raidMode,
+        'level': bossLevel,
+        'advVsKnights': Advantage.normalizeList(adv),
+      },
+    );
+
+    final stats = BossStats(
+      attack: row.attack,
+      defense: row.defense,
+      hp: row.hp,
+    );
+
+    return BossConfig(meta: meta, stats: stats);
+  }
+
+  static Future<BossMeta> loadEpicMeta({
+    required bool raidMode,
+    required List<double> adv,
+    String? fightModeKey,
+  }) async {
+    final simRules = await SimRulesLoader.loadRaw();
+    final petBarRaw = await PetBarRulesLoader.loadRaw();
+    final knightBarRaw = await KnightBarRulesLoader.loadRaw();
+    final petBar = PetBarRulesLoader.resolveScoped(
+      raw: petBarRaw,
+      bossTypeKey: 'epic',
+      fightModeKey: fightModeKey ?? 'normal',
+    );
+    final knightBar = KnightBarRulesLoader.resolveScoped(
+      raw: knightBarRaw,
+      bossTypeKey: 'epic',
+      fightModeKey: fightModeKey ?? 'normal',
+    );
+    final advNorm = adv.isEmpty
+        ? <double>[1.0]
+        : adv.map(Advantage.normalize).toList(growable: false);
+
+    return BossMeta.fromSources(
+      simRules: simRules,
+      petTicksBar: petBar,
+      knightSpecialBar: knightBar,
+      overrides: <String, Object?>{
+        'raidMode': raidMode,
+        'level': 1,
+        'advVsKnights': advNorm,
+      },
+    );
+  }
+
+  static Future<int> loadEpicThreshold() async {
+    final root = await SimRulesLoader.loadRaw();
+    final raw = root['thresholdEpicBoss'];
+    final v = (raw is num) ? raw.toInt() : 80;
+    if (v < 0) return 0;
+    if (v > 100) return 100;
+    return v;
+  }
+
+  static Future<int> loadRaidFreeEnergies() async {
+    final root = await SimRulesLoader.loadRaw();
+    final raw = root['raidFreeEnergies'];
+    final v = (raw is num) ? raw.toInt() : 30;
+    if (v < 0) return 0;
+    if (v > 2000000000) return 2000000000;
+    return v;
+  }
+
+  static Future<double> loadDefaultDurableRockShield({
+    String bossTypeKey = 'raid',
+    String fightModeKey = 'normal',
+  }) async {
+    final simRules = await SimRulesLoader.loadRaw();
+    final petBarRaw = await PetBarRulesLoader.loadRaw();
+    final knightBarRaw = await KnightBarRulesLoader.loadRaw();
+    final petBar = PetBarRulesLoader.resolveScoped(
+      raw: petBarRaw,
+      bossTypeKey: bossTypeKey,
+      fightModeKey: fightModeKey,
+    );
+    final knightBar = KnightBarRulesLoader.resolveScoped(
+      raw: knightBarRaw,
+      bossTypeKey: bossTypeKey,
+      fightModeKey: fightModeKey,
+    );
+    final meta = BossMeta.fromSources(
+      simRules: simRules,
+      petTicksBar: petBar,
+      knightSpecialBar: knightBar,
+      overrides: const <String, Object?>{},
+    );
+    return meta.defaultDurableRockShield;
+  }
+
+  static Future<double> loadDefaultElementalWeakness({
+    String bossTypeKey = 'raid',
+    String fightModeKey = 'normal',
+  }) async {
+    final simRules = await SimRulesLoader.loadRaw();
+    final petBarRaw = await PetBarRulesLoader.loadRaw();
+    final knightBarRaw = await KnightBarRulesLoader.loadRaw();
+    final petBar = PetBarRulesLoader.resolveScoped(
+      raw: petBarRaw,
+      bossTypeKey: bossTypeKey,
+      fightModeKey: fightModeKey,
+    );
+    final knightBar = KnightBarRulesLoader.resolveScoped(
+      raw: knightBarRaw,
+      bossTypeKey: bossTypeKey,
+      fightModeKey: fightModeKey,
+    );
+    final meta = BossMeta.fromSources(
+      simRules: simRules,
+      petTicksBar: petBar,
+      knightSpecialBar: knightBar,
+      overrides: const <String, Object?>{},
+    );
+    return meta.defaultElementalWeakness;
+  }
+
+  static Future<({double left, double right, double top, double bottom})>
+      loadDefaultKnightImportCrop() async {
+    return OcrDefaultsLoader.load();
+  }
+
+  static Future<Map<int, EpicBossRow>> loadEpicTable() async {
+    return BossTablesLoader.loadEpicTable();
+  }
+
+  static Future<List<ElixirConfig>> loadElixirs({String? gamemode}) async {
+    return ElixirsLoader.load(gamemode: gamemode);
+  }
+
+  static Future<List<BossLevelRow>> loadBossTable({
+    required bool raidMode,
+  }) async {
+    return BossTablesLoader.loadBossTable(raidMode: raidMode);
+  }
+
+  static Future<WarPointsConfig> loadWarPoints() async {
+    return WarPointsLoader.load();
   }
 }

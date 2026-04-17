@@ -1,0 +1,6 @@
+﻿{
+    "defaultOcrCropLeft":  20,
+    "defaultOcrCropRight":  15,
+    "defaultOcrCropTop":  5,
+    "defaultOcrCropBottom":  55
+}

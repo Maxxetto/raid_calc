@@ -1,0 +1,1194 @@
+{
+  "schemaVersion": 3,
+  "ringBonuses": {
+    "fire": {
+      "attack": 951,
+      "health": 209
+    },
+    "spirit": {
+      "attack": 504,
+      "health": 318
+    },
+    "earth": {
+      "attack": 729,
+      "health": 268
+    },
+    "air": {
+      "attack": 911,
+      "health": 233
+    },
+    "water": {
+      "attack": 866,
+      "health": 248
+    },
+    "starmetal": {
+      "attack": 894,
+      "health": 251
+    }
+  },
+  "amuletBonuses": {
+    "fire": {
+      "attack": 911,
+      "health": 233
+    },
+    "spirit": {
+      "attack": 273,
+      "health": 343
+    },
+    "earth": {
+      "attack": 639,
+      "health": 293
+    },
+    "air": {
+      "attack": 866,
+      "health": 248
+    },
+    "water": {
+      "attack": 821,
+      "health": 258
+    },
+    "starmetal": {
+      "attack": 894,
+      "health": 251
+    }
+  },
+  "knightBaseStats": {
+    "primary": {
+      "attack": 317,
+      "defense": 317,
+      "health": 607
+    },
+    "secondary": {
+      "attack": 238,
+      "defense": 238,
+      "health": 455
+    }
+  },
+  "rankBonuses": {
+    "commander": 0,
+    "highCommander": 5,
+    "gcGs": 7,
+    "guildMaster": 10
+  },
+  "defaultGuildElementBonuses": {
+    "fire": 10,
+    "spirit": 10,
+    "earth": 10,
+    "air": 10,
+    "water": 10
+  },
+  "armors": [
+    {
+      "id": "aeroforge_sentinel",
+      "name": "Aeroforge Sentinel",
+      "seasonTag": "S115",
+      "elements": [
+        "air",
+        "air"
+      ],
+      "stats": [
+        57613,
+        47465,
+        0,
+        0,
+        881,
+        64840,
+        53120,
+        0,
+        0,
+        881
+      ]
+    },
+    {
+      "id": "arid_scale",
+      "name": "Arid Scale",
+      "seasonTag": "S111",
+      "elements": [
+        "water",
+        "air"
+      ],
+      "stats": [
+        50750,
+        43460,
+        0,
+        0,
+        860,
+        57131,
+        48651,
+        0,
+        0,
+        860
+      ]
+    },
+    {
+      "id": "blazewreath_paladin_t12",
+      "name": "Blazewreath Paladin T12",
+      "seasonTag": "S113",
+      "elements": [
+        "spirit",
+        "fire"
+      ],
+      "stats": [
+        50188,
+        54078,
+        0,
+        0,
+        881
+      ]
+    },
+    {
+      "id": "cinderwisp_vial",
+      "name": "Cinderwisp Vial",
+      "seasonTag": "S112",
+      "elements": [
+        "fire",
+        "air"
+      ],
+      "stats": [
+        51945,
+        44210,
+        0,
+        0,
+        881,
+        58527,
+        49569,
+        0,
+        0,
+        881
+      ]
+    },
+    {
+      "id": "cloudstrider_mail",
+      "name": "Cloudstrider Mail",
+      "seasonTag": "S110",
+      "elements": [
+        "air",
+        "spirit"
+      ],
+      "stats": [
+        47245,
+        44429,
+        0,
+        0,
+        860,
+        53057,
+        49493,
+        0,
+        0,
+        860
+      ]
+    },
+    {
+      "id": "crag_bastion",
+      "name": "Crag Bastion",
+      "seasonTag": "S114",
+      "elements": [
+        "earth",
+        "fire"
+      ],
+      "stats": [
+        47915,
+        51095,
+        0,
+        0,
+        881,
+        54009,
+        57007,
+        0,
+        0,
+        881
+      ]
+    },
+    {
+      "id": "cypress_brigandine",
+      "name": "Cypress Brigandine",
+      "seasonTag": "S111",
+      "elements": [
+        "water",
+        "water"
+      ],
+      "stats": [
+        52559,
+        45150,
+        0,
+        0,
+        860,
+        59133,
+        50482,
+        0,
+        0,
+        860
+      ]
+    },
+    {
+      "id": "dragoncoal_charm",
+      "name": "Dragoncoal Charm",
+      "seasonTag": "S112",
+      "elements": [
+        "fire",
+        "earth"
+      ],
+      "stats": [
+        51349,
+        44255,
+        0,
+        0,
+        881,
+        57752,
+        49478,
+        0,
+        0,
+        881
+      ]
+    },
+    {
+      "id": "elfcraft_spellhammer_t12",
+      "name": "Elfcraft Spellhammer T12",
+      "seasonTag": "S113",
+      "elements": [
+        "spirit",
+        "earth"
+      ],
+      "stats": [
+        53725,
+        50327,
+        0,
+        0,
+        881
+      ]
+    },
+    {
+      "id": "ethereal_spiritforge",
+      "name": "Ethereal Spiritforge",
+      "seasonTag": "S113",
+      "elements": [
+        "spirit",
+        "spirit"
+      ],
+      "stats": [
+        44158,
+        54954,
+        0,
+        0,
+        881,
+        49479,
+        60814,
+        0,
+        0,
+        881
+      ]
+    },
+    {
+      "id": "galeheart_carapace",
+      "name": "Galeheart Carapace",
+      "seasonTag": "S115",
+      "elements": [
+        "air",
+        "spirit"
+      ],
+      "stats": [
+        51547,
+        48483,
+        0,
+        0,
+        881,
+        57872,
+        53957,
+        0,
+        0,
+        881
+      ]
+    },
+    {
+      "id": "geokinetic_suit",
+      "name": "Geokinetic Suit",
+      "seasonTag": "S109",
+      "elements": [
+        "earth",
+        "water"
+      ],
+      "stats": [
+        42031,
+        48450,
+        0,
+        0,
+        860,
+        47387,
+        54016,
+        0,
+        0,
+        860
+      ]
+    },
+    {
+      "id": "glacierrun_panoply",
+      "name": "Glacierrun Panoply",
+      "seasonTag": "S116",
+      "elements": [
+        "water",
+        "air"
+      ],
+      "stats": [
+        56287,
+        46517,
+        0,
+        0,
+        881,
+        63324,
+        52039,
+        0,
+        0,
+        881
+      ]
+    },
+    {
+      "id": "highwind_protector",
+      "name": "Highwind Protector",
+      "seasonTag": "S115",
+      "elements": [
+        "air",
+        "fire"
+      ],
+      "stats": [
+        55643,
+        45702,
+        0,
+        0,
+        881,
+        62658,
+        51210,
+        0,
+        0,
+        881
+      ]
+    },
+    {
+      "id": "hurricane_harness",
+      "name": "Hurricane Harness",
+      "seasonTag": "S110",
+      "elements": [
+        "air",
+        "earth"
+      ],
+      "stats": [
+        46986,
+        45190,
+        0,
+        0,
+        860,
+        52888,
+        50456,
+        0,
+        0,
+        860
+      ]
+    },
+    {
+      "id": "kindleshard_cuirass",
+      "name": "Kindleshard Cuirass",
+      "seasonTag": "S117GW",
+      "elements": [
+        "fire",
+        "air"
+      ],
+      "stats": [
+        47103,
+        40184,
+        4579,
+        4000,
+        902,
+        52172,
+        44458,
+        6224,
+        5190,
+        902
+      ],
+      "jewelry": [
+        612,
+        149,
+        567,
+        162,
+        612,
+        149,
+        567,
+        162
+      ]
+    },
+    {
+      "id": "kindlewood_totem",
+      "name": "Kindlewood Totem",
+      "seasonTag": "S112",
+      "elements": [
+        "fire",
+        "water"
+      ],
+      "stats": [
+        52626,
+        43359,
+        0,
+        0,
+        881,
+        59245,
+        48590,
+        0,
+        0,
+        881
+      ]
+    },
+    {
+      "id": "lithomancer_shielding",
+      "name": "Lithomancer Shielding",
+      "seasonTag": "S109",
+      "elements": [
+        "earth",
+        "fire"
+      ],
+      "stats": [
+        43920,
+        46823,
+        0,
+        0,
+        860,
+        49520,
+        52290,
+        0,
+        0,
+        860
+      ]
+    },
+    {
+      "id": "obsidian_guard",
+      "name": "Obsidian Guard",
+      "seasonTag": "S114",
+      "elements": [
+        "earth",
+        "earth"
+      ],
+      "stats": [
+        45312,
+        56747,
+        0,
+        0,
+        881,
+        51020,
+        63058,
+        0,
+        0,
+        881
+      ]
+    },
+    {
+      "id": "phantom_hauntforge",
+      "name": "Phantom Hauntforge",
+      "seasonTag": "S113",
+      "elements": [
+        "spirit",
+        "air"
+      ],
+      "stats": [
+        45463,
+        51124,
+        0,
+        0,
+        881,
+        51141,
+        56871,
+        0,
+        0,
+        881
+      ]
+    },
+    {
+      "id": "riverborn_shell",
+      "name": "Riverborn Shell",
+      "seasonTag": "S116",
+      "elements": [
+        "water",
+        "spirit"
+      ],
+      "stats": [
+        52298,
+        49350,
+        0,
+        0,
+        881,
+        58683,
+        54873,
+        0,
+        0,
+        881
+      ]
+    },
+    {
+      "id": "scirocco_embrace",
+      "name": "Scirocco Embrace",
+      "seasonTag": "S110",
+      "elements": [
+        "air",
+        "air"
+      ],
+      "stats": [
+        51946,
+        44345,
+        0,
+        0,
+        860,
+        58499,
+        49660,
+        0,
+        0,
+        860
+      ]
+    },
+    {
+      "id": "seismic_shift",
+      "name": "Seismic Shift",
+      "seasonTag": "S114",
+      "elements": [
+        "earth",
+        "spirit"
+      ],
+      "stats": [
+        43888,
+        53797,
+        0,
+        0,
+        881,
+        49293,
+        59839,
+        0,
+        0,
+        881
+      ]
+    },
+    {
+      "id": "shadowbound_steed_t10",
+      "name": "Shadowbound Steed T10",
+      "seasonTag": "S115",
+      "elements": [
+        "air",
+        "spirit"
+      ],
+      "stats": [
+        57064,
+        50625,
+        0,
+        0,
+        881
+      ]
+    },
+    {
+      "id": "siltwalker_vest",
+      "name": "Siltwalker Vest",
+      "seasonTag": "S111",
+      "elements": [
+        "water",
+        "spirit"
+      ],
+      "stats": [
+        47932,
+        45224,
+        0,
+        0,
+        860,
+        53799,
+        50334,
+        0,
+        0,
+        860
+      ]
+    },
+    {
+      "id": "skybound_steed_t10",
+      "name": "Skybound Steed T10",
+      "seasonTag": "S115",
+      "elements": [
+        "air",
+        "water"
+      ],
+      "stats": [
+        59659,
+        51332,
+        0,
+        0,
+        881
+      ]
+    },
+    {
+      "id": "skyhowl_battlegear",
+      "name": "Skyhowl Battlegear",
+      "seasonTag": "S115",
+      "elements": [
+        "air",
+        "earth"
+      ],
+      "stats": [
+        51267,
+        49313,
+        0,
+        0,
+        881,
+        57690,
+        55007,
+        0,
+        0,
+        881
+      ]
+    },
+    {
+      "id": "smeltspark_agony",
+      "name": "Smeltspark Agony",
+      "seasonTag": "S112",
+      "elements": [
+        "fire",
+        "fire"
+      ],
+      "stats": [
+        58480,
+        41504,
+        0,
+        0,
+        881,
+        65799,
+        46615,
+        0,
+        0,
+        881
+      ]
+    },
+    {
+      "id": "spectral_veilplate",
+      "name": "Spectral Veilplate",
+      "seasonTag": "S113",
+      "elements": [
+        "spirit",
+        "water"
+      ],
+      "stats": [
+        43597,
+        52849,
+        0,
+        0,
+        881,
+        49050,
+        58745,
+        0,
+        0,
+        881
+      ]
+    },
+    {
+      "id": "sprayglass_girdle",
+      "name": "Sprayglass Girdle",
+      "seasonTag": "S116",
+      "elements": [
+        "water",
+        "earth"
+      ],
+      "stats": [
+        52029,
+        50213,
+        0,
+        0,
+        881,
+        58516,
+        55962,
+        0,
+        0,
+        881
+      ]
+    },
+    {
+      "id": "stormsea_hauberk",
+      "name": "Stormsea Hauberk",
+      "seasonTag": "S116",
+      "elements": [
+        "water",
+        "water"
+      ],
+      "stats": [
+        57356,
+        49272,
+        0,
+        0,
+        881,
+        64513,
+        55037,
+        0,
+        0,
+        881
+      ]
+    },
+    {
+      "id": "tectonic_chest",
+      "name": "Tectonic Chest",
+      "seasonTag": "S114",
+      "elements": [
+        "earth",
+        "water"
+      ],
+      "stats": [
+        44984,
+        53738,
+        0,
+        0,
+        881,
+        50715,
+        59855,
+        0,
+        0,
+        881
+      ]
+    },
+    {
+      "id": "tempest_suit",
+      "name": "Tempest Suit",
+      "seasonTag": "S110",
+      "elements": [
+        "air",
+        "fire"
+      ],
+      "stats": [
+        50994,
+        41883,
+        0,
+        0,
+        860,
+        57436,
+        46979,
+        0,
+        0,
+        860
+      ]
+    },
+    {
+      "id": "terracotta_carapace",
+      "name": "Terracotta Carapace",
+      "seasonTag": "S109",
+      "elements": [
+        "earth",
+        "spirit"
+      ],
+      "stats": [
+        39430,
+        50097,
+        0,
+        0,
+        860,
+        44319,
+        55621,
+        0,
+        0,
+        860
+      ]
+    },
+    {
+      "id": "terrapulse_blaster",
+      "name": "TerraPulse Blaster",
+      "seasonTag": "S109",
+      "elements": [
+        "earth",
+        "earth"
+      ],
+      "stats": [
+        40702,
+        52828,
+        0,
+        0,
+        860,
+        45865,
+        58742,
+        0,
+        0,
+        860
+      ]
+    },
+    {
+      "id": "wellspring_gear",
+      "name": "Wellspring Gear",
+      "seasonTag": "S111",
+      "elements": [
+        "water",
+        "earth"
+      ],
+      "stats": [
+        47686,
+        46014,
+        0,
+        0,
+        860,
+        53647,
+        51330,
+        0,
+        0,
+        860
+      ]
+    },
+    {
+      "id": "spiritforge_harness",
+      "name": "Spiritforge Harness",
+      "seasonTag": "S108",
+      "elements": [
+        "spirit",
+        "spirit"
+      ],
+      "stats": [
+        41294,
+        49544,
+        0,
+        0,
+        860,
+        48546,
+        54873,
+        0,
+        0,
+        860
+      ]
+    },
+    {
+      "id": "abyssal_relic",
+      "name": "Abyssal Relic",
+      "seasonTag": "S108",
+      "elements": [
+        "spirit",
+        "fire"
+      ],
+      "stats": [
+        42588,
+        46033,
+        0,
+        0,
+        860,
+        47926,
+        51299,
+        0,
+        0,
+        860
+      ]
+    },
+    {
+      "id": "nightmare_totem",
+      "name": "Nightmare Totem",
+      "seasonTag": "S108",
+      "elements": [
+        "spirit",
+        "earth"
+      ],
+      "stats": [
+        41904,
+        46850,
+        0,
+        0,
+        815,
+        47124,
+        52166,
+        0,
+        0,
+        815
+      ]
+    },
+    {
+      "id": "shadow_loa",
+      "name": "Shadow Loa",
+      "seasonTag": "S108",
+      "elements": [
+        "spirit",
+        "water"
+      ],
+      "stats": [
+        41148,
+        47249,
+        0,
+        0,
+        860,
+        46287,
+        52575,
+        0,
+        0,
+        860
+      ]
+    },
+    {
+      "id": "starflare_exosuit",
+      "name": "Starflare Exosuit",
+      "seasonTag": "S107",
+      "elements": [
+        "fire",
+        "fire"
+      ],
+      "stats": [
+        53590,
+        38042,
+        0,
+        0,
+        860,
+        60312,
+        42775,
+        0,
+        0,
+        860
+      ]
+    },
+    {
+      "id": "pyroclad_aegis",
+      "name": "Pyroclad Aegis",
+      "seasonTag": "S107",
+      "elements": [
+        "fire",
+        "water"
+      ],
+      "stats": [
+        48233,
+        39740,
+        0,
+        0,
+        860,
+        54314,
+        44582,
+        0,
+        0,
+        860
+      ]
+    },
+    {
+      "id": "volcanic_warplate",
+      "name": "Volcanic Warplate",
+      "seasonTag": "S107",
+      "elements": [
+        "fire",
+        "earth"
+      ],
+      "stats": [
+        45516,
+        42111,
+        0,
+        0,
+        860,
+        51247,
+        47099,
+        0,
+        0,
+        860
+      ]
+    },
+    {
+      "id": "novaforge_bracers",
+      "name": "Novaforge Bracers",
+      "seasonTag": "S107",
+      "elements": [
+        "fire",
+        "air"
+      ],
+      "stats": [
+        43793,
+        35741,
+        4595,
+        4006,
+        860,
+        48289,
+        39454,
+        6232,
+        5167,
+        860
+      ]
+    },
+    {
+      "id": "hellforge_plastron",
+      "name": "Hellforge Plastron",
+      "seasonTag": "S117",
+      "elements": [
+        "fire",
+        "fire"
+      ],
+      "stats": [
+        57817,
+        40245,
+        6009,
+        5046,
+        902,
+        63714,
+        44401,
+        8083,
+        6416,
+        902
+      ]
+    },
+    {
+      "id": "pyroclast_greaves",
+      "name": "Pyroclast Greaves",
+      "seasonTag": "S117",
+      "elements": [
+        "fire",
+        "water"
+      ],
+      "stats": [
+        52917,
+        41543,
+        5428,
+        4861,
+        902,
+        58327,
+        45826,
+        7327,
+        6133,
+        902
+      ]
+    },
+    {
+      "id": "cinderstorm_vambraces",
+      "name": "Cinderstorm Vambraces",
+      "seasonTag": "S117",
+      "elements": [
+        "fire",
+        "air"
+      ],
+      "stats": [
+        52019,
+        42471,
+        5593,
+        4851,
+        902,
+        57330,
+        46857,
+        7542,
+        6158,
+        902
+      ]
+    },
+    {
+      "id": "solarflare_gorget",
+      "name": "Solarflare Gorget",
+      "seasonTag": "S117",
+      "elements": [
+        "fire",
+        "earth"
+      ],
+      "stats": [
+        50169,
+        44321,
+        4941,
+        4898,
+        902,
+        55297,
+        48890,
+        6694,
+        6067,
+        902
+      ]
+    },
+    {
+      "id": "tempest_tkf_legend",
+      "name": "TempestTKF Legend",
+      "seasonTag": "S117RB",
+      "elements": [
+        "fire",
+        "spirit"
+      ],
+      "stats": [
+        45922,
+        40749,
+        3453,
+        4045,
+        902,
+        50873,
+        45078,
+        4760,
+        5002,
+        902
+      ],
+      "jewelry": [
+        702,
+        164,
+        214,
+        263,
+        702,
+        164,
+        214,
+        263
+      ]
+    },
+    {
+      "id": "soul_of_gareth",
+      "name": "Soul of Gareth",
+      "seasonTag": "S117RB",
+      "elements": [
+        "fire",
+        "water"
+      ],
+      "stats": [
+        48458,
+        38212,
+        4405,
+        3977,
+        902,
+        53661,
+        42289,
+        5998,
+        5135,
+        902
+      ]
+    },
+    {
+      "id": "ultimate_quatuordecimus",
+      "name": "Ultimate Quatuordecimus",
+      "seasonTag": "UA14",
+      "elements": [
+        "starmetal",
+        "starmetal"
+      ],
+      "stats": [
+        51555,
+        50848,
+        7829,
+        6335,
+        881,
+        51685,
+        51368,
+        7829,
+        6335,
+        881
+      ],
+      "jewelry": [
+        894,
+        251,
+        894,
+        251,
+        894,
+        256,
+        894,
+        256
+      ]
+    },
+    {
+      "id": "ultimate_quintusdecimus",
+      "name": "Ultimate Quintusdecimus",
+      "seasonTag": "UA15",
+      "elements": [
+        "starmetal",
+        "starmetal"
+      ],
+      "stats": [
+        55620,
+        55312,
+        6611,
+        5770,
+        881,
+        55620,
+        55312,
+        8523,
+        6871,
+        902
+      ],
+      "jewelry": [
+        894,
+        256,
+        894,
+        256,
+        894,
+        256,
+        894,
+        256
+      ]
+    }
+  ]
+}

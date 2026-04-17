@@ -1,0 +1,1216 @@
+{
+    "schemaVersion":  4,
+    "formatVersion":  1,
+    "statsProfiles":  [
+                          {
+                              "id":  "st0001",
+                              "level":  90,
+                              "petAttack":  3627,
+                              "petAttackStat":  842,
+                              "petDefenseStat":  842
+                          },
+                          {
+                              "id":  "st0002",
+                              "level":  90,
+                              "petAttack":  3627,
+                              "petAttackStat":  892,
+                              "petDefenseStat":  792
+                          },
+                          {
+                              "id":  "st0003",
+                              "level":  90,
+                              "petAttack":  3892,
+                              "petAttackStat":  955,
+                              "petDefenseStat":  845
+                          },
+                          {
+                              "id":  "st0004",
+                              "level":  90,
+                              "petAttack":  3627,
+                              "petAttackStat":  742,
+                              "petDefenseStat":  942
+                          },
+                          {
+                              "id":  "st0005",
+                              "level":  90,
+                              "petAttack":  3582,
+                              "petAttackStat":  842,
+                              "petDefenseStat":  842
+                          },
+                          {
+                              "id":  "st0006",
+                              "level":  90,
+                              "petAttack":  3627,
+                              "petAttackStat":  892,
+                              "petDefenseStat":  892
+                          },
+                          {
+                              "id":  "st0007",
+                              "level":  90,
+                              "petAttack":  3892,
+                              "petAttackStat":  842,
+                              "petDefenseStat":  842
+                          },
+                          {
+                              "id":  "st0008",
+                              "level":  1,
+                              "petAttack":  3667,
+                              "petAttackStat":  866,
+                              "petDefenseStat":  693
+                          },
+                          {
+                              "id":  "st0009",
+                              "level":  90,
+                              "petAttack":  3892,
+                              "petAttackStat":  1133,
+                              "petDefenseStat":  960
+                          },
+                          {
+                              "id":  "st0010",
+                              "level":  1,
+                              "petAttack":  3886,
+                              "petAttackStat":  866,
+                              "petDefenseStat":  693
+                          },
+                          {
+                              "id":  "st0011",
+                              "level":  1,
+                              "petAttack":  4080,
+                              "petAttackStat":  866,
+                              "petDefenseStat":  693
+                          },
+                          {
+                              "id":  "st0012",
+                              "level":  1,
+                              "petAttack":  4283,
+                              "petAttackStat":  866,
+                              "petDefenseStat":  693
+                          },
+                          {
+                              "id":  "st0013",
+                              "level":  1,
+                              "petAttack":  4496,
+                              "petAttackStat":  866,
+                              "petDefenseStat":  693
+                          },
+                          {
+                              "id":  "st0014",
+                              "level":  1,
+                              "petAttack":  4720,
+                              "petAttackStat":  866,
+                              "petDefenseStat":  693
+                          },
+                          {
+                              "id":  "st0015",
+                              "level":  90,
+                              "petAttack":  4245,
+                              "petAttackStat":  1062,
+                              "petDefenseStat":  821
+                          },
+                          {
+                              "id":  "st0016",
+                              "level":  1,
+                              "petAttack":  4956,
+                              "petAttackStat":  866,
+                              "petDefenseStat":  693
+                          },
+                          {
+                              "id":  "st0017",
+                              "level":  1,
+                              "petAttack":  5006,
+                              "petAttackStat":  866,
+                              "petDefenseStat":  693
+                          },
+                          {
+                              "id":  "st0018",
+                              "level":  1,
+                              "petAttack":  5256,
+                              "petAttackStat":  866,
+                              "petDefenseStat":  693
+                          },
+                          {
+                              "id":  "st0019",
+                              "level":  1,
+                              "petAttack":  5518,
+                              "petAttackStat":  866,
+                              "petDefenseStat":  693
+                          },
+                          {
+                              "id":  "st0020",
+                              "level":  1,
+                              "petAttack":  5794,
+                              "petAttackStat":  866,
+                              "petDefenseStat":  693
+                          },
+                          {
+                              "id":  "st0021",
+                              "level":  1,
+                              "petAttack":  6084,
+                              "petAttackStat":  866,
+                              "petDefenseStat":  693
+                          },
+                          {
+                              "id":  "st0022",
+                              "level":  1,
+                              "petAttack":  6388,
+                              "petAttackStat":  866,
+                              "petDefenseStat":  693
+                          },
+                          {
+                              "id":  "st0023",
+                              "level":  1,
+                              "petAttack":  6371,
+                              "petAttackStat":  1099,
+                              "petDefenseStat":  880
+                          },
+                          {
+                              "id":  "st0024",
+                              "level":  99,
+                              "petAttack":  7449,
+                              "petAttackStat":  1393,
+                              "petDefenseStat":  1174
+                          },
+                          {
+                              "id":  "st0025",
+                              "level":  1,
+                              "petAttack":  6690,
+                              "petAttackStat":  1047,
+                              "petDefenseStat":  838
+                          },
+                          {
+                              "id":  "st0026",
+                              "level":  1,
+                              "petAttack":  7023,
+                              "petAttackStat":  1099,
+                              "petDefenseStat":  880
+                          },
+                          {
+                              "id":  "st0027",
+                              "level":  99,
+                              "petAttack":  5789,
+                              "petAttackStat":  1293,
+                              "petDefenseStat":  1094
+                          },
+                          {
+                              "id":  "st0028",
+                              "level":  1,
+                              "petAttack":  4487,
+                              "petAttackStat":  952,
+                              "petDefenseStat":  762
+                          },
+                          {
+                              "id":  "st0029",
+                              "level":  1,
+                              "petAttack":  4710,
+                              "petAttackStat":  1047,
+                              "petDefenseStat":  838
+                          },
+                          {
+                              "id":  "st0030",
+                              "level":  1,
+                              "petAttack":  4945,
+                              "petAttackStat":  1099,
+                              "petDefenseStat":  880
+                          },
+                          {
+                              "id":  "st0031",
+                              "level":  1,
+                              "petAttack":  5450,
+                              "petAttackStat":  1099,
+                              "petDefenseStat":  880
+                          },
+                          {
+                              "id":  "st0032",
+                              "level":  1,
+                              "petAttack":  5191,
+                              "petAttackStat":  1047,
+                              "petDefenseStat":  838
+                          },
+                          {
+                              "id":  "st0033",
+                              "level":  99,
+                              "petAttack":  6800,
+                              "petAttackStat":  1393,
+                              "petDefenseStat":  1174
+                          },
+                          {
+                              "id":  "st0034",
+                              "level":  1,
+                              "petAttack":  5559,
+                              "petAttackStat":  1068,
+                              "petDefenseStat":  855
+                          },
+                          {
+                              "id":  "st0035",
+                              "level":  1,
+                              "petAttack":  5450,
+                              "petAttackStat":  1047,
+                              "petDefenseStat":  838
+                          },
+                          {
+                              "id":  "st0036",
+                              "level":  1,
+                              "petAttack":  5722,
+                              "petAttackStat":  1099,
+                              "petDefenseStat":  880
+                          },
+                          {
+                              "id":  "st0037",
+                              "level":  1,
+                              "petAttack":  5505,
+                              "petAttackStat":  1047,
+                              "petDefenseStat":  838
+                          },
+                          {
+                              "id":  "st0038",
+                              "level":  99,
+                              "petAttack":  6858,
+                              "petAttackStat":  1393,
+                              "petDefenseStat":  1174
+                          },
+                          {
+                              "id":  "st0039",
+                              "level":  1,
+                              "petAttack":  5780,
+                              "petAttackStat":  1099,
+                              "petDefenseStat":  880
+                          },
+                          {
+                              "id":  "st0040",
+                              "level":  1,
+                              "petAttack":  5505,
+                              "petAttackStat":  1047,
+                              "petDefenseStat":  880
+                          },
+                          {
+                              "id":  "st0041",
+                              "level":  99,
+                              "petAttack":  6583,
+                              "petAttackStat":  1341,
+                              "petDefenseStat":  1132
+                          },
+                          {
+                              "id":  "st0042",
+                              "level":  99,
+                              "petAttack":  7146,
+                              "petAttackStat":  1393,
+                              "petDefenseStat":  1174
+                          },
+                          {
+                              "id":  "st0043",
+                              "level":  1,
+                              "petAttack":  5780,
+                              "petAttackStat":  1047,
+                              "petDefenseStat":  838
+                          },
+                          {
+                              "id":  "st0044",
+                              "level":  99,
+                              "petAttack":  6858,
+                              "petAttackStat":  1341,
+                              "petDefenseStat":  1132
+                          },
+                          {
+                              "id":  "st0045",
+                              "level":  1,
+                              "petAttack":  5780,
+                              "petAttackStat":  1047,
+                              "petDefenseStat":  880
+                          },
+                          {
+                              "id":  "st0046",
+                              "level":  1,
+                              "petAttack":  4007,
+                              "petAttackStat":  995,
+                              "petDefenseStat":  880
+                          },
+                          {
+                              "id":  "st0047",
+                              "level":  1,
+                              "petAttack":  6371,
+                              "petAttackStat":  1154,
+                              "petDefenseStat":  880
+                          },
+                          {
+                              "id":  "st0048",
+                              "level":  1,
+                              "petAttack":  6068,
+                              "petAttackStat":  1047,
+                              "petDefenseStat":  838
+                          },
+                          {
+                              "id":  "st0049",
+                              "level":  99,
+                              "petAttack":  7146,
+                              "petAttackStat":  1341,
+                              "petDefenseStat":  1132
+                          },
+                          {
+                              "id":  "st0050",
+                              "level":  99,
+                              "petAttack":  8102,
+                              "petAttackStat":  1393,
+                              "petDefenseStat":  1174
+                          },
+                          {
+                              "id":  "st0051",
+                              "level":  80,
+                              "petAttack":  1990,
+                              "petAttackStat":  645,
+                              "petDefenseStat":  645
+                          },
+                          {
+                              "id":  "st0052",
+                              "level":  90,
+                              "petAttack":  4646,
+                              "petAttackStat":  1133,
+                              "petDefenseStat":  960
+                          },
+                          {
+                              "id":  "st0053",
+                              "level":  90,
+                              "petAttack":  4037,
+                              "petAttackStat":  989,
+                              "petDefenseStat":  874
+                          },
+                          {
+                              "id":  "st0054",
+                              "level":  90,
+                              "petAttack":  6235,
+                              "petAttackStat":  1133,
+                              "petDefenseStat":  960
+                          },
+                          {
+                              "id":  "st0055",
+                              "level":  99,
+                              "petAttack":  6528,
+                              "petAttackStat":  1393,
+                              "petDefenseStat":  1174
+                          },
+                          {
+                              "id":  "st0056",
+                              "level":  70,
+                              "petAttack":  1300,
+                              "petAttackStat":  470,
+                              "petDefenseStat":  470
+                          },
+                          {
+                              "id":  "st0057",
+                              "level":  1,
+                              "petAttack":  1213,
+                              "petAttackStat":  257,
+                              "petDefenseStat":  257
+                          },
+                          {
+                              "id":  "st0058",
+                              "level":  1,
+                              "petAttack":  1223,
+                              "petAttackStat":  257,
+                              "petDefenseStat":  257
+                          }
+                      ],
+    "skillPayloads":  [
+                          {
+                              "id":  "sp0001",
+                              "name":  "Elemental Weakness",
+                              "values":  {
+                                             "enemyAttackReductionPercent":  26,
+                                             "turns":  2
+                                         }
+                          },
+                          {
+                              "id":  "sp0002",
+                              "name":  "Durable Rock Shield",
+                              "values":  {
+                                             "defenseBoostPercent":  30,
+                                             "turns":  3
+                                         }
+                          },
+                          {
+                              "id":  "sp0003",
+                              "name":  "Soul Burn",
+                              "values":  {
+                                             "turns":  3
+                                         }
+                          },
+                          {
+                              "id":  "sp0004",
+                              "name":  "Special Regeneration",
+                              "values":  {
+                                             "meterChargePercent":  20
+                                         }
+                          },
+                          {
+                              "id":  "sp0005",
+                              "name":  "Revenge Strike",
+                              "values":  {
+                                             "petAttackCap":  11076
+                                         }
+                          },
+                          {
+                              "id":  "sp0006",
+                              "name":  "Ready to Crit",
+                              "values":  {
+                                             "critChancePercent":  40,
+                                             "turns":  3
+                                         }
+                          },
+                          {
+                              "id":  "sp0007",
+                              "name":  "Death Blow"
+                          },
+                          {
+                              "id":  "sp0008",
+                              "name":  "Vampiric Attack",
+                              "values":  {
+                                             "flatDamage":  5606,
+                                             "stealPercent":  10
+                                         }
+                          },
+                          {
+                              "id":  "sp0009",
+                              "name":  "Shadow Slash",
+                              "values":  {
+                                             "petAttack":  12250
+                                         }
+                          },
+                          {
+                              "id":  "sp0010",
+                              "name":  "Special Regeneration",
+                              "values":  {
+                                             "meterChargePercent":  10
+                                         }
+                          },
+                          {
+                              "id":  "sp0011",
+                              "name":  "Elemental Weakness",
+                              "values":  {
+                                             "enemyAttackReductionPercent":  17.875,
+                                             "turns":  2
+                                         }
+                          },
+                          {
+                              "id":  "sp0012",
+                              "name":  "Cyclone Air Boost",
+                              "values":  {
+                                             "attackBoostPercent":  44,
+                                             "turns":  5
+                                         }
+                          },
+                          {
+                              "id":  "sp0013",
+                              "name":  "Revenge Strike",
+                              "values":  {
+                                             "petAttackCap":  10522
+                                         }
+                          },
+                          {
+                              "id":  "sp0014",
+                              "name":  "Vampiric Attack",
+                              "values":  {
+                                             "flatDamage":  4569,
+                                             "stealPercent":  10
+                                         }
+                          },
+                          {
+                              "id":  "sp0015",
+                              "name":  "Ready to Crit",
+                              "values":  {
+                                             "critChancePercent":  20,
+                                             "turns":  3
+                                         }
+                          },
+                          {
+                              "id":  "sp0016",
+                              "name":  "Shadow Slash",
+                              "values":  {
+                                             "petAttack":  8750
+                                         }
+                          },
+                          {
+                              "id":  "sp0017",
+                              "name":  "Cyclone Earth Boost",
+                              "values":  {
+                                             "attackBoostPercent":  44,
+                                             "turns":  5
+                                         }
+                          },
+                          {
+                              "id":  "sp0018",
+                              "name":  "Shadow Slash",
+                              "values":  {
+                                             "petAttack":  7000
+                                         }
+                          },
+                          {
+                              "id":  "sp0019",
+                              "name":  "Special Regeneration (inf)",
+                              "values":  {
+                                             "meterChargePercent":  35
+                                         }
+                          },
+                          {
+                              "id":  "sp0020",
+                              "name":  "Elemental Weakness",
+                              "values":  {
+                                             "enemyAttackReductionPercent":  13,
+                                             "turns":  2
+                                         }
+                          },
+                          {
+                              "id":  "sp0021",
+                              "name":  "Shadow Slash",
+                              "values":  {
+                                             "petAttack":  3500
+                                         }
+                          },
+                          {
+                              "id":  "sp0022",
+                              "name":  "Special Regeneration (inf)",
+                              "values":  {
+                                             "meterChargePercent":  17.5
+                                         }
+                          },
+                          {
+                              "id":  "sp0023",
+                              "name":  "Shadow Slash",
+                              "values":  {
+                                             "petAttack":  4375
+                                         }
+                          },
+                          {
+                              "id":  "sp0024",
+                              "name":  "Vampiric Attack",
+                              "values":  {
+                                             "flatDamage":  2284,
+                                             "stealPercent":  10
+                                         }
+                          },
+                          {
+                              "id":  "sp0025",
+                              "name":  "Special Regeneration (inf)",
+                              "values":  {
+                                             "meterChargePercent":  70
+                                         }
+                          },
+                          {
+                              "id":  "sp0026",
+                              "name":  "Elemental Weakness",
+                              "values":  {
+                                             "enemyAttackReductionPercent":  53.9,
+                                             "turns":  2
+                                         }
+                          },
+                          {
+                              "id":  "sp0027",
+                              "name":  "Shadow Slash",
+                              "values":  {
+                                             "petAttack":  8575
+                                         }
+                          },
+                          {
+                              "id":  "sp0028",
+                              "name":  "Special Regeneration (inf)",
+                              "values":  {
+                                             "meterChargePercent":  87
+                                         }
+                          },
+                          {
+                              "id":  "sp0030",
+                              "name":  "Revenge Strike",
+                              "values":  {
+                                             "petAttackCap":  12912
+                                         }
+                          },
+                          {
+                              "id":  "sp0031",
+                              "name":  "Vampiric Attack",
+                              "values":  {
+                                             "flatDamage":  5710,
+                                             "stealPercent":  10
+                                         }
+                          },
+                          {
+                              "id":  "sp0032",
+                              "name":  "Shatter Shield",
+                              "values":  {
+                                             "baseShieldHp":  178,
+                                             "bonusShieldHp":  48
+                                         }
+                          },
+                          {
+                              "id":  "sp0033",
+                              "name":  "Revenge Strike",
+                              "values":  {
+                                             "petAttackCap":  12469
+                                         }
+                          },
+                          {
+                              "id":  "sp0034",
+                              "name":  "Shadow Slash",
+                              "values":  {
+                                             "petAttack":  58990
+                                         }
+                          },
+                          {
+                              "id":  "sp0035",
+                              "name":  "Revenge Strike",
+                              "values":  {
+                                             "petAttackCap":  5261
+                                         }
+                          },
+                          {
+                              "id":  "sp0036",
+                              "name":  "Soul Burn",
+                              "values":  {
+                                             "damageOverTime":  1750,
+                                             "flatDamage":  1800,
+                                             "turns":  3
+                                         }
+                          },
+                          {
+                              "id":  "sp0037",
+                              "name":  "Shatter Shield",
+                              "values":  {
+                                             "baseShieldHp":  98,
+                                             "bonusShieldHp":  16
+                                         }
+                          },
+                          {
+                              "id":  "sp0038",
+                              "name":  "Cyclone Earth Boost",
+                              "values":  {
+                                             "attackBoostPercent":  11,
+                                             "turns":  5
+                                         }
+                          },
+                          {
+                              "id":  "sp0039",
+                              "name":  "Durable Rock Shield",
+                              "values":  {
+                                             "defenseBoostPercent":  15,
+                                             "turns":  3
+                                         }
+                          },
+                          {
+                              "id":  "sp0040",
+                              "name":  "Vampiric Attack",
+                              "values":  {
+                                             "stealPercent":  10
+                                         }
+                          },
+                          {
+                              "id":  "sp0041",
+                              "name":  "Durable Rock Shield",
+                              "values":  {
+                                             "defenseBoostPercent":  51.8,
+                                             "turns":  3
+                                         }
+                          },
+                          {
+                              "id":  "sp0042",
+                              "name":  "Elemental Weakness",
+                              "values":  {
+                                             "enemyAttackReductionPercent":  65.2,
+                                             "turns":  2
+                                         }
+                          },
+                          {
+                              "id":  "sp0043",
+                              "name":  "Shadow Slash",
+                              "values":  {
+                                             "petAttack":  47192
+                                         }
+                          },
+                          {
+                              "id":  "sp0044",
+                              "name":  "Special Regeneration (inf)",
+                              "values":  {
+                                             "meterChargePercent":  104.72
+                                         }
+                          },
+                          {
+                              "id":  "sp0045",
+                              "name":  "Elemental Weakness",
+                              "values":  {
+                                             "enemyAttackReductionPercent":  30.8,
+                                             "turns":  2
+                                         }
+                          },
+                          {
+                              "id":  "sp0046",
+                              "name":  "Soul Burn",
+                              "values":  {
+                                             "flatDamage":  2334,
+                                             "damageOverTime":  4598,
+                                             "turns":  3
+                                         }
+                          },
+                          {
+                              "id":  "sp0047",
+                              "name":  "Shatter Shield",
+                              "values":  {
+                                             "baseShieldHp":  185,
+                                             "bonusShieldHp":  49
+                                         }
+                          },
+                          {
+                              "id":  "sp0048",
+                              "name":  "Special Regeneration",
+                              "values":  {
+                                             "meterChargePercent":  16
+                                         }
+                          },
+                          {
+                              "id":  "sp0049",
+                              "name":  "Elemental Weakness",
+                              "values":  {
+                                             "enemyAttackReductionPercent":  42.35,
+                                             "turns":  2
+                                         }
+                          },
+                          {
+                              "id":  "sp0050",
+                              "name":  "Cyclone Air Boost",
+                              "values":  {
+                                             "attackBoostPercent":  71,
+                                             "turns":  5
+                                         }
+                          },
+                          {
+                              "id":  "sp0051",
+                              "name":  "Special Regeneration",
+                              "values":  {
+                                             "meterChargePercent":  44
+                                         }
+                          },
+                          {
+                              "id":  "sp0052",
+                              "name":  "Revenge Strike",
+                              "values":  {
+                                             "petAttackCap":  16704
+                                         }
+                          },
+                          {
+                              "id":  "sp0053",
+                              "name":  "Cyclone Earth Boost",
+                              "values":  {
+                                             "attackBoostPercent":  97.625,
+                                             "turns":  5
+                                         }
+                          },
+                          {
+                              "id":  "sp0054",
+                              "name":  "Leech Strike",
+                              "values":  {
+                                             "flatDamage":  7960,
+                                             "stealPercent":  10
+                                         }
+                          },
+                          {
+                              "id":  "sp0055",
+                              "name":  "Shatter Shield",
+                              "values":  {
+                                             "baseShieldPercent":  4.4,
+                                             "bonusShieldPercent":  2.2
+                                         }
+                          },
+                          {
+                              "id":  "sp0056",
+                              "name":  "Elemental Weakness",
+                              "values":  {
+                                             "enemyAttackReductionPercent":  61.6,
+                                             "turns":  2
+                                         }
+                          },
+                          {
+                              "id":  "sp0057",
+                              "name":  "Shadow Slash",
+                              "values":  {
+                                             "petAttack":  9800
+                                         }
+                          },
+                          {
+                              "id":  "sp0058",
+                              "name":  "Special Regeneration",
+                              "values":  {
+                                             "meterChargePercent":  101.5
+                                         }
+                          },
+                          {
+                              "id":  "sp0059",
+                              "name":  "Thorn Shield",
+                              "values":  {
+                                             "turns":  3
+                                         }
+                          },
+                          {
+                              "id":  "sp0060",
+                              "name":  "Shatter Shield",
+                              "values":  {
+                                             "baseShieldPercent":  8.25,
+                                             "bonusShieldPercent":  4.125
+                                         }
+                          },
+                          {
+                              "id":  "sp0061",
+                              "name":  "Shadow Slash",
+                              "values":  {
+                                             "petAttack":  1250
+                                         }
+                          },
+                          {
+                              "id":  "sp0062",
+                              "name":  "Burning Barrage",
+                              "values":  {
+                                             "petAttack":  450,
+                                             "turns":  3
+                                         }
+                          }
+                      ],
+    "skillSets":  [
+                      {
+                          "id":  "ss0001",
+                          "skill11":  "sp0001",
+                          "skill12":  "sp0002",
+                          "skill2":  "sp0003"
+                      },
+                      {
+                          "id":  "ss0002",
+                          "skill11":  "sp0004",
+                          "skill12":  "sp0005",
+                          "skill2":  "sp0006"
+                      },
+                      {
+                          "id":  "ss0003",
+                          "skill11":  "sp0007",
+                          "skill12":  "sp0008",
+                          "skill2":  "sp0009"
+                      },
+                      {
+                          "id":  "ss0004",
+                          "skill11":  "sp0010",
+                          "skill12":  "sp0011",
+                          "skill2":  "sp0012"
+                      },
+                      {
+                          "id":  "ss0005",
+                          "skill11":  "sp0013",
+                          "skill12":  "sp0002",
+                          "skill2":  "sp0003"
+                      },
+                      {
+                          "id":  "ss0006",
+                          "skill11":  "sp0007",
+                          "skill12":  "sp0014",
+                          "skill2":  "sp0015"
+                      },
+                      {
+                          "id":  "ss0007",
+                          "skill11":  "sp0001",
+                          "skill12":  "sp0002",
+                          "skill2":  "sp0016"
+                      },
+                      {
+                          "id":  "ss0008",
+                          "skill11":  "sp0004",
+                          "skill12":  "sp0005",
+                          "skill2":  "sp0017"
+                      },
+                      {
+                          "id":  "ss0009",
+                          "skill11":  "sp0001",
+                          "skill12":  "sp0018",
+                          "skill2":  "sp0019"
+                      },
+                      {
+                          "id":  "ss0010",
+                          "skill11":  "sp0001",
+                          "skill12":  "sp0005",
+                          "skill2":  "sp0016"
+                      },
+                      {
+                          "id":  "ss0011",
+                          "skill11":  "sp0004",
+                          "skill12":  "sp0002",
+                          "skill2":  "sp0003"
+                      },
+                      {
+                          "id":  "ss0012",
+                          "skill11":  "sp0013",
+                          "skill12":  "sp0014",
+                          "skill2":  "sp0015"
+                      },
+                      {
+                          "id":  "ss0013",
+                          "skill11":  "sp0007",
+                          "skill12":  "sp0005",
+                          "skill2":  "sp0016"
+                      },
+                      {
+                          "id":  "ss0014",
+                          "skill11":  "sp0020",
+                          "skill12":  "sp0021",
+                          "skill2":  "sp0022"
+                      },
+                      {
+                          "id":  "ss0015",
+                          "skill11":  "sp0007",
+                          "skill12":  "sp0005",
+                          "skill2":  "sp0023"
+                      },
+                      {
+                          "id":  "ss0016",
+                          "skill11":  "sp0020",
+                          "skill12":  "sp0024",
+                          "skill2":  "sp0022"
+                      },
+                      {
+                          "id":  "ss0017",
+                          "skill11":  "sp0013",
+                          "skill12":  "sp0002",
+                          "skill2":  "sp0016"
+                      },
+                      {
+                          "id":  "ss0018",
+                          "skill11":  "sp0007",
+                          "skill12":  "sp0005",
+                          "skill2":  "sp0003"
+                      },
+                      {
+                          "id":  "ss0019",
+                          "skill11":  "sp0004",
+                          "skill12":  "sp0014",
+                          "skill2":  "sp0006"
+                      },
+                      {
+                          "id":  "ss0020",
+                          "skill11":  "sp0013",
+                          "skill12":  "sp0018",
+                          "skill2":  "sp0003"
+                      },
+                      {
+                          "id":  "ss0021",
+                          "skill11":  "sp0007",
+                          "skill12":  "sp0014",
+                          "skill2":  "sp0025"
+                      },
+                      {
+                          "id":  "ss0022",
+                          "skill11":  "sp0001",
+                          "skill12":  "sp0005",
+                          "skill2":  "sp0006"
+                      },
+                      {
+                          "id":  "ss0023",
+                          "skill11":  "sp0013",
+                          "skill12":  "sp0014",
+                          "skill2":  "sp0016"
+                      },
+                      {
+                          "id":  "ss0024",
+                          "skill11":  "sp0026",
+                          "skill12":  "sp0027",
+                          "skill2":  "sp0028"
+                      },
+                      {
+                          "id":  "ss0025",
+                          "skill11":  "sp0001",
+                          "skill12":  "sp0018",
+                          "skill2":  "sp0025"
+                      },
+                      {
+                          "id":  "ss0026",
+                          "skill11":  "sp0013",
+                          "skill12":  "sp0018",
+                          "skill2":  "sp0006"
+                      },
+                      {
+                          "id":  "ss0027",
+                          "skill11":  "sp0004",
+                          "skill12":  "sp0014",
+                          "skill2":  "sp0003"
+                      },
+                      {
+                          "id":  "ss0028",
+                          "skill11":  "sp0001",
+                          "skill12":  "sp0002",
+                          "skill2":  "sp0006"
+                      },
+                      {
+                          "id":  "ss0029",
+                          "skill11":  "sp0004",
+                          "skill12":  "sp0014",
+                          "skill2":  "sp0016"
+                      },
+                      {
+                          "id":  "ss0030",
+                          "skill11":  "sp0007",
+                          "skill12":  "sp0002",
+                          "skill2":  "sp0006"
+                      },
+                      {
+                          "id":  "ss0031",
+                          "skill11":  "sp0001",
+                          "skill12":  "sp0018",
+                          "skill2":  "sp0003"
+                      },
+                      {
+                          "id":  "ss0032",
+                          "skill11":  "sp0004",
+                          "skill12":  "sp0002",
+                          "skill2":  "sp0006"
+                      },
+                      {
+                          "id":  "ss0033",
+                          "skill11":  "sp0007",
+                          "skill12":  "sp0018",
+                          "skill2":  "sp0003"
+                      },
+                      {
+                          "id":  "ss0034",
+                          "skill11":  "sp0001",
+                          "skill12":  "sp0014",
+                          "skill2":  "sp0016"
+                      },
+                      {
+                          "id":  "ss0035",
+                          "skill11":  "sp0013",
+                          "skill12":  "sp0002",
+                          "skill2":  "sp0006"
+                      },
+                      {
+                          "id":  "ss0036",
+                          "skill11":  "sp0004",
+                          "skill12":  "sp0018",
+                          "skill2":  "sp0003"
+                      },
+                      {
+                          "id":  "ss0037",
+                          "skill11":  "sp0007",
+                          "skill12":  "sp0014",
+                          "skill2":  "sp0016"
+                      },
+                      {
+                          "id":  "ss0039",
+                          "skill11":  "sp0030",
+                          "skill12":  "sp0031",
+                          "skill2":  "sp0032"
+                      },
+                      {
+                          "id":  "ss0040",
+                          "skill11":  "sp0007",
+                          "skill12":  "sp0033",
+                          "skill2":  "sp0034"
+                      },
+                      {
+                          "id":  "ss0041",
+                          "skill11":  "sp0035",
+                          "skill12":  "sp0018",
+                          "skill2":  "sp0025"
+                      },
+                      {
+                          "id":  "ss0042",
+                          "skill11":  "sp0007",
+                          "skill12":  "sp0036",
+                          "skill2":  "sp0037"
+                      },
+                      {
+                          "id":  "ss0043",
+                          "skill11":  "sp0004",
+                          "skill12":  "sp0005",
+                          "skill2":  "sp0038"
+                      },
+                      {
+                          "id":  "ss0044",
+                          "skill11":  "sp0007",
+                          "skill12":  "sp0031",
+                          "skill2":  "sp0006"
+                      },
+                      {
+                          "id":  "ss0045",
+                          "skill11":  "sp0010",
+                          "skill12":  "sp0039",
+                          "skill2":  "sp0003"
+                      },
+                      {
+                          "id":  "ss0046",
+                          "skill11":  "sp0004",
+                          "skill12":  "sp0040",
+                          "skill2":  "sp0006"
+                      },
+                      {
+                          "id":  "ss0047",
+                          "skill11":  "sp0030",
+                          "skill12":  "sp0041",
+                          "skill2":  "sp0034"
+                      },
+                      {
+                          "id":  "ss0048",
+                          "skill11":  "sp0035",
+                          "skill12":  "sp0024",
+                          "skill2":  "sp0015"
+                      },
+                      {
+                          "id":  "ss0049",
+                          "skill11":  "sp0042",
+                          "skill12":  "sp0043",
+                          "skill2":  "sp0044"
+                      },
+                      {
+                          "id":  "ss0050",
+                          "skill11":  "sp0007",
+                          "skill12":  "sp0031",
+                          "skill2":  "sp0044"
+                      },
+                      {
+                          "id":  "ss0051",
+                          "skill11":  "sp0045",
+                          "skill12":  "sp0046",
+                          "skill2":  "sp0047"
+                      },
+                      {
+                          "id":  "ss0052",
+                          "skill11":  "sp0048",
+                          "skill12":  "sp0049",
+                          "skill2":  "sp0050"
+                      },
+                      {
+                          "id":  "ss0053",
+                          "skill11":  "sp0051",
+                          "skill12":  "sp0052",
+                          "skill2":  "sp0053"
+                      },
+                      {
+                          "id":  "ss0054",
+                          "skill11":  "sp0039",
+                          "skill12":  "sp0055",
+                          "skill2":  "sp0054"
+                      },
+                      {
+                          "id":  "ss0055",
+                          "skill11":  "sp0056",
+                          "skill12":  "sp0057",
+                          "skill2":  "sp0058"
+                      },
+                      {
+                          "id":  "ss0056",
+                          "skill11":  "sp0042",
+                          "skill12":  "sp0041",
+                          "skill2":  "sp0034"
+                      },
+                      {
+                          "id":  "ss0057",
+                          "skill11":  "sp0059",
+                          "skill2":  "sp0060"
+                      },
+                      {
+                          "id":  "ss0058",
+                          "skill11":  "sp0061"
+                      },
+                      {
+                          "id":  "ss0059",
+                          "skill11":  "sp0062"
+                      }
+                  ]
+}

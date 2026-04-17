@@ -1,0 +1,11 @@
+# Copy this file to android/key.properties and fill values locally.
+# Do NOT commit android/key.properties.
+
+# Release signing
+storeFile=upload-keystore.jks
+storePassword=YOUR_STORE_PASSWORD
+keyAlias=upload
+keyPassword=YOUR_KEY_PASSWORD
+
+# RevenueCat Android Public SDK key (goog_...)
+revenueCatApiKey=goog_YOUR_ANDROID_PUBLIC_SDK_KEY

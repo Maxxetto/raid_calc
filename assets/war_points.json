@@ -1,0 +1,32 @@
+﻿{
+    "War":  {
+                "EU":  {
+                           "normal":  {
+                                          "base":  780,
+                                          "frenzy":  936,
+                                          "powerAttack":  1905,
+                                          "frenzyPowerAttack":  2286
+                                      },
+                           "strip":  {
+                                         "base":  760,
+                                         "frenzy":  912,
+                                         "powerAttack":  1885,
+                                         "frenzyPowerAttack":  2262
+                                     }
+                       },
+                "Global":  {
+                               "normal":  {
+                                              "base":  780,
+                                              "frenzy":  936,
+                                              "powerAttack":  2280,
+                                              "frenzyPowerAttack":  2736
+                                          },
+                               "strip":  {
+                                             "base":  760,
+                                             "frenzy":  912,
+                                             "powerAttack":  2260,
+                                             "frenzyPowerAttack":  2712
+                                         }
+                           }
+            }
+}

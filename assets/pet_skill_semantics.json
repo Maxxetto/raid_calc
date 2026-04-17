@@ -1,0 +1,466 @@
+{
+    "schemaVersion":  1,
+    "skills":  [
+                   {
+                       "name":  "Cyclone Air Boost",
+                       "canonicalName":  "Cyclone Air Boost",
+                       "canonicalEffectId":  "cyclone_boost_air",
+                       "effectCategory":  "knight_attack_buff",
+                       "dataSupport":  "structured_values",
+                       "runtimeSupport":  "normal_only",
+                       "simulatorModes":  [
+                                              "cycloneBoost"
+                                          ],
+                       "requiredValueKeys":  [
+                                                 "attackBoostPercent",
+                                                 "turns"
+                                             ],
+                       "gameplaySummary":  "Boosts knight ATK for a limited number of turns.",
+                       "projectSummary":  "Supported today through FightMode.cycloneBoost. The project now stores the canonical stack growth rule, but the simulator does not yet resolve this effect generically from imported compendium skills.",
+                       "effectSpec":  {
+                                          "triggerType":  "always_gemmed_mode_effect",
+                                          "target":  "active_knight_each_turn",
+                                          "attackBoostValueKey":  "attackBoostPercent",
+                                          "turnsValueKey":  "turns",
+                                          "stacking":  "grows_each_knight_turn_up_to_cap",
+                                          "maxStacks":  5,
+                                          "staysAtCapAfterMaxStacks":  true,
+                                          "summary":  "In Cyclone Boost mode, the active knight gains a flat ATK increase equal to attackBoostPercent for the first stack, then the bonus grows each knight turn up to 5 stacks. From the sixth knight turn onward the bonus stays fixed at the maximum stack value."
+                                      }
+                   },
+                   {
+                       "name":  "Cyclone Earth Boost",
+                       "canonicalName":  "Cyclone Earth Boost",
+                       "canonicalEffectId":  "cyclone_boost_earth",
+                       "effectCategory":  "knight_attack_buff",
+                       "dataSupport":  "structured_values",
+                       "runtimeSupport":  "normal_only",
+                       "simulatorModes":  [
+                                              "cycloneBoost"
+                                          ],
+                       "requiredValueKeys":  [
+                                                 "attackBoostPercent",
+                                                 "turns"
+                                             ],
+                       "gameplaySummary":  "Boosts knight ATK for a limited number of turns.",
+                       "projectSummary":  "Supported today through FightMode.cycloneBoost. The project now stores the canonical stack growth rule, but the simulator does not yet resolve this effect generically from imported compendium skills.",
+                       "effectSpec":  {
+                                          "triggerType":  "always_gemmed_mode_effect",
+                                          "target":  "active_knight_each_turn",
+                                          "attackBoostValueKey":  "attackBoostPercent",
+                                          "turnsValueKey":  "turns",
+                                          "stacking":  "grows_each_knight_turn_up_to_cap",
+                                          "maxStacks":  5,
+                                          "staysAtCapAfterMaxStacks":  true,
+                                          "summary":  "In Cyclone Boost mode, the active knight gains a flat ATK increase equal to attackBoostPercent for the first stack, then the bonus grows each knight turn up to 5 stacks. From the sixth knight turn onward the bonus stays fixed at the maximum stack value."
+                                      }
+                   },
+                   {
+                       "name":  "Death Blow",
+                       "canonicalName":  "Death Blow",
+                       "canonicalEffectId":  "death_blow",
+                       "effectCategory":  "pet_attack_modifier",
+                       "dataSupport":  "description_only",
+                      "runtimeSupport":  "normal_only",
+                       "simulatorModes":  [
+
+                                          ],
+                       "requiredValueKeys":  [
+
+                                             ],
+                      "gameplaySummary":  "Makes the next knight normal hit become a critical hit with a flat damage bonus.",
+                      "projectSummary":  "Supported in the normal skill-driven runtime. The project tracks Death Blow as a next-hit knight buff that forces a crit on the next normal hit, adds a fixed flat bonus after the crit calculation, and is consumed on miss or special.",
+                       "effectSpec":  {
+                                          "triggerType":  "pet_cast_buff",
+                                          "target":  "active_knight",
+                                          "consumption":  "next_knight_action",
+                                          "consumedOnHit":  true,
+                                          "consumedOnMiss":  true,
+                                          "consumedOnSpecial":  true,
+                                          "guaranteesCritOnNextBasicHit":  true,
+                                          "bonusFlatDamage":  750,
+                                          "appliesToSpecial":  false,
+                                          "persistsUntilSuccessfulHit":  false,
+                                          "summary":  "After activation, the next knight action consumes the buff. If that action is a normal hit, it becomes a guaranteed critical hit and gains +750 flat damage after the crit calculation. If the action misses, the buff is still lost. If the action is a special attack, no crit-special conversion happens, no +750 bonus is applied, and the buff is consumed anyway."
+                                      }
+                   },
+                   {
+                       "name":  "Burning Barrage",
+                       "canonicalName":  "Burning Barrage",
+                       "canonicalEffectId":  "burning_barrage",
+                       "effectCategory":  "damage_over_time",
+                       "dataSupport":  "structured_values",
+                      "runtimeSupport":  "normal_only",
+                       "simulatorModes":  [
+
+                                          ],
+                       "requiredValueKeys":  [
+                                                 "petAttack",
+                                                 "turns"
+                                             ],
+                       "gameplaySummary":  "Uses a fixed pet ATK strike and applies burning damage for multiple turns.",
+                       "projectSummary":  "The compendium currently stores only the visible fixed ATK and duration values from the in-game card. No generic simulator mapping exists yet.",
+                       "effectSpec":  {
+                                          "triggerType":  "immediate_pet_special_attack_with_dot",
+                                          "target":  "boss",
+                                          "attackValueKey":  "petAttack",
+                                          "turnsValueKey":  "turns",
+                                          "summary":  "Burning Barrage is recorded as a descriptive-only imported attack. The project currently keeps the visible ATK and duration values for reference, but does not execute a dedicated runtime effect."
+                                      }
+                   },
+                   {
+                       "name":  "Durable Rock Shield",
+                       "canonicalName":  "Durable Rock Shield",
+                       "canonicalEffectId":  "durable_rock_shield",
+                       "effectCategory":  "knight_defense_buff",
+                       "dataSupport":  "structured_values",
+                       "runtimeSupport":  "mode_specific",
+                       "simulatorModes":  [
+                                              "durableRockShield"
+                                          ],
+                       "requiredValueKeys":  [
+                                                 "defenseBoostPercent",
+                                                 "turns"
+                                             ],
+                       "gameplaySummary":  "Increases knight DEF for a limited number of turns.",
+                       "projectSummary":  "Supported today through FightMode.durableRockShield, including pet-bar triggering. The project now stores the canonical active-knight stacking rule, but the simulator does not yet resolve this effect generically from imported compendium skills.",
+                       "effectSpec":  {
+                                          "triggerType":  "pet_cast_buff",
+                                          "target":  "active_knight",
+                                          "defenseBoostValueKey":  "defenseBoostPercent",
+                                          "turnsValueKey":  "turns",
+                                          "durationModel":  "knight_turns",
+                                          "stacking":  "stacks_on_recast",
+                                          "summary":  "When triggered, Durable Rock Shield buffs the active knight DEF by defenseBoostPercent for the number of knight turns stored in turns. Recasting while active stacks another layer instead of replacing the previous one."
+                                      }
+                   },
+                   {
+                       "name":  "Leech Strike",
+                       "canonicalName":  "Leech Strike",
+                       "canonicalEffectId":  "leech_strike",
+                       "effectCategory":  "life_steal_attack",
+                       "dataSupport":  "structured_values",
+                       "runtimeSupport":  "normal_only",
+                       "simulatorModes":  [
+
+                                          ],
+                       "requiredValueKeys":  [
+                                                 "flatDamage",
+                                                 "stealPercent"
+                                             ],
+                       "gameplaySummary":  "Deals direct damage and steals a portion of the enemy\u0027s lost HP.",
+                       "projectSummary":  "The compendium stores damage and steal values and the project now stores a canonical structured definition, but no dedicated generic simulator mapping exists yet.",
+                       "effectSpec":  {
+                                          "triggerType":  "immediate_pet_special_attack_with_lifesteal",
+                                          "target":  "boss_and_active_knight",
+                                          "directDamageValueKey":  "flatDamage",
+                                          "lifestealPercentValueKey":  "stealPercent",
+                                          "healingModel":  "steal_up_to_percent_of_enemy_lost_hp",
+                                          "summary":  "When the pet uses Leech Strike, it deals flatDamage immediately and the active knight recovers up to stealPercent of the enemy\u0027s lost HP."
+                                      }
+                   },
+                   {
+                       "name":  "Elemental Weakness",
+                       "canonicalName":  "Elemental Weakness",
+                       "canonicalEffectId":  "elemental_weakness",
+                       "effectCategory":  "boss_attack_debuff",
+                       "dataSupport":  "structured_values",
+                       "runtimeSupport":  "mode_specific",
+                       "simulatorModes":  [
+                                              "specialRegenPlusEw",
+                                              "specialRegenEw"
+                                          ],
+                       "requiredValueKeys":  [
+                                                 "enemyAttackReductionPercent",
+                                                 "turns"
+                                             ],
+                       "gameplaySummary":  "Reduces enemy ATK for a limited number of turns.",
+                       "projectSummary":  "Supported today in the SR+EW and Old Simulator flows. The project now stores the canonical stacking debuff rule, but the simulator does not yet activate this debuff generically from the imported pet skill itself.",
+                       "effectSpec":  {
+                                          "triggerType":  "pet_cast_debuff",
+                                          "target":  "boss",
+                                          "enemyAttackReductionValueKey":  "enemyAttackReductionPercent",
+                                          "turnsValueKey":  "turns",
+                                          "durationModel":  "boss_turns",
+                                          "stacking":  "stacks_on_recast",
+                                          "summary":  "When triggered, Elemental Weakness reduces boss ATK by enemyAttackReductionPercent for the number of boss turns stored in turns. Recasting while active adds another stack instead of refreshing or replacing the previous one."
+                                      }
+                   },
+                   {
+                       "name":  "Fortune\u0027s Call",
+                       "canonicalName":  "Fortune\u0027s Call",
+                       "canonicalEffectId":  "fortunes_call",
+                       "effectCategory":  "unknown_support",
+                       "dataSupport":  "description_only",
+                       "runtimeSupport":  "none",
+                       "simulatorModes":  [
+
+                                          ],
+                       "requiredValueKeys":  [
+
+                                             ],
+                       "gameplaySummary":  "Provides a fortune-themed pet support effect.",
+                       "projectSummary":  "Only a placeholder description exists today. No structured values or simulator logic are mapped yet."
+                   },
+                   {
+                       "name":  "Ready to Crit",
+                       "canonicalName":  "Ready to Crit",
+                       "canonicalEffectId":  "ready_to_crit",
+                       "effectCategory":  "crit_chance_buff",
+                       "dataSupport":  "structured_values",
+                       "runtimeSupport":  "none",
+                       "simulatorModes":  [
+
+                                          ],
+                       "requiredValueKeys":  [
+                                                 "critChancePercent",
+                                                 "turns"
+                                             ],
+                       "gameplaySummary":  "Increases critical hit chance for the next turns.",
+                       "projectSummary":  "Structured values are stored in the compendium and the project now stores the canonical duration-buff rule, but no generic simulator effect is mapped yet.",
+                       "effectSpec":  {
+                                          "triggerType":  "pet_cast_buff",
+                                          "target":  "active_knight",
+                                          "durationModel":  "turn_limited_buff",
+                                          "critChanceValueKey":  "critChancePercent",
+                                          "turnsValueKey":  "turns",
+                                          "isFlatCritChanceBonus":  true,
+                                          "summary":  "After activation, the active knight gains a flat critical chance increase equal to critChancePercent for the duration stored in turns. This buff raises crit chance only and does not add extra damage by itself."
+                                      }
+                   },
+                   {
+                       "name":  "Revenge Strike",
+                       "canonicalName":  "Revenge Strike",
+                       "canonicalEffectId":  "revenge_strike",
+                       "effectCategory":  "pet_attack_scaling",
+                       "dataSupport":  "structured_values",
+                       "runtimeSupport":  "none",
+                       "simulatorModes":  [
+
+                                          ],
+                       "requiredValueKeys":  [
+                                                 "petAttackCap"
+                                             ],
+                       "gameplaySummary":  "Raises pet ATK up to a cap based on knight HP lost.",
+                       "projectSummary":  "The compendium stores the ATK cap and the project now stores the canonical scaling rule, but the simulator does not yet derive a runtime damage formula from this skill.",
+                       "effectSpec":  {
+                                          "triggerType":  "pet_cast_buff",
+                                          "target":  "pet_next_basic_attack",
+                                          "consumption":  "next_pet_basic_attack",
+                                          "consumedOnHit":  true,
+                                          "consumedOnMiss":  true,
+                                          "consumedOnSpecial":  false,
+                                          "persistsUntilSuccessfulHit":  false,
+                                          "attackOverrideModel":  "scaled_to_cap_by_knight_hp_lost_ratio",
+                                          "attackCapValueKey":  "petAttackCap",
+                                          "scalingFormula":  "effectivePetAttack = basePetAttack + ((petAttackCap - basePetAttack) * knightHpLostRatio)",
+                                          "summary":  "After activation, the next pet basic attack uses an ATK value scaled toward petAttackCap according to the active knight HP lost ratio. If base pet ATK is 4000, cap is 6000, and the knight has lost 60% HP, the effective pet ATK becomes 5200. The buff is consumed by the next pet basic attack even if that attack misses."
+                                      }
+                   },
+                   {
+                       "name":  "Shadow Slash",
+                       "canonicalName":  "Shadow Slash",
+                       "canonicalEffectId":  "shadow_slash",
+                       "effectCategory":  "pet_attack_fixed",
+                       "dataSupport":  "structured_values",
+                       "runtimeSupport":  "none",
+                       "simulatorModes":  [
+
+                                          ],
+                       "requiredValueKeys":  [
+                                                 "petAttack"
+                                             ],
+                       "gameplaySummary":  "Sets pet ATK to a fixed value for a powerful strike.",
+                       "projectSummary":  "The compendium stores the fixed pet ATK value and the project now stores the canonical consumption rule, but the simulator does not yet consume it as a generic imported-skill effect.",
+                       "effectSpec":  {
+                                          "triggerType":  "pet_cast_buff",
+                                          "target":  "pet_next_basic_attack",
+                                          "consumption":  "next_pet_basic_attack",
+                                          "consumedOnHit":  true,
+                                          "consumedOnMiss":  true,
+                                          "consumedOnSpecial":  false,
+                                          "persistsUntilSuccessfulHit":  false,
+                                          "attackOverrideModel":  "fixed_pet_attack",
+                                          "attackValueKey":  "petAttack",
+                                          "summary":  "After activation, the next pet basic attack uses the fixed ATK value stored in petAttack. If that attack misses, the buff is still consumed and does not persist to the following pet attack."
+                                      }
+                   },
+                   {
+                       "name":  "Shatter Shield",
+                       "canonicalName":  "Shatter Shield",
+                       "canonicalEffectId":  "shatter_shield",
+                       "effectCategory":  "damage_absorb_shield",
+                       "dataSupport":  "structured_values",
+                       "runtimeSupport":  "mode_specific",
+                       "simulatorModes":  [
+                                              "shatterShield"
+                                          ],
+                       "requiredValueKeys":  [
+                                                 "baseShieldHp",
+                                                 "bonusShieldHp"
+                                             ],
+                       "gameplaySummary":  "Summons a shield that absorbs incoming damage.",
+                       "projectSummary":  "Supported today through FightMode.shatterShield, including pet-bar triggering. The project now stores the canonical active-knight shield-addition rule, but the simulator does not yet resolve it generically from imported compendium skills.",
+                       "effectSpec":  {
+                                          "triggerType":  "pet_cast_shield",
+                                          "target":  "active_knight",
+                                          "baseShieldValueKey":  "baseShieldHp",
+                                          "bonusShieldValueKey":  "bonusShieldHp",
+                                          "stacking":  "adds_more_shield_hp",
+                                          "summary":  "When triggered, Shatter Shield grants shield HP to the active knight using baseShieldHp plus any applicable elemental bonus from bonusShieldHp. Recasting does not create separate shield stacks; it simply adds more absorbable HP to the current shield pool."
+                                      }
+                   },
+                   {
+                       "name":  "Soul Burn",
+                       "canonicalName":  "Soul Burn",
+                       "canonicalEffectId":  "soul_burn",
+                       "effectCategory":  "damage_over_time",
+                       "dataSupport":  "structured_values",
+                       "runtimeSupport":  "normal_only",
+                       "simulatorModes":  [
+
+                                          ],
+                       "requiredValueKeys":  [
+                                                 "flatDamage",
+                                                 "damageOverTime",
+                                                 "turns"
+                                             ],
+                      "gameplaySummary":  "Deals immediate fixed damage and then applies fixed curse damage after boss actions.",
+                      "projectSummary":  "Supported in the normal skill-driven runtime. The project tracks Soul Burn as immediate direct boss damage on cast plus a fixed damage-over-time effect that triggers after each of the next boss actions.",
+                       "effectSpec":  {
+                                          "triggerType":  "immediate_pet_special_attack_with_dot",
+                                          "target":  "boss",
+                                          "directDamageValueKey":  "flatDamage",
+                                          "dotDamageValueKey":  "damageOverTime",
+                                          "turnsValueKey":  "turns",
+                                          "dotTriggerTiming":  "after_boss_attack",
+                                          "summary":  "When the pet uses Soul Burn, the boss immediately takes flatDamage. Then, after each of the next boss actions, the boss takes damageOverTime for the number of boss actions stored in turns."
+                                      }
+                   },
+                   {
+                       "name":  "Special Regen",
+                       "canonicalName":  "Special Regeneration",
+                       "canonicalEffectId":  "special_regeneration",
+                       "effectCategory":  "special_meter_acceleration",
+                       "dataSupport":  "structured_values",
+                       "runtimeSupport":  "mode_specific_alias",
+                       "simulatorModes":  [
+                                              "specialRegen",
+                                              "specialRegenPlusEw"
+                                          ],
+                       "requiredValueKeys":  [
+                                                 "meterChargePercent"
+                                             ],
+                       "gameplaySummary":  "Alias of Special Regeneration: increases special meter charge rate.",
+                       "projectSummary":  "Treated as a naming alias of Special Regeneration. Supported today through mode-specific simulator flows and now documented with the same stacking rules as the canonical skill.",
+                       "effectSpec":  {
+                                          "triggerType":  "pet_cast_buff",
+                                          "target":  "active_knight",
+                                          "meterChargeValueKey":  "meterChargePercent",
+                                          "durationModel":  "knight_turns",
+                                          "stacking":  "stacks_on_recast",
+                                          "summary":  "Alias of Special Regeneration. When triggered, the active knight gains increased special meter charge rate equal to meterChargePercent, and recasts add more stacks instead of replacing the existing ones."
+                                      }
+                   },
+                   {
+                       "name":  "Special Regeneration",
+                       "canonicalName":  "Special Regeneration",
+                       "canonicalEffectId":  "special_regeneration",
+                       "effectCategory":  "special_meter_acceleration",
+                       "dataSupport":  "structured_values",
+                       "runtimeSupport":  "mode_specific",
+                       "simulatorModes":  [
+                                              "specialRegen",
+                                              "specialRegenPlusEw"
+                                          ],
+                       "requiredValueKeys":  [
+                                                 "meterChargePercent"
+                                             ],
+                       "gameplaySummary":  "Increases special meter charge rate for multiple turns.",
+                       "projectSummary":  "Supported today through Special Regeneration modes and the pet bar. The project now stores the canonical active-knight stacking rule, but the simulator does not yet consume the imported percentage as a generic effect.",
+                       "effectSpec":  {
+                                          "triggerType":  "pet_cast_buff",
+                                          "target":  "active_knight",
+                                          "meterChargeValueKey":  "meterChargePercent",
+                                          "durationModel":  "knight_turns",
+                                          "stacking":  "stacks_on_recast",
+                                          "summary":  "When triggered, the active knight gains increased special meter charge rate equal to meterChargePercent. The effect duration is tracked in knight turns, and recasts add more stacks instead of replacing the existing ones."
+                                      }
+                   },
+                   {
+                       "name":  "Special Regeneration (inf)",
+                       "canonicalName":  "Special Regeneration (inf)",
+                       "canonicalEffectId":  "special_regeneration_infinite",
+                       "effectCategory":  "special_meter_acceleration",
+                       "dataSupport":  "structured_values",
+                       "runtimeSupport":  "normal_only",
+                       "simulatorModes":  [
+                                              "specialRegen",
+                                              "specialRegenPlusEw"
+                                          ],
+                       "requiredValueKeys":  [
+                                                 "meterChargePercent"
+                                             ],
+                       "gameplaySummary":  "Builds SR(inf) stacks on cast; matching knights need 2 stacks to loop specials, non-matching knights need 4, and insufficient stacks collapse back to 0 on the next turn.",
+                       "projectSummary":  "Supported in the skill-driven runtime as a stack-based pet effect tied to Pet Skill Usage. Each cast adds SR(inf) stacks to the currently active knight context, and the simulator resolves whether that knight keeps chaining specials or loses the stack state when the threshold is not met.",
+                       "effectSpec":  {
+                                          "triggerType":  "pet_cast_stack_builder",
+                                          "target":  "active_knight",
+                                          "meterChargeValueKey":  "meterChargePercent",
+                                          "matchStacksPerCast":  2,
+                                          "nonMatchStacksPerCast":  1,
+                                          "matchThreshold":  2,
+                                          "nonMatchThreshold":  4,
+                                          "insufficientStacksResetNextTurn":  true,
+                                          "summary":  "Each time the configured pet skill is cast, SR(inf) adds 2 stacks if the active knight matches the pet elements, otherwise it adds 1 stack. A matching knight uses special every turn once 2 stacks are active; a non-matching knight needs 4 stacks. If the knight taking the current turn does not meet its required threshold, it does not special-loop and the SR(inf) stacks reset to 0 on the following turn."
+                                      }
+                   },
+                   {
+                       "name":  "Thorn Shield",
+                       "canonicalName":  "Thorn Shield",
+                       "canonicalEffectId":  "thorn_shield",
+                       "effectCategory":  "counter_damage",
+                       "dataSupport":  "structured_values",
+                       "runtimeSupport":  "normal_only",
+                       "simulatorModes":  [
+
+                                          ],
+                       "requiredValueKeys":  [
+                                                 "turns"
+                                             ],
+                       "gameplaySummary":  "Reflects damage back to the enemy when the knight is attacked.",
+                       "projectSummary":  "The compendium currently stores only the visible duration value from the in-game card. No generic simulator mapping exists yet.",
+                       "effectSpec":  {
+                                          "triggerType":  "reactive_counter_on_hit",
+                                          "target":  "boss",
+                                          "turnsValueKey":  "turns",
+                                          "summary":  "Thorn Shield is kept as a descriptive imported effect. The project currently preserves the visible duration for compendium reference, but does not simulate a generic thorn-damage runtime."
+                                      }
+                   },
+                   {
+                       "name":  "Vampiric Attack",
+                       "canonicalName":  "Vampiric Attack",
+                       "canonicalEffectId":  "vampiric_attack",
+                       "effectCategory":  "lifesteal_attack",
+                       "dataSupport":  "structured_values",
+                       "runtimeSupport":  "none",
+                       "simulatorModes":  [
+
+                                          ],
+                       "requiredValueKeys":  [
+                                                 "flatDamage",
+                                                 "stealPercent"
+                                             ],
+                       "gameplaySummary":  "Deals flat damage and steals HP based on the enemy\u0027s lost HP.",
+                       "projectSummary":  "Structured values are stored in the compendium and the project now stores the canonical lifesteal rule, but no generic simulator implementation exists yet.",
+                       "effectSpec":  {
+                                          "triggerType":  "immediate_pet_lifesteal_attack",
+                                          "target":  "boss_and_active_knight",
+                                          "directDamageValueKey":  "flatDamage",
+                                          "lifestealPercentValueKey":  "stealPercent",
+                                          "healingBasedOnActualDamageDealt":  true,
+                                          "summary":  "When the pet uses Vampiric Attack, it performs an immediate damaging hit using the compendium damage value and the active knight heals for stealPercent of the actual damage dealt."
+                                      }
+                   }
+               ]
+}

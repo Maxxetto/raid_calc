@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "startFill": 0.0,
+  "knightTurnFill": 0.2,
+  "bossTurnFill": 0.042,
+  "thresholdFill": 1.0,
+  "maxFill": 1.0,
+  "scopedRules": {
+    "raid": {},
+    "blitz": {},
+    "epic": {}
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "langs": [
+    "en",
+    "it",
+    "fr",
+    "de",
+    "es",
+    "nl",
+    "da",
+    "tr",
+    "pl",
+    "ar",
+    "ru",
+    "zh",
+    "ja"
+  ],
+  "wargear.filters.title": "Filters",
+  "wargear.modifiers.title": "Modifiers",
+  "wargear.filters.show": "Show filters",
+  "wargear.filters.hide": "Hide filters",
+  "app_features.armor_badges.title": "Imported Armor Badges",
+  "app_features.armor_badges.summary": "Imported armor cards on the Raid Home screen show tappable badges for role, guild rank and version, so you can cycle them and recalculate stats instantly.",
+  "app_features.armor_badges.quick_1": "Import an armor into a knight or friend slot from Wargear Wardrobe.",
+  "app_features.armor_badges.quick_2": "Tap the Role, Rank or Version badge on the Home card.",
+  "app_features.armor_badges.quick_3": "Each tap cycles the badge and recalculates the imported armor stats.",
+  "app_features.armor_badges.best_1": "quick role swaps",
+  "app_features.armor_badges.best_2": "rank comparisons",
+  "app_features.armor_badges.best_3": "base vs plus checks",
+  "pet_compendium.filters.group.main": "Filters",
+  "pet_compendium.filters.group.skills": "Skill filters"
+}

@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "notes": "Primary calibration dataset. Fill each case with full setup data, boss elements, and observed raw scores.",
+  "datasets": {
+    "raid": {
+      "4": [],
+      "7": []
+    },
+    "blitz": {
+      "6": []
+    }
+  }
+}

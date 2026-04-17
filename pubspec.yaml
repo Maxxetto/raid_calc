@@ -1,22 +1,50 @@
 name: raid_calc
-description: Raid Calc (Safe)
+description: Raid Calculator for KnD
+version: 1.4.11+123
+
 environment:
   sdk: ">=3.3.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  google_mobile_ads: ^5.0.0
-  # …le altre tue dipendenze (i18n, ecc.)
+  google_mlkit_text_recognition: ^0.15.0
+  image: ^4.5.4
+  image_picker: ^1.1.2
+  path_provider: ^2.1.4
+  shared_preferences: ^2.5.4
+  in_app_purchase: 3.2.0
+  in_app_purchase_storekit: 0.3.22+1
+  purchases_flutter: 9.16.0
+  purchases_ui_flutter: 9.16.0
+  package_info_plus: ^8.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_launcher_icons: ^0.14.1
+
+dependency_overrides:
+  purchases_ui_flutter:
+    path: third_party/purchases_ui_flutter
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/app_icon.jpg"
+  min_sdk_android: 21
+  web:
+    generate: false
+  windows:
+    generate: true
+    image_path: "assets/app_icon.jpg"
+    icon_size: 256
+  macos:
+    generate: true
+    image_path: "assets/app_icon.jpg"
 
 flutter:
   uses-material-design: true
   assets:
-    - assets/raidComplete_data.json
-    - assets/lang/it.json
-    - assets/lang/en.json
-    - assets/lang/de.json
-    - assets/lang/fr.json
-    - assets/lang/es.json
-    - assets/lang/ru.json
-    - assets/lang/nl.json
+    - assets/
+    - assets/langs/
