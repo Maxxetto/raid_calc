@@ -4,7 +4,6 @@ import 'package:raid_calc/core/damage_model.dart';
 import 'package:raid_calc/core/debug/debug_hooks.dart';
 import 'package:raid_calc/core/engine/battle_engine.dart';
 import 'package:raid_calc/core/engine/knight_special_bar_runtime.dart';
-import 'package:raid_calc/core/sim_types.dart';
 import 'package:raid_calc/data/config_models.dart';
 
 class _KnightActionEvent {

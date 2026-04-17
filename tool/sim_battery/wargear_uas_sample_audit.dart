@@ -526,7 +526,6 @@ class WargearUasSampleAuditRunner {
   }) {
     final config = BossSimulationConfig(
       targets: <BossSimulationModeLevel>[target],
-      fightMode: base.fightMode,
       runsPerScenario: base.runsPerScenario,
       layoutPermutations: <List<WargearRole>>[_layout(layoutToken)],
       knightAdvantageVectors: <List<double>>[List<double>.from(knightAdv)],
@@ -872,7 +871,6 @@ class WargearUasSampleAuditRunner {
     );
     return BossSimulationConfig(
       targets: base.targets,
-      fightMode: base.fightMode,
       runsPerScenario: base.runsPerScenario,
       layoutPermutations: base.layoutPermutations,
       knightAdvantageVectors: base.knightAdvantageVectors,
@@ -908,7 +906,6 @@ class WargearUasSampleAuditRunner {
       BossSimulationConfig base, double stunPercent) {
     return BossSimulationConfig(
       targets: base.targets,
-      fightMode: base.fightMode,
       runsPerScenario: base.runsPerScenario,
       layoutPermutations: base.layoutPermutations,
       knightAdvantageVectors: base.knightAdvantageVectors,

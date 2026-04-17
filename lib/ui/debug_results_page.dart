@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 
 import '../core/debug/debug_run.dart';
 import '../core/engine/engine_common.dart';
+import '../core/engine/skill_catalog.dart';
 import '../core/sim_types.dart';
 import '../data/config_models.dart';
 import '../data/pet_effect_models.dart';
@@ -70,26 +71,6 @@ class _DebugResultsPageState extends State<DebugResultsPage> {
     return s.isEmpty ? fallbackEn : s;
   }
 
-  String _modeKey(FightMode m) => switch (m) {
-        FightMode.normal => 'mode.normal',
-        FightMode.specialRegen => 'mode.special_regeneration',
-        FightMode.specialRegenPlusEw => 'mode.sr_ew',
-        FightMode.shatterShield => 'mode.shatter_shield',
-        FightMode.cycloneBoost => 'mode.cyclone_boost',
-        FightMode.durableRockShield => 'mode.durable_rock_shield',
-        FightMode.specialRegenEw => 'mode.old_simulator',
-      };
-
-  String _descKey(FightMode m) => switch (m) {
-        FightMode.normal => 'debug.desc.normal',
-        FightMode.specialRegen => 'debug.desc.special_regeneration',
-        FightMode.specialRegenPlusEw => 'debug.desc.sr_ew',
-        FightMode.shatterShield => 'debug.desc.shatter_shield',
-        FightMode.cycloneBoost => 'debug.desc.cyclone_boost',
-        FightMode.durableRockShield => 'debug.desc.durable_rock_shield',
-        FightMode.specialRegenEw => 'debug.desc.old_simulator',
-      };
-
   static String _formatTpl(String tpl, Map<String, String> vars) {
     var out = tpl;
     vars.forEach((k, v) => out = out.replaceAll('{$k}', v));
@@ -104,14 +85,20 @@ class _DebugResultsPageState extends State<DebugResultsPage> {
   }
 
   PetResolvedEffect? _effectByCanonicalId(String id) {
-    final needle = id.trim().toLowerCase();
+    final needle = BattleSkillCatalog.normalizeCanonicalEffectId(id);
     for (final effect in widget.petEffects) {
-      if (effect.canonicalEffectId.trim().toLowerCase() == needle) {
+      if (BattleSkillCatalog.normalizeCanonicalEffectId(
+            effect.canonicalEffectId,
+            fallbackSkillName: effect.sourceSkillName,
+          ) ==
+          needle) {
         return effect;
       }
     }
     return null;
   }
+
+  bool _hasEffect(String id) => _effectByCanonicalId(id) != null;
 
   num? _effectValue(String canonicalId, String key) {
     return _effectByCanonicalId(canonicalId)?.values[key];
@@ -130,15 +117,14 @@ class _DebugResultsPageState extends State<DebugResultsPage> {
 
   String _modeDescription() {
     final m = widget.pre.meta;
-    final bool srEwUsesPetBar =
-        widget.debug.mode == FightMode.specialRegenPlusEw &&
-            m.petTicksBar.enabled &&
-            m.petTicksBar.useInSpecialRegenPlusEw;
-    final bool drsUsesPetBar =
-        widget.debug.mode == FightMode.durableRockShield &&
-            m.petTicksBar.enabled &&
-            m.petTicksBar.useInDurableRockShield;
-    final tpl = srEwUsesPetBar
+    final hasSr = _hasEffect(BattleSkillCatalog.specialRegenId) ||
+        _hasEffect(BattleSkillCatalog.specialRegenInfiniteId);
+    final hasEw = _hasEffect(BattleSkillCatalog.elementalWeaknessId);
+    final hasShatter = _hasEffect(BattleSkillCatalog.shatterShieldId);
+    final hasCyclone = _hasEffect(BattleSkillCatalog.cycloneId);
+    final hasDrs = _hasEffect(BattleSkillCatalog.durableRockShieldId);
+
+    final tpl = hasSr && hasEw && m.petTicksBar.enabled
         ? t(
             'debug.desc.sr_ew_pet_bar',
             'Battle simulation with Special Regeneration (assumed infinite). '
@@ -147,15 +133,22 @@ class _DebugResultsPageState extends State<DebugResultsPage> {
                 '(-{reductionElementalWeakness} ATK for {durationElementalWeakness} boss turns). '
                 'The numeric EW interval ({hitsToElementalWeakness}) is ignored while pet bar mode is active.',
           )
-        : drsUsesPetBar
+        : hasDrs && m.petTicksBar.enabled
             ? t(
                 'debug.desc.drs_pet_bar',
                 'Battle simulation with Durable Rock Shield. The effect is applied when the pet casts according to the selected pet bar sequence ({petSkillUsage}) and each recast refreshes the {durationDRS}-turn duration.',
               )
-            : t(
-                _descKey(widget.debug.mode),
-                _fallbackDescEn(widget.debug.mode),
-              );
+            : hasCyclone
+                ? (widget.cycloneUseGemsForSpecials
+                    ? 'Battle simulation with Cyclone Boost. Every turn from the first, the active knight ATK increases by {cyclone}%, stacking for 5 consecutive turns. From turn 6 onward, the boost stays constant. This mode is always gemmed: 4 gems are spent per knight turn.'
+                    : 'Battle simulation with Cyclone Boost. Cyclone stacks increase only when the pet casts a Cyclone skill through the pet bar and selected pet skill usage.')
+                : hasShatter
+                    ? 'Battle simulation with Shatter Shield. At turn {hitsToFirstShatter}, and then every {hitsToNextShatter} turns, the active knight gains a shield of {shatterBaseHp} HP (+{shatterBonusHp} HP if pet element matches).'
+                    : hasDrs
+                        ? 'Battle simulation with Durable Rock Shield. Every {hitsToDRS} turns, the active knight gains a DEF boost of {durableRockShield} for {durationDRS} turns.'
+                        : hasSr
+                            ? 'Battle simulation with Special Regeneration (assumed infinite). From turn {knightToSpecialSR} onward, knights use SPECIAL every turn.'
+                            : 'Battle simulation without pet skills. Knights use SPECIAL every {knightToSpecial} turns, while the Boss every {bossToSpecial} turns.';
 
     final vars = <String, String>{
       'knightToSpecial': m.knightToSpecial.toString(),
@@ -227,39 +220,25 @@ class _DebugResultsPageState extends State<DebugResultsPage> {
       'petSkillUsage': widget.pre.petSkillUsage.shortLabel(),
     };
 
-    final shatterFromPetBar =
-        m.petTicksBar.enabled && m.petTicksBar.useInShatterShield;
-    if (widget.debug.mode == FightMode.normal && m.knightSpecialBar.enabled) {
+    final shatterFromPetBar = m.petTicksBar.enabled && hasShatter;
+    if (!hasSr &&
+        !hasEw &&
+        !hasShatter &&
+        !hasCyclone &&
+        !hasDrs &&
+        m.knightSpecialBar.enabled) {
       final knightFill =
           (m.knightSpecialBar.knightTurnFill * 100).toStringAsFixed(1);
       final bossFill =
           (m.knightSpecialBar.bossTurnFill * 100).toStringAsFixed(1);
       return 'Battle simulation with Knight Special Bar. The active knight gains +$knightFill% bar per knight turn and +$bossFill% per boss turn or stun skip. When the bar reaches 100%, the next knight turn uses SPECIAL and the bar resets.';
     }
-    if (widget.debug.mode == FightMode.shatterShield && shatterFromPetBar) {
+    if (hasShatter && shatterFromPetBar) {
       return 'Battle simulation with Shatter Shield. The pet bar starts at 1/2 and Shatter Shield is applied when the pet casts Special 2 (2/2 fill), then the bar resets and repeats.';
     }
 
     return _formatTpl(tpl, vars);
   }
-
-  String _fallbackDescEn(FightMode mode) => switch (mode) {
-        FightMode.normal =>
-          'Battle simulation without pet skills. Knights use SPECIAL every {knightToSpecial} turns, while the Boss every {bossToSpecial} turns.',
-        FightMode.specialRegen =>
-          'Battle simulation with Special Regeneration (assumed infinite). From turn {knightToSpecialSR} onward, knights use SPECIAL every turn.',
-        FightMode.specialRegenPlusEw =>
-          'Battle simulation with Special Regeneration (assumed infinite). From turn {knightToSpecialSR} onward, knights use SPECIAL every turn. Then every {hitsToElementalWeakness} turns, Elemental Weakness is applied to the Boss: -{reductionElementalWeakness} ATK for {durationElementalWeakness} turns.',
-        FightMode.shatterShield =>
-          'Battle simulation with Shatter Shield. At turn {hitsToFirstShatter}, and then every {hitsToNextShatter} turns, the active knight gains a shield of {shatterBaseHp} HP (+{shatterBonusHp} HP if pet element matches).',
-        FightMode.cycloneBoost => widget.cycloneUseGemsForSpecials
-            ? 'Battle simulation with Cyclone Boost. Every turn from the first, the active knight ATK increases by {cyclone}%, stacking for 5 consecutive turns. From turn 6 onward, the boost stays constant. This mode is always gemmed: 4 gems are spent per knight turn.'
-            : 'Battle simulation with Cyclone Boost. Cyclone stacks increase only when the pet casts a Cyclone skill through the pet bar and selected pet skill usage.',
-        FightMode.durableRockShield =>
-          'Battle simulation with Durable Rock Shield. Every {hitsToDRS} turns, the active knight gains a DEF boost of {durableRockShield} for {durationDRS} turns.',
-        FightMode.specialRegenEw =>
-          'Simulation using the old engine. Knights use SPECIAL every turn from turn 1 and the Boss cannot use SPECIAL.',
-      };
 
   List<String> get _filtered {
     final q = _q.toLowerCase();
@@ -287,10 +266,8 @@ class _DebugResultsPageState extends State<DebugResultsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final mode = widget.debug.mode;
-
     final title = t('debug.title', 'Debug');
-    final modeLabel = t(_modeKey(mode), mode.dropdownLabel());
+    final modeLabel = t('results.pet_mode.title', 'Pet & Skills');
     final modeTitle =
         t('debug.mode_title', 'Mode: {mode}').replaceAll('{mode}', modeLabel);
 

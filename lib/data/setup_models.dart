@@ -444,7 +444,6 @@ class SetupModeEffectsSnapshot {
           : j['cycloneUseGemsForSpecials'] == true,
     );
   }
-
 }
 
 @immutable
@@ -888,16 +887,6 @@ double _readDouble(
   }
   if (v == null || !v.isFinite) return fallback;
   return v.clamp(min, max);
-}
-
-double _readFractionOrPercent(
-  Object? raw, {
-  required double fallback,
-  required double max,
-}) {
-  final parsed = _readDouble(raw, fallback: fallback, min: 0.0, max: 1000000.0);
-  final normalized = parsed > 1.0 ? parsed / 100.0 : parsed;
-  return normalized.clamp(0.0, max);
 }
 
 List<ElementType> _readElementPair(

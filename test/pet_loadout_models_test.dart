@@ -7,7 +7,8 @@ import 'package:raid_calc/data/setup_models.dart';
 
 void main() {
   group('PetLoadoutSnapshot', () {
-    test('extracts slot selections and canonical effects from imported pet', () {
+    test('extracts slot selections and canonical effects from imported pet',
+        () {
       const pet = SetupPetSnapshot(
         atk: 6583,
         element1: ElementType.water,
@@ -73,7 +74,7 @@ void main() {
     });
   });
 
-  group('PetLegacyModeAdapter', () {
+  group('PetSimulationDeriver', () {
     test('derives SR + EW from imported effect combination', () {
       final loadout = PetLoadoutSnapshot(
         slot1: null,
@@ -110,13 +111,12 @@ void main() {
         ],
       );
 
-      final profile = PetLegacyModeAdapter.deriveFromLoadout(loadout);
+      final profile = PetSimulationDeriver.deriveFromLoadout(loadout);
 
       expect(profile.archetype,
           PetSimulationArchetype.specialRegenPlusElementalWeakness);
       expect(profile.usesPetBar, isTrue);
       expect(profile.alwaysGemmed, isFalse);
-      expect(profile.legacyEquivalentMode, FightMode.specialRegenPlusEw);
     });
 
     test('keeps regular SR + EW on generic skill-driven normal path', () {
@@ -155,10 +155,9 @@ void main() {
         ],
       );
 
-      final profile = PetLegacyModeAdapter.deriveFromLoadout(loadout);
+      final profile = PetSimulationDeriver.deriveFromLoadout(loadout);
 
       expect(profile.archetype, PetSimulationArchetype.normal);
-      expect(profile.legacyEquivalentMode, FightMode.normal);
       expect(profile.usesPetBar, isTrue);
     });
 
@@ -196,24 +195,9 @@ void main() {
         ],
       );
 
-      final profile = PetLegacyModeAdapter.deriveFromLoadout(loadout);
+      final profile = PetSimulationDeriver.deriveFromLoadout(loadout);
 
       expect(profile.archetype, PetSimulationArchetype.unsupportedHybrid);
-      expect(profile.legacyEquivalentMode, isNull);
-    });
-
-    test('maps legacy cyclone mode into canonical profile', () {
-      final profile = PetLegacyModeAdapter.fromLegacyMode(
-        FightMode.cycloneBoost,
-        usageMode: PetSkillUsageMode.special2Only,
-        canonicalEffectIds: const <String>['cyclone_boost_air'],
-      );
-
-      expect(profile.archetype, PetSimulationArchetype.cycloneBoost);
-      expect(profile.alwaysGemmed, isTrue);
-      expect(profile.usesPetBar, isFalse);
-      expect(profile.derivedFromLegacyMode, isTrue);
-      expect(profile.legacyEquivalentMode, FightMode.cycloneBoost);
     });
 
     test('usage mode filters which skill family can drive the simulation', () {
@@ -259,10 +243,9 @@ void main() {
         ],
       );
 
-      final profile = PetLegacyModeAdapter.deriveFromLoadout(loadout);
+      final profile = PetSimulationDeriver.deriveFromLoadout(loadout);
 
       expect(profile.archetype, PetSimulationArchetype.cycloneBoost);
-      expect(profile.legacyEquivalentMode, FightMode.cycloneBoost);
     });
   });
 }

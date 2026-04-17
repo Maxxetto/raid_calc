@@ -122,7 +122,7 @@ enum BossSimulationPetAttackResolutionPolicy {
 
 class BossSimulationConfig {
   final List<BossSimulationModeLevel> targets;
-  final FightMode fightMode;
+  final String fightModeKey;
   final int runsPerScenario;
   final List<List<WargearRole>> layoutPermutations;
   final List<List<double>> knightAdvantageVectors;
@@ -153,7 +153,7 @@ class BossSimulationConfig {
 
   const BossSimulationConfig({
     required this.targets,
-    required this.fightMode,
+    this.fightModeKey = 'normal',
     required this.runsPerScenario,
     required this.layoutPermutations,
     required this.knightAdvantageVectors,
@@ -199,7 +199,7 @@ class BossSimulationConfig {
         BossSimulationModeLevel(
             modeKey: 'blitz', raidMode: false, bossLevel: 6),
       ],
-      fightMode: FightMode.normal,
+      fightModeKey: 'normal',
       runsPerScenario: runsPerScenario,
       layoutPermutations: const <List<WargearRole>>[
         <WargearRole>[
@@ -335,7 +335,7 @@ class BossSimulationConfig {
   }) {
     return BossSimulationConfig(
       targets: targets,
-      fightMode: fightMode,
+      fightModeKey: fightModeKey,
       runsPerScenario: runsPerScenario ?? this.runsPerScenario,
       layoutPermutations: layoutPermutations,
       knightAdvantageVectors: knightAdvantageVectors,
@@ -356,8 +356,7 @@ class BossSimulationConfig {
       exportScores: exportScores ?? this.exportScores,
       retainAggregatesInMemory:
           retainAggregatesInMemory ?? this.retainAggregatesInMemory,
-      retainScoresInMemory:
-          retainScoresInMemory ?? this.retainScoresInMemory,
+      retainScoresInMemory: retainScoresInMemory ?? this.retainScoresInMemory,
       exportShardSize: exportShardSize ?? this.exportShardSize,
       checkpointEveryScenarios:
           checkpointEveryScenarios ?? this.checkpointEveryScenarios,
@@ -371,7 +370,7 @@ class BossSimulationConfig {
 
   Map<String, Object?> toJson() => <String, Object?>{
         'targets': targets.map((value) => value.toJson()).toList(),
-        'fightMode': fightMode.name,
+        'fightMode': fightModeKey,
         'runsPerScenario': runsPerScenario,
         'layoutPermutations': layoutPermutations
             .map((layout) => layout.map((value) => value.name).toList())

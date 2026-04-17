@@ -163,7 +163,7 @@ class PetSimulationProfile {
 }
 
 /// Derives a [PetSimulationProfile] from a loaded [PetLoadoutSnapshot].
-/// Skill-based detection only — no legacy FightMode synthesis.
+/// Skill-based detection only; no legacy mode synthesis.
 class PetSimulationDeriver {
   static const String _specialRegenId = 'special_regeneration';
   static const String _specialRegenInfiniteId = 'special_regeneration_infinite';
@@ -235,7 +235,8 @@ class PetSimulationDeriver {
     if (hasSrInfinite) {
       singleModeFamilies.add(PetSimulationArchetype.specialRegen);
     }
-    if (hasShatter) singleModeFamilies.add(PetSimulationArchetype.shatterShield);
+    if (hasShatter)
+      singleModeFamilies.add(PetSimulationArchetype.shatterShield);
     if (hasDrs) {
       singleModeFamilies.add(PetSimulationArchetype.durableRockShield);
     }

@@ -8,24 +8,22 @@
 import 'package:flutter/foundation.dart';
 
 import '../../data/config_models.dart';
-import '../../data/pet_simulation_resolver.dart';
+import '../../data/pet_effect_models.dart';
 import '../engine/battle_engine.dart';
 import '../engine/battle_state.dart';
-import '../engine/legacy_mode_adapter.dart';
-import '../engine/legacy_old_simulator.dart';
+import '../engine/engine_common.dart';
+import '../engine/skill_catalog.dart';
 import '../sim_types.dart';
 import 'debug_hooks.dart';
 
 @immutable
 class DebugRunResult {
   final int seed;
-  final FightMode mode;
   final int points;
   final List<String> lines;
 
   const DebugRunResult({
     required this.seed,
-    required this.mode,
     required this.points,
     required this.lines,
   });
@@ -34,7 +32,6 @@ class DebugRunResult {
 class DebugSimulator {
   static DebugRunResult run(
     Precomputed pre, {
-    required FightMode mode,
     required Map<String, String> labels,
     ShatterShieldConfig? shatter,
     bool cycloneUseGemsForSpecials = true,
@@ -46,53 +43,38 @@ class DebugSimulator {
 
     final prepared = _prepareDebugSeed(
       pre: pre,
-      requestedMode: mode,
       shatter: shatter,
       cycloneUseGemsForSpecials: cycloneUseGemsForSpecials,
     );
-    final effectiveMode = prepared.effectiveMode;
+    final hasCyclone = _hasActiveEffect(
+      prepared.pre.petEffects,
+      BattleSkillCatalog.cycloneId,
+    );
 
     final logger = _DebugLogger(
-      mode: effectiveMode,
+      cycloneActive: hasCyclone,
       includeRolls: includeRolls,
       labels: labels,
     );
 
-    late final int points;
-
-    switch (effectiveMode) {
-      case FightMode.specialRegenEw:
-        points = runLegacyOldSimulator(
-          prepared.pre,
-          rng,
-          withTiming: false,
-          timing: null,
-          debug: logger,
-        );
-      case FightMode.normal:
-      case FightMode.specialRegen:
-      case FightMode.specialRegenPlusEw:
-      case FightMode.shatterShield:
-      case FightMode.cycloneBoost:
-      case FightMode.durableRockShield:
-        if (effectiveMode == FightMode.cycloneBoost) {
-          logger.onCycloneIntro(
-            boostPct: prepared.pre.meta.cyclone,
-          );
-        }
-        final result = const RaidBlitzBattleEngine().runWithRng(
-          prepared.seed,
-          rng,
-          debug: logger,
-          petBarDebug: logger,
-        );
-        points = result.points;
+    if (hasCyclone) {
+      logger.onCycloneIntro(
+        boostPct: resolvedCycloneBoostPct(
+          prepared.pre.petEffects,
+          fallback: prepared.pre.meta.cyclone,
+        ),
+      );
     }
+    final result = const RaidBlitzBattleEngine().runWithRng(
+      prepared.seed,
+      rng,
+      debug: logger,
+      petBarDebug: logger,
+    );
 
     return DebugRunResult(
       seed: s,
-      mode: effectiveMode,
-      points: points,
+      points: result.points,
       lines: logger.lines,
     );
   }
@@ -101,18 +83,15 @@ class DebugSimulator {
 class _PreparedDebugSeed {
   final Precomputed pre;
   final BattleEngineSeed seed;
-  final FightMode effectiveMode;
 
   const _PreparedDebugSeed({
     required this.pre,
     required this.seed,
-    required this.effectiveMode,
   });
 }
 
 _PreparedDebugSeed _prepareDebugSeed({
   required Precomputed pre,
-  required FightMode requestedMode,
   required ShatterShieldConfig? shatter,
   required bool cycloneUseGemsForSpecials,
 }) {
@@ -122,50 +101,8 @@ _PreparedDebugSeed _prepareDebugSeed({
         bonusHp: 0,
         elementMatch: <bool>[true, true, true],
       );
-  final synthetic =
-      (pre.petEffects.isEmpty && requestedMode != FightMode.specialRegenEw)
-          ? LegacyModeAdapter.synthesize(
-              mode: requestedMode,
-              requestedUsageMode: pre.petSkillUsage,
-              cycloneUseGemsForSpecials: cycloneUseGemsForSpecials,
-              cycloneBoostPercent: pre.meta.cyclone,
-              shatterBaseHp: shatterCfg.baseHp,
-              shatterBonusHp: shatterCfg.bonusHp,
-              drsDefenseBoost: pre.meta.defaultDurableRockShield,
-              ewWeaknessEffect: pre.meta.defaultElementalWeakness,
-            )
-          : null;
-  final effectivePre = synthetic == null
-      ? pre
-      : Precomputed(
-          meta: pre.meta,
-          stats: pre.stats,
-          kAtk: pre.kAtk,
-          kDef: pre.kDef,
-          kHp: pre.kHp,
-          kAdv: pre.kAdv,
-          kStun: pre.kStun,
-          petAtk: pre.petAtk,
-          petAdv: pre.petAdv,
-          petSkillUsage: synthetic.usageMode,
-          petEffects: synthetic.resolvedEffects,
-          kNormalDmg: pre.kNormalDmg,
-          kCritDmg: pre.kCritDmg,
-          kSpecialDmg: pre.kSpecialDmg,
-          petNormalDmg: pre.petNormalDmg,
-          petCritDmg: pre.petCritDmg,
-          bNormalDmg: pre.bNormalDmg,
-          bCritDmg: pre.bCritDmg,
-        );
-  final derivedProfile = PetSimulationResolver.deriveProfileFromResolvedEffects(
-    resolvedEffects: effectivePre.petEffects,
-    usageMode: effectivePre.petSkillUsage,
-    legacyFallbackMode: requestedMode,
-  );
-  final effectiveMode =
-      synthetic?.mode ?? derivedProfile.legacyEquivalentMode ?? requestedMode;
   final seed = BattleEngineSeed(
-    pre: effectivePre,
+    pre: pre,
     runtimeKnobs: BattleRuntimeKnobs(
       cycloneAlwaysGemEnabled: cycloneUseGemsForSpecials,
       knightPetElementMatches: List<bool>.unmodifiable(shatterCfg.elementMatch),
@@ -174,26 +111,39 @@ _PreparedDebugSeed _prepareDebugSeed({
     ),
   );
   return _PreparedDebugSeed(
-    pre: effectivePre,
+    pre: pre,
     seed: seed,
-    effectiveMode: effectiveMode,
+  );
+}
+
+bool _hasActiveEffect(
+  Iterable<PetResolvedEffect> effects,
+  String canonicalEffectId,
+) {
+  final target =
+      BattleSkillCatalog.normalizeCanonicalEffectId(canonicalEffectId);
+  return effects.any(
+    (effect) =>
+        BattleSkillCatalog.normalizeCanonicalEffectId(
+          effect.canonicalEffectId,
+          fallbackSkillName: effect.sourceSkillName,
+        ) ==
+        target,
   );
 }
 
 class _DebugLogger implements DebugHook, DebugPetBarHook {
   _DebugLogger({
-    required this.mode,
+    required this.cycloneActive,
     required this.includeRolls,
     required this.labels,
   });
 
-  final FightMode mode;
+  final bool cycloneActive;
   final bool includeRolls;
   final Map<String, String> labels;
 
   final List<String> lines = <String>[];
-
-  bool get _cycloneMode => mode == FightMode.cycloneBoost;
 
   void _log(String s) => lines.add(s);
 
@@ -242,7 +192,7 @@ class _DebugLogger implements DebugHook, DebugPetBarHook {
     );
     final pointsLabel = _t('debug.log.label.points', 'points');
 
-    if (_cycloneMode &&
+    if (cycloneActive &&
         action == DebugAction.special &&
         cycloneStep != null &&
         cycloneMult != null) {

@@ -149,7 +149,6 @@ class WargearUasPetSkillAuditRunner {
   }) {
     final config = BossSimulationConfig(
       targets: <BossSimulationModeLevel>[target],
-      fightMode: base.fightMode,
       runsPerScenario: base.runsPerScenario,
       layoutPermutations: <List<WargearRole>>[_layout(anchor.layoutToken)],
       knightAdvantageVectors: <List<double>>[
@@ -227,8 +226,7 @@ class WargearUasPetSkillAuditRunner {
       );
       final batch = await _batteryRunner.runSelectedScenarios(
         config: config,
-        scenarios:
-            cases.map((value) => value.scenario).toList(growable: false),
+        scenarios: cases.map((value) => value.scenario).toList(growable: false),
       );
       final aggregates = <String, BossSimulationAggregate>{
         for (final value in batch.aggregates) value.scenarioId: value,
@@ -334,7 +332,6 @@ class WargearUasPetSkillAuditRunner {
     );
     return BossSimulationConfig(
       targets: base.targets,
-      fightMode: base.fightMode,
       runsPerScenario: base.runsPerScenario,
       layoutPermutations: base.layoutPermutations,
       knightAdvantageVectors: base.knightAdvantageVectors,
@@ -373,7 +370,6 @@ class WargearUasPetSkillAuditRunner {
   }) {
     return BossSimulationConfig(
       targets: base.targets,
-      fightMode: base.fightMode,
       runsPerScenario: base.runsPerScenario,
       layoutPermutations: base.layoutPermutations,
       knightAdvantageVectors: base.knightAdvantageVectors,
@@ -512,23 +508,21 @@ class WargearUasPetSkillAuditRunner {
   }
 
   List<_RecommendationRow> _recommendations(List<_FamilySummaryRow> rows) {
-    return rows
-        .map((row) {
-          final delta = row.simRank - row.uasRank;
-          final action = delta <= -2
-              ? 'increase'
-              : delta >= 2
-                  ? 'reduce'
-                  : 'neutral';
-          return _RecommendationRow(
-            familyId: row.familyId,
-            familyLabel: row.familyLabel,
-            simRank: row.simRank,
-            uasRank: row.uasRank,
-            action: action,
-          );
-        })
-        .toList(growable: false);
+    return rows.map((row) {
+      final delta = row.simRank - row.uasRank;
+      final action = delta <= -2
+          ? 'increase'
+          : delta >= 2
+              ? 'reduce'
+              : 'neutral';
+      return _RecommendationRow(
+        familyId: row.familyId,
+        familyLabel: row.familyLabel,
+        simRank: row.simRank,
+        uasRank: row.uasRank,
+        action: action,
+      );
+    }).toList(growable: false);
   }
 
   Future<String> _writeJson(File file, Map<String, Object?> data) async {
@@ -632,7 +626,8 @@ class WargearUasPetSkillAuditRunner {
       ..writeln()
       ..writeln('## Ranking')
       ..writeln()
-      ..writeln('| Rank | Family | Mean damage | Mean battery | Mean UAS | Δ damage vs EW+SR∞ 2,1 |')
+      ..writeln(
+          '| Rank | Family | Mean damage | Mean battery | Mean UAS | Delta damage vs EW+SR∞ 2,1 |')
       ..writeln('| --- | --- | ---: | ---: | ---: | ---: |');
     for (final row in familySummary) {
       buffer.writeln(

@@ -3,7 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:raid_calc/core/battle_outcome.dart';
 import 'package:raid_calc/core/element_types.dart';
-import 'package:raid_calc/core/sim_types.dart';
 import 'package:raid_calc/data/bulk_results_models.dart';
 import 'package:raid_calc/data/config_models.dart';
 import 'package:raid_calc/data/setup_models.dart';
@@ -143,13 +142,11 @@ void main() {
   SetupSnapshot _setup({
     required String bossMode,
     required int level,
-    required FightMode mode,
   }) =>
       SetupSnapshot(
         bossMode: bossMode,
         bossLevel: level,
         bossElements: const <ElementType>[ElementType.fire, ElementType.water],
-        fightMode: mode,
         knights: const <SetupKnightSnapshot>[
           SetupKnightSnapshot(
             atk: 1000,
@@ -183,11 +180,6 @@ void main() {
         ),
         modeEffects: const SetupModeEffectsSnapshot(
           cycloneUseGemsForSpecials: false,
-          cycloneBoostPercent: 71.0,
-          shatterBaseHp: 100,
-          shatterBonusHp: 20,
-          drsDefenseBoost: 0.5,
-          ewWeaknessEffect: 0.65,
         ),
       );
 
@@ -202,7 +194,6 @@ void main() {
         setup: _setup(
           bossMode: raid ? 'raid' : 'blitz',
           level: raid ? 4 : 3,
-          mode: raid ? FightMode.normal : FightMode.durableRockShield,
         ),
         pre: _pre(raid: raid, level: raid ? 4 : 3),
         stats: _stats(

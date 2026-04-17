@@ -8,13 +8,10 @@ import 'dart:math' as math;
 
 import '../data/config_models.dart';
 import '../data/pet_effect_models.dart';
-import '../data/pet_simulation_resolver.dart';
 import 'debug/debug_hooks.dart';
 import 'engine/battle_engine.dart';
-import 'engine/engine_common.dart';
 import 'engine/battle_state.dart';
-import 'engine/legacy_mode_adapter.dart';
-import 'engine/legacy_old_simulator.dart';
+import 'engine/engine_common.dart';
 import 'pet_ticks_bar.dart';
 import 'sim_types.dart';
 
@@ -249,7 +246,6 @@ class EpicSimulator {
 
   static Future<EpicSimResult> simulateLevel({
     required EpicPrecomputed pre,
-    required FightMode mode,
     required ShatterShieldConfig shatter,
     bool cycloneUseGemsForSpecials = true,
     required int runs,
@@ -267,11 +263,9 @@ class EpicSimulator {
 
     final prepared = _prepareEpicBattleSeed(
       pre: pre,
-      requestedMode: mode,
       shatter: shatter,
       cycloneUseGemsForSpecials: cycloneUseGemsForSpecials,
     );
-    final effectiveMode = prepared.effectiveMode;
 
     final rng = FastRng(seed ?? DateTime.now().microsecondsSinceEpoch);
     int wins = 0;
@@ -284,16 +278,8 @@ class EpicSimulator {
     }
 
     for (int i = 0; i < runs; i++) {
-      final pts = switch (effectiveMode) {
-        FightMode.specialRegenEw => runLegacyOldSimulator(
-            prepared.seed.pre,
-            rng,
-            withTiming: false,
-            timing: null,
-          ),
-        _ =>
-          const RaidBlitzBattleEngine().runWithRng(prepared.seed, rng).points,
-      };
+      final pts =
+          const RaidBlitzBattleEngine().runWithRng(prepared.seed, rng).points;
 
       if (pts >= pre.boss.hp) wins += 1;
 
@@ -321,7 +307,6 @@ class EpicSimulator {
     List<PetResolvedEffect> petEffects = const <PetResolvedEffect>[],
     required int threshold,
     required int runsPerLevel,
-    required FightMode mode,
     required ShatterShieldConfig shatter,
     bool cycloneUseGemsForSpecials = true,
     EpicProgressCallback? onProgress,
@@ -331,16 +316,6 @@ class EpicSimulator {
     final maxKnights = knights.length;
     const totalLevels = 100;
     onProgress?.call(0.0, totalLevels);
-
-    final derivedProfile =
-        PetSimulationResolver.deriveProfileFromResolvedEffects(
-      resolvedEffects: petEffects,
-      usageMode: petSkillUsage,
-      legacyFallbackMode: mode,
-    );
-    final effectiveMode = petEffects.isNotEmpty
-        ? FightMode.normal
-        : (derivedProfile.legacyEquivalentMode ?? mode);
 
     int currentKnights = 1;
     for (int level = 1; level <= totalLevels; level++) {
@@ -387,7 +362,6 @@ class EpicSimulator {
         );
         final primary = await simulateLevel(
           pre: pre,
-          mode: effectiveMode,
           shatter: shatter,
           cycloneUseGemsForSpecials: cycloneUseGemsForSpecials,
           runs: runsPerLevel,
@@ -415,7 +389,6 @@ class EpicSimulator {
           );
           upgraded = await simulateLevel(
             pre: pre2,
-            mode: effectiveMode,
             shatter: shatter,
             cycloneUseGemsForSpecials: cycloneUseGemsForSpecials,
             runs: runsPerLevel,
@@ -456,49 +429,19 @@ class EpicSimulator {
 
 class _PreparedEpicBattleSeed {
   final BattleEngineSeed seed;
-  final FightMode effectiveMode;
 
   const _PreparedEpicBattleSeed({
     required this.seed,
-    required this.effectiveMode,
   });
 }
 
 _PreparedEpicBattleSeed _prepareEpicBattleSeed({
   required EpicPrecomputed pre,
-  required FightMode requestedMode,
   required ShatterShieldConfig shatter,
   required bool cycloneUseGemsForSpecials,
 }) {
-  final synthetic =
-      (pre.petEffects.isEmpty && requestedMode != FightMode.specialRegenEw)
-          ? LegacyModeAdapter.synthesize(
-              mode: requestedMode,
-              requestedUsageMode: pre.petSkillUsage,
-              cycloneUseGemsForSpecials: cycloneUseGemsForSpecials,
-              cycloneBoostPercent: pre.meta.cyclone,
-              shatterBaseHp: shatter.baseHp,
-              shatterBonusHp: shatter.bonusHp,
-              drsDefenseBoost: pre.meta.defaultDurableRockShield,
-              ewWeaknessEffect: pre.meta.defaultElementalWeakness,
-            )
-          : null;
-
-  final effectiveUsageMode = _resolveEpicUsageMode(
-    requestedMode: requestedMode,
-    requestedUsageMode: pre.petSkillUsage,
-    syntheticUsageMode: synthetic?.usageMode ?? pre.petSkillUsage,
-    useInEpic: pre.meta.petTicksBar.useInEpic,
-  );
-  final effectiveMeta = pre.meta.copyWith(
-    petTicksBar: _resolveEpicPetBarConfig(
-      original: pre.meta.petTicksBar,
-      requestedMode: requestedMode,
-      hasExplicitPetEffects: pre.petEffects.isNotEmpty,
-    ),
-  );
   final effectivePre = Precomputed(
-    meta: effectiveMeta,
+    meta: pre.meta,
     stats: BossStats(
       attack: pre.boss.attack,
       defense: pre.boss.defense,
@@ -511,8 +454,8 @@ _PreparedEpicBattleSeed _prepareEpicBattleSeed({
     kStun: pre.kStun,
     petAtk: pre.petAtk,
     petAdv: pre.petAdv,
-    petSkillUsage: effectiveUsageMode,
-    petEffects: synthetic?.resolvedEffects ?? pre.petEffects,
+    petSkillUsage: pre.petSkillUsage,
+    petEffects: pre.petEffects,
     kNormalDmg: pre.kNormalDmg,
     kCritDmg: pre.kCritDmg,
     kSpecialDmg: pre.kSpecialDmg,
@@ -521,15 +464,6 @@ _PreparedEpicBattleSeed _prepareEpicBattleSeed({
     bNormalDmg: pre.bNormalDmg,
     bCritDmg: pre.bCritDmg,
   );
-  final derivedProfile = PetSimulationResolver.deriveProfileFromResolvedEffects(
-    resolvedEffects: effectivePre.petEffects,
-    usageMode: effectivePre.petSkillUsage,
-    legacyFallbackMode: requestedMode,
-  );
-  final effectiveMode = synthetic?.mode ??
-      (effectivePre.petEffects.isNotEmpty
-          ? FightMode.normal
-          : (derivedProfile.legacyEquivalentMode ?? requestedMode));
 
   return _PreparedEpicBattleSeed(
     seed: BattleEngineSeed(
@@ -541,105 +475,7 @@ _PreparedEpicBattleSeed _prepareEpicBattleSeed({
             List<bool>.unmodifiable(shatter.strongElementEw),
       ),
     ),
-    effectiveMode: effectiveMode,
   );
-}
-
-PetSkillUsageMode _resolveEpicUsageMode({
-  required FightMode requestedMode,
-  required PetSkillUsageMode requestedUsageMode,
-  required PetSkillUsageMode syntheticUsageMode,
-  required bool useInEpic,
-}) {
-  if (useInEpic &&
-      (requestedMode == FightMode.shatterShield ||
-          requestedMode == FightMode.cycloneBoost ||
-          requestedMode == FightMode.durableRockShield)) {
-    return requestedUsageMode;
-  }
-  return syntheticUsageMode;
-}
-
-PetTicksBarConfig _resolveEpicPetBarConfig({
-  required PetTicksBarConfig original,
-  required FightMode requestedMode,
-  required bool hasExplicitPetEffects,
-}) {
-  if (original.useInEpic || hasExplicitPetEffects) {
-    return original.useInEpic ? original : original.copyWith(enabled: false);
-  }
-
-  const zeros = <WeightedTick>[WeightedTick(ticks: 0, weight: 1.0)];
-  const oneFill = <WeightedTick>[WeightedTick(ticks: 1, weight: 1.0)];
-
-  return switch (requestedMode) {
-    FightMode.specialRegen => const PetTicksBarConfig(
-        enabled: true,
-        ticksPerState: 1,
-        startTicks: 1,
-        petCritPlusOneProb: 0.0,
-        petKnightBase: oneFill,
-        bossNormal: zeros,
-        bossSpecial: zeros,
-        bossMiss: zeros,
-        stun: zeros,
-        useInSpecialRegen: true,
-        useInEpic: true,
-      ),
-    FightMode.specialRegenPlusEw => const PetTicksBarConfig(
-        enabled: true,
-        ticksPerState: 1,
-        startTicks: 2,
-        petCritPlusOneProb: 0.0,
-        petKnightBase: oneFill,
-        bossNormal: zeros,
-        bossSpecial: zeros,
-        bossMiss: zeros,
-        stun: zeros,
-        useInSpecialRegenPlusEw: true,
-        useInEpic: true,
-      ),
-    FightMode.shatterShield => const PetTicksBarConfig(
-        enabled: true,
-        ticksPerState: 1,
-        startTicks: 2,
-        petCritPlusOneProb: 0.0,
-        petKnightBase: oneFill,
-        bossNormal: zeros,
-        bossSpecial: zeros,
-        bossMiss: zeros,
-        stun: zeros,
-        useInShatterShield: true,
-        useInEpic: true,
-      ),
-    FightMode.cycloneBoost => const PetTicksBarConfig(
-        enabled: true,
-        ticksPerState: 1,
-        startTicks: 1,
-        petCritPlusOneProb: 0.0,
-        petKnightBase: oneFill,
-        bossNormal: zeros,
-        bossSpecial: zeros,
-        bossMiss: zeros,
-        stun: zeros,
-        useInCycloneBoost: true,
-        useInEpic: true,
-      ),
-    FightMode.durableRockShield => const PetTicksBarConfig(
-        enabled: true,
-        ticksPerState: 1,
-        startTicks: 1,
-        petCritPlusOneProb: 0.0,
-        petKnightBase: oneFill,
-        bossNormal: zeros,
-        bossSpecial: zeros,
-        bossMiss: zeros,
-        stun: zeros,
-        useInDurableRockShield: true,
-        useInEpic: true,
-      ),
-    _ => original.copyWith(enabled: false),
-  };
 }
 
 // ----------------- helpers -----------------
@@ -761,17 +597,26 @@ _EpicPetAttackResult _petAttack(EpicPrecomputed pre, FastRng rng) {
   );
 }
 
-bool _petBarEnabledForMode(EpicPrecomputed pre, FightMode mode) {
+const String _epicModeNormal = 'normal';
+const String _epicModeSpecialRegen = 'specialRegen';
+const String _epicModeSpecialRegenPlusEw = 'specialRegenPlusEw';
+const String _epicModeSpecialRegenEw = 'specialRegenEw';
+const String _epicModeShatterShield = 'shatterShield';
+const String _epicModeCycloneBoost = 'cycloneBoost';
+const String _epicModeDurableRockShield = 'durableRockShield';
+
+bool _petBarEnabledForMode(EpicPrecomputed pre, String mode) {
   final cfg = pre.meta.petTicksBar;
   if (!cfg.enabled || !cfg.useInEpic) return false;
   return switch (mode) {
-    FightMode.normal => cfg.useInNormal,
-    FightMode.specialRegen => cfg.useInSpecialRegen,
-    FightMode.specialRegenPlusEw => cfg.useInSpecialRegenPlusEw,
-    FightMode.specialRegenEw => cfg.useInSpecialRegenEw,
-    FightMode.shatterShield => cfg.useInShatterShield,
-    FightMode.cycloneBoost => cfg.useInCycloneBoost,
-    FightMode.durableRockShield => cfg.useInDurableRockShield,
+    _epicModeNormal => cfg.useInNormal,
+    _epicModeSpecialRegen => cfg.useInSpecialRegen,
+    _epicModeSpecialRegenPlusEw => cfg.useInSpecialRegenPlusEw,
+    _epicModeSpecialRegenEw => cfg.useInSpecialRegenEw,
+    _epicModeShatterShield => cfg.useInShatterShield,
+    _epicModeCycloneBoost => cfg.useInCycloneBoost,
+    _epicModeDurableRockShield => cfg.useInDurableRockShield,
+    _ => false,
   };
 }
 
@@ -786,13 +631,12 @@ int _runNormal(EpicPrecomputed pre, FastRng rng) {
   int kIdx = 0;
   int kHp = pre.kHp[0];
   final int kCount = pre.kCount;
-  final PetTicksBarRuntime? petBar =
-      _petBarEnabledForMode(pre, FightMode.normal)
-          ? PetTicksBarRuntime(
-              config: pre.meta.petTicksBar,
-              policy: PetTicksBarPolicy.special2Only,
-            )
-          : null;
+  final PetTicksBarRuntime? petBar = _petBarEnabledForMode(pre, _epicModeNormal)
+      ? PetTicksBarRuntime(
+          config: pre.meta.petTicksBar,
+          policy: PetTicksBarPolicy.special2Only,
+        )
+      : null;
 
   while (true) {
     final petSpecialCastThisTurn = petBar?.consumeQueuedCast() != null;
@@ -891,7 +735,7 @@ int _runSpecialRegen(
   int kIdx = 0;
   int kHp = pre.kHp[0];
   final int kCount = pre.kCount;
-  final petBarEnabled = _petBarEnabledForMode(pre, FightMode.specialRegen);
+  final petBarEnabled = _petBarEnabledForMode(pre, _epicModeSpecialRegen);
   if (petBarEnabled &&
       pre.meta.petTicksBar.requireFirstKnightMatchForSrModes &&
       elementMatch.isNotEmpty &&
@@ -1031,8 +875,7 @@ int _runSpecialRegenPlusEw(
   int kIdx = 0;
   int kHp = pre.kHp[0];
   final int kCount = pre.kCount;
-  final petBarEnabled =
-      _petBarEnabledForMode(pre, FightMode.specialRegenPlusEw);
+  final petBarEnabled = _petBarEnabledForMode(pre, _epicModeSpecialRegenPlusEw);
   if (petBarEnabled &&
       pre.meta.petTicksBar.requireFirstKnightMatchForSrModes &&
       elementMatch.isNotEmpty &&
@@ -1255,7 +1098,7 @@ int _runOldSimulator(EpicPrecomputed pre, FastRng rng) {
   final int kCount = pre.kCount;
   final int fakeDiv = pre.meta.bossToSpecialFakeEW;
   final PetTicksBarRuntime? petBar =
-      _petBarEnabledForMode(pre, FightMode.specialRegenEw)
+      _petBarEnabledForMode(pre, _epicModeSpecialRegenEw)
           ? PetTicksBarRuntime(
               config: pre.meta.petTicksBar,
               policy: PetTicksBarPolicy.special2Only,
@@ -1335,7 +1178,7 @@ int _runShatterShield(
   int kIdx = 0;
   int kHp = pre.kHp[0];
   final int kCount = pre.kCount;
-  final petBarEnabled = _petBarEnabledForMode(pre, FightMode.shatterShield);
+  final petBarEnabled = _petBarEnabledForMode(pre, _epicModeShatterShield);
   final PetTicksBarRuntime? petBar = petBarEnabled
       ? PetTicksBarRuntime(
           config: pre.meta.petTicksBar,
@@ -1491,7 +1334,7 @@ int _runCycloneBoostAlwaysGemmed(
   int kHp = pre.kHp[0];
   final int kCount = pre.kCount;
   final PetTicksBarRuntime? petBar =
-      _petBarEnabledForMode(pre, FightMode.cycloneBoost)
+      _petBarEnabledForMode(pre, _epicModeCycloneBoost)
           ? PetTicksBarRuntime(
               config: pre.meta.petTicksBar,
               policy: PetTicksBarPolicy.special2Only,
@@ -1587,7 +1430,7 @@ int _runCycloneBoostPetBarDriven(
   int kHp = pre.kHp[0];
   final int kCount = pre.kCount;
   final PetTicksBarRuntime? petBar =
-      _petBarEnabledForMode(pre, FightMode.cycloneBoost)
+      _petBarEnabledForMode(pre, _epicModeCycloneBoost)
           ? PetTicksBarRuntime(
               config: pre.meta.petTicksBar,
               policy: PetTicksBarPolicyFromUsage.fromSkillUsage(
@@ -1717,7 +1560,7 @@ int _runDurableRockShield(
   int kHp = pre.kHp[0];
   final int kCount = pre.kCount;
   final PetTicksBarRuntime? petBar =
-      _petBarEnabledForMode(pre, FightMode.durableRockShield)
+      _petBarEnabledForMode(pre, _epicModeDurableRockShield)
           ? PetTicksBarRuntime(
               config: pre.meta.petTicksBar,
               policy: PetTicksBarPolicyFromUsage.fromSkillUsage(

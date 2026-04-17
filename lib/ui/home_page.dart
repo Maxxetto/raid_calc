@@ -12,6 +12,7 @@ import '../core/battle_outcome.dart';
 import '../core/damage_model.dart';
 import '../core/debug/debug_run.dart';
 import '../core/element_types.dart';
+import '../core/engine/skill_catalog.dart';
 import '../core/epic_isolate.dart';
 import '../core/epic_simulator.dart';
 import '../core/sim_types.dart';
@@ -521,16 +522,13 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   }
 
   Future<void> _loadModeEffectDefaults() async {
-    final effectiveFightModeKey = _isEpic
-        ? _effectiveCurrentFightMode().name
-        : _effectiveNonEpicFightModeKey();
     final drs = await ConfigLoader.loadDefaultDurableRockShield(
       bossTypeKey: _isEpic ? 'epic' : (_isRaid ? 'raid' : 'blitz'),
-      fightModeKey: effectiveFightModeKey,
+      fightModeKey: 'normal',
     );
     final ew = await ConfigLoader.loadDefaultElementalWeakness(
       bossTypeKey: _isEpic ? 'epic' : (_isRaid ? 'raid' : 'blitz'),
-      fightModeKey: effectiveFightModeKey,
+      fightModeKey: 'normal',
     );
     if (!mounted) return;
 
@@ -638,12 +636,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       'startEnergies': _state.startEnergies.clamp(0, 2000000000),
 
       // Mode
-      'fightMode': _state.fightMode.name,
       'modeEffects': <String, Object?>{
         'cycloneUseGemsForSpecials': _state.cycloneUseGemsForSpecials,
-        'cycloneBoostPercent': _state.cycloneBoostFraction.clamp(0.0, 10.0),
-        'drsDefenseBoost': _state.drsBoostFraction.clamp(0.0, 10.0),
-        'ewWeaknessEffect': _state.ewEffectFraction.clamp(0.0, 10.0),
       },
       'ocrCrop': <String, Object?>{
         'left': _state.ocrCropLeftFraction.clamp(0.0, 1.0),
@@ -778,12 +772,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         (m['milestoneTargetPoints'] as num?)?.toInt() ?? 1000000000;
     final startEnergies = (m['startEnergies'] as num?)?.toInt() ?? 0;
     final epicThreshold = (m['epicThreshold'] as num?)?.toInt();
-
-    final modeName = (m['fightMode'] as String?) ?? _state.fightMode.name;
-    final fm = FightMode.values.firstWhere(
-      (e) => e.name == modeName,
-      orElse: () => FightMode.normal,
-    );
 
     double parseStoredModeFraction(
       Object? raw, {
@@ -1036,7 +1024,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         _state.epicThresholdFromSession = false;
       }
 
-      _state.fightMode = fm;
       _state.cycloneUseGemsForSpecials = cycloneUseGemsForSpecials;
       _state.cycloneBoostFromSession = true;
       _state.cycloneBoostCtl.text =
@@ -2689,7 +2676,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
             originalSetup.knights,
             growable: false,
           ),
-          fightMode: originalSetup.fightMode,
           pet: variant.pet,
           modeEffects: originalSetup.modeEffects,
         );
@@ -3427,7 +3413,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       bossLevel: _state.bossLevel.clamp(1, levelMax),
       bossElements:
           List<ElementType>.from(_state.bossElements, growable: false),
-      fightMode: _effectiveNonEpicFightMode(),
       knights: List<SetupKnightSnapshot>.generate(3, (i) {
         return SetupKnightSnapshot(
           atk: _state.kAtkValues[i].clamp(0, 2000000000),
@@ -3453,12 +3438,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       ),
       modeEffects: SetupModeEffectsSnapshot(
         cycloneUseGemsForSpecials: _state.cycloneUseGemsForSpecials,
-        cycloneBoostPercent:
-            _state.cycloneBoostFraction.clamp(0.0, 10.0) * 100.0,
-        shatterBaseHp: _state.shatterBase.clamp(0, 999),
-        shatterBonusHp: _state.shatterBonus.clamp(0, 999),
-        drsDefenseBoost: _state.drsBoostFraction.clamp(0.0, 10.0),
-        ewWeaknessEffect: _state.ewEffectFraction.clamp(0.0, 10.0),
       ),
     );
   }
@@ -3828,7 +3807,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
             labels: _state.i18n?.map ?? const {},
             isPremium: payload.isPremium,
             debugEnabled: payload.debugEnabled,
-            fightMode: payload.fightMode,
             cycloneUseGemsForSpecials: payload.cycloneUseGemsForSpecials,
             milestoneTargetPoints: payload.milestoneTargetPoints,
             startEnergies: payload.startEnergies,
@@ -4075,26 +4053,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       _state.bossElements[0] = snapshot.bossElements[0];
       _state.bossElements[1] = snapshot.bossElements[1];
 
-      _state.fightMode = snapshot.fightMode;
       _state.cycloneUseGemsForSpecials =
           snapshot.modeEffects.cycloneUseGemsForSpecials;
-      _state.cycloneBoostFromSession = true;
-      _state.cycloneBoostCtl.text = HomeState.formatPercentField(
-        (snapshot.modeEffects.cycloneBoostPercent <= 1.0
-                ? snapshot.modeEffects.cycloneBoostPercent
-                : snapshot.modeEffects.cycloneBoostPercent / 100.0)
-            .clamp(0.0, 10.0),
-      );
-      _state.shatterBaseCtl.text =
-          snapshot.modeEffects.shatterBaseHp.toString();
-      _state.shatterBonusCtl.text =
-          snapshot.modeEffects.shatterBonusHp.toString();
-      _state.drsBoostFromSession = true;
-      _state.ewEffectFromSession = true;
-      _state.drsBoostCtl.text =
-          HomeState.formatPercentField(snapshot.modeEffects.drsDefenseBoost);
-      _state.ewEffectCtl.text =
-          HomeState.formatPercentField(snapshot.modeEffects.ewWeaknessEffect);
 
       for (int i = 0; i < 3; i++) {
         final k = snapshot.knights[i];
@@ -4382,19 +4342,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     return imported?.selectedSkill2 ?? _state.petManualSkill2;
   }
 
-  FightMode _effectiveCurrentFightMode() {
-    if (_currentPetEffectsForSimulation().isNotEmpty) {
-      return FightMode.normal;
-    }
-    return _state.fightMode;
-  }
-
-  FightMode _effectiveNonEpicFightMode() {
-    return _effectiveCurrentFightMode();
-  }
-
-  String _effectiveNonEpicFightModeKey() => _effectiveNonEpicFightMode().name;
-
   Future<void> _openSetupsSheet() async {
     if (_running) return;
 
@@ -4658,12 +4605,11 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     required SimulationCancellationToken cancellationToken,
     required void Function(int done, int total) onProgress,
   }) async {
-    final effectiveMode = _effectiveNonEpicFightMode();
     final rawBoss = await ConfigLoader.loadBoss(
       bossLevel: _state.bossLevel,
       raidMode: _isRaid,
       adv: _activeBossAdvVsKnightsNonEpic(),
-      fightModeKey: effectiveMode.name,
+      fightModeKey: 'normal',
     );
     final boss = _withModeEffectsBoss(rawBoss);
     final pre = _buildPrecomputed(boss);
@@ -4678,7 +4624,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     final stats = await _model.simulate(
       pre,
       runs: runs,
-      mode: effectiveMode,
       shatter: shatter,
       cycloneUseGemsForSpecials: _state.cycloneUseGemsForSpecials,
       // Elixirs are intentionally excluded from setups/bulk for now.
@@ -5096,12 +5041,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     );
   }
 
-  BossMeta _withModeEffectsMeta(BossMeta meta) {
-    return meta.copyWith(
-      defaultDurableRockShield: _state.drsBoostFraction.clamp(0.0, 10.0),
-      defaultElementalWeakness: _state.ewEffectFraction.clamp(0.0, 10.0),
-    );
-  }
+  BossMeta _withModeEffectsMeta(BossMeta meta) => meta;
 
   BossConfig _withModeEffectsBoss(BossConfig boss) {
     return BossConfig(
@@ -5383,12 +5323,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     }
 
     final adv = _activeBossAdvEpic();
-    final effectiveMode = _effectiveCurrentFightMode();
-
     final rawMeta = await ConfigLoader.loadEpicMeta(
       raidMode: _state.lastNonEpicIsRaid,
       adv: adv,
-      fightModeKey: effectiveMode.name,
+      fightModeKey: 'normal',
     );
     final meta = _withModeEffectsMeta(rawMeta);
     _lastEpicBonusPerExtraPct =
@@ -5416,7 +5354,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       petEffects: _currentPetEffectsForSimulation(),
       threshold: threshold,
       runsPerLevel: 1000,
-      mode: effectiveMode,
       shatter: shatter,
       cycloneUseGemsForSpecials: _state.cycloneUseGemsForSpecials,
       onProgress: (done, total) {
@@ -5458,7 +5395,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         bossLevel: _state.bossLevel,
         raidMode: _isRaid,
         adv: _activeBossAdvVsKnightsNonEpic(),
-        fightModeKey: _effectiveNonEpicFightModeKey(),
+        fightModeKey: 'normal',
       );
       final boss = _withModeEffectsBoss(rawBoss);
       final pre = _buildPrecomputed(boss);
@@ -5480,7 +5417,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               labels: _state.i18n?.map ?? const {},
               isPremium: _isPremium,
               debugEnabled: _state.debugEnabled,
-              fightMode: _effectiveNonEpicFightMode(),
               cycloneUseGemsForSpecials: _state.cycloneUseGemsForSpecials,
               milestoneTargetPoints: _milestoneTargetPoints,
               startEnergies: _startEnergies,
@@ -5551,10 +5487,14 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   }
 
   bool _requiresPetMatchForSpecialRegen() {
-    final effectiveMode =
-        _isEpic ? _effectiveCurrentFightMode() : _effectiveNonEpicFightMode();
-    return effectiveMode == FightMode.specialRegen ||
-        effectiveMode == FightMode.specialRegenPlusEw;
+    return _currentPetEffectsForSimulation().any((effect) {
+      final id = BattleSkillCatalog.normalizeCanonicalEffectId(
+        effect.canonicalEffectId,
+        fallbackSkillName: effect.sourceSkillName,
+      );
+      return id == BattleSkillCatalog.specialRegenId ||
+          id == BattleSkillCatalog.specialRegenInfiniteId;
+    });
   }
 
   bool _validateActiveKnightSelection() {
@@ -6203,12 +6143,11 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       return;
     }
 
-    final effectiveMode = _effectiveNonEpicFightMode();
     final rawBoss = await ConfigLoader.loadBoss(
       bossLevel: _state.bossLevel,
       raidMode: _isRaid,
       adv: _activeBossAdvVsKnightsNonEpic(),
-      fightModeKey: effectiveMode.name,
+      fightModeKey: 'normal',
     );
     final boss = _withModeEffectsBoss(rawBoss);
     final pre = _buildPrecomputed(boss);
@@ -6222,7 +6161,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
     final debug = DebugSimulator.run(
       pre,
-      mode: effectiveMode,
       labels: _state.i18n?.map ?? const {},
       shatter: shatter,
       cycloneUseGemsForSpecials: _state.cycloneUseGemsForSpecials,
@@ -6306,7 +6244,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     }
 
     if (_isEpic) {
-      final effectiveMode = _effectiveCurrentFightMode();
       _controller.setRunning(true);
       _progressEmitEvery = 1;
       _lastProgressEmittedDone = 0;
@@ -6333,7 +6270,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                 epicEffectiveBonusPct: _lastEpicEffectiveBonusPct,
                 isPremium: _isPremium,
                 debugEnabled: _state.debugEnabled,
-                fightMode: effectiveMode,
+                petEffects: _currentPetEffectsForSimulation(),
               ),
             ),
           ),
@@ -6365,12 +6302,11 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     _controller.setRunning(true);
 
     try {
-      final effectiveMode = _effectiveNonEpicFightMode();
       final rawBoss = await ConfigLoader.loadBoss(
         bossLevel: _state.bossLevel,
         raidMode: _isRaid,
         adv: _activeBossAdvVsKnightsNonEpic(),
-        fightModeKey: effectiveMode.name,
+        fightModeKey: 'normal',
       );
       final boss = _withModeEffectsBoss(rawBoss);
       final pre = _buildPrecomputed(boss);
@@ -6392,7 +6328,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       final stats = await _model.simulate(
         pre,
         runs: runs,
-        mode: effectiveMode,
         shatter: shatter,
         cycloneUseGemsForSpecials: _state.cycloneUseGemsForSpecials,
         withTiming: _isPremium,
@@ -6429,7 +6364,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               labels: _state.i18n?.map ?? const {},
               isPremium: _isPremium,
               debugEnabled: _state.debugEnabled,
-              fightMode: effectiveMode,
               cycloneUseGemsForSpecials: _state.cycloneUseGemsForSpecials,
               milestoneTargetPoints: _milestoneTargetPoints,
               startEnergies: _startEnergies,

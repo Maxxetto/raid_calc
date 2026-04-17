@@ -70,7 +70,6 @@ class BulkComparisonRow {
   final String? slotName;
   final String bossMode; // raid | blitz
   final int bossLevel;
-  final FightMode fightMode;
   final bool cycloneUseGemsForSpecials;
   final List<SetupKnightSnapshot> knights;
   final SetupPetSnapshot pet;
@@ -92,7 +91,6 @@ class BulkComparisonRow {
     required this.slotName,
     required this.bossMode,
     required this.bossLevel,
-    required this.fightMode,
     this.cycloneUseGemsForSpecials = true,
     required this.knights,
     required this.pet,
@@ -110,16 +108,11 @@ class BulkComparisonRow {
   });
 
   factory BulkComparisonRow.fromRun(BulkSimulationRunResult run) {
-    final effectiveFightMode =
-        run.setup.isRaidOrBlitz && run.setup.pet.resolvedEffects.isNotEmpty
-            ? FightMode.normal
-            : run.setup.fightMode;
     return BulkComparisonRow(
       slot: run.slot,
       slotName: run.slotName,
       bossMode: run.setup.bossMode,
       bossLevel: run.setup.bossLevel,
-      fightMode: effectiveFightMode,
       cycloneUseGemsForSpecials:
           run.setup.modeEffects.cycloneUseGemsForSpecials,
       knights: List<SetupKnightSnapshot>.unmodifiable(run.setup.knights),

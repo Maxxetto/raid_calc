@@ -130,13 +130,11 @@ void main() {
     final stats = await model.simulate(
       pre,
       runs: 1000,
-      mode: FightMode.specialRegenPlusEw,
       shatter: shatter,
       withTiming: false,
     );
     final debug = DebugSimulator.run(
       pre,
-      mode: FightMode.specialRegenPlusEw,
       labels: const <String, String>{},
       shatter: shatter,
       seed: 12345,
@@ -145,7 +143,8 @@ void main() {
     expect(debug.points, greaterThan(0));
   });
 
-  test('skill-driven pet effects force the generic runner even on isolate path', () async {
+  test('skill-driven pet effects force the generic runner even on isolate path',
+      () async {
     final pre = Precomputed.fromJson(
       (jsonDecode(_preJson) as Map<String, dynamic>).cast<String, Object?>(),
     );
@@ -160,14 +159,12 @@ void main() {
     final small = await model.simulate(
       pre,
       runs: 1000,
-      mode: FightMode.specialRegenPlusEw,
       shatter: shatter,
       withTiming: false,
     );
     final large = await model.simulate(
       pre,
       runs: 60000,
-      mode: FightMode.specialRegenPlusEw,
       shatter: shatter,
       withTiming: false,
     );
@@ -175,9 +172,11 @@ void main() {
     expect((large.mean - small.mean).abs(), lessThan(150000));
   });
 
-  test('Hydragon infinite SR yields more score than normal SR on the same setup', () async {
-    final baseMap = (jsonDecode(_preJson) as Map<String, dynamic>)
-        .cast<String, Object?>();
+  test(
+      'Hydragon infinite SR yields more score than normal SR on the same setup',
+      () async {
+    final baseMap =
+        (jsonDecode(_preJson) as Map<String, dynamic>).cast<String, Object?>();
     final infiniteEffects = List<Map<String, Object?>>.from(
       ((baseMap['petEffects'] as List?) ?? const <Object?>[])
           .whereType<Map>()
@@ -209,14 +208,12 @@ void main() {
     final normalStats = await model.simulate(
       normalPre,
       runs: 2000,
-      mode: FightMode.normal,
       shatter: shatter,
       withTiming: false,
     );
     final infiniteStats = await model.simulate(
       infinitePre,
       runs: 2000,
-      mode: FightMode.normal,
       shatter: shatter,
       withTiming: false,
     );

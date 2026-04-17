@@ -103,7 +103,6 @@ void main() {
       targets: const <BossSimulationModeLevel>[
         BossSimulationModeLevel(modeKey: 'raid', raidMode: true, bossLevel: 6),
       ],
-      fightMode: base.fightMode,
       runsPerScenario: 1,
       layoutPermutations: const <List<WargearRole>>[
         <WargearRole>[

@@ -51,7 +51,6 @@ void main() {
 
       final resolution = PetSimulationResolver.resolve(
         loadout,
-        legacyFallbackMode: FightMode.normal,
       );
 
       expect(resolution.slot1Effect?.canonicalEffectId, 'revenge_strike');

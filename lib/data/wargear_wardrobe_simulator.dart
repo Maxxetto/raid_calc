@@ -1,6 +1,8 @@
 import '../core/battle_outcome.dart';
 import '../core/damage_model.dart';
 import '../core/element_types.dart';
+import '../core/engine/engine_common.dart';
+import '../core/engine/skill_catalog.dart';
 import '../core/sim_types.dart';
 import 'config_loader.dart';
 import 'config_models.dart';
@@ -98,7 +100,8 @@ class WargearWardrobeSimulator {
     SimulationCancellationToken? cancellationToken,
   }) async {
     if (!baseSetup.isRaidOrBlitz) {
-      throw ArgumentError('Wardrobe Simulate supports only Raid / Blitz setups.');
+      throw ArgumentError(
+          'Wardrobe Simulate supports only Raid / Blitz setups.');
     }
     final candidates = candidateBatch.topCandidates;
     if (candidates.length < 3) {
@@ -131,10 +134,10 @@ class WargearWardrobeSimulator {
       final stats = await _model.simulate(
         scenario.precomputed,
         runs: runsPerScenario,
-        mode: scenario.fightMode,
         shatter: scenario.shatter,
         withTiming: withTiming,
-        cycloneUseGemsForSpecials: scenario.setup.modeEffects.cycloneUseGemsForSpecials,
+        cycloneUseGemsForSpecials:
+            scenario.setup.modeEffects.cycloneUseGemsForSpecials,
         cancellationToken: cancellationToken,
         onProgress: onProgress == null
             ? null
@@ -247,7 +250,8 @@ class WargearWardrobeSimulator {
                   armorElements: candidate.entry.elements,
                   pet: baseSetup.pet,
                 );
-                final stunPercent = baseSetup.knights[slot].stun.clamp(0.0, 100.0);
+                final stunPercent =
+                    baseSetup.knights[slot].stun.clamp(0.0, 100.0);
                 final baseContext = contexts[slot].scoreContext;
                 final scoreContext = WargearUniversalScoreContext(
                   bossMode: baseContext.bossMode,
@@ -303,7 +307,6 @@ class WargearWardrobeSimulator {
                 bossLevel: baseSetup.bossLevel,
                 bossElements: baseSetup.bossElements,
                 knights: knightSnapshots,
-                fightMode: baseSetup.fightMode,
                 pet: baseSetup.pet,
                 modeEffects: baseSetup.modeEffects,
               );
@@ -348,7 +351,6 @@ class _WardrobeScenarioInput {
   final String id;
   final SetupSnapshot setup;
   final List<WardrobeSimulateArmorAssignment> assignments;
-  final FightMode fightMode;
   final ShatterShieldConfig shatter;
   final Precomputed precomputed;
 
@@ -356,11 +358,9 @@ class _WardrobeScenarioInput {
     required this.id,
     required this.setup,
     required this.assignments,
-    required this.fightMode,
     required this.shatter,
     required this.precomputed,
   });
-
 }
 
 Future<_WardrobeScenarioInput> _buildScenarioInput({
@@ -368,7 +368,6 @@ Future<_WardrobeScenarioInput> _buildScenarioInput({
   required SetupSnapshot setup,
   required List<WardrobeSimulateArmorAssignment> assignments,
 }) async {
-  final fightMode = _effectiveFightMode(setup);
   final bossAdv = setup.knights
       .map((knight) => advantageMultiplier(setup.bossElements, knight.elements))
       .toList(growable: false);
@@ -376,15 +375,9 @@ Future<_WardrobeScenarioInput> _buildScenarioInput({
     raidMode: setup.bossMode == 'raid',
     bossLevel: setup.bossLevel,
     adv: bossAdv,
-    fightModeKey: fightMode.name,
+    fightModeKey: 'normal',
   );
-  final boss = BossConfig(
-    meta: rawBoss.meta.copyWith(
-      defaultDurableRockShield: setup.modeEffects.drsDefenseBoost,
-      defaultElementalWeakness: setup.modeEffects.ewWeaknessEffect,
-    ),
-    stats: rawBoss.stats,
-  );
+  final boss = BossConfig(meta: rawBoss.meta, stats: rawBoss.stats);
 
   final kAdv = setup.knights
       .map((knight) => advantageMultiplier(knight.elements, setup.bossElements))
@@ -413,8 +406,14 @@ Future<_WardrobeScenarioInput> _buildScenarioInput({
   );
 
   final shatter = ShatterShieldConfig(
-    baseHp: setup.modeEffects.shatterBaseHp.clamp(0, 999),
-    bonusHp: setup.modeEffects.shatterBonusHp.clamp(0, 999),
+    baseHp: _resolvedShatterShieldInt(
+      setup.pet.resolvedEffects,
+      'baseShieldHp',
+    ),
+    bonusHp: _resolvedShatterShieldInt(
+      setup.pet.resolvedEffects,
+      'bonusShieldHp',
+    ),
     elementMatch: setup.knights
         .map((knight) => _petMatchesElements(petElements, knight.elements))
         .toList(growable: false),
@@ -432,25 +431,33 @@ Future<_WardrobeScenarioInput> _buildScenarioInput({
     petAtk: setup.pet.atk.toDouble().clamp(0.0, 1e18),
     petAdv: petAdv,
     petSkillUsage: setup.pet.skillUsage,
-    petEffects:
-        List<PetResolvedEffect>.from(setup.pet.resolvedEffects, growable: false),
+    petEffects: List<PetResolvedEffect>.from(setup.pet.resolvedEffects,
+        growable: false),
   );
 
   return _WardrobeScenarioInput(
     id: id,
     setup: setup,
     assignments: assignments,
-    fightMode: fightMode,
     shatter: shatter,
     precomputed: precomputed,
   );
 }
 
-FightMode _effectiveFightMode(SetupSnapshot setup) {
-  return setup.pet.resolvedEffects.isNotEmpty ? FightMode.normal : setup.fightMode;
+int _resolvedShatterShieldInt(
+  Iterable<PetResolvedEffect> petEffects,
+  String key,
+) {
+  final effect = resolvedEffectById(
+    petEffects,
+    BattleSkillCatalog.shatterShieldId,
+  );
+  final value = effect?.values[key]?.toInt() ?? 0;
+  return value.clamp(0, 999);
 }
 
-bool _petMatchesElements(List<ElementType> petElements, List<ElementType> armorElements) {
+bool _petMatchesElements(
+    List<ElementType> petElements, List<ElementType> armorElements) {
   for (final petEl in petElements) {
     for (final armorEl in armorElements) {
       if (petEl == armorEl) return true;

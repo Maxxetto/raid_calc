@@ -154,6 +154,9 @@ class RaidBlitzBattleEngine {
       final bool petCastThisTurn = petCast != null;
       if (petCast != null) {
         metrics.registerPetCast(petCast);
+        if (state.cycloneAlwaysGemActive) {
+          metrics.registerCycloneAlwaysGemTurn();
+        }
       }
 
       state.advanceKnightTurn();
@@ -496,6 +499,7 @@ class RaidBlitzBattleEngine {
       bossMissActions: metrics.bossMissActions,
       bossStunSkips: metrics.bossStunSkips + queuedBossStuns,
       cycloneAlwaysGemApplied: state.cycloneAlwaysGemActive,
+      gemsSpent: metrics.gemsSpent,
       goldDropEnabled: runtimeSkills.goldDropEnabled,
       goldDropped: runtimeSkills.goldDropTriggered,
       timing: timing == null ? null : timing.toStats(1),
@@ -518,6 +522,7 @@ class _BattleMetrics {
   int bossSpecialActions = 0;
   int bossMissActions = 0;
   int bossStunSkips = 0;
+  int gemsSpent = 0;
 
   void registerPetBasic() {
     petBasicAttacks += 1;
@@ -531,6 +536,10 @@ class _BattleMetrics {
     } else {
       petSpecial2Casts += 1;
     }
+  }
+
+  void registerCycloneAlwaysGemTurn() {
+    gemsSpent += 4;
   }
 
   void registerKnightAction(DebugAction action) {

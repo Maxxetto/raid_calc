@@ -20,7 +20,6 @@ Future<List<Map<String, Object?>>> runEpicSimulationInIsolate({
   required List<PetResolvedEffect> petEffects,
   required int threshold,
   required int runsPerLevel,
-  required FightMode mode,
   required ShatterShieldConfig shatter,
   bool cycloneUseGemsForSpecials = true,
   required void Function(double done, int total) onProgress,
@@ -99,7 +98,6 @@ Future<List<Map<String, Object?>>> runEpicSimulationInIsolate({
     },
     'threshold': threshold,
     'runsPerLevel': runsPerLevel,
-    'mode': mode.name,
     'cycloneUseGemsForSpecials': cycloneUseGemsForSpecials,
     'shatter': <String, Object?>{
       'baseHp': shatter.baseHp,
@@ -169,12 +167,6 @@ Future<void> _epicIsolateEntry(Map<String, Object?> payload) async {
               const <bool>[],
     );
 
-    final modeName = (req['mode'] as String?) ?? FightMode.normal.name;
-    final mode = FightMode.values.firstWhere(
-      (e) => e.name == modeName,
-      orElse: () => FightMode.normal,
-    );
-
     final threshold = (req['threshold'] as num?)?.toInt() ?? 80;
     final runsPerLevel = (req['runsPerLevel'] as num?)?.toInt() ?? 1000;
     final cycloneUseGemsForSpecials =
@@ -200,7 +192,6 @@ Future<void> _epicIsolateEntry(Map<String, Object?> payload) async {
       petEffects: petEffects,
       threshold: threshold,
       runsPerLevel: runsPerLevel,
-      mode: mode,
       shatter: shatter,
       cycloneUseGemsForSpecials: cycloneUseGemsForSpecials,
       onProgress: (done, total) {

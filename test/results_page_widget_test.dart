@@ -8,6 +8,24 @@ import 'package:raid_calc/data/pet_effect_models.dart';
 import 'package:raid_calc/data/setup_models.dart';
 import 'package:raid_calc/ui/results_page.dart';
 
+PetResolvedEffect _effect(
+  String id,
+  String slot, {
+  Map<String, num> values = const <String, num>{},
+}) =>
+    PetResolvedEffect(
+      sourceSlotId: slot,
+      sourceSkillName: id,
+      values: values,
+      canonicalEffectId: id,
+      canonicalName: id,
+      effectCategory: 'test',
+      dataSupport: 'test',
+      runtimeSupport: 'test',
+      simulatorModes: const <String>[],
+      effectSpec: const <String, Object?>{},
+    );
+
 Precomputed _buildPrecomputed() {
   final meta = BossMeta(
     raidMode: true,
@@ -121,6 +139,17 @@ Precomputed _buildShatterPetBarPrecomputed() {
     kSpecialDmg: const [300, 330, 360],
     bNormalDmg: const [80, 90, 100],
     bCritDmg: const [120, 135, 150],
+    petSkillUsage: PetSkillUsageMode.special2Only,
+    petEffects: <PetResolvedEffect>[
+      _effect(
+        'shatter_shield',
+        'skill2',
+        values: const <String, num>{
+          'baseShieldHp': 20,
+          'bonusShieldHp': 5,
+        },
+      ),
+    ],
   );
 }
 
@@ -180,6 +209,18 @@ Precomputed _buildSrEwPetBarPrecomputed() {
     kSpecialDmg: const [300, 330, 360],
     bNormalDmg: const [80, 90, 100],
     bCritDmg: const [120, 135, 150],
+    petSkillUsage: PetSkillUsageMode.special2ThenSpecial1,
+    petEffects: <PetResolvedEffect>[
+      _effect('special_regeneration_infinite', 'skill11'),
+      _effect(
+        'elemental_weakness',
+        'skill2',
+        values: const <String, num>{
+          'enemyAttackReductionPercent': 65,
+          'turns': 2,
+        },
+      ),
+    ],
   );
 }
 
@@ -235,6 +276,16 @@ Precomputed _buildDrsPetBarPrecomputed() {
     kAdv: const [1.0, 1.0, 1.0],
     kStun: const [0.1, 0.1, 0.1],
     petSkillUsage: PetSkillUsageMode.cycleSpecial1Then2,
+    petEffects: <PetResolvedEffect>[
+      _effect(
+        'durable_rock_shield',
+        'skill11',
+        values: const <String, num>{
+          'defenseBoostPercent': 50,
+          'turns': 3,
+        },
+      ),
+    ],
     kNormalDmg: const [100, 110, 120],
     kCritDmg: const [150, 165, 180],
     kSpecialDmg: const [300, 330, 360],
@@ -368,7 +419,6 @@ void main() {
           labels: const {},
           isPremium: true,
           debugEnabled: false,
-          fightMode: FightMode.normal,
         ),
       ),
     );
@@ -537,7 +587,6 @@ void main() {
           labels: const {},
           isPremium: false,
           debugEnabled: false,
-          fightMode: FightMode.normal,
         ),
       ),
     );
@@ -641,7 +690,6 @@ void main() {
           labels: const {},
           isPremium: true,
           debugEnabled: false,
-          fightMode: FightMode.normal,
         ),
       ),
     );
@@ -701,7 +749,6 @@ void main() {
           labels: const {},
           isPremium: false,
           debugEnabled: false,
-          fightMode: FightMode.normal,
         ),
       ),
     );
@@ -801,7 +848,6 @@ void main() {
           labels: const {},
           isPremium: true,
           debugEnabled: false,
-          fightMode: FightMode.normal,
         ),
       ),
     );
@@ -842,7 +888,6 @@ void main() {
           labels: const {},
           isPremium: true,
           debugEnabled: true,
-          fightMode: FightMode.shatterShield,
           cycloneUseGemsForSpecials: false,
         ),
       ),
@@ -896,7 +941,6 @@ void main() {
           labels: const {},
           isPremium: false,
           debugEnabled: false,
-          fightMode: FightMode.normal,
         ),
       ),
     );
@@ -930,7 +974,6 @@ void main() {
           labels: const {},
           isPremium: false,
           debugEnabled: false,
-          fightMode: FightMode.shatterShield,
           cycloneUseGemsForSpecials: false,
         ),
       ),
@@ -961,7 +1004,6 @@ void main() {
           labels: const {},
           isPremium: false,
           debugEnabled: false,
-          fightMode: FightMode.specialRegenPlusEw,
           cycloneUseGemsForSpecials: false,
         ),
       ),
@@ -991,7 +1033,6 @@ void main() {
           labels: const {},
           isPremium: false,
           debugEnabled: false,
-          fightMode: FightMode.durableRockShield,
           cycloneUseGemsForSpecials: false,
         ),
       ),
@@ -1021,7 +1062,6 @@ void main() {
           labels: const {},
           isPremium: false,
           debugEnabled: false,
-          fightMode: FightMode.shatterShield,
           cycloneUseGemsForSpecials: false,
           importedPet: const SetupPetCompendiumImportSnapshot(
             familyId: 's101sf_ignitide',
@@ -1102,7 +1142,6 @@ void main() {
           labels: const {},
           isPremium: false,
           debugEnabled: false,
-          fightMode: FightMode.normal,
           selectedSkill1: const SetupPetSkillSnapshot(
             slotId: 'skill11',
             name: 'Elemental Weakness',
@@ -1210,7 +1249,6 @@ void main() {
           labels: const {},
           isPremium: false,
           debugEnabled: false,
-          fightMode: FightMode.cycloneBoost,
           cycloneUseGemsForSpecials: true,
         ),
       ),
@@ -1270,7 +1308,6 @@ void main() {
           labels: const {},
           isPremium: false,
           debugEnabled: false,
-          fightMode: FightMode.normal,
           milestoneTargetPoints: 1000,
           startEnergies: 0,
           freeRaidEnergies: 0,
@@ -1290,7 +1327,6 @@ void main() {
           labels: const {},
           isPremium: true,
           debugEnabled: false,
-          fightMode: FightMode.normal,
           milestoneTargetPoints: 1000,
           startEnergies: 0,
           freeRaidEnergies: 0,
@@ -1309,6 +1345,7 @@ void main() {
       median: 100,
       min: 90,
       max: 110,
+      meanGemsSpent: 16.0,
       timing: TimingStats(
         meanRunSeconds: 10,
         meanBossSeconds: 3,
@@ -1340,16 +1377,22 @@ void main() {
           labels: const {},
           isPremium: true,
           debugEnabled: false,
-          fightMode: FightMode.cycloneBoost,
           cycloneUseGemsForSpecials: true,
+          petEffects: <PetResolvedEffect>[
+            _effect(
+              'cyclone_boost',
+              'skill2',
+              values: const <String, num>{'attackBoostPercent': 71},
+            ),
+          ],
         ),
       ),
     );
 
     await tester.pumpAndSettle();
 
-    expect(find.text('Average gems spent'), findsWidgets);
-    expect(find.text('16'), findsOneWidget);
+    expect(find.text('Gems spent'), findsWidgets);
+    expect(find.text('16 gems'), findsOneWidget);
     await _expandPetDetails(tester);
     await tester.scrollUntilVisible(
       find.text('Always gemmed: 4 gems per knight turn.'),

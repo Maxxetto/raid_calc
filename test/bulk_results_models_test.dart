@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:raid_calc/core/battle_outcome.dart';
 import 'package:raid_calc/core/element_types.dart';
-import 'package:raid_calc/core/sim_types.dart';
 import 'package:raid_calc/data/bulk_results_models.dart';
 import 'package:raid_calc/data/config_models.dart';
 import 'package:raid_calc/data/pet_effect_models.dart';
@@ -74,14 +73,12 @@ void main() {
   SetupSnapshot setup({
     required String bossMode,
     required int bossLevel,
-    required FightMode fightMode,
     required bool cycloneUseGemsForSpecials,
   }) {
     return SetupSnapshot(
       bossMode: bossMode,
       bossLevel: bossLevel,
       bossElements: const <ElementType>[ElementType.fire, ElementType.water],
-      fightMode: fightMode,
       knights: const <SetupKnightSnapshot>[
         SetupKnightSnapshot(
           atk: 59814,
@@ -115,11 +112,6 @@ void main() {
       ),
       modeEffects: SetupModeEffectsSnapshot(
         cycloneUseGemsForSpecials: cycloneUseGemsForSpecials,
-        cycloneBoostPercent: 71.0,
-        shatterBaseHp: 100,
-        shatterBonusHp: 20,
-        drsDefenseBoost: 0.5,
-        ewWeaknessEffect: 0.65,
       ),
     );
   }
@@ -163,7 +155,6 @@ void main() {
         setup: setup(
           bossMode: 'raid',
           bossLevel: 4,
-          fightMode: FightMode.normal,
           cycloneUseGemsForSpecials: false,
         ),
         pre: precomputed(raidMode: true, level: 4),
@@ -182,7 +173,6 @@ void main() {
         setup: setup(
           bossMode: 'raid',
           bossLevel: 4,
-          fightMode: FightMode.normal,
           cycloneUseGemsForSpecials: false,
         ),
         pre: precomputed(raidMode: true, level: 4),
@@ -200,7 +190,6 @@ void main() {
         setup: setup(
           bossMode: 'raid',
           bossLevel: 4,
-          fightMode: FightMode.normal,
           cycloneUseGemsForSpecials: false,
         ),
         pre: precomputed(raidMode: true, level: 4),
@@ -221,7 +210,6 @@ void main() {
         setup: setup(
           bossMode: 'raid',
           bossLevel: 4,
-          fightMode: FightMode.normal,
           cycloneUseGemsForSpecials: false,
         ),
         pre: precomputed(raidMode: true, level: 4),
@@ -240,7 +228,6 @@ void main() {
         setup: setup(
           bossMode: 'blitz',
           bossLevel: 3,
-          fightMode: FightMode.durableRockShield,
           cycloneUseGemsForSpecials: false,
         ),
         pre: precomputed(raidMode: false, level: 3),
@@ -252,7 +239,6 @@ void main() {
         setup: setup(
           bossMode: 'raid',
           bossLevel: 5,
-          fightMode: FightMode.cycloneBoost,
           cycloneUseGemsForSpecials: true,
         ),
         pre: precomputed(raidMode: true, level: 5),
@@ -272,7 +258,6 @@ void main() {
       final row1 = rows[0];
       expect(row1.bossMode, 'raid');
       expect(row1.bossLevel, 5);
-      expect(row1.fightMode, FightMode.cycloneBoost);
       expect(row1.cycloneUseGemsForSpecials, isTrue);
       expect(row1.knights[0].atk, 59814);
       expect(row1.knights[0].def, 74314);
@@ -292,7 +277,6 @@ void main() {
 
       final row2 = rows[1];
       expect(row2.bossMode, 'blitz');
-      expect(row2.fightMode, FightMode.durableRockShield);
       expect(row2.cycloneUseGemsForSpecials, isFalse);
     });
 
@@ -301,7 +285,6 @@ void main() {
         bossMode: 'raid',
         bossLevel: 5,
         bossElements: const <ElementType>[ElementType.fire, ElementType.water],
-        fightMode: FightMode.normal,
         knights: const <SetupKnightSnapshot>[
           SetupKnightSnapshot(
             atk: 59814,
@@ -381,11 +364,6 @@ void main() {
         ),
         modeEffects: const SetupModeEffectsSnapshot(
           cycloneUseGemsForSpecials: false,
-          cycloneBoostPercent: 71.0,
-          shatterBaseHp: 100,
-          shatterBonusHp: 20,
-          drsDefenseBoost: 0.5,
-          ewWeaknessEffect: 0.65,
         ),
       );
       final run = BulkSimulationRunResult(
@@ -398,7 +376,7 @@ void main() {
 
       final row = BulkComparisonRow.fromRun(run);
 
-      expect(row.fightMode, FightMode.normal);
+      expect(row.pet.resolvedEffects, hasLength(2));
     });
 
     test('blitz rows also respect only reachable imported pet skills', () {
@@ -406,7 +384,6 @@ void main() {
         bossMode: 'blitz',
         bossLevel: 5,
         bossElements: const <ElementType>[ElementType.fire, ElementType.water],
-        fightMode: FightMode.normal,
         knights: const <SetupKnightSnapshot>[
           SetupKnightSnapshot(
             atk: 59814,
@@ -486,11 +463,6 @@ void main() {
         ),
         modeEffects: const SetupModeEffectsSnapshot(
           cycloneUseGemsForSpecials: false,
-          cycloneBoostPercent: 71.0,
-          shatterBaseHp: 100,
-          shatterBonusHp: 20,
-          drsDefenseBoost: 0.5,
-          ewWeaknessEffect: 0.65,
         ),
       );
       final run = BulkSimulationRunResult(
@@ -503,7 +475,7 @@ void main() {
 
       final row = BulkComparisonRow.fromRun(run);
 
-      expect(row.fightMode, FightMode.normal);
+      expect(row.pet.resolvedEffects, hasLength(2));
     });
   });
 }

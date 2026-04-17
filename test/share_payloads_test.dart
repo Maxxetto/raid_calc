@@ -19,7 +19,6 @@ void main() {
         bossMode: 'raid',
         bossLevel: 4,
         bossElements: const [ElementType.air, ElementType.water],
-        fightMode: FightMode.specialRegenPlusEw,
         knights: const [
           SetupKnightSnapshot(
             atk: 1000,
@@ -89,11 +88,6 @@ void main() {
         ),
         modeEffects: const SetupModeEffectsSnapshot(
           cycloneUseGemsForSpecials: false,
-          cycloneBoostPercent: 71.0,
-          shatterBaseHp: 111,
-          shatterBonusHp: 22,
-          drsDefenseBoost: 0.5,
-          ewWeaknessEffect: 0.65,
         ),
       ),
     );
@@ -104,7 +98,6 @@ void main() {
 
     expect(parsed.name, 'Guild test');
     expect(parsed.setup.bossLevel, 4);
-    expect(parsed.setup.fightMode, FightMode.specialRegenPlusEw);
     expect(parsed.setup.pet.element1, ElementType.air);
     expect(parsed.setup.pet.importedCompendium?.familyTag, 'S101SF');
     expect(parsed.setup.pet.importedCompendium?.selectedSkill2.name,
@@ -130,7 +123,6 @@ void main() {
         'bossMode': 'raid',
         'bossLevel': 4,
         'bossElements': <Object?>['air', 'water'],
-        'fightMode': FightMode.normal.name,
         'knights': <Object?>[
           <String, Object?>{'atk': 1000, 'def': 1000, 'hp': 1000, 'stun': 0},
           <String, Object?>{'atk': 1000, 'def': 1000, 'hp': 1000, 'stun': 0},
@@ -180,10 +172,6 @@ void main() {
     expect(
       parsed.setup.pet.importedCompendium?.selectedSkill1.canonicalEffectId,
       'revenge_strike',
-    );
-    expect(
-      parsed.setup.petSimulationProfile.legacyEquivalentMode,
-      FightMode.shatterShield,
     );
   });
 
@@ -281,7 +269,6 @@ void main() {
       timing: null,
     );
     final payload = ResultsSharePayload(
-      fightMode: FightMode.durableRockShield,
       cycloneUseGemsForSpecials: false,
       isPremium: true,
       debugEnabled: false,
@@ -316,7 +303,6 @@ void main() {
     );
 
     final parsed = ResultsSharePayload.fromText(jsonEncode(payload.toJson()));
-    expect(parsed.fightMode, FightMode.durableRockShield);
     expect(parsed.isPremium, isTrue);
     expect(parsed.pre.petNormalDmg, 40);
     expect(parsed.pre.petSkillUsage, PetSkillUsageMode.special2ThenSpecial1);

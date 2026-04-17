@@ -8,11 +8,8 @@ import '../core/engine/engine.dart'
     show
         BattleEngineSeed,
         BattleRuntimeKnobs,
-        LegacyModeAdapter,
         RaidBlitzBattleEngine,
-        bossBaseConstForMeta,
-        resolvedCycloneBoostPct,
-        runLegacyOldSimulator;
+        bossBaseConstForMeta;
 import '../data/config_models.dart';
 import '../data/pet_effect_models.dart';
 import 'battle_outcome.dart';
@@ -20,7 +17,7 @@ import 'sim_types.dart';
 import 'timing_acc.dart';
 
 // Re-export per mantenere compatibilità con UI/debug che importano damage_model.dart
-export 'sim_types.dart' show FightMode, ShatterShieldConfig, FastRng;
+export 'sim_types.dart' show ShatterShieldConfig, FastRng;
 
 class SimulationCancellationToken {
   bool _cancelled = false;
@@ -70,33 +67,6 @@ class DamageModel {
     if (x < 0) return 0;
     if (x > (1 << 30)) return (1 << 30);
     return x;
-  }
-
-  static Precomputed _withPetSimulationConfig(
-    Precomputed pre, {
-    required PetSkillUsageMode petSkillUsage,
-    required List<PetResolvedEffect> petEffects,
-  }) {
-    return Precomputed(
-      meta: pre.meta,
-      stats: pre.stats,
-      kAtk: pre.kAtk,
-      kDef: pre.kDef,
-      kHp: pre.kHp,
-      kAdv: pre.kAdv,
-      kStun: pre.kStun,
-      petAtk: pre.petAtk,
-      petAdv: pre.petAdv,
-      petSkillUsage: petSkillUsage,
-      petEffects: petEffects,
-      kNormalDmg: pre.kNormalDmg,
-      kCritDmg: pre.kCritDmg,
-      kSpecialDmg: pre.kSpecialDmg,
-      petNormalDmg: pre.petNormalDmg,
-      petCritDmg: pre.petCritDmg,
-      bNormalDmg: pre.bNormalDmg,
-      bCritDmg: pre.bCritDmg,
-    );
   }
 
   // Knight -> Boss
@@ -213,10 +183,8 @@ class DamageModel {
   static ({
     Precomputed pre,
     BattleRuntimeKnobs runtimeKnobs,
-    bool useNewEngine,
   }) _buildRaidBlitzSimulationInput({
     required Precomputed pre,
-    required FightMode mode,
     required ShatterShieldConfig shatter,
     required bool cycloneUseGemsForSpecials,
   }) {
@@ -231,57 +199,15 @@ class DamageModel {
         growable: false,
       ),
     );
-
-    if (pre.petEffects.isNotEmpty) {
-      return (
-        pre: pre,
-        runtimeKnobs: runtimeKnobs,
-        useNewEngine: mode != FightMode.specialRegenEw,
-      );
-    }
-    if (mode == FightMode.specialRegenEw) {
-      return (
-        pre: pre,
-        runtimeKnobs: runtimeKnobs,
-        useNewEngine: false,
-      );
-    }
-
-    final synthetic = LegacyModeAdapter.synthesize(
-      mode: mode,
-      requestedUsageMode: pre.petSkillUsage,
-      cycloneUseGemsForSpecials: cycloneUseGemsForSpecials,
-      cycloneBoostPercent: resolvedCycloneBoostPct(
-        pre.petEffects,
-        fallback: pre.meta.cyclone,
-      ),
-      shatterBaseHp: shatter.baseHp,
-      shatterBonusHp: shatter.bonusHp,
-      drsDefenseBoost: pre.meta.defaultDurableRockShield,
-      ewWeaknessEffect: pre.meta.defaultElementalWeakness,
-    );
-    if (synthetic.resolvedEffects.isEmpty) {
-      return (
-        pre: pre,
-        runtimeKnobs: runtimeKnobs,
-        useNewEngine: mode == FightMode.normal,
-      );
-    }
     return (
-      pre: _withPetSimulationConfig(
-        pre,
-        petSkillUsage: synthetic.usageMode,
-        petEffects: synthetic.resolvedEffects,
-      ),
+      pre: pre,
       runtimeKnobs: runtimeKnobs,
-      useNewEngine: true,
     );
   }
 
   Future<SimStats> simulate(
     Precomputed pre, {
     required int runs,
-    required FightMode mode,
     required ShatterShieldConfig shatter,
     required bool withTiming,
     bool cycloneUseGemsForSpecials = true,
@@ -290,7 +216,6 @@ class DamageModel {
   }) async {
     final simInput = _buildRaidBlitzSimulationInput(
       pre: pre,
-      mode: mode,
       shatter: shatter,
       cycloneUseGemsForSpecials: cycloneUseGemsForSpecials,
     );
@@ -304,7 +229,6 @@ class DamageModel {
       return _simulateIsolate(
         simInput.pre,
         runs: runs,
-        mode: mode,
         shatter: shatter,
         withTiming: withTiming,
         cycloneUseGemsForSpecials: cycloneUseGemsForSpecials,
@@ -327,6 +251,7 @@ class DamageModel {
     int sum = 0;
     int minV = 1 << 30;
     int maxV = 0;
+    int gemsSpentSum = 0;
 
     final timing = withTiming ? TimingAcc() : null;
 
@@ -335,21 +260,14 @@ class DamageModel {
 
     for (int i = 0; i < runs; i++) {
       throwIfCancelled();
-      final pts = simInput.useNewEngine
-          ? engine
-              .runWithRng(
-                engineSeed,
-                rng,
-                withTiming: withTiming,
-                timing: timing,
-              )
-              .points
-          : runLegacyOldSimulator(
-              simInput.pre,
-              rng,
-              withTiming: withTiming,
-              timing: timing,
-            );
+      final result = engine.runWithRng(
+        engineSeed,
+        rng,
+        withTiming: withTiming,
+        timing: timing,
+      );
+      final pts = result.points;
+      gemsSpentSum += result.gemsSpent;
 
       values[i] = pts;
       sum += pts;
@@ -379,6 +297,7 @@ class DamageModel {
       median: median,
       min: (runs == 0) ? 0 : minV,
       max: (runs == 0) ? 0 : maxV,
+      meanGemsSpent: runs > 0 ? gemsSpentSum / runs : 0.0,
       timing: tstats,
       series: series,
     );
@@ -387,7 +306,6 @@ class DamageModel {
   Future<SimStats> _simulateIsolate(
     Precomputed pre, {
     required int runs,
-    required FightMode mode,
     required ShatterShieldConfig shatter,
     required bool withTiming,
     bool cycloneUseGemsForSpecials = true,
@@ -405,7 +323,6 @@ class DamageModel {
       'replyTo': resp.sendPort,
       'pre': pre.toJson(),
       'runs': runs,
-      'mode': mode.name,
       'shatter': shatter.toJson(),
       'withTiming': withTiming,
       'cycloneUseGemsForSpecials': cycloneUseGemsForSpecials,
@@ -416,6 +333,7 @@ class DamageModel {
     int sum = 0;
     int minV = 1 << 30;
     int maxV = 0;
+    int gemsSpentSum = 0;
 
     TimingStats? timing;
     final done = Completer<void>();
@@ -440,6 +358,7 @@ class DamageModel {
         sum = (m['sum'] as num).toInt();
         minV = (m['min'] as num).toInt();
         maxV = (m['max'] as num).toInt();
+        gemsSpentSum = (m['gemsSpentSum'] as num?)?.toInt() ?? 0;
 
         final t = m['timing'];
         if (t is Map) {
@@ -476,6 +395,7 @@ class DamageModel {
       median: median,
       min: (runs == 0) ? 0 : minV,
       max: (runs == 0) ? 0 : maxV,
+      meanGemsSpent: runs > 0 ? gemsSpentSum / runs : 0.0,
       timing: timing,
       series: series,
     );
@@ -496,11 +416,6 @@ class DamageModel {
       final pre =
           Precomputed.fromJson((req['pre'] as Map).cast<String, Object?>());
       final runs = (req['runs'] as num).toInt();
-      final modeName = (req['mode'] as String?) ?? FightMode.normal.name;
-      final mode = FightMode.values.firstWhere(
-        (e) => e.name == modeName,
-        orElse: () => FightMode.normal,
-      );
 
       final sh = (req['shatter'] as Map).cast<String, Object?>();
       final shatter = ShatterShieldConfig.fromJson(sh);
@@ -510,7 +425,6 @@ class DamageModel {
           (req['cycloneUseGemsForSpecials'] as bool?) ?? true;
       final simInput = _buildRaidBlitzSimulationInput(
         pre: pre,
-        mode: mode,
         shatter: shatter,
         cycloneUseGemsForSpecials: cycloneUseGemsForSpecials,
       );
@@ -526,6 +440,7 @@ class DamageModel {
       int sum = 0;
       int minV = 1 << 30;
       int maxV = 0;
+      int gemsSpentSum = 0;
 
       final timing = withTiming ? TimingAcc() : null;
 
@@ -533,21 +448,14 @@ class DamageModel {
       final step = (runs / _progressSteps).ceil().clamp(1, runs);
 
       for (int i = 0; i < runs; i++) {
-        final pts = simInput.useNewEngine
-            ? engine
-                .runWithRng(
-                  engineSeed,
-                  rng,
-                  withTiming: withTiming,
-                  timing: timing,
-                )
-                .points
-            : runLegacyOldSimulator(
-                simInput.pre,
-                rng,
-                withTiming: withTiming,
-                timing: timing,
-              );
+        final result = engine.runWithRng(
+          engineSeed,
+          rng,
+          withTiming: withTiming,
+          timing: timing,
+        );
+        final pts = result.points;
+        gemsSpentSum += result.gemsSpent;
 
         values[i] = pts;
         sum += pts;
@@ -575,6 +483,7 @@ class DamageModel {
         'sum': sum,
         'min': (runs == 0) ? 0 : minV,
         'max': (runs == 0) ? 0 : maxV,
+        'gemsSpentSum': gemsSpentSum,
         'timing': tstats?.toJson(),
       });
     });

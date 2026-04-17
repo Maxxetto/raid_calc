@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../core/battle_outcome.dart';
 import '../core/element_types.dart';
+import '../core/engine/skill_catalog.dart';
 import '../core/sim_types.dart';
 import '../data/bulk_results_models.dart';
 import 'results_charts.dart';
@@ -128,7 +129,6 @@ class _BulkResultsPageState extends State<BulkResultsPage> {
             labels: widget.labels,
             isPremium: widget.isPremium,
             debugEnabled: false,
-            fightMode: _effectiveFightMode(run),
             cycloneUseGemsForSpecials:
                 run.setup.modeEffects.cycloneUseGemsForSpecials,
             milestoneTargetPoints: widget.milestoneTargetPoints,
@@ -161,14 +161,6 @@ class _BulkResultsPageState extends State<BulkResultsPage> {
         ),
       ),
     ];
-  }
-
-  FightMode _effectiveFightMode(BulkSimulationRunResult run) {
-    if (run.setup.isRaidOrBlitz && run.setup.pet.resolvedEffects.isNotEmpty) {
-      return FightMode.normal;
-    }
-    if (!run.setup.isRaidOrBlitz) return run.setup.fightMode;
-    return run.setup.fightMode;
   }
 
   List<String> _activeKnightIds(BulkSimulationRunResult run) {
@@ -322,7 +314,22 @@ class _BulkCompareScaffold extends StatelessWidget {
   String _modeLabel(String bossMode) =>
       bossMode == 'blitz' ? t('blitz', 'Blitz') : t('raid', 'Raid');
 
-  String _fightLabel(BulkComparisonRow row) => row.fightMode.shortLabel();
+  String _fightLabel(BulkComparisonRow row) {
+    final names = row.pet.resolvedEffects
+        .map(
+          (effect) => BattleSkillCatalog.displayNameForId(
+            effect.canonicalEffectId,
+            fallback: effect.canonicalName.isEmpty
+                ? effect.sourceSkillName
+                : effect.canonicalName,
+          ),
+        )
+        .where((name) => name.trim().isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+    if (names.isEmpty) return row.pet.skillUsage.shortLabel();
+    return names.join(' + ');
+  }
 
   String _fmtPercent(num value) {
     final v = value.toDouble();

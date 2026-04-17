@@ -22,7 +22,8 @@ void main() {
       'TerraPulse Blaster',
     ]);
 
-    final candidateBatch = const WargearFavoriteCandidateSelector().rankFavorites(
+    final candidateBatch =
+        const WargearFavoriteCandidateSelector().rankFavorites(
       catalog: catalog,
       favoriteIds: ids,
       filters: const WargearWardrobeSavedFilters(
@@ -118,7 +119,6 @@ void main() {
           active: true,
         ),
       ],
-      fightMode: FightMode.normal,
       pet: const SetupPetSnapshot(
         atk: 20000,
         elementalAtk: 1133,
@@ -150,7 +150,9 @@ void main() {
     final sample = batch.results.first;
     expect(sample.assignments.length, 3);
     expect(
-      sample.assignments.where((item) => item.role == WargearRole.primary).length,
+      sample.assignments
+          .where((item) => item.role == WargearRole.primary)
+          .length,
       1,
     );
     expect(

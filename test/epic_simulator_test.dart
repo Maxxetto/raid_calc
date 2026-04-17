@@ -35,7 +35,6 @@ void main() {
         durationElementalWeakness: 2,
         defaultElementalWeakness: 0.65,
         cyclone: 71.0,
-        
         defaultDurableRockShield: 0.5,
         sameElementDRS: 1.6,
         strongElementEW: 1.6,
@@ -88,7 +87,6 @@ void main() {
       knights: knights,
       threshold: 80,
       runsPerLevel: 5,
-      mode: FightMode.normal,
       shatter: const ShatterShieldConfig(
         baseHp: 0,
         bonusHp: 0,
@@ -136,7 +134,6 @@ void main() {
       durationElementalWeakness: 2,
       defaultElementalWeakness: 0.65,
       cyclone: 71.0,
-      
       defaultDurableRockShield: 0.5,
       sameElementDRS: 1.6,
       strongElementEW: 1.6,
@@ -145,6 +142,19 @@ void main() {
       cycleMultiplier: 1.0,
       epicBossDamageBonus: 0.0,
       timing: timing(),
+      petTicksBar: const PetTicksBarConfig(
+        enabled: true,
+        ticksPerState: 1,
+        startTicks: 1,
+        petCritPlusOneProb: 0.0,
+        petKnightBase: <WeightedTick>[WeightedTick(ticks: 1, weight: 1.0)],
+        bossNormal: <WeightedTick>[WeightedTick(ticks: 0, weight: 1.0)],
+        bossSpecial: <WeightedTick>[WeightedTick(ticks: 0, weight: 1.0)],
+        bossMiss: <WeightedTick>[WeightedTick(ticks: 0, weight: 1.0)],
+        stun: <WeightedTick>[WeightedTick(ticks: 0, weight: 1.0)],
+        useInSpecialRegen: true,
+        useInEpic: true,
+      ),
     );
 
     const boss = EpicBossRow(
@@ -169,11 +179,25 @@ void main() {
       boss: boss,
       meta: srMeta,
       knights: knights,
+      petSkillUsage: PetSkillUsageMode.special1Only,
+      petEffects: const <PetResolvedEffect>[
+        PetResolvedEffect(
+          sourceSlotId: 'skill11',
+          sourceSkillName: 'Special Regeneration',
+          values: <String, num>{'meterChargePercent': 100},
+          canonicalEffectId: 'special_regeneration_infinite',
+          canonicalName: 'Special Regeneration',
+          effectCategory: 'special_meter_acceleration',
+          dataSupport: 'test',
+          runtimeSupport: 'test',
+          simulatorModes: <String>[],
+          effectSpec: <String, Object?>{},
+        ),
+      ],
     );
 
     final winWithMatch = await EpicSimulator.simulateLevel(
       pre: pre,
-      mode: FightMode.specialRegen,
       shatter: const ShatterShieldConfig(
         baseHp: 0,
         bonusHp: 0,
@@ -186,7 +210,6 @@ void main() {
 
     final loseWithoutMatch = await EpicSimulator.simulateLevel(
       pre: pre,
-      mode: FightMode.specialRegen,
       shatter: const ShatterShieldConfig(
         baseHp: 0,
         bonusHp: 0,
@@ -223,7 +246,6 @@ void main() {
       durationElementalWeakness: 2,
       defaultElementalWeakness: 0.65,
       cyclone: 71.0,
-      
       defaultDurableRockShield: 0.5,
       sameElementDRS: 1.6,
       strongElementEW: 1.6,
@@ -272,12 +294,46 @@ void main() {
       meta: drsMeta,
       knights: knights,
       petSkillUsage: PetSkillUsageMode.special1Only,
+      petEffects: const <PetResolvedEffect>[
+        PetResolvedEffect(
+          sourceSlotId: 'skill11',
+          sourceSkillName: 'Durable Rock Shield',
+          values: <String, num>{
+            'defenseBoostPercent': 50,
+            'turns': 3,
+          },
+          canonicalEffectId: 'durable_rock_shield',
+          canonicalName: 'Durable Rock Shield',
+          effectCategory: 'knight_defense_buff',
+          dataSupport: 'test',
+          runtimeSupport: 'test',
+          simulatorModes: <String>[],
+          effectSpec: <String, Object?>{},
+        ),
+      ],
     );
     final preSpecial2 = EpicSimulator.precompute(
       boss: boss,
       meta: drsMeta,
       knights: knights,
       petSkillUsage: PetSkillUsageMode.special2Only,
+      petEffects: const <PetResolvedEffect>[
+        PetResolvedEffect(
+          sourceSlotId: 'skill11',
+          sourceSkillName: 'Durable Rock Shield',
+          values: <String, num>{
+            'defenseBoostPercent': 50,
+            'turns': 3,
+          },
+          canonicalEffectId: 'durable_rock_shield',
+          canonicalName: 'Durable Rock Shield',
+          effectCategory: 'knight_defense_buff',
+          dataSupport: 'test',
+          runtimeSupport: 'test',
+          simulatorModes: <String>[],
+          effectSpec: <String, Object?>{},
+        ),
+      ],
     );
 
     const shatter = ShatterShieldConfig(
@@ -288,7 +344,6 @@ void main() {
 
     final winWithSpecial1 = await EpicSimulator.simulateLevel(
       pre: preSpecial1,
-      mode: FightMode.durableRockShield,
       shatter: shatter,
       cycloneUseGemsForSpecials: false,
       runs: 1,
@@ -297,7 +352,6 @@ void main() {
 
     final loseWithSpecial2 = await EpicSimulator.simulateLevel(
       pre: preSpecial2,
-      mode: FightMode.durableRockShield,
       shatter: shatter,
       cycloneUseGemsForSpecials: false,
       runs: 1,
@@ -308,7 +362,8 @@ void main() {
     expect(loseWithSpecial2.winRate, 0.0);
   });
 
-  test('Epic explicit pet skills use the unified engine regardless of FightMode',
+  test(
+      'Epic explicit pet skills use the unified skill-driven engine',
       () async {
     final drsMeta = BossMeta(
       raidMode: true,
@@ -413,7 +468,6 @@ void main() {
 
     final winWithSkills = await EpicSimulator.simulateLevel(
       pre: preSpecial1,
-      mode: FightMode.normal,
       shatter: shatter,
       cycloneUseGemsForSpecials: false,
       runs: 1,
@@ -422,7 +476,6 @@ void main() {
 
     final loseWithWrongUsage = await EpicSimulator.simulateLevel(
       pre: preSpecial2,
-      mode: FightMode.normal,
       shatter: shatter,
       cycloneUseGemsForSpecials: false,
       runs: 1,

@@ -2,7 +2,38 @@ import 'package:raid_calc/core/debug/debug_run.dart';
 import 'package:raid_calc/core/damage_model.dart';
 import 'package:raid_calc/core/sim_types.dart';
 import 'package:raid_calc/data/config_models.dart';
+import 'package:raid_calc/data/pet_effect_models.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+PetResolvedEffect _effect(
+  String id,
+  String slot, {
+  Map<String, num> values = const <String, num>{},
+}) =>
+    PetResolvedEffect(
+      sourceSlotId: slot,
+      sourceSkillName: id,
+      values: values,
+      canonicalEffectId: id,
+      canonicalName: id,
+      effectCategory: 'test',
+      dataSupport: 'test',
+      runtimeSupport: 'test',
+      simulatorModes: const <String>[],
+      effectSpec: const <String, Object?>{},
+    );
+
+List<PetResolvedEffect> _srEwEffects({double ew = 65.0}) => <PetResolvedEffect>[
+      _effect('special_regeneration_infinite', 'skill11'),
+      _effect(
+        'elemental_weakness',
+        'skill2',
+        values: <String, num>{
+          'enemyAttackReductionPercent': ew,
+          'turns': 3,
+        },
+      ),
+    ];
 
 BossConfig _makeBossConfig() {
   final meta = BossMeta.fromJson({
@@ -107,6 +138,8 @@ Precomputed _makeSrStacksPrecomputed() {
     kStun: const [0, 0, 0],
     petAtk: 10,
     petAdv: 1.0,
+    petSkillUsage: PetSkillUsageMode.special2ThenSpecial1,
+    petEffects: _srEwEffects(ew: 10.0),
   );
 }
 
@@ -170,6 +203,8 @@ Precomputed _makeEwMinOnePrecomputed() {
     kStun: const [0, 0, 0],
     petAtk: 10,
     petAdv: 1.0,
+    petSkillUsage: PetSkillUsageMode.special2ThenSpecial1,
+    petEffects: _srEwEffects(ew: 95.0),
   );
 }
 
@@ -233,6 +268,8 @@ Precomputed _makeEwFloorPrecomputed({
     kStun: const [0, 0, 0],
     petAtk: 10,
     petAdv: 1.0,
+    petSkillUsage: PetSkillUsageMode.special2ThenSpecial1,
+    petEffects: _srEwEffects(ew: ewFraction * 100.0),
     kNormalDmg: const [0, 0, 0],
     kCritDmg: const [0, 0, 0],
     kSpecialDmg: const [0, 0, 0],
@@ -264,7 +301,6 @@ Precomputed _makeShatterPetBarPrecomputed() {
     durationElementalWeakness: 2,
     defaultElementalWeakness: 0.1,
     cyclone: 71.0,
-    
     defaultDurableRockShield: 0.5,
     sameElementDRS: 1.6,
     strongElementEW: 1.6,
@@ -312,6 +348,17 @@ Precomputed _makeShatterPetBarPrecomputed() {
     kStun: const [0, 0, 0],
     petAtk: 10,
     petAdv: 1.0,
+    petSkillUsage: PetSkillUsageMode.special2Only,
+    petEffects: <PetResolvedEffect>[
+      _effect(
+        'shatter_shield',
+        'skill2',
+        values: const <String, num>{
+          'baseShieldHp': 20,
+          'bonusShieldHp': 5,
+        },
+      ),
+    ],
   );
 }
 
@@ -338,7 +385,6 @@ Precomputed _makeDrsPetBarPrecomputed() {
     durationElementalWeakness: 2,
     defaultElementalWeakness: 0.1,
     cyclone: 71.0,
-    
     defaultDurableRockShield: 0.5,
     sameElementDRS: 1.6,
     strongElementEW: 1.6,
@@ -387,6 +433,16 @@ Precomputed _makeDrsPetBarPrecomputed() {
     petAtk: 10,
     petAdv: 1.0,
     petSkillUsage: PetSkillUsageMode.special1Only,
+    petEffects: <PetResolvedEffect>[
+      _effect(
+        'durable_rock_shield',
+        'skill11',
+        values: const <String, num>{
+          'defenseBoostPercent': 50,
+          'turns': 3,
+        },
+      ),
+    ],
   );
 }
 
@@ -450,8 +506,7 @@ Map<String, String> _labelsBase() => {
           'Old Simulator: knight SPECIAL always from KT#1; boss SPECIAL disabled (fakeEW={fake})',
       'debug.log.phrase.old_sim_boss_special_disabled':
           'BT#{turn} Boss SPECIAL disabled (fakeEW tick)',
-      'debug.log.phrase.cyclone_intro':
-          'Cyclone: +{pct}% per turn (cap 5)',
+      'debug.log.phrase.cyclone_intro': 'Cyclone: +{pct}% per turn (cap 5)',
       'debug.log.phrase.shatter_info_full':
           'Shatter: first=H#{first} (no miss), step={step}',
       'debug.log.phrase.drs_active_full':
@@ -466,7 +521,6 @@ void main() {
 
     final debug = DebugSimulator.run(
       pre,
-      mode: FightMode.normal,
       labels: labels,
       seed: 1,
     );
@@ -505,7 +559,6 @@ void main() {
 
     final debug = DebugSimulator.run(
       pre,
-      mode: FightMode.specialRegenPlusEw,
       labels: labels,
       seed: 1,
     );
@@ -520,7 +573,6 @@ void main() {
 
     final debug = DebugSimulator.run(
       pre,
-      mode: FightMode.specialRegen,
       labels: labels,
       seed: 1,
       shatter: const ShatterShieldConfig(
@@ -547,7 +599,6 @@ void main() {
 
     final debug = DebugSimulator.run(
       pre,
-      mode: FightMode.specialRegenPlusEw,
       labels: labels,
       seed: 1,
       shatter: const ShatterShieldConfig(
@@ -567,7 +618,6 @@ void main() {
 
     final debug = DebugSimulator.run(
       pre,
-      mode: FightMode.specialRegenPlusEw,
       labels: labels,
       seed: 1,
     );
@@ -591,7 +641,6 @@ void main() {
 
     final debug = DebugSimulator.run(
       pre,
-      mode: FightMode.specialRegenPlusEw,
       labels: labels,
       seed: 1,
     );
@@ -609,7 +658,6 @@ void main() {
 
     final debug = DebugSimulator.run(
       pre,
-      mode: FightMode.specialRegenPlusEw,
       labels: labels,
       seed: 1,
     );
@@ -693,7 +741,6 @@ void main() {
 
     final debug = DebugSimulator.run(
       pre,
-      mode: FightMode.specialRegenPlusEw,
       labels: labels,
       seed: 1,
       shatter: const ShatterShieldConfig(
@@ -717,7 +764,6 @@ void main() {
 
     final debug = DebugSimulator.run(
       pre,
-      mode: FightMode.specialRegenPlusEw,
       labels: labels,
       seed: 1,
       shatter: const ShatterShieldConfig(
@@ -736,7 +782,6 @@ void main() {
 
     final debug = DebugSimulator.run(
       pre,
-      mode: FightMode.shatterShield,
       labels: labels,
       seed: 1,
       shatter: const ShatterShieldConfig(
@@ -756,7 +801,6 @@ void main() {
 
     final debug = DebugSimulator.run(
       pre,
-      mode: FightMode.durableRockShield,
       labels: labels,
       seed: 1,
       shatter: const ShatterShieldConfig(
@@ -766,7 +810,8 @@ void main() {
       ),
     );
 
-    expect(debug.lines.any((l) => l.startsWith('PET BAR cast special1')), isTrue);
+    expect(
+        debug.lines.any((l) => l.startsWith('PET BAR cast special1')), isTrue);
     expect(debug.lines.any((l) => l == 'PET BAR init: 2/4'), isTrue);
     expect(debug.lines.any((l) => l == 'PET BAR queued special1 at 2'), isTrue);
     expect(debug.lines.any((l) => l == 'PET BAR cast special1: 2->0'), isTrue);

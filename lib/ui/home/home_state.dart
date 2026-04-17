@@ -78,7 +78,6 @@ class HomeState extends ChangeNotifier {
   bool epicThresholdFromSession = false;
 
   // Mode
-  FightMode fightMode = FightMode.normal;
   bool cycloneUseGemsForSpecials = true;
   final TextEditingController cycloneBoostCtl =
       TextEditingController(text: '71');

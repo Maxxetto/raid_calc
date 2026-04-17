@@ -22,7 +22,9 @@ void main() {
       );
     });
 
-    test('pickImportedPetSkillSelection preserves custom selection and overrides', () {
+    test(
+        'pickImportedPetSkillSelection preserves custom selection and overrides',
+        () {
       const current = SetupPetSkillSnapshot(
         slotId: 'skill11',
         name: 'Death Blow',
@@ -58,7 +60,9 @@ void main() {
       );
     });
 
-    test('pickImportedPetSkillSelection merges overrides into refreshed catalog option', () {
+    test(
+        'pickImportedPetSkillSelection merges overrides into refreshed catalog option',
+        () {
       const current = SetupPetSkillSnapshot(
         slotId: 'skill2',
         name: 'Shatter Shield',
@@ -94,7 +98,6 @@ void main() {
         bossMode: 'blitz',
         bossLevel: 5,
         bossElements: const <ElementType>[ElementType.air, ElementType.water],
-        fightMode: FightMode.durableRockShield,
         knights: const <SetupKnightSnapshot>[
           SetupKnightSnapshot(
             atk: 59814,
@@ -182,11 +185,6 @@ void main() {
         ),
         modeEffects: const SetupModeEffectsSnapshot(
           cycloneUseGemsForSpecials: false,
-          cycloneBoostPercent: 71.0,
-          shatterBaseHp: 150,
-          shatterBonusHp: 33,
-          drsDefenseBoost: 0.42,
-          ewWeaknessEffect: 0.71,
         ),
       );
 
@@ -196,7 +194,6 @@ void main() {
       expect(decoded.bossLevel, 5);
       expect(decoded.bossElements,
           <ElementType>[ElementType.air, ElementType.water]);
-      expect(decoded.fightMode, FightMode.durableRockShield);
 
       expect(decoded.knights, hasLength(3));
       expect(decoded.knights[0].atk, 59814);
@@ -228,15 +225,11 @@ void main() {
       expect(decoded.pet.resolvedEffects, hasLength(2));
       expect(decoded.pet.resolvedEffects.first.canonicalEffectId,
           'revenge_strike');
-      expect(decoded.pet.resolvedEffects.first.sourceSkillName,
-          'Revenge Strike');
+      expect(
+          decoded.pet.resolvedEffects.first.sourceSkillName, 'Revenge Strike');
       expect(
         decoded.petSimulationProfile.archetype,
         PetSimulationArchetype.shatterShield,
-      );
-      expect(
-        decoded.petSimulationProfile.legacyEquivalentMode,
-        FightMode.shatterShield,
       );
       expect(decoded.petSimulationResolution.slot1Effect?.canonicalEffectId,
           'revenge_strike');
@@ -249,11 +242,6 @@ void main() {
         <String>['shatter_shield'],
       );
       expect(decoded.compactSummary(), contains('SS'));
-
-      expect(decoded.modeEffects.shatterBaseHp, 150);
-      expect(decoded.modeEffects.shatterBonusHp, 33);
-      expect(decoded.modeEffects.drsDefenseBoost, closeTo(0.42, 1e-9));
-      expect(decoded.modeEffects.ewWeaknessEffect, closeTo(0.71, 1e-9));
     });
 
     test('fromJson uses safe defaults with missing optional keys', () {
@@ -283,7 +271,6 @@ void main() {
       expect(decoded.bossLevel, 7); // raid clamp
       expect(decoded.bossElements,
           <ElementType>[ElementType.fire, ElementType.fire]);
-      expect(decoded.fightMode, FightMode.normal);
 
       expect(decoded.knights, hasLength(3));
       expect(decoded.knights[0].atk, 1234);
@@ -305,10 +292,6 @@ void main() {
       expect(decoded.pet.resolvedEffects, isEmpty);
 
       expect(decoded.modeEffects.cycloneUseGemsForSpecials, isTrue);
-      expect(decoded.modeEffects.shatterBaseHp, 100);
-      expect(decoded.modeEffects.shatterBonusHp, 20);
-      expect(decoded.modeEffects.drsDefenseBoost, closeTo(0.5, 1e-9));
-      expect(decoded.modeEffects.ewWeaknessEffect, closeTo(0.655, 1e-9));
     });
 
     test(
@@ -319,7 +302,6 @@ void main() {
         'bossMode': 'raid',
         'bossLevel': 4,
         'bossElements': <Object?>['air', 'water'],
-        'fightMode': FightMode.normal.name,
         'knights': <Object?>[
           <String, Object?>{'atk': 1000, 'def': 1000, 'hp': 1000, 'stun': 0},
           <String, Object?>{'atk': 1000, 'def': 1000, 'hp': 1000, 'stun': 0},
@@ -381,18 +363,14 @@ void main() {
         decoded.petSimulationProfile.archetype,
         PetSimulationArchetype.shatterShield,
       );
-      expect(
-        decoded.petSimulationProfile.legacyEquivalentMode,
-        FightMode.shatterShield,
-      );
     });
 
-    test('pet simulation profile derives canonical mode from imported skills', () {
+    test('pet simulation profile derives canonical mode from imported skills',
+        () {
       final snapshot = SetupSnapshot(
         bossMode: 'raid',
         bossLevel: 4,
         bossElements: const <ElementType>[ElementType.air, ElementType.water],
-        fightMode: FightMode.normal,
         knights: List<SetupKnightSnapshot>.generate(
           3,
           (_) => SetupKnightSnapshot.defaults(),
@@ -468,11 +446,6 @@ void main() {
         ),
         modeEffects: const SetupModeEffectsSnapshot(
           cycloneUseGemsForSpecials: false,
-          cycloneBoostPercent: 71.0,
-          shatterBaseHp: 100,
-          shatterBonusHp: 20,
-          drsDefenseBoost: 0.5,
-          ewWeaknessEffect: 0.65,
         ),
       );
 
@@ -481,13 +454,13 @@ void main() {
       expect(snapshot.compactSummary(), contains('Normal'));
     });
 
-    test('compactSummary prefers canonical profile derived from imported skills',
+    test(
+        'compactSummary prefers canonical profile derived from imported skills',
         () {
       final snapshot = SetupSnapshot(
         bossMode: 'raid',
         bossLevel: 3,
         bossElements: const <ElementType>[ElementType.fire, ElementType.water],
-        fightMode: FightMode.normal,
         knights: List<SetupKnightSnapshot>.generate(
           3,
           (_) => SetupKnightSnapshot.defaults(),

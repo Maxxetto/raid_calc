@@ -250,6 +250,7 @@ class SimStats {
 
   final TimingStats? timing;
   final SimulationSeries? series;
+  final double? meanGemsSpent;
 
   const SimStats({
     required this.mean,
@@ -258,6 +259,7 @@ class SimStats {
     required this.max,
     required this.timing,
     this.series,
+    this.meanGemsSpent,
   });
 
   Map<String, Object?> toJson() => {
@@ -267,6 +269,7 @@ class SimStats {
         'max': max,
         'timing': timing?.toJson(),
         'series': series?.toJson(),
+        'meanGemsSpent': meanGemsSpent,
       };
 
   factory SimStats.fromJson(Map<String, Object?> j) => SimStats(
@@ -282,5 +285,6 @@ class SimStats {
                 (j['series'] as Map).cast<String, Object?>(),
               )
             : null,
+        meanGemsSpent: (j['meanGemsSpent'] as num?)?.toDouble(),
       );
 }

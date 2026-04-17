@@ -6,7 +6,6 @@ export 'battle_state.dart';
 export 'engine_common.dart';
 export 'knight_special_bar_runtime.dart';
 export 'legacy_old_simulator.dart';
-export 'legacy_mode_adapter.dart';
 export 'pet_bar_runtime.dart';
 export 'pet_usage_policy.dart';
 export 'skill_catalog.dart';

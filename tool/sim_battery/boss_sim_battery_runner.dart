@@ -200,7 +200,7 @@ class BossSimulationScenarioGenerator {
       modeKey: target.modeKey,
       raidMode: target.raidMode,
       bossLevel: target.bossLevel,
-      fightModeKey: config.fightMode.name,
+      fightModeKey: config.fightModeKey,
       layout: List<WargearRole>.unmodifiable(layout),
       knightAdvantageVector: List<double>.unmodifiable(knightAdvantage),
       bossAdvantageVector: List<double>.unmodifiable(bossAdvantage),
@@ -1423,13 +1423,14 @@ class BossSimulationRunner {
           for (final profile in tier.profiles) {
             for (final entry in profile.skills.entries) {
               final skill = entry.value;
-              final matchedRequiredSkill = requiredSkills.cast<String?>().firstWhere(
-                    (requiredSkill) => _matchesRequestedPetSkill(
-                      requiredSkill!,
-                      skill.name,
-                    ),
-                    orElse: () => null,
-                  );
+              final matchedRequiredSkill =
+                  requiredSkills.cast<String?>().firstWhere(
+                        (requiredSkill) => _matchesRequestedPetSkill(
+                          requiredSkill!,
+                          skill.name,
+                        ),
+                        orElse: () => null,
+                      );
               if (matchedRequiredSkill == null) continue;
               final semanticsEntry = semantics[skill.name];
               if (semanticsEntry == null) continue;

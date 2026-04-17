@@ -28,6 +28,7 @@ class BattleRunResult {
   final int bossMissActions;
   final int bossStunSkips;
   final bool cycloneAlwaysGemApplied;
+  final int gemsSpent;
   final bool goldDropEnabled;
   final int goldDropped;
   final TimingStats? timing;
@@ -56,6 +57,7 @@ class BattleRunResult {
     required this.bossMissActions,
     required this.bossStunSkips,
     required this.cycloneAlwaysGemApplied,
+    required this.gemsSpent,
     required this.goldDropEnabled,
     required this.goldDropped,
     required this.timing,

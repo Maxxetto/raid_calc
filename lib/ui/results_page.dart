@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 
 import '../core/battle_outcome.dart';
 import '../core/engine/engine_common.dart';
+import '../core/engine/skill_catalog.dart';
 import '../core/sim_types.dart';
 import '../data/config_models.dart';
 import '../data/pet_effect_models.dart';
@@ -27,7 +28,6 @@ class ResultsPage extends StatelessWidget {
   final ShatterShieldConfig? shatter;
 
   // Helper for Cyclone table + info
-  final FightMode fightMode;
   final bool cycloneUseGemsForSpecials;
 
   // Helper for milestone target (Home input)
@@ -52,7 +52,6 @@ class ResultsPage extends StatelessWidget {
     required this.stats,
     required this.labels,
     required this.isPremium,
-    required this.fightMode,
     this.cycloneUseGemsForSpecials = true,
     this.debugEnabled = false,
     this.elixirs = const <ElixirInventoryItem>[],
@@ -78,19 +77,31 @@ class ResultsPage extends StatelessWidget {
       pre.meta.petTicksBar.useInDurableRockShield;
   bool get _hasTimingData => stats.timing != null;
   bool get _hasPremiumTimingData => isPremium && _hasTimingData;
+  bool get _hasCyclone => _hasPetEffect(BattleSkillCatalog.cycloneId);
+  bool get _hasShatter => _hasPetEffect(BattleSkillCatalog.shatterShieldId);
+  bool get _hasDrs => _hasPetEffect(BattleSkillCatalog.durableRockShieldId);
+  bool get _hasSr =>
+      _hasPetEffect(BattleSkillCatalog.specialRegenId) ||
+      _hasPetEffect(BattleSkillCatalog.specialRegenInfiniteId);
+  bool get _hasEw => _hasPetEffect(BattleSkillCatalog.elementalWeaknessId);
+  List<PetResolvedEffect> get _effectivePetEffects =>
+      petEffects.isNotEmpty ? petEffects : pre.petEffects;
+
+  bool _hasPetEffect(String id) {
+    final target = BattleSkillCatalog.normalizeCanonicalEffectId(id);
+    return _effectivePetEffects.any(
+      (effect) =>
+          BattleSkillCatalog.normalizeCanonicalEffectId(
+            effect.canonicalEffectId,
+            fallbackSkillName: effect.sourceSkillName,
+          ) ==
+          target,
+    );
+  }
 
   double? get _averageCycloneGemsSpent {
-    if (fightMode != FightMode.cycloneBoost || !cycloneUseGemsForSpecials) {
-      return null;
-    }
-    if (!_hasPremiumTimingData) return null;
-    final tstats = stats.timing;
-    if (tstats == null) return null;
-    final totalKnightSpecials = tstats.kSpecialCount.fold<double>(
-      0.0,
-      (sum, value) => sum + value,
-    );
-    return totalKnightSpecials * 4.0;
+    if (!_hasCyclone || !cycloneUseGemsForSpecials) return null;
+    return stats.meanGemsSpent;
   }
 
   List<double>? get _estimatedKnightContributionTotals {
@@ -147,9 +158,13 @@ class ResultsPage extends StatelessWidget {
   String get _petSkillUsageLabel => pre.petSkillUsage.shortLabel();
 
   PetResolvedEffect? _effectByCanonicalId(String id) {
-    final needle = id.trim().toLowerCase();
-    for (final effect in petEffects) {
-      if (effect.canonicalEffectId.trim().toLowerCase() == needle) {
+    final needle = BattleSkillCatalog.normalizeCanonicalEffectId(id);
+    for (final effect in _effectivePetEffects) {
+      if (BattleSkillCatalog.normalizeCanonicalEffectId(
+            effect.canonicalEffectId,
+            fallbackSkillName: effect.sourceSkillName,
+          ) ==
+          needle) {
         return effect;
       }
     }
@@ -405,16 +420,19 @@ class ResultsPage extends StatelessWidget {
                   t('milestone.row.gems_leftover', 'Gems needed / Energy left'),
               value: '${_fmtInt(plan.gems)} / ${_fmtInt(plan.leftover)}',
             ),
-            if (fightMode == FightMode.cycloneBoost &&
+            if (_hasCyclone &&
                 cycloneUseGemsForSpecials &&
-                _hasPremiumTimingData)
+                _averageCycloneGemsSpent != null)
               _metricCard(
                 context,
-                label: t(
-                  'results.cyclone.avg_gems_spent',
-                  'Average gems spent',
+                label: t('results.cyclone.gems_spent', 'Gems spent'),
+                value: t(
+                  'results.cyclone.gems_spent_value',
+                  '{value} gems',
+                ).replaceAll(
+                  '{value}',
+                  _fmtCompact(_averageCycloneGemsSpent!),
                 ),
-                value: _fmtCompact(_averageCycloneGemsSpent!),
               ),
           ],
         ),
@@ -1003,8 +1021,7 @@ class ResultsPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 _petAbilityRecap(context),
-                if (fightMode == FightMode.shatterShield &&
-                    shatter != null) ...[
+                if (_hasShatter && shatter != null) ...[
                   const SizedBox(height: 8),
                   _shatterSummary(context),
                 ],
@@ -1531,77 +1548,60 @@ class ResultsPage extends StatelessWidget {
   }
 
   Widget _petAbilityRecap(BuildContext context) {
-    switch (fightMode) {
-      case FightMode.normal:
-        return _dataTable(
-          minWidth: 520,
-          columns: [t('param', 'Param'), t('value', 'Value')],
-          rows: [
-            [
-              petEffects.isNotEmpty
-                  ? t(
-                      'results.pet_ability.skill_driven',
-                      'Uses the selected pet skills and pet bar sequence.',
-                    )
-                  : t(
-                      'results.pet_ability.none',
-                      'No pet skills selected.',
-                    ),
-              petEffects.isNotEmpty ? _petSkillUsageLabel : '-',
-            ],
+    final sections = <Widget>[];
+    if (_effectivePetEffects.isEmpty) {
+      return _dataTable(
+        minWidth: 520,
+        columns: [t('param', 'Param'), t('value', 'Value')],
+        rows: [
+          [
+            t('results.pet_ability.none', 'No pet skills selected.'),
+            '-',
           ],
-        );
-      case FightMode.specialRegen:
-        return _srRecapTable(withEw: false);
-      case FightMode.specialRegenPlusEw:
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _srRecapTable(withEw: true),
-            const SizedBox(height: 8),
-            _ewRecapTable(context),
+        ],
+      );
+    }
+
+    sections.add(
+      _dataTable(
+        minWidth: 520,
+        columns: [t('param', 'Param'), t('value', 'Value')],
+        rows: [
+          [
+            t(
+              'results.pet_ability.skill_driven',
+              'Uses the selected pet skills and pet bar sequence.',
+            ),
+            _petSkillUsageLabel,
           ],
-        );
-      case FightMode.specialRegenEw:
-        return _dataTable(
-          minWidth: 560,
-          columns: [t('param', 'Param'), t('value', 'Value')],
-          rows: [
-            [
-              t('results.pet_ability.old.boss_special', 'Boss special'),
-              t('results.no', 'No'),
-            ],
-            [
-              t('results.pet_ability.old.fake_clock',
-                  'Boss fake special clock'),
-              '${t('results.pet_ability.turn', 'every')} ${pre.meta.bossToSpecialFakeEW}',
-            ],
-          ],
-        );
-      case FightMode.shatterShield:
-        final shatterFromPetBar = pre.meta.petTicksBar.enabled &&
-            pre.meta.petTicksBar.useInShatterShield;
-        return _dataTable(
+        ],
+      ),
+    );
+
+    if (_hasSr) {
+      sections.add(const SizedBox(height: 8));
+      sections.add(_srRecapTable(withEw: _hasEw));
+    }
+    if (_hasEw) {
+      sections.add(const SizedBox(height: 8));
+      sections.add(_ewRecapTable(context));
+    }
+    if (_hasShatter) {
+      final shatterFromPetBar = pre.meta.petTicksBar.enabled &&
+          pre.meta.petTicksBar.useInShatterShield;
+      sections.add(const SizedBox(height: 8));
+      sections.add(
+        _dataTable(
           minWidth: 560,
           columns: [t('param', 'Param'), t('value', 'Value')],
           rows: [
             if (shatterFromPetBar) ...[
-              [
-                t('results.pet_ability.start_fill', 'Starting bar'),
-                '1 / 2',
-              ],
+              [t('results.pet_ability.start_fill', 'Starting bar'), '1 / 2'],
               [
                 t('results.pet_ability.shatter.trigger', 'Trigger'),
                 t(
                   'results.pet_ability.shatter.trigger_special2',
                   'Pet Special 2 (2/2)',
-                ),
-              ],
-              [
-                t('results.pet_ability.shatter.loop', 'Activation loop'),
-                t(
-                  'results.pet_ability.shatter.loop_special2',
-                  '1/2 -> 2/2 cast -> 0/2 -> 1/2 -> 2/2 cast',
                 ),
               ],
             ] else ...[
@@ -1623,61 +1623,68 @@ class ResultsPage extends StatelessWidget {
               _fmtInt(shatter?.bonusHp ?? 0),
             ],
           ],
-        );
-      case FightMode.cycloneBoost:
-        final boostPct = resolvedCycloneBoostPct(
-          pre.petEffects,
-          fallback: pre.meta.cyclone,
-        );
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _dataTable(
-              minWidth: 560,
-              columns: [t('param', 'Param'), t('value', 'Value')],
-              rows: [
-                [
-                  t('results.pet_ability.cyclone.boost', 'Boost'),
-                  '${boostPct.toStringAsFixed(3)}%',
-                ],
-                [
-                  t('results.pet_ability.cyclone.turn_cap', 'Turn cap'),
-                  t('turn_5_plus', 'Turn 5+'),
-                ],
-                [
-                  cycloneUseGemsForSpecials
-                      ? t(
-                          'results.cyclone.gem_rule',
-                          'Always gemmed: 4 gems per knight turn.',
-                        )
-                      : t(
-                          'results.cyclone.pet_bar_rule',
-                          'Uses the normal pet bar flow and selected pet skill usage.',
-                        ),
-                  cycloneUseGemsForSpecials
-                      ? (_averageCycloneGemsSpent == null
-                          ? '-'
-                          : t(
-                              'results.cyclone.avg_gems_spent_value',
-                              '{value} expected on average',
-                            ).replaceAll(
-                              '{value}',
-                              _fmtCompact(_averageCycloneGemsSpent!),
-                            ))
-                      : t(
-                          'results.cyclone.avg_gems_off',
-                          'No forced gem usage.',
-                        ),
-                ],
-              ],
-            ),
-            const SizedBox(height: 8),
-            _cycloneDamageTable(context),
-          ],
-        );
-      case FightMode.durableRockShield:
-        return _drsRecapTable(context);
+        ),
+      );
     }
+    if (_hasCyclone) {
+      final boostPct = resolvedCycloneBoostPct(
+        pre.petEffects,
+        fallback: pre.meta.cyclone,
+      );
+      sections.add(const SizedBox(height: 8));
+      sections.add(
+        _dataTable(
+          minWidth: 560,
+          columns: [t('param', 'Param'), t('value', 'Value')],
+          rows: [
+            [
+              t('results.pet_ability.cyclone.boost', 'Boost'),
+              '${boostPct.toStringAsFixed(3)}%',
+            ],
+            [
+              t('results.pet_ability.cyclone.turn_cap', 'Turn cap'),
+              t('turn_5_plus', 'Turn 5+'),
+            ],
+            [
+              cycloneUseGemsForSpecials
+                  ? t(
+                      'results.cyclone.gem_rule',
+                      'Always gemmed: 4 gems per knight turn.',
+                    )
+                  : t(
+                      'results.cyclone.pet_bar_rule',
+                      'Uses the normal pet bar flow and selected pet skill usage.',
+                    ),
+              cycloneUseGemsForSpecials
+                  ? (_averageCycloneGemsSpent == null
+                      ? '-'
+                      : t(
+                          'results.cyclone.gems_spent_value',
+                          '{value} gems',
+                        ).replaceAll(
+                          '{value}',
+                          _fmtCompact(_averageCycloneGemsSpent!),
+                        ))
+                  : t(
+                      'results.cyclone.avg_gems_off',
+                      'No forced gem usage.',
+                    ),
+            ],
+          ],
+        ),
+      );
+      sections.add(const SizedBox(height: 8));
+      sections.add(_cycloneDamageTable(context));
+    }
+    if (_hasDrs) {
+      sections.add(const SizedBox(height: 8));
+      sections.add(_drsRecapTable(context));
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: sections,
+    );
   }
 
   Widget _srRecapTable({required bool withEw}) {
@@ -2154,7 +2161,6 @@ class ResultsPage extends StatelessWidget {
   }
 
   Map<String, Object?> _exportPayload() => ResultsSharePayload(
-        fightMode: fightMode,
         cycloneUseGemsForSpecials: cycloneUseGemsForSpecials,
         isPremium: isPremium,
         debugEnabled: debugEnabled,
@@ -2781,9 +2787,9 @@ class ResultsPage extends StatelessWidget {
     );
     final stepMult = 1.0 + (boostPct / 100.0);
 
-    int dmgAtTurn(int kIdx, int turn) {
-      final t = turn <= 5 ? turn : 5;
-      final mult = _pow(stepMult, t);
+    int dmgAtStacks(int kIdx, int stacks) {
+      final clampedStacks = stacks.clamp(0, 5).toInt();
+      final mult = _pow(stepMult, clampedStacks);
       return (pre.kSpecialDmg[kIdx] * mult).ceil();
     }
 
@@ -2791,11 +2797,8 @@ class ResultsPage extends StatelessWidget {
     for (int i = 0; i < _knightCount; i++) {
       rows.add([
         _knightLabel(i),
-        _fmtInt(dmgAtTurn(i, 1)),
-        _fmtInt(dmgAtTurn(i, 2)),
-        _fmtInt(dmgAtTurn(i, 3)),
-        _fmtInt(dmgAtTurn(i, 4)),
-        _fmtInt(dmgAtTurn(i, 6)), // 5+ (clamp interno)
+        for (int stacks = 0; stacks <= 5; stacks++)
+          _fmtInt(dmgAtStacks(i, stacks)),
       ]);
     }
 
@@ -2813,14 +2816,15 @@ class ResultsPage extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         _dataTable(
-          minWidth: 660,
+          minWidth: 760,
           columns: [
             t('knight', 'Knight'),
-            t('turn_1', 'Turn 1'),
-            t('turn_2', 'Turn 2'),
-            t('turn_3', 'Turn 3'),
-            t('turn_4', 'Turn 4'),
-            t('turn_5_plus', 'Turn 5+'),
+            t('results.cyclone.stack_0', '0 stacks'),
+            for (int stacks = 1; stacks <= 5; stacks++)
+              t(
+                'results.cyclone.stack_n',
+                '{n} stack(s)',
+              ).replaceAll('{n}', stacks.toString()),
           ],
           rows: rows,
         ),

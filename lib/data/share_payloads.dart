@@ -95,7 +95,6 @@ class ResultsSharePayload {
   static const String kind = 'raid_calc.results';
   static const int schemaVersion = 4;
 
-  final FightMode fightMode;
   final bool cycloneUseGemsForSpecials;
   final bool isPremium;
   final bool debugEnabled;
@@ -113,7 +112,6 @@ class ResultsSharePayload {
   final String exportedAtIso;
 
   const ResultsSharePayload({
-    required this.fightMode,
     this.cycloneUseGemsForSpecials = true,
     required this.isPremium,
     required this.debugEnabled,
@@ -135,7 +133,6 @@ class ResultsSharePayload {
         'kind': kind,
         'v': schemaVersion,
         'exportedAtIso': exportedAtIso,
-        'fightMode': fightMode.name,
         'cycloneUseGemsForSpecials': cycloneUseGemsForSpecials,
         'isPremium': isPremium,
         'debugEnabled': debugEnabled,
@@ -164,11 +161,6 @@ class ResultsSharePayload {
     if (preMap == null || statsMap == null) {
       throw const SharePayloadException('missing_results_payload_data');
     }
-
-    final fightMode = FightMode.values.firstWhere(
-      (m) => m.name == ((j['fightMode'] as String?) ?? '').trim(),
-      orElse: () => FightMode.normal,
-    );
 
     final elixirsRaw = (j['elixirs'] as List?)?.cast<Object?>() ?? const [];
     final elixirs = elixirsRaw
@@ -204,7 +196,6 @@ class ResultsSharePayload {
     }
 
     return ResultsSharePayload(
-      fightMode: fightMode,
       cycloneUseGemsForSpecials: j['cycloneUseGemsForSpecials'] == null
           ? true
           : j['cycloneUseGemsForSpecials'] == true,

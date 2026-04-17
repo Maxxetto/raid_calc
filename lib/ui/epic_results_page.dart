@@ -4,7 +4,8 @@
 
 import 'package:flutter/material.dart';
 
-import '../core/sim_types.dart';
+import '../core/engine/skill_catalog.dart';
+import '../data/pet_effect_models.dart';
 import '../util/format.dart';
 import 'table_widgets.dart';
 import 'theme_helpers.dart';
@@ -48,8 +49,8 @@ class EpicResultsPage extends StatelessWidget {
   final double epicEffectiveBonusPct;
   final bool isPremium;
   final bool debugEnabled;
-  final FightMode fightMode;
   final bool cycloneUseGemsForSpecials;
+  final List<PetResolvedEffect> petEffects;
 
   const EpicResultsPage({
     super.key,
@@ -61,8 +62,8 @@ class EpicResultsPage extends StatelessWidget {
     required this.epicEffectiveBonusPct,
     required this.isPremium,
     required this.debugEnabled,
-    required this.fightMode,
     this.cycloneUseGemsForSpecials = true,
+    this.petEffects = const <PetResolvedEffect>[],
   });
 
   String t(String k, String fb) => labels[k] ?? fb;
@@ -70,16 +71,20 @@ class EpicResultsPage extends StatelessWidget {
   String _fmtAdv(double v) => v.toStringAsFixed(1);
 
   String _modeLabel() {
-    final key = switch (fightMode) {
-      FightMode.normal => 'mode.normal',
-      FightMode.specialRegen => 'mode.special_regeneration',
-      FightMode.specialRegenPlusEw => 'mode.sr_ew',
-      FightMode.shatterShield => 'mode.shatter_shield',
-      FightMode.cycloneBoost => 'mode.cyclone_boost',
-      FightMode.durableRockShield => 'mode.durable_rock_shield',
-      FightMode.specialRegenEw => 'mode.old_simulator',
-    };
-    return t(key, fightMode.dropdownLabel());
+    final names = petEffects
+        .map(
+          (effect) => BattleSkillCatalog.displayNameForId(
+            effect.canonicalEffectId,
+            fallback: effect.canonicalName.isEmpty
+                ? effect.sourceSkillName
+                : effect.canonicalName,
+          ),
+        )
+        .where((name) => name.trim().isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+    if (names.isEmpty) return t('results.pet_mode.title', 'Pet & Skills');
+    return names.join(' + ');
   }
 
   String _summaryLine() {

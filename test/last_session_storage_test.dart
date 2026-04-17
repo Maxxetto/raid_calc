@@ -42,7 +42,6 @@ void main() {
         bossMode: bossMode,
         bossLevel: bossMode == 'raid' ? 4 : 3,
         bossElements: const <ElementType>[ElementType.fire, ElementType.water],
-        fightMode: slot == 2 ? FightMode.shatterShield : FightMode.normal,
         knights: List<SetupKnightSnapshot>.generate(
           3,
           (i) => SetupKnightSnapshot(
@@ -62,11 +61,6 @@ void main() {
         ),
         modeEffects: const SetupModeEffectsSnapshot(
           cycloneUseGemsForSpecials: false,
-          cycloneBoostPercent: 71.0,
-          shatterBaseHp: 100,
-          shatterBonusHp: 20,
-          drsDefenseBoost: 0.5,
-          ewWeaknessEffect: 0.65,
         ),
       ),
     );
@@ -157,7 +151,6 @@ void main() {
     expect(setups, hasLength(3));
     expect(setups.map((e) => e.slot), orderedEquals(<int>[1, 2, 3]));
     expect(setups[1].setup.bossMode, 'blitz');
-    expect(setups[1].setup.fightMode, FightMode.shatterShield);
   });
 
   test('LastSessionData.fromJson remains compatible without setups key', () {
@@ -223,7 +216,6 @@ void main() {
               'bossMode': 'raid',
               'bossLevel': 4,
               'bossElements': <Object?>['air', 'water'],
-              'fightMode': FightMode.normal.name,
               'knights': <Object?>[
                 <String, Object?>{
                   'atk': 1000,
@@ -302,10 +294,6 @@ void main() {
       setups.single.setup.pet.importedCompendium?.selectedSkill2
           .canonicalEffectId,
       'shatter_shield',
-    );
-    expect(
-      setups.single.setup.petSimulationProfile.legacyEquivalentMode,
-      FightMode.shatterShield,
     );
   });
 }

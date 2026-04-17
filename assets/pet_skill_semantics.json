@@ -16,7 +16,7 @@
                                                  "turns"
                                              ],
                        "gameplaySummary":  "Boosts knight ATK for a limited number of turns.",
-                       "projectSummary":  "Supported today through FightMode.cycloneBoost. The project now stores the canonical stack growth rule, but the simulator does not yet resolve this effect generically from imported compendium skills.",
+                       "projectSummary":  "Supported today through the skill-driven Cyclone Boost effect. The project stores the canonical stack growth rule and resolves the effect from configured pet skills.",
                        "effectSpec":  {
                                           "triggerType":  "always_gemmed_mode_effect",
                                           "target":  "active_knight_each_turn",
@@ -43,7 +43,7 @@
                                                  "turns"
                                              ],
                        "gameplaySummary":  "Boosts knight ATK for a limited number of turns.",
-                       "projectSummary":  "Supported today through FightMode.cycloneBoost. The project now stores the canonical stack growth rule, but the simulator does not yet resolve this effect generically from imported compendium skills.",
+                       "projectSummary":  "Supported today through the skill-driven Cyclone Boost effect. The project stores the canonical stack growth rule and resolves the effect from configured pet skills.",
                        "effectSpec":  {
                                           "triggerType":  "always_gemmed_mode_effect",
                                           "target":  "active_knight_each_turn",
@@ -123,7 +123,7 @@
                                                  "turns"
                                              ],
                        "gameplaySummary":  "Increases knight DEF for a limited number of turns.",
-                       "projectSummary":  "Supported today through FightMode.durableRockShield, including pet-bar triggering. The project now stores the canonical active-knight stacking rule, but the simulator does not yet resolve this effect generically from imported compendium skills.",
+                       "projectSummary":  "Supported today through the skill-driven Durable Rock Shield effect, including pet-bar triggering. The project stores the canonical active-knight stacking rule and resolves the effect from configured pet skills.",
                        "effectSpec":  {
                                           "triggerType":  "pet_cast_buff",
                                           "target":  "active_knight",
@@ -300,7 +300,7 @@
                                                  "bonusShieldHp"
                                              ],
                        "gameplaySummary":  "Summons a shield that absorbs incoming damage.",
-                       "projectSummary":  "Supported today through FightMode.shatterShield, including pet-bar triggering. The project now stores the canonical active-knight shield-addition rule, but the simulator does not yet resolve it generically from imported compendium skills.",
+                       "projectSummary":  "Supported today through the skill-driven Shatter Shield effect, including pet-bar triggering. The project stores the canonical active-knight shield-addition rule and resolves the effect from configured pet skills.",
                        "effectSpec":  {
                                           "triggerType":  "pet_cast_shield",
                                           "target":  "active_knight",
