@@ -59,7 +59,7 @@ class HomeFaqSection extends StatelessWidget {
         ),
         answer: t(
           'home.faq.q4.answer',
-          'Absolutely. I always appreciate feedback and new feature proposals, so feel free to contact me on LINE or Discord.',
+          'Absolutely. I always appreciate feedback and new feature proposals, so feel free to contact me on LINE, Discord, or by email at kedraidcalcsupp@gmail.com.',
         ),
       ),
     ];
