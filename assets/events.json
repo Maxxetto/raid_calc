@@ -1,0 +1,425 @@
+{
+  "schemaVersion": 1,
+  "events": [
+    {
+      "id": "celestial_steed_2026_02",
+      "name": "Celestial Steed",
+      "startDate": "2026-02-18",
+      "endDate": "2026-03-18",
+      "hideAfterDays": 7,
+      "materials": [
+        {
+          "id": "lunar_bell",
+          "label": "[S115] Lunar Bell"
+        },
+        {
+          "id": "guardian_hoof",
+          "label": "[S115] Guardian Hoof"
+        },
+        {
+          "id": "jade_steed",
+          "label": "[S115] Jade Steed"
+        },
+        {
+          "id": "collection_shard",
+          "label": "[S115] Collection Shard"
+        }
+      ],
+      "rows": [
+        {
+          "activity": "Rare Spawn",
+          "startDate": "2026-02-18",
+          "endDate": "2026-03-11",
+          "values": {
+            "lunar_bell": "INF"
+          }
+        },
+        {
+          "activity": "Raid Boss",
+          "startDate": "2026-02-20",
+          "endDate": "2026-02-22",
+          "values": {
+            "lunar_bell": 1375,
+            "guardian_hoof": 1150,
+            "jade_steed": 283,
+            "collection_shard": 2292
+          }
+        },
+        {
+          "activity": "Blitz Guild War",
+          "startDate": "2026-02-23",
+          "endDate": "2026-02-24",
+          "values": {
+            "lunar_bell": 527,
+            "guardian_hoof": 359,
+            "collection_shard": 878
+          }
+        },
+        {
+          "activity": "Blitz PVP Arena",
+          "startDate": "2026-02-25",
+          "endDate": "2026-02-27",
+          "values": {
+            "lunar_bell": 527,
+            "guardian_hoof": 359,
+            "collection_shard": 878
+          }
+        },
+        {
+          "activity": "Guild War",
+          "startDate": "2026-02-27",
+          "endDate": "2026-03-02",
+          "values": {
+            "lunar_bell": 1375,
+            "guardian_hoof": 1150,
+            "jade_steed": 283,
+            "collection_shard": 2292
+          }
+        },
+        {
+          "activity": "PVP Arena",
+          "startDate": "2026-02-27",
+          "endDate": "2026-03-06",
+          "values": {
+            "lunar_bell": 496,
+            "guardian_hoof": 338,
+            "collection_shard": 826
+          }
+        },
+        {
+          "activity": "Blitz Raid Boss",
+          "startDate": "2026-03-02",
+          "endDate": "2026-03-03",
+          "values": {
+            "lunar_bell": 527,
+            "guardian_hoof": 359,
+            "collection_shard": 878
+          }
+        },
+        {
+          "activity": "Raid Boss",
+          "startDate": "2026-03-06",
+          "endDate": "2026-03-08",
+          "values": {
+            "lunar_bell": 1375,
+            "guardian_hoof": 1150,
+            "jade_steed": 283,
+            "collection_shard": 2292
+          }
+        },
+        {
+          "activity": "PVP Arena",
+          "startDate": "2026-03-06",
+          "endDate": "2026-03-11",
+          "values": {
+            "lunar_bell": 248,
+            "guardian_hoof": 169,
+            "collection_shard": 413
+          }
+        },
+        {
+          "activity": "Blitz Guild War",
+          "startDate": "2026-03-09",
+          "endDate": "2026-03-10",
+          "values": {
+            "lunar_bell": 527,
+            "guardian_hoof": 359,
+            "collection_shard": 878
+          }
+        },
+        {
+          "activity": "Blitz PVP Arena",
+          "startDate": "2026-03-11",
+          "endDate": "2026-03-13",
+          "values": {
+            "lunar_bell": 527,
+            "guardian_hoof": 359,
+            "collection_shard": 878
+          }
+        }
+      ],
+      "specialEventShop": [
+        {
+          "name": "[115] Shadowbound Steed T1",
+          "cost": { "amount": 500, "currencyId": "lunar_bell", "currencyLabel": "Lunar Bell" },
+          "buyLimit": 2
+        },
+        {
+          "name": "Lunar Steed",
+          "cost": { "amount": 500, "currencyId": "lunar_bell", "currencyLabel": "Lunar Bell" },
+          "buyLimit": "INF"
+        },
+        {
+          "name": "Lunar Gallop",
+          "cost": { "amount": 500, "currencyId": "guardian_hoof", "currencyLabel": "Guardian Hoof" },
+          "buyLimit": "INF"
+        },
+        {
+          "name": "Lunar Hoof",
+          "cost": { "amount": 250, "currencyId": "jade_steed", "currencyLabel": "Jade Steed" },
+          "buyLimit": "INF"
+        },
+        {
+          "name": "Gallop Band",
+          "cost": { "amount": 500, "currencyId": "lunar_bell", "currencyLabel": "Lunar Bell" },
+          "buyLimit": 1
+        },
+        {
+          "name": "Veiled Steed",
+          "cost": { "amount": 500, "currencyId": "lunar_bell", "currencyLabel": "Lunar Bell" },
+          "buyLimit": 1
+        },
+        {
+          "name": "Rising Gale",
+          "cost": { "amount": 500, "currencyId": "guardian_hoof", "currencyLabel": "Guardian Hoof" },
+          "buyLimit": 1
+        },
+        {
+          "name": "Swift Currents",
+          "cost": { "amount": 500, "currencyId": "guardian_hoof", "currencyLabel": "Guardian Hoof" },
+          "buyLimit": 1
+        },
+        {
+          "name": "[S115] Koi Rings",
+          "cost": { "amount": 1298, "currencyId": "guardian_hoof", "currencyLabel": "Guardian Hoof" },
+          "buyLimit": 1
+        },
+        {
+          "name": "Dragon Keys",
+          "cost": { "amount": 101, "currencyId": "lunar_bell", "currencyLabel": "Lunar Bell" },
+          "buyLimit": 5
+        },
+        {
+          "name": "[S110] Elemental Arcanas",
+          "cost": { "amount": 923, "currencyId": "lunar_bell", "currencyLabel": "Lunar Bell" },
+          "buyLimit": 5
+        },
+        {
+          "name": "[S108] Enchanted Brollies",
+          "cost": { "amount": 1326, "currencyId": "lunar_bell", "currencyLabel": "Lunar Bell" },
+          "buyLimit": 5
+        },
+        {
+          "name": "Assorted Bean",
+          "cost": { "amount": 118, "currencyId": "lunar_bell", "currencyLabel": "Lunar Bell" },
+          "buyLimit": "INF"
+        },
+        {
+          "name": "Multicolored Pepper",
+          "cost": { "amount": 208, "currencyId": "lunar_bell", "currencyLabel": "Lunar Bell" },
+          "buyLimit": 10
+        },
+        {
+          "name": "Air Fusion Boost Armor IV",
+          "cost": { "amount": 163, "currencyId": "guardian_hoof", "currencyLabel": "Guardian Hoof" },
+          "buyLimit": "INF"
+        },
+        {
+          "name": "Air Fusion Boost Ring IV",
+          "cost": { "amount": 186, "currencyId": "guardian_hoof", "currencyLabel": "Guardian Hoof" },
+          "buyLimit": "INF"
+        },
+        {
+          "name": "Air Fusion Boost Amulet IV",
+          "cost": { "amount": 186, "currencyId": "guardian_hoof", "currencyLabel": "Guardian Hoof" },
+          "buyLimit": "INF"
+        },
+        {
+          "name": "Air Fusion Pet",
+          "cost": { "amount": 228, "currencyId": "guardian_hoof", "currencyLabel": "Guardian Hoof" },
+          "buyLimit": "INF"
+        },
+        {
+          "name": "[S113] Ethereal Poles",
+          "cost": { "amount": 339, "currencyId": "guardian_hoof", "currencyLabel": "Guardian Hoof" },
+          "buyLimit": "INF"
+        },
+        {
+          "name": "[S112] Timber Fists",
+          "cost": { "amount": 339, "currencyId": "guardian_hoof", "currencyLabel": "Guardian Hoof" },
+          "buyLimit": "INF"
+        },
+        {
+          "name": "[S111] Rustic Hooks",
+          "cost": { "amount": 255, "currencyId": "guardian_hoof", "currencyLabel": "Guardian Hoof" },
+          "buyLimit": "INF"
+        },
+        {
+          "name": "[S110] Elemental Arcanas",
+          "cost": { "amount": 276, "currencyId": "guardian_hoof", "currencyLabel": "Guardian Hoof" },
+          "buyLimit": "INF"
+        },
+        {
+          "name": "Silver Coins x5",
+          "cost": { "amount": 475, "currencyId": "lunar_bell", "currencyLabel": "Lunar Bell" },
+          "buyLimit": 1
+        },
+        {
+          "name": "Silver Coins x5",
+          "cost": { "amount": 425, "currencyId": "guardian_hoof", "currencyLabel": "Guardian Hoof" },
+          "buyLimit": 3
+        },
+        {
+          "name": "Legendary Raid Elixir II",
+          "cost": { "amount": 36, "currencyId": "guardian_hoof", "currencyLabel": "Guardian Hoof" },
+          "buyLimit": 5
+        },
+        {
+          "name": "Legendary Arena Elixir II",
+          "cost": { "amount": 60, "currencyId": "guardian_hoof", "currencyLabel": "Guardian Hoof" },
+          "buyLimit": 5
+        },
+        {
+          "name": "Legendary War Elixir II",
+          "cost": { "amount": 50, "currencyId": "guardian_hoof", "currencyLabel": "Guardian Hoof" },
+          "buyLimit": 5
+        },
+        {
+          "name": "[S115] Nym",
+          "cost": { "amount": 119, "currencyId": "guardian_hoof", "currencyLabel": "Guardian Hoof" },
+          "buyLimit": 1
+        },
+        {
+          "name": "Pearl Cherry",
+          "cost": { "amount": 13, "currencyId": "jade_steed", "currencyLabel": "Jade Steed" },
+          "buyLimit": 3
+        },
+        {
+          "name": "Flow Cherry",
+          "cost": { "amount": 14, "currencyId": "jade_steed", "currencyLabel": "Jade Steed" },
+          "buyLimit": 3
+        },
+        {
+          "name": "Grass Cherry",
+          "cost": { "amount": 14, "currencyId": "jade_steed", "currencyLabel": "Jade Steed" },
+          "buyLimit": 3
+        },
+        {
+          "name": "Flow Cherry",
+          "cost": { "amount": 14, "currencyId": "jade_steed", "currencyLabel": "Jade Steed" },
+          "buyLimit": 3
+        },
+        {
+          "name": "Spark Cherry",
+          "cost": { "amount": 14, "currencyId": "jade_steed", "currencyLabel": "Jade Steed" },
+          "buyLimit": 3
+        },
+        {
+          "name": "Wave Cherry",
+          "cost": { "amount": 14, "currencyId": "jade_steed", "currencyLabel": "Jade Steed" },
+          "buyLimit": 3
+        },
+        {
+          "name": "[S115SF] Loam",
+          "cost": { "amount": 1661, "currencyId": "guardian_hoof", "currencyLabel": "Guardian Hoof" },
+          "buyLimit": 1
+        },
+        {
+          "name": "[S115SF] Gale",
+          "cost": { "amount": 95, "currencyId": "jade_steed", "currencyLabel": "Jade Steed" },
+          "buyLimit": 1
+        },
+        {
+          "name": "Air Shadow Grub T1",
+          "cost": { "amount": 8, "currencyId": "jade_steed", "currencyLabel": "Jade Steed" },
+          "buyLimit": 3
+        },
+        {
+          "name": "Air Shadow Grub T2",
+          "cost": { "amount": 12, "currencyId": "jade_steed", "currencyLabel": "Jade Steed" },
+          "buyLimit": 3
+        },
+        {
+          "name": "Air Shadow Grub T3",
+          "cost": { "amount": 16, "currencyId": "jade_steed", "currencyLabel": "Jade Steed" },
+          "buyLimit": 3
+        },
+        {
+          "name": "Air Shadow Grub T4",
+          "cost": { "amount": 20, "currencyId": "jade_steed", "currencyLabel": "Jade Steed" },
+          "buyLimit": 3
+        },
+        {
+          "name": "Lavatide Raid Elixir",
+          "cost": { "amount": 94, "currencyId": "gems", "currencyLabel": "GEMS" },
+          "buyLimit": 5
+        },
+        {
+          "name": "Lavatide War Elixir",
+          "cost": { "amount": 120, "currencyId": "gems", "currencyLabel": "GEMS" },
+          "buyLimit": 5
+        },
+        {
+          "name": "Lavatide Arena Elixir",
+          "cost": { "amount": 95, "currencyId": "gems", "currencyLabel": "GEMS" },
+          "buyLimit": 5
+        },
+        {
+          "name": "Lavatide Raid Elixir",
+          "cost": { "amount": 13, "currencyId": "jade_steed", "currencyLabel": "Jade Steed" },
+          "buyLimit": 2
+        },
+        {
+          "name": "Lavatide War Elixir",
+          "cost": { "amount": 16, "currencyId": "jade_steed", "currencyLabel": "Jade Steed" },
+          "buyLimit": 2
+        },
+        {
+          "name": "Lavatide Arena Elixir",
+          "cost": { "amount": 13, "currencyId": "jade_steed", "currencyLabel": "Jade Steed" },
+          "buyLimit": 2
+        },
+        {
+          "name": "First Celestial",
+          "cost": { "amount": 100, "currencyId": "collection_shard", "currencyLabel": "Collection Shard" },
+          "buyLimit": 1
+        },
+        {
+          "name": "Second Celestial",
+          "cost": { "amount": 400, "currencyId": "collection_shard", "currencyLabel": "Collection Shard" },
+          "buyLimit": 1
+        },
+        {
+          "name": "Third Celestial",
+          "cost": { "amount": 500, "currencyId": "collection_shard", "currencyLabel": "Collection Shard" },
+          "buyLimit": 1
+        },
+        {
+          "name": "Fourth Celestial",
+          "cost": { "amount": 600, "currencyId": "collection_shard", "currencyLabel": "Collection Shard" },
+          "buyLimit": 1
+        },
+        {
+          "name": "Fifth Celestial",
+          "cost": { "amount": 650, "currencyId": "collection_shard", "currencyLabel": "Collection Shard" },
+          "buyLimit": 1
+        },
+        {
+          "name": "Sixth Celestial",
+          "cost": { "amount": 750, "currencyId": "collection_shard", "currencyLabel": "Collection Shard" },
+          "buyLimit": 1
+        },
+        {
+          "name": "Seventh Celestial",
+          "cost": { "amount": 1000, "currencyId": "collection_shard", "currencyLabel": "Collection Shard" },
+          "buyLimit": 1
+        },
+        {
+          "name": "Eight Celestial",
+          "cost": { "amount": 1500, "currencyId": "collection_shard", "currencyLabel": "Collection Shard" },
+          "buyLimit": 1
+        },
+        {
+          "name": "Ninth Celestial",
+          "cost": { "amount": 2000, "currencyId": "collection_shard", "currencyLabel": "Collection Shard" },
+          "buyLimit": 1
+        },
+        {
+          "name": "Tenth Celestial",
+          "cost": { "amount": 2500, "currencyId": "collection_shard", "currencyLabel": "Collection Shard" },
+          "buyLimit": 1
+        }
+      ]
+    }
+  ]
+}

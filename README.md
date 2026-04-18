@@ -1,16 +1,45 @@
-# raid_calc
+# Raid Calculator
 
-A new Flutter project.
+Flutter app for raid/war/epic simulation workflows with Premium gating and
+multi-language UI.
 
-## Getting Started
+## Main Modules
 
-This project is a starting point for a Flutter application.
+- `lib/ui/`: app shell and pages (`home_page`, `results_page`, `war_page`,
+  `epic_results_page`, `debug_results_page`, `friend_codes_page`)
+- `lib/core/`: simulation engine, modes, debug hooks, epic/war isolates
+- `lib/data/`: config loaders and last-session persistence
+- `lib/premium/`: RevenueCat entitlement/service layer
+- `lib/util/`: i18n, formatting, elixir and war calculators
+- `assets/`: gameplay config and translations
 
-A few resources to get you started if this is your first Flutter project:
+## Key Assets
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- `assets/sim_rules.json`: shared simulation rules, thresholds, timing
+- `assets/pet_bar_rules.json`: pet special bar / ticks rules
+- `assets/boss_tables.json`: Raid, Blitz and Epic boss tables
+- `assets/elixirs.json`: elixir catalog
+- `assets/war_points.json`: War point sets and modes
+- `assets/ocr_defaults.json`: default OCR crop values
+- `assets/langs/manifest.json`: i18n index for split language files
+- `assets/friendCodes_data.json`: static friend code dataset
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Development
+
+1. Install dependencies
+   - `flutter pub get`
+2. Static analysis
+   - `flutter analyze`
+3. Run tests
+   - `flutter test`
+4. Run app
+   - `flutter run`
+
+## Notes
+
+- Premium is integrated with RevenueCat (`purchases_flutter` + `purchases_ui_flutter`).
+- Android RevenueCat key can be provided with:
+  - `--dart-define=RC_ANDROID_API_KEY=...`
+  - or `android/key.properties` (`revenueCatApiKey`) as fallback wiring.
+- Agent instructions and verification rules live in `AGENTS.md`.
+- Human-facing project reference and doc map live in `guidelines.md`.

@@ -1,0 +1,1400 @@
+﻿{
+    "schemaVersion":  4,
+    "formatVersion":  1,
+    "rarity":  "Shadowforged",
+    "families":  [
+                     {
+                         "id":  "s101sf_aeromar",
+                         "familyTag":  "S101SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S101SF] Aeromar",
+                                           "element":  "water",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0023",
+                                                                "skillSetRef":  "ss0032"
+                                                            }
+                                                        ],
+                                           "secondElement":  "air"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s101sf_ignitide",
+                         "familyTag":  "S101SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S101SF] Ignitide",
+                                           "element":  "water",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Shatter Shield",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 99",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0024",
+                                                                "skillSetRef":  "ss0039"
+                                                            }
+                                                        ],
+                                           "secondElement":  "fire"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s101sf_osirion",
+                         "familyTag":  "S101SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S101SF] Osirion",
+                                           "element":  "water",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 99",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0024",
+                                                                "skillSetRef":  "ss0040"
+                                                            }
+                                                        ],
+                                           "secondElement":  "water"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s101sf_poizoth",
+                         "familyTag":  "S101SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S101SF] Poizoth",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0023",
+                                                                "skillSetRef":  "ss0018"
+                                                            }
+                                                        ],
+                                           "secondElement":  "fire"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s101sf_skratch",
+                         "familyTag":  "S101SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S101SF] Skratch",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0023",
+                                                                "skillSetRef":  "ss0027"
+                                                            }
+                                                        ],
+                                           "secondElement":  "air"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s101sf_torixon",
+                         "familyTag":  "S101SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S101SF] Torixon",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0023",
+                                                                "skillSetRef":  "ss0007"
+                                                            }
+                                                        ],
+                                           "secondElement":  "spirit"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s101sf_wraithor",
+                         "familyTag":  "S101SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S101SF] Wraithor",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0023",
+                                                                "skillSetRef":  "ss0026"
+                                                            }
+                                                        ],
+                                           "secondElement":  "water"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s107sf_djendan",
+                         "familyTag":  "S107SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S107SF] Djendan",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Special Regeneration (inf)",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0025",
+                                                                "skillSetRef":  "ss0041"
+                                                            }
+                                                        ],
+                                           "secondElement":  "water"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s107sf_khufu",
+                         "familyTag":  "S107SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S107SF] Khufu",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Soul Burn",
+                                           "skill2":  "Shatter Shield",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0026",
+                                                                "skillSetRef":  "ss0042"
+                                                            }
+                                                        ],
+                                           "secondElement":  "fire"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s107sf_munodi",
+                         "familyTag":  "S107SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S107SF] Munodi",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Special Regeneration (inf)",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0025",
+                                                                "skillSetRef":  "ss0041"
+                                                            }
+                                                        ],
+                                           "secondElement":  "spirit"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s107sf_neferti",
+                         "familyTag":  "S107SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S107SF] Neferti",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Special Regeneration (inf)",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0025",
+                                                                "skillSetRef":  "ss0041"
+                                                            }
+                                                        ],
+                                           "secondElement":  "air"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s107sf_senito",
+                         "familyTag":  "S107SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S107SF] Senito",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Cyclone Earth Boost",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0025",
+                                                                "skillSetRef":  "ss0043"
+                                                            }
+                                                        ],
+                                           "secondElement":  "water"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s65sf_phorhax",
+                         "familyTag":  "S65SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S65SF] Phorhax",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 99",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0027",
+                                                                "skillSetRef":  "ss0044"
+                                                            }
+                                                        ],
+                                           "secondElement":  "air"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s65sf_tionex",
+                         "familyTag":  "S65SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S65SF] Tionex",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0028",
+                                                                "skillSetRef":  "ss0006"
+                                                            }
+                                                        ],
+                                           "secondElement":  "earth"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s67sf_aronex",
+                         "familyTag":  "S67SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S67SF] Aronex",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0029",
+                                                                "skillSetRef":  "ss0045"
+                                                            }
+                                                        ],
+                                           "secondElement":  "spirit"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s67sf_maugor",
+                         "familyTag":  "S67SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S67SF] Maugor",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0030",
+                                                                "skillSetRef":  "ss0011"
+                                                            }
+                                                        ],
+                                           "secondElement":  "fire"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s69sf_blumous",
+                         "familyTag":  "S69SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S69SF] Blumous",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0030"
+                                                            }
+                                                        ],
+                                           "secondElement":  "earth"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s69sf_sebium",
+                         "familyTag":  "S69SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S69SF] Sebium",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0029",
+                                                                "skillSetRef":  "ss0045"
+                                                            }
+                                                        ],
+                                           "secondElement":  "air"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s71sf_automax",
+                         "familyTag":  "S71SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S71SF] Autamax",
+                                           "element":  "water",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0030",
+                                                                "skillSetRef":  "ss0017"
+                                                            }
+                                                        ],
+                                           "secondElement":  "water"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s71sf_frojinac",
+                         "familyTag":  "S71SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S71SF] Frojinac",
+                                           "element":  "water",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0029",
+                                                                "skillSetRef":  "ss0017"
+                                                            }
+                                                        ],
+                                           "secondElement":  "fire"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s77sf_etzeron",
+                         "familyTag":  "S77SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S77SF] Etzeron",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 99",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0055",
+                                                                "skillSetRef":  "ss0056"
+                                                            }
+                                                        ],
+                                           "secondElement":  "fire"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s77sf_karakoncolo",
+                         "familyTag":  "S77SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S77SF] Karakoncolo",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0032",
+                                                                "skillSetRef":  "ss0018"
+                                                            }
+                                                        ],
+                                           "secondElement":  "earth"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s77sf_turix",
+                         "familyTag":  "S77SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S77SF] Turix",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0032",
+                                                                "skillSetRef":  "ss0046"
+                                                            }
+                                                        ],
+                                           "secondElement":  "spirit"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s79sf_mordon",
+                         "familyTag":  "S79SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S79SF] Mordon",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0032"
+                                                            }
+                                                        ],
+                                           "secondElement":  "air"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s79sf_podromor",
+                         "familyTag":  "S79SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S79SF] Podromor",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Special Regeneration (inf)",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0031"
+                                                            }
+                                                        ],
+                                           "secondElement":  "earth"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s83sf_ixtalorer",
+                         "familyTag":  "S83SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S83SF] Ixtalorer",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Soul Burn",
+                                           "skill2":  "Shatter Shield",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 99",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0033"
+                                                            }
+                                                        ],
+                                           "secondElement":  "spirit"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s83sf_niwox",
+                         "familyTag":  "S83SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S83SF] Niwox",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0034"
+                                                            }
+                                                        ],
+                                           "secondElement":  "air"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s83sf_tarekodo",
+                         "familyTag":  "S83SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S83SF] Tarekodo",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0035"
+                                                            }
+                                                        ],
+                                           "secondElement":  "air"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s85sf_enkodor",
+                         "familyTag":  "S85SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S85SF] Enkodor",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0035",
+                                                                "skillSetRef":  "ss0023"
+                                                            }
+                                                        ],
+                                           "secondElement":  "water"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s85sf_mogoler",
+                         "familyTag":  "S85SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S85SF] Mogoler",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0036",
+                                                                "skillSetRef":  "ss0023"
+                                                            }
+                                                        ],
+                                           "secondElement":  "air"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s85sf_tropan",
+                         "familyTag":  "S85SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S85SF] Tropan",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0035",
+                                                                "skillSetRef":  "ss0023"
+                                                            }
+                                                        ],
+                                           "secondElement":  "earth"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s87sf_hornodox",
+                         "familyTag":  "S87SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S87SF] Hornodox",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0037",
+                                                                "skillSetRef":  "ss0017"
+                                                            }
+                                                        ],
+                                           "secondElement":  "spirit"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s87sf_ignofom",
+                         "familyTag":  "S87SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S87SF] Ignofom",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 99",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0038",
+                                                                "skillSetRef":  "ss0047"
+                                                            }
+                                                        ],
+                                           "secondElement":  "fire"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s89sf_qiqirno",
+                         "familyTag":  "S89SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S89SF] Qiqirno",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0037",
+                                                                "skillSetRef":  "ss0048"
+                                                            }
+                                                        ],
+                                           "secondElement":  "air"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s89sf_saumen",
+                         "familyTag":  "S89SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S89SF] Saumen",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Cyclone Earth Boost",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0039",
+                                                                "skillSetRef":  "ss0043"
+                                                            }
+                                                        ],
+                                           "secondElement":  "earth"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s91sf_ennigmara",
+                         "familyTag":  "S91SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S91SF] Ennigmara",
+                                           "element":  "water",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0040"
+                                                            }
+                                                        ],
+                                           "secondElement":  "fire"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s91sf_pittano",
+                         "familyTag":  "S91SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S91SF] Pittano",
+                                           "element":  "water",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Special Regeneration (inf)",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 99",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0041",
+                                                                "skillSetRef":  "ss0049"
+                                                            }
+                                                        ],
+                                           "secondElement":  "earth"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s91sf_umbrakarn",
+                         "familyTag":  "S91SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S91SF] Umbrakarn",
+                                           "element":  "water",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 99",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0038",
+                                                                "skillSetRef":  "ss0047"
+                                                            }
+                                                        ],
+                                           "secondElement":  "water"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s91sf_wyverix",
+                         "familyTag":  "S91SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S91SF] Wyverix",
+                                           "element":  "water",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0037"
+                                                            }
+                                                        ],
+                                           "secondElement":  "air"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s93sf_midniroar",
+                         "familyTag":  "S93SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S93SF] Midniroar",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Special Regeneration (inf)",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 99",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0042",
+                                                                "skillSetRef":  "ss0050"
+                                                            }
+                                                        ],
+                                           "secondElement":  "spirit"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s93sf_rakito",
+                         "familyTag":  "S93SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S93SF] Rakito",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Special Regeneration (inf)",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 99",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0044",
+                                                                "skillSetRef":  "ss0049"
+                                                            }
+                                                        ],
+                                           "secondElement":  "earth"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s93sf_ryzoler",
+                         "familyTag":  "S93SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S93SF] Ryzoler",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Special Regeneration (inf)",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 99",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0044",
+                                                                "skillSetRef":  "ss0049"
+                                                            }
+                                                        ],
+                                           "secondElement":  "fire"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s93sf_twilion",
+                         "familyTag":  "S93SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S93SF] Twilion",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Special Regeneration (inf)",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0043"
+                                                            }
+                                                        ],
+                                           "secondElement":  "earth"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s93sf_urenoka",
+                         "familyTag":  "S93SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S93SF] Urenoka",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Special Regeneration (inf)",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 99",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0044",
+                                                                "skillSetRef":  "ss0049"
+                                                            }
+                                                        ],
+                                           "secondElement":  "fire"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s95sf_apophis",
+                         "familyTag":  "S95SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S95SF] Apophis",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0045",
+                                                                "skillSetRef":  "ss0022"
+                                                            }
+                                                        ],
+                                           "secondElement":  "earth"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s95sf_barinthus",
+                         "familyTag":  "S95SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S95SF] Barinthus",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0046",
+                                                                "skillSetRef":  "ss0018"
+                                                            }
+                                                        ],
+                                           "secondElement":  "air"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s95sf_jaden",
+                         "familyTag":  "S95SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S95SF] Jaden",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0046",
+                                                                "skillSetRef":  "ss0018"
+                                                            }
+                                                        ],
+                                           "secondElement":  "fire"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s95sf_stygron",
+                         "familyTag":  "S95SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S95SF] Stygron",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0043"
+                                                            }
+                                                        ],
+                                           "secondElement":  "air"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s95sf_zarrathos",
+                         "familyTag":  "S95SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S95SF] Zarrathos",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0047"
+                                                            }
+                                                        ],
+                                           "secondElement":  "air"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s97sf_breniac",
+                         "familyTag":  "S97SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S97SF] Breniac",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0048",
+                                                                "skillSetRef":  "ss0019"
+                                                            }
+                                                        ],
+                                           "secondElement":  "water"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s97sf_zuawerl",
+                         "familyTag":  "S97SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S97SF] Zuawerl",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Special Regeneration (inf)",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0048",
+                                                                "skillSetRef":  "ss0041"
+                                                            }
+                                                        ],
+                                           "secondElement":  "spirit"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s99sf_phantasmare",
+                         "familyTag":  "S99SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S99SF] Phantasmare",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0048",
+                                                                "skillSetRef":  "ss0017"
+                                                            }
+                                                        ],
+                                           "secondElement":  "air"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s99sf_wraithpaw",
+                         "familyTag":  "S99SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S99SF] Wraithpaw",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Special Regeneration (inf)",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 99",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0049",
+                                                                "skillSetRef":  "ss0050"
+                                                            }
+                                                        ],
+                                           "secondElement":  "spirit"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "sf113_phirakon",
+                         "familyTag":  "SF113",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[SF113] Phirakon",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Special Regeneration (inf)",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 99",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0050",
+                                                                "skillSetRef":  "ss0049"
+                                                            }
+                                                        ],
+                                           "secondElement":  "spirit"
+                                       }
+                                   ]
+                     }
+                 ]
+}

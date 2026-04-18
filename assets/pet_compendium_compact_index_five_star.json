@@ -1,0 +1,373 @@
+{
+    "schemaVersion":  3,
+    "formatVersion":  1,
+    "rarity":  "5 stars",
+    "families":  [
+                     {
+                         "id":  "vulpitier",
+                         "familyTag":  "S47",
+                         "rarity":  "5 stars",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "Vulpitier",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Elemental Weakness",
+                                           "skill2":  "Shatter Shield",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 90",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0001"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "chibbon",
+                         "familyTag":  "S47",
+                         "rarity":  "5 stars",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "Chibbon",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Ready to Crit",
+                                           "skill2":  "Shatter Shield",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 90",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0002"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "vulpadin",
+                         "familyTag":  "",
+                         "rarity":  "5 stars",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "Vulpadin",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Soul Burn",
+                                           "skill2":  "Shatter Shield",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 90",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0001"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "night_lalsaumo",
+                         "familyTag":  "S47",
+                         "rarity":  "5 stars",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "Night Lalsaumo",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Soul Burn",
+                                           "skill2":  "Shatter Shield",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 90",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0003",
+                                                                "skillSetRef":  "ss0051"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "asphearion",
+                         "familyTag":  "",
+                         "rarity":  "5 stars",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "Asphearion",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Fortune\u0027s Call",
+                                           "skill12":  "Elemental Weakness",
+                                           "skill2":  "Shatter Shield",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 90",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0001"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "ifriton",
+                         "familyTag":  "",
+                         "rarity":  "5 stars",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "Ifriton",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Soul Burn",
+                                           "skill2":  "Shatter Shield",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 90",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0003"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "flame_lalsaumo",
+                         "familyTag":  "S47",
+                         "rarity":  "5 stars",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "Fire Lalsaumo",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Soul Burn",
+                                           "skill2":  "Shatter Shield",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 90",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0003",
+                                                                "skillSetRef":  "ss0051"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "georookon",
+                         "familyTag":  "",
+                         "rarity":  "5 stars",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "Georookon",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regen",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Shatter Shield",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 90",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0001"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "grimmothorn",
+                         "familyTag":  "",
+                         "rarity":  "5 stars",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "Grimmothorn",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Ready to Crit",
+                                           "skill2":  "Shatter Shield",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 90",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0004"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "forest_lalsaumo",
+                         "familyTag":  "S47",
+                         "rarity":  "5 stars",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "Forest Lalsaumo",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Soul Burn",
+                                           "skill2":  "Shatter Shield",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 90",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0003",
+                                                                "skillSetRef":  "ss0051"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "bluefang",
+                         "familyTag":  "",
+                         "rarity":  "5 stars",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "BlueFang",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Shatter Shield",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 90",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0005"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "wind_lalsaumo",
+                         "familyTag":  "S47",
+                         "rarity":  "5 stars",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "Air Lalsaumo",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Soul Burn",
+                                           "skill2":  "Shatter Shield",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 90",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0003",
+                                                                "skillSetRef":  "ss0051"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "hippokampus",
+                         "familyTag":  "",
+                         "rarity":  "5 stars",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "Hippokampus",
+                                           "element":  "water",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regen",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Shatter Shield",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 90",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0006"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "river_lalsaumo",
+                         "familyTag":  "S47",
+                         "rarity":  "5 stars",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "Water Lalsaumo",
+                                           "element":  "water",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Soul Burn",
+                                           "skill2":  "Shatter Shield",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 90",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0003",
+                                                                "skillSetRef":  "ss0051"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s59_baryon",
+                         "familyTag":  "S59",
+                         "rarity":  "5 stars",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S59] Baryon",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Cyclone Earth Boost",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 90",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0053",
+                                                                "skillSetRef":  "ss0053"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     }
+                 ]
+}

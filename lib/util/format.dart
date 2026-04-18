@@ -1,11 +1,11 @@
 // lib/util/format.dart
-// Formattazioni numeriche senza dipendenze (niente 'intl').
+// Numeric formatting without intl.
 
 String fmtInt(num n) {
-  // separatore migliaia con punto, gestisce negativo
-  final s = n.round().toString();
-  final isNeg = s.startsWith('-');
-  final raw = isNeg ? s.substring(1) : s;
+  final v = n.round();
+  final isNeg = v < 0;
+  final raw = (isNeg ? -v : v).toString();
+
   final buf = StringBuffer();
   for (int i = 0; i < raw.length; i++) {
     final idxFromEnd = raw.length - i;
@@ -13,24 +13,31 @@ String fmtInt(num n) {
     final isGroupPos = idxFromEnd > 1 && (idxFromEnd - 1) % 3 == 0;
     if (isGroupPos) buf.write('.');
   }
-  final out = buf.toString();
-  return isNeg ? '-$out' : out;
+  return isNeg ? '-${buf.toString()}' : buf.toString();
 }
 
-String fmtDouble(num n, {int maxDecimals = 3}) {
-  // Arrotonda a maxDecimals (senza zeri di coda) + punti per migliaia se > 999
-  String s = n.toStringAsFixed(maxDecimals);
-  // rimuove zeri di coda
+String fmtDouble(
+  num n, {
+  int maxDecimals = 2,
+}) {
+  final v = n.toDouble();
+  if (v.isNaN || v.isInfinite) return v.toString();
+
+  final isNeg = v < 0;
+  final abs = v.abs();
+
+  // Keep a bounded number of decimals, then strip trailing zeros.
+  var s = abs.toStringAsFixed(maxDecimals);
   s = s.replaceFirst(RegExp(r'\.?0+$'), '');
-  // gestisce parte intera con separatori
+
   if (s.contains('.')) {
     final parts = s.split('.');
-    return '${fmtInt(int.parse(parts[0]))}.${parts[1]}';
-  } else {
-    return fmtInt(int.parse(s));
+    final intPart = int.tryParse(parts[0]) ?? 0;
+    return '${isNeg ? '-' : ''}${fmtInt(intPart)}.${parts[1]}';
   }
+  final intPart = int.tryParse(s) ?? 0;
+  return '${isNeg ? '-' : ''}${fmtInt(intPart)}';
 }
 
-String fmtPct(num v, {int decimals = 1}) {
-  return '${fmtDouble(v * 100, maxDecimals: decimals)}%';
-}
+String fmtPct(num v, {int decimals = 1}) =>
+    '${fmtDouble(v * 100, maxDecimals: decimals)}%';

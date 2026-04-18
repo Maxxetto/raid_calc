@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "notes": "Sample calibration dataset. Replace or extend these cases with your real observed raw scores.",
+  "datasets": {
+    "raid": {
+      "4": [
+        {
+          "setupId": "raid4_case_001",
+          "collectedAt": "2026-03-23",
+          "scoreKind": "raw_battle_points",
+          "bossElements": ["water", "fire"],
+          "setup": {
+            "knights": [
+              {
+                "atk": 75295,
+                "def": 63016,
+                "hp": 1827,
+                "stun": 0.25,
+                "elements": ["air", "water"]
+              },
+              {
+                "atk": 71553,
+                "def": 57243,
+                "hp": 1817,
+                "stun": 0.25,
+                "elements": ["air", "air"]
+              },
+              {
+                "atk": 66816,
+                "def": 55692,
+                "hp": 1973,
+                "stun": 0.25,
+                "elements": ["water", "water"]
+              }
+            ],
+            "pet": {
+              "atk": 4245,
+              "elements": ["air"],
+              "skillUsage": "doubleSpecial2ThenSpecial1",
+              "cycloneAlwaysGem": false,
+              "effects": [
+                {
+                  "canonicalEffectId": "elemental_weakness",
+                  "slot": 1,
+                  "values": {
+                    "enemyAttackReductionPercent": 53.9,
+                    "turns": 2
+                  }
+                },
+                {
+                  "canonicalEffectId": "special_regeneration_infinite",
+                  "slot": 2,
+                  "values": {
+                    "meterChargePercent": 87
+                  }
+                }
+              ]
+            }
+          },
+          "observedScores": [401522, 395884, 408117, 399230, 403771]
+        }
+      ],
+      "7": []
+    },
+    "blitz": {
+      "6": []
+    }
+  }
+}
