@@ -266,6 +266,7 @@ class ResultsPage extends StatelessWidget {
   }
 
   static const int _defaultTargetPoints = 1000000000; // 1B
+  static const int _maxTargetPoints = 200000000000; // 200B
 
   // Milestone energies model
   static const int _defaultFreeRaidEnergies = 30;
@@ -4025,7 +4026,7 @@ class ResultsPage extends StatelessWidget {
     final seen = <int>{};
     final options = <_ProbabilityTargetOption>[];
     for (final candidate in candidates) {
-      final value = candidate.value.clamp(0, 2000000000);
+      final value = candidate.value.clamp(0, _maxTargetPoints);
       if (!seen.add(value)) continue;
       options
           .add(_ProbabilityTargetOption(value: value, label: candidate.label));

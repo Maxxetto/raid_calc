@@ -28,6 +28,9 @@ class ElixirItem {
 }
 
 class HomeState extends ChangeNotifier {
+  static const int defaultMilestoneTargetPoints = 1000000000;
+  static const int maxMilestoneTargetPoints = 200000000000;
+
   // i18n
   String lang = 'it';
   I18n? i18n;
@@ -64,7 +67,7 @@ class HomeState extends ChangeNotifier {
   final TextEditingController milestoneTargetCtl = TextEditingController(
     text: '1,000,000,000',
   );
-  int milestoneTargetPoints = 1000000000;
+  int milestoneTargetPoints = defaultMilestoneTargetPoints;
   final TextEditingController startEnergiesCtl = TextEditingController(
     text: '0',
   );
@@ -338,10 +341,16 @@ class HomeState extends ChangeNotifier {
 
   void _bindTextControllers() {
     milestoneTargetPoints =
-        parsePositiveInt(milestoneTargetCtl.text, fallback: 1000000000);
+        parsePositiveInt(
+          milestoneTargetCtl.text,
+          fallback: defaultMilestoneTargetPoints,
+        );
     milestoneTargetCtl.addListener(() {
       milestoneTargetPoints =
-          parsePositiveInt(milestoneTargetCtl.text, fallback: 1000000000);
+          parsePositiveInt(
+            milestoneTargetCtl.text,
+            fallback: defaultMilestoneTargetPoints,
+          );
     });
 
     startEnergies = parseNonNegativeInt(startEnergiesCtl.text, fallback: 0);

@@ -355,7 +355,10 @@ class _BulkCompareScaffold extends StatelessWidget {
         continue;
       }
       if (milestoneTargetPoints > upper) continue;
-      final span = (upper - lower + 1).clamp(1, 2000000000);
+      final span = (upper - lower + 1).clamp(
+        1,
+        BulkSimulationRunResult.maxScorePoints,
+      );
       final overlap = (upper - milestoneTargetPoints + 1).clamp(0, span);
       matching += bin.count * (overlap / span);
     }

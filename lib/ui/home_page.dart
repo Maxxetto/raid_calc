@@ -631,7 +631,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       'epicThreshold': _state.epicThreshold.clamp(0, 100),
       'milestoneTargetPoints': _state.milestoneTargetPoints.clamp(
         1,
-        2000000000,
+        HomeState.maxMilestoneTargetPoints,
       ),
       'startEnergies': _state.startEnergies.clamp(0, 2000000000),
 
@@ -769,7 +769,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         : const <num>[];
 
     final milestoneTarget =
-        (m['milestoneTargetPoints'] as num?)?.toInt() ?? 1000000000;
+        (m['milestoneTargetPoints'] as num?)?.toInt() ??
+            HomeState.defaultMilestoneTargetPoints;
     final startEnergies = (m['startEnergies'] as num?)?.toInt() ?? 0;
     final epicThreshold = (m['epicThreshold'] as num?)?.toInt();
 
@@ -1013,7 +1014,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       }
 
       _state.milestoneTargetCtl.text = HomeState.formatIntUs(
-        milestoneTarget.clamp(1, 2000000000),
+        milestoneTarget.clamp(1, HomeState.maxMilestoneTargetPoints),
       );
       _state.startEnergiesCtl.text =
           startEnergies.clamp(0, 2000000000).toString();
@@ -5202,7 +5203,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   }
 
   int get _milestoneTargetPoints =>
-      _state.milestoneTargetPoints.clamp(1, 2000000000);
+      _state.milestoneTargetPoints.clamp(
+        1,
+        HomeState.maxMilestoneTargetPoints,
+      );
 
   int get _startEnergies => _state.startEnergies.clamp(0, 2000000000);
 

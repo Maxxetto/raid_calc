@@ -24,6 +24,7 @@ class BulkExpectedRange {
 @immutable
 class BulkSimulationRunResult {
   static const double expectedMeanPct = 0.08; // Same as ResultsPage.
+  static const int maxScorePoints = 200000000000;
 
   final int slot;
   final String? slotName;
@@ -46,8 +47,8 @@ class BulkSimulationRunResult {
 
   BulkExpectedRange get expectedRange {
     final half = stats.mean * expectedMeanPct;
-    final lower = (stats.mean - half).round().clamp(0, 2000000000);
-    final upper = (stats.mean + half).round().clamp(0, 2000000000);
+    final lower = (stats.mean - half).round().clamp(0, maxScorePoints);
+    final upper = (stats.mean + half).round().clamp(0, maxScorePoints);
     return BulkExpectedRange(lower: lower, upper: upper);
   }
 
