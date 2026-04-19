@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:meta/meta.dart';
 
 import '../debug/debug_hooks.dart';
 import 'skill_catalog.dart';

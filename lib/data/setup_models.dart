@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:meta/meta.dart';
 
 import '../core/engine/skill_catalog.dart';
 import '../core/element_types.dart';

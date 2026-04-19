@@ -71,21 +71,121 @@ class CalibrationCaseEvaluation {
   });
 }
 
+class CalibrationResolvedKnight {
+  final int slot;
+  final List<String> elements;
+  final int baseAtk;
+  final int baseDef;
+  final int hp;
+  final double stun;
+  final int petMatchCount;
+  final int petAtkBonus;
+  final int petDefBonus;
+  final int finalAtk;
+  final int finalDef;
+  final double knightAdvantage;
+  final double bossAdvantage;
+
+  const CalibrationResolvedKnight({
+    required this.slot,
+    required this.elements,
+    required this.baseAtk,
+    required this.baseDef,
+    required this.hp,
+    required this.stun,
+    required this.petMatchCount,
+    required this.petAtkBonus,
+    required this.petDefBonus,
+    required this.finalAtk,
+    required this.finalDef,
+    required this.knightAdvantage,
+    required this.bossAdvantage,
+  });
+}
+
+class CalibrationCasePreview {
+  final FlattenedCalibrationCase calibrationCase;
+  final CalibrationKnobs appliedKnobs;
+  final Precomputed pre;
+  final List<CalibrationResolvedKnight> knights;
+
+  const CalibrationCasePreview({
+    required this.calibrationCase,
+    required this.appliedKnobs,
+    required this.pre,
+    required this.knights,
+  });
+}
+
+class _PreparedCalibrationCase {
+  final BattleEngineSeed seed;
+  final Precomputed pre;
+  final List<CalibrationResolvedKnight> knights;
+
+  const _PreparedCalibrationCase({
+    required this.seed,
+    required this.pre,
+    required this.knights,
+  });
+}
+
 class CalibrationRunner {
   CalibrationRunner({
     required this.dataset,
     CalibrationKnobs knobs = const CalibrationKnobs(),
-  }) : _knobs = knobs;
+    int? runCountOverride,
+  })  : _knobs = knobs,
+        _runCountOverride = runCountOverride;
 
   final CalibrationDataset dataset;
   final CalibrationKnobs _knobs;
+  final int? _runCountOverride;
 
   static const RaidBlitzBattleEngine _engine = RaidBlitzBattleEngine();
 
-  Future<CalibrationEvaluation> evaluateCurrentConfig() async {
-    final simRulesRaw = await _loadJsonFile('assets/sim_rules.json');
-    final petBarRaw = await _loadJsonFile('assets/pet_bar_rules.json');
-    final bossTablesRaw = await _loadJsonFile('assets/boss_tables.json');
+  Future<List<CalibrationCasePreview>> previewCases({
+    Map<String, Object?>? simRulesRaw,
+    Map<String, Object?>? petBarRaw,
+    Map<String, Object?>? bossTablesRaw,
+  }) async {
+    final resolvedSimRulesRaw =
+        simRulesRaw ?? await _loadJsonFile('assets/sim_rules.json');
+    final resolvedPetBarRaw =
+        petBarRaw ?? await _loadJsonFile('assets/pet_bar_rules.json');
+    final resolvedBossTablesRaw =
+        bossTablesRaw ?? await _loadJsonFile('assets/boss_tables.json');
+    final previews = <CalibrationCasePreview>[];
+
+    for (final c in dataset.flattenCases()) {
+      final prepared = _prepareCase(
+        calibrationCase: c,
+        simRulesRaw: resolvedSimRulesRaw,
+        petBarRaw: resolvedPetBarRaw,
+        bossTablesRaw: resolvedBossTablesRaw,
+      );
+      previews.add(
+        CalibrationCasePreview(
+          calibrationCase: c,
+          appliedKnobs: _knobs,
+          pre: prepared.pre,
+          knights: prepared.knights,
+        ),
+      );
+    }
+    return previews;
+  }
+
+  Future<CalibrationEvaluation> evaluateCurrentConfig({
+    Map<String, Object?>? simRulesRaw,
+    Map<String, Object?>? petBarRaw,
+    Map<String, Object?>? bossTablesRaw,
+  }) async {
+    final resolvedSimRulesRaw =
+        simRulesRaw ?? await _loadJsonFile('assets/sim_rules.json');
+    final resolvedPetBarRaw =
+        petBarRaw ?? await _loadJsonFile('assets/pet_bar_rules.json');
+    final resolvedBossTablesRaw =
+        bossTablesRaw ?? await _loadJsonFile('assets/boss_tables.json');
     final cases = dataset.flattenCases();
     final evaluations = <CalibrationCaseEvaluation>[];
 
@@ -93,9 +193,9 @@ class CalibrationRunner {
       final observed = ScoreSummary.fromScores(c.data.observedScores);
       final simulatedScores = await _simulateCase(
         calibrationCase: c,
-        simRulesRaw: simRulesRaw,
-        petBarRaw: petBarRaw,
-        bossTablesRaw: bossTablesRaw,
+        simRulesRaw: resolvedSimRulesRaw,
+        petBarRaw: resolvedPetBarRaw,
+        bossTablesRaw: resolvedBossTablesRaw,
       );
       final simulated = ScoreSummary.fromScores(simulatedScores);
       evaluations.add(
@@ -125,6 +225,28 @@ class CalibrationRunner {
     required Map<String, Object?> petBarRaw,
     required Map<String, Object?> bossTablesRaw,
   }) async {
+    final prepared = _prepareCase(
+      calibrationCase: calibrationCase,
+      simRulesRaw: simRulesRaw,
+      petBarRaw: petBarRaw,
+      bossTablesRaw: bossTablesRaw,
+    );
+    final simulatedScores = <int>[];
+    final runCount =
+        _runCountOverride ?? calibrationCase.data.observedScores.length;
+    for (var i = 0; i < runCount; i++) {
+      final rng = FastRng(1001 + i);
+      simulatedScores.add(_engine.runWithRng(prepared.seed, rng).points);
+    }
+    return simulatedScores;
+  }
+
+  _PreparedCalibrationCase _prepareCase({
+    required FlattenedCalibrationCase calibrationCase,
+    required Map<String, Object?> simRulesRaw,
+    required Map<String, Object?> petBarRaw,
+    required Map<String, Object?> bossTablesRaw,
+  }) {
     final raidMode = calibrationCase.modeKey.toLowerCase() == 'raid';
     final bossTypeKey = raidMode ? 'raid' : 'blitz';
     final basePetBarScoped = _resolveScopedPetBar(
@@ -181,13 +303,47 @@ class CalibrationRunner {
         calibrationCase.data.setup.pet.effects.map(_toResolvedEffect).toList(
               growable: false,
             );
-    final petUsage = _parseSkillUsage(calibrationCase.data.setup.pet.skillUsage);
-    final kAtk = calibrationCase.data.setup.knights
-        .map((k) => k.atk.toDouble())
-        .toList(growable: false);
-    final kDef = calibrationCase.data.setup.knights
-        .map((k) => k.def.toDouble())
-        .toList(growable: false);
+    final petUsage =
+        _parseSkillUsage(calibrationCase.data.setup.pet.skillUsage);
+    final kAtk = <double>[];
+    final kDef = <double>[];
+    final resolvedKnights = <CalibrationResolvedKnight>[];
+    for (var i = 0; i < calibrationCase.data.setup.knights.length; i++) {
+      final knight = calibrationCase.data.setup.knights[i];
+      final matchCount = _petArmorBonusMatchCount(
+        petElements: petElements,
+        armorElements: knightElements[i],
+      );
+      final petAtkBonus =
+          calibrationCase.data.setup.pet.elementalAtk * matchCount;
+      final petDefBonus =
+          calibrationCase.data.setup.pet.elementalDef * matchCount;
+      final finalAtk = knight.atk + petAtkBonus;
+      final finalDef = knight.def + petDefBonus;
+      final knightAdvantage =
+          advantageMultiplier(knightElements[i], bossElements);
+      final bossAdvantage =
+          advantageMultiplier(bossElements, knightElements[i]);
+      kAtk.add(finalAtk.toDouble());
+      kDef.add(finalDef.toDouble());
+      resolvedKnights.add(
+        CalibrationResolvedKnight(
+          slot: i + 1,
+          elements: knight.elements,
+          baseAtk: knight.atk,
+          baseDef: knight.def,
+          hp: knight.hp,
+          stun: knight.stun,
+          petMatchCount: matchCount,
+          petAtkBonus: petAtkBonus,
+          petDefBonus: petDefBonus,
+          finalAtk: finalAtk,
+          finalDef: finalDef,
+          knightAdvantage: knightAdvantage,
+          bossAdvantage: bossAdvantage,
+        ),
+      );
+    }
     final kHp = calibrationCase.data.setup.knights
         .map((k) => k.hp)
         .toList(growable: false);
@@ -212,11 +368,10 @@ class CalibrationRunner {
       petEffects: petEffects,
     );
 
-    final petStrongAgainstBoss =
-        petElements.any((petEl) => bossElements.any((bossEl) => elementBeats(petEl, bossEl)));
+    final petStrongAgainstBoss = petElements.any(
+        (petEl) => bossElements.any((bossEl) => elementBeats(petEl, bossEl)));
     final runtimeKnobs = BattleRuntimeKnobs(
-      cycloneAlwaysGemEnabled:
-          calibrationCase.data.setup.pet.cycloneAlwaysGem,
+      cycloneAlwaysGemEnabled: calibrationCase.data.setup.pet.cycloneAlwaysGem,
       knightPetElementMatches: knightElements
           .map((pair) => _petMatchesKnightPair(petElements, pair))
           .toList(growable: false),
@@ -227,14 +382,11 @@ class CalibrationRunner {
       ),
     );
 
-    final seed = BattleEngineSeed(pre: pre, runtimeKnobs: runtimeKnobs);
-    final simulatedScores = <int>[];
-    final runCount = calibrationCase.data.observedScores.length;
-    for (var i = 0; i < runCount; i++) {
-      final rng = FastRng(1001 + i);
-      simulatedScores.add(_engine.runWithRng(seed, rng).points);
-    }
-    return simulatedScores;
+    return _PreparedCalibrationCase(
+      seed: BattleEngineSeed(pre: pre, runtimeKnobs: runtimeKnobs),
+      pre: pre,
+      knights: resolvedKnights,
+    );
   }
 
   static Map<String, Object?> _resolveScopedPetBar({
@@ -269,8 +421,7 @@ class CalibrationRunner {
       next['bossNormal'] = <String, double>{'${_knobs.bossNormalFill}': 1.0};
     }
     if (_knobs.bossSpecialFill != null) {
-      next['bossSpecial'] =
-          <String, double>{'${_knobs.bossSpecialFill}': 1.0};
+      next['bossSpecial'] = <String, double>{'${_knobs.bossSpecialFill}': 1.0};
     }
     if (_knobs.bossMissFill != null) {
       next['bossMiss'] = <String, double>{'${_knobs.bossMissFill}': 1.0};
@@ -279,8 +430,7 @@ class CalibrationRunner {
       next['stun'] = <String, double>{'${_knobs.stunFill}': 1.0};
     }
     if (_knobs.petKnightFill != null) {
-      next['petKnightBase'] =
-          <String, double>{'${_knobs.petKnightFill}': 1.0};
+      next['petKnightBase'] = <String, double>{'${_knobs.petKnightFill}': 1.0};
     }
     return next;
   }
@@ -300,8 +450,9 @@ class CalibrationRunner {
     };
     final displayName = effect.canonicalEffectId
         .split('_')
-        .map((part) =>
-            part.isEmpty ? part : '${part[0].toUpperCase()}${part.substring(1)}')
+        .map((part) => part.isEmpty
+            ? part
+            : '${part[0].toUpperCase()}${part.substring(1)}')
         .join(' ');
     return PetResolvedEffect(
       sourceSlotId: slotId,
@@ -346,6 +497,36 @@ class CalibrationRunner {
     return false;
   }
 
+  static int _petArmorBonusMatchCount({
+    required List<ElementType> petElements,
+    required List<ElementType> armorElements,
+  }) {
+    if (petElements.isEmpty || armorElements.isEmpty) return 0;
+    final petFirst = petElements.first;
+    final petSecond = petElements.length > 1 ? petElements[1] : null;
+
+    if (petSecond == null) {
+      return armorElements.contains(petFirst) ? 1 : 0;
+    }
+
+    if (petSecond == petFirst) {
+      final armorFirst = armorElements[0];
+      final armorSecond =
+          armorElements.length > 1 ? armorElements[1] : armorFirst;
+      if (armorFirst == petFirst && armorSecond == petFirst) return 2;
+      if (armorSecond == petFirst) return 2;
+      if (armorFirst == petFirst) return 1;
+      return 0;
+    }
+
+    if (armorElements.length > 1 &&
+        armorElements[0] == petFirst &&
+        armorElements[1] == petSecond) {
+      return 2;
+    }
+    return armorElements.contains(petFirst) ? 1 : 0;
+  }
+
   static BossStats _bossStatsFor({
     required Map<String, Object?> bossTablesRaw,
     required bool raidMode,
@@ -372,14 +553,12 @@ class CalibrationRunner {
   }
 
   static double _caseLoss(ScoreSummary observed, ScoreSummary simulated) {
-    double rel(double sim, double obs) => (sim - obs).abs() / (obs.abs() < 1 ? 1 : obs.abs());
+    double rel(double sim, double obs) =>
+        (sim - obs).abs() / (obs.abs() < 1 ? 1 : obs.abs());
     final meanErr = rel(simulated.mean, observed.mean);
     final medianErr = rel(simulated.median, observed.median);
     final p10Err = rel(simulated.p10, observed.p10);
     final p90Err = rel(simulated.p90, observed.p90);
-    return 0.40 * meanErr +
-        0.30 * medianErr +
-        0.15 * p10Err +
-        0.15 * p90Err;
+    return 0.40 * meanErr + 0.30 * medianErr + 0.15 * p10Err + 0.15 * p90Err;
   }
 }

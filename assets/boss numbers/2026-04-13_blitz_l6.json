@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "eventDate": "2026-04-13",
+  "label": "13.04.26 Blitz Boss",
+  "boss": {
+    "mode": "blitz",
+    "level": 6,
+    "elements": ["fire", "air"]
+  },
+  "scoreKind": "raw_battle_points",
+  "setup": {
+    "knights": [
+      {
+        "slot": 1,
+        "elements": ["earth", "earth"],
+        "atk": 59814,
+        "def": 74314,
+        "hp": 1876,
+        "stunChance": 0.25
+      },
+      {
+        "slot": 2,
+        "elements": ["air", "earth"],
+        "atk": 74602,
+        "def": 69287,
+        "hp": 1862,
+        "stunChance": 0.25
+      },
+      {
+        "slot": 3,
+        "elements": ["earth", "earth"],
+        "atk": 66408,
+        "def": 79852,
+        "hp": 2049,
+        "stunChance": 0.25
+      }
+    ],
+    "pet": {
+      "elements": ["water", "earth"],
+      "atk": 6583,
+      "elementalAtk": 1341,
+      "elementalDef": 1132,
+      "skillUsageCode": 4,
+      "skills": [
+        {
+          "slot": 1,
+          "name": "Elemental Weakness",
+          "canonicalEffectId": "elemental_weakness",
+          "values": {
+            "enemyAttackReductionPercent": 65.2,
+            "turns": 2
+          }
+        },
+        {
+          "slot": 2,
+          "name": "Special Regeneration (inf)",
+          "canonicalEffectId": "special_regeneration_infinite",
+          "values": {
+            "meterChargePercent": 104.72
+          }
+        }
+      ]
+    }
+  },
+  "petBarCalibration": {
+    "enabled": true,
+    "candidateRanges": {
+      "ticksPerState": [165],
+      "startTicks": [0, 55, 110, 165, 220, 275, 330],
+      "petKnightBaseTicks": [10, 11, 12, 13, 14],
+      "bossNormalTicks": [1, 2, 3],
+      "bossSpecialTicks": [3, 4, 5],
+      "bossMissTicks": [0, 1],
+      "stunTicks": [0, 1],
+      "petCritPlusOneProb": [0.0, 0.1]
+    }
+  },
+  "observedScores": [
+    279731, 236139, 260489, 305921, 316361, 309513, 332093, 276840, 286843,
+    255956, 284230, 304744, 276266, 283893, 315651, 295003, 305230, 287069,
+    307957, 273638, 275066, 252636, 332392, 282702, 284533, 254363, 252655,
+    270539, 248059, 257973, 332157, 311630, 271105, 318333, 301512, 254711,
+    255021, 262532, 254262, 275445
+  ]
+}

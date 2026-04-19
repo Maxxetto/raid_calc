@@ -3,6 +3,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import '../core/battle_outcome.dart';
 import '../core/engine/engine_common.dart';
@@ -2149,8 +2150,12 @@ class ResultsPage extends StatelessWidget {
     }
   }
 
-  void _copyExport(BuildContext context) {
-    final payload = _exportPayload();
+  Future<void> _copyExport(BuildContext context) async {
+    final packageInfo = await _loadPackageInfo();
+    final payload = _exportPayload(
+      appVersion: packageInfo?.version,
+      appBuildNumber: packageInfo?.buildNumber,
+    );
     final text = encodePrettyJson(payload);
     Clipboard.setData(ClipboardData(text: text));
     ScaffoldMessenger.of(context).showSnackBar(
@@ -2161,7 +2166,19 @@ class ResultsPage extends StatelessWidget {
     );
   }
 
-  Map<String, Object?> _exportPayload() => ResultsSharePayload(
+  Future<PackageInfo?> _loadPackageInfo() async {
+    try {
+      return await PackageInfo.fromPlatform();
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Map<String, Object?> _exportPayload({
+    String? appVersion,
+    String? appBuildNumber,
+  }) =>
+      ResultsSharePayload(
         cycloneUseGemsForSpecials: cycloneUseGemsForSpecials,
         isPremium: isPremium,
         debugEnabled: debugEnabled,
@@ -2177,6 +2194,8 @@ class ResultsPage extends StatelessWidget {
         petElement2Id: petElement2Id,
         knightElementPairs: knightElementPairs,
         exportedAtIso: DateTime.now().toIso8601String(),
+        appVersion: appVersion,
+        appBuildNumber: appBuildNumber,
       ).toJson();
 
   Future<void> _showResultsShareTip(BuildContext context) {

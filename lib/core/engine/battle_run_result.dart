@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:meta/meta.dart';
 
 import '../battle_outcome.dart';
 import '../debug/debug_hooks.dart';

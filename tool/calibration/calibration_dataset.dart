@@ -25,8 +25,7 @@ class CalibrationDataset {
         final rawCases = (levelValue as List?) ?? const [];
         levels[level] = rawCases
             .whereType<Map>()
-            .map((raw) =>
-                CalibrationCase.fromJson(raw.cast<String, Object?>()))
+            .map((raw) => CalibrationCase.fromJson(raw.cast<String, Object?>()))
             .toList(growable: false);
       });
       datasets[modeKey] = levels;
@@ -45,7 +44,8 @@ class CalibrationDataset {
     final raw = await File(path).readAsString();
     final decoded = jsonDecode(raw);
     if (decoded is! Map) {
-      throw const FormatException('Calibration dataset root must be an object.');
+      throw const FormatException(
+          'Calibration dataset root must be an object.');
     }
     return CalibrationDataset.fromJson(decoded.cast<String, Object?>());
   }
@@ -170,6 +170,8 @@ class CalibrationKnight {
 
 class CalibrationPet {
   final int atk;
+  final int elementalAtk;
+  final int elementalDef;
   final List<String> elements;
   final String skillUsage;
   final bool cycloneAlwaysGem;
@@ -177,6 +179,8 @@ class CalibrationPet {
 
   const CalibrationPet({
     required this.atk,
+    this.elementalAtk = 0,
+    this.elementalDef = 0,
     required this.elements,
     required this.skillUsage,
     required this.cycloneAlwaysGem,
@@ -188,6 +192,8 @@ class CalibrationPet {
     final rawEffects = (json['effects'] as List?) ?? const [];
     return CalibrationPet(
       atk: (json['atk'] as num?)?.round() ?? 0,
+      elementalAtk: (json['elementalAtk'] as num?)?.round() ?? 0,
+      elementalDef: (json['elementalDef'] as num?)?.round() ?? 0,
       elements: rawElements.map((e) => e.toString()).toList(growable: false),
       skillUsage: (json['skillUsage'] as String?)?.trim().isNotEmpty == true
           ? (json['skillUsage'] as String).trim()
@@ -214,7 +220,8 @@ class CalibrationPetEffect {
   });
 
   factory CalibrationPetEffect.fromJson(Map<String, Object?> json) {
-    final rawValues = (json['values'] as Map?)?.cast<String, Object?>() ?? const {};
+    final rawValues =
+        (json['values'] as Map?)?.cast<String, Object?>() ?? const {};
     final values = <String, num>{};
     rawValues.forEach((key, value) {
       if (value is num) {

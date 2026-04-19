@@ -300,6 +300,8 @@ void main() {
         ['spirit', 'air'],
       ],
       exportedAtIso: DateTime(2026, 2, 24).toIso8601String(),
+      appVersion: '1.4.13',
+      appBuildNumber: '125',
     );
 
     final parsed = ResultsSharePayload.fromText(jsonEncode(payload.toJson()));
@@ -316,6 +318,8 @@ void main() {
     expect(parsed.stats.series?.checkpoints, hasLength(2));
     expect(parsed.stats.series?.histogram?.bins, hasLength(4));
     expect(parsed.stats.series?.histogram?.bins[1].count, 430);
+    expect(parsed.appVersion, '1.4.13');
+    expect(parsed.appBuildNumber, '125');
 
     final legacy = payload.toJson()
       ..remove('kind')

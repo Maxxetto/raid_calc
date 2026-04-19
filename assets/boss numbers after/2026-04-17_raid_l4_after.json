@@ -1,0 +1,580 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-04-19T20:07:36.713757Z",
+  "sourceFile": "assets/boss numbers\\2026-04-17_raid_l4.json",
+  "context": {
+    "eventDate": "2026-04-17",
+    "label": "17.04.26 Raid Boss",
+    "mode": "raid",
+    "level": 4,
+    "bossElements": [
+      "fire",
+      "water"
+    ],
+    "scoreKind": "raw_battle_points",
+    "observedScoreCount": 400
+  },
+  "petBarCalibration": {
+    "meaning": "candidateRanges is the search space tested by the tool, not the calibrated result.",
+    "candidateRanges": {
+      "ticksPerState": [
+        165
+      ],
+      "startTicks": [
+        0,
+        55,
+        110,
+        165,
+        220,
+        275,
+        330
+      ],
+      "petKnightBaseTicks": [
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "bossNormalTicks": [
+        1,
+        2,
+        3
+      ],
+      "bossSpecialTicks": [
+        3,
+        4,
+        5
+      ],
+      "bossMissTicks": [
+        0,
+        1
+      ],
+      "stunTicks": [
+        0,
+        1
+      ],
+      "petCritPlusOneProb": [
+        0.0,
+        0.1
+      ]
+    }
+  },
+  "resolvedSetup": {
+    "pet": {
+      "elements": [
+        "water",
+        "earth"
+      ],
+      "atk": 6583,
+      "elementalAtk": 1341,
+      "elementalDef": 1132,
+      "elementalBonusRule": "Uses the same ordered armor bonus rule as Wargear Wardrobe; skill element matching is evaluated separately by the simulator.",
+      "totalElementalBonusApplied": {
+        "atk": 4023,
+        "def": 3396
+      },
+      "skillUsage": "special2ThenSpecial1",
+      "cycloneAlwaysGem": false
+    },
+    "knights": [
+      {
+        "slot": 1,
+        "elements": [
+          "water",
+          "water"
+        ],
+        "baseStats": {
+          "atk": 76933,
+          "def": 63907,
+          "hp": 1821,
+          "stunChance": 0.25
+        },
+        "petArmorBonusMatchCount": 1,
+        "petBonus": {
+          "atk": 1341,
+          "def": 1132
+        },
+        "finalStats": {
+          "atk": 78274,
+          "def": 65039,
+          "hp": 1821,
+          "stunChance": 0.25
+        },
+        "advantage": {
+          "knightVsBoss": 2.0,
+          "bossVsKnight": 1.0
+        }
+      },
+      {
+        "slot": 2,
+        "elements": [
+          "air",
+          "water"
+        ],
+        "baseStats": {
+          "atk": 77591,
+          "def": 64925,
+          "hp": 1827,
+          "stunChance": 0.25
+        },
+        "petArmorBonusMatchCount": 1,
+        "petBonus": {
+          "atk": 1341,
+          "def": 1132
+        },
+        "finalStats": {
+          "atk": 78932,
+          "def": 66057,
+          "hp": 1827,
+          "stunChance": 0.25
+        },
+        "advantage": {
+          "knightVsBoss": 2.0,
+          "bossVsKnight": 1.0
+        }
+      },
+      {
+        "slot": 3,
+        "elements": [
+          "water",
+          "water"
+        ],
+        "baseStats": {
+          "atk": 83811,
+          "def": 69746,
+          "hp": 1994,
+          "stunChance": 0.25
+        },
+        "petArmorBonusMatchCount": 1,
+        "petBonus": {
+          "atk": 1341,
+          "def": 1132
+        },
+        "finalStats": {
+          "atk": 85152,
+          "def": 70878,
+          "hp": 1994,
+          "stunChance": 0.25
+        },
+        "advantage": {
+          "knightVsBoss": 2.0,
+          "bossVsKnight": 1.0
+        }
+      }
+    ]
+  },
+  "damagePreview": {
+    "knights": [
+      {
+        "slot": 1,
+        "kNormalDmg": 7034,
+        "kCritDmg": 10551,
+        "kSpecialDmg": 22861,
+        "bNormalDmg": 40,
+        "bCritDmg": 60
+      },
+      {
+        "slot": 2,
+        "kNormalDmg": 7093,
+        "kCritDmg": 10640,
+        "kSpecialDmg": 23052,
+        "bNormalDmg": 40,
+        "bCritDmg": 60
+      },
+      {
+        "slot": 3,
+        "kNormalDmg": 7652,
+        "kCritDmg": 11479,
+        "kSpecialDmg": 24869,
+        "bNormalDmg": 37,
+        "bCritDmg": 56
+      }
+    ],
+    "pet": {
+      "petNormalDmg": 444,
+      "petCritDmg": 666,
+      "petAdv": 1.5
+    }
+  },
+  "observedDistribution": {
+    "count": 400,
+    "min": 4317555,
+    "p10": 4562283.4,
+    "median": 4887474.0,
+    "mean": 4875787.875,
+    "p90": 5208335.2,
+    "max": 5774584,
+    "standardDeviation": 251320.5900168038,
+    "coefficientOfVariationPercent": 5.154461113975427
+  },
+  "calibrationResult": {
+    "runs": 400,
+    "combinationsEvaluated": 2520,
+    "tieTolerance": 0.000001,
+    "bestCandidate": {
+      "values": {
+        "ticksPerState": 165,
+        "startTicks": 55,
+        "petKnightBase": 10,
+        "bossNormal": 2,
+        "bossSpecial": 4,
+        "bossMiss": 1,
+        "stun": 1,
+        "petCritPlusOneProb": 0.0
+      },
+      "loss": 0.0007813610392894791,
+      "accuracy": 99.92186389607105,
+      "biasPercent": 0.055289782269291196,
+      "simulatedDistribution": {
+        "count": 400,
+        "min": 4175932,
+        "p10": 4565789.0,
+        "median": 4880694.5,
+        "mean": 4878483.6875,
+        "p90": 5209335.5,
+        "max": 5617027
+      }
+    },
+    "equivalentBestCandidates": [
+      {
+        "values": {
+          "ticksPerState": 165,
+          "startTicks": 55,
+          "petKnightBase": 10,
+          "bossNormal": 2,
+          "bossSpecial": 4,
+          "bossMiss": 1,
+          "stun": 1,
+          "petCritPlusOneProb": 0.0
+        },
+        "loss": 0.0007813610392894791,
+        "accuracy": 99.92186389607105,
+        "biasPercent": 0.055289782269291196,
+        "simulatedDistribution": {
+          "count": 400,
+          "min": 4175932,
+          "p10": 4565789.0,
+          "median": 4880694.5,
+          "mean": 4878483.6875,
+          "p90": 5209335.5,
+          "max": 5617027
+        }
+      },
+      {
+        "values": {
+          "ticksPerState": 165,
+          "startTicks": 55,
+          "petKnightBase": 10,
+          "bossNormal": 2,
+          "bossSpecial": 4,
+          "bossMiss": 0,
+          "stun": 1,
+          "petCritPlusOneProb": 0.0
+        },
+        "loss": 0.0007813610392894791,
+        "accuracy": 99.92186389607105,
+        "biasPercent": 0.055289782269291196,
+        "simulatedDistribution": {
+          "count": 400,
+          "min": 4175932,
+          "p10": 4565789.0,
+          "median": 4880694.5,
+          "mean": 4878483.6875,
+          "p90": 5209335.5,
+          "max": 5617027
+        }
+      },
+      {
+        "values": {
+          "ticksPerState": 165,
+          "startTicks": 55,
+          "petKnightBase": 10,
+          "bossNormal": 2,
+          "bossSpecial": 4,
+          "bossMiss": 0,
+          "stun": 0,
+          "petCritPlusOneProb": 0.0
+        },
+        "loss": 0.0007813610392894791,
+        "accuracy": 99.92186389607105,
+        "biasPercent": 0.055289782269291196,
+        "simulatedDistribution": {
+          "count": 400,
+          "min": 4175932,
+          "p10": 4565789.0,
+          "median": 4880694.5,
+          "mean": 4878483.6875,
+          "p90": 5209335.5,
+          "max": 5617027
+        }
+      },
+      {
+        "values": {
+          "ticksPerState": 165,
+          "startTicks": 55,
+          "petKnightBase": 10,
+          "bossNormal": 2,
+          "bossSpecial": 4,
+          "bossMiss": 1,
+          "stun": 0,
+          "petCritPlusOneProb": 0.0
+        },
+        "loss": 0.0007813610392894791,
+        "accuracy": 99.92186389607105,
+        "biasPercent": 0.055289782269291196,
+        "simulatedDistribution": {
+          "count": 400,
+          "min": 4175932,
+          "p10": 4565789.0,
+          "median": 4880694.5,
+          "mean": 4878483.6875,
+          "p90": 5209335.5,
+          "max": 5617027
+        }
+      }
+    ],
+    "topCandidates": [
+      {
+        "values": {
+          "ticksPerState": 165,
+          "startTicks": 55,
+          "petKnightBase": 10,
+          "bossNormal": 2,
+          "bossSpecial": 4,
+          "bossMiss": 1,
+          "stun": 1,
+          "petCritPlusOneProb": 0.0
+        },
+        "loss": 0.0007813610392894791,
+        "accuracy": 99.92186389607105,
+        "biasPercent": 0.055289782269291196,
+        "simulatedDistribution": {
+          "count": 400,
+          "min": 4175932,
+          "p10": 4565789.0,
+          "median": 4880694.5,
+          "mean": 4878483.6875,
+          "p90": 5209335.5,
+          "max": 5617027
+        }
+      },
+      {
+        "values": {
+          "ticksPerState": 165,
+          "startTicks": 55,
+          "petKnightBase": 10,
+          "bossNormal": 2,
+          "bossSpecial": 4,
+          "bossMiss": 0,
+          "stun": 1,
+          "petCritPlusOneProb": 0.0
+        },
+        "loss": 0.0007813610392894791,
+        "accuracy": 99.92186389607105,
+        "biasPercent": 0.055289782269291196,
+        "simulatedDistribution": {
+          "count": 400,
+          "min": 4175932,
+          "p10": 4565789.0,
+          "median": 4880694.5,
+          "mean": 4878483.6875,
+          "p90": 5209335.5,
+          "max": 5617027
+        }
+      },
+      {
+        "values": {
+          "ticksPerState": 165,
+          "startTicks": 55,
+          "petKnightBase": 10,
+          "bossNormal": 2,
+          "bossSpecial": 4,
+          "bossMiss": 0,
+          "stun": 0,
+          "petCritPlusOneProb": 0.0
+        },
+        "loss": 0.0007813610392894791,
+        "accuracy": 99.92186389607105,
+        "biasPercent": 0.055289782269291196,
+        "simulatedDistribution": {
+          "count": 400,
+          "min": 4175932,
+          "p10": 4565789.0,
+          "median": 4880694.5,
+          "mean": 4878483.6875,
+          "p90": 5209335.5,
+          "max": 5617027
+        }
+      },
+      {
+        "values": {
+          "ticksPerState": 165,
+          "startTicks": 55,
+          "petKnightBase": 10,
+          "bossNormal": 2,
+          "bossSpecial": 4,
+          "bossMiss": 1,
+          "stun": 0,
+          "petCritPlusOneProb": 0.0
+        },
+        "loss": 0.0007813610392894791,
+        "accuracy": 99.92186389607105,
+        "biasPercent": 0.055289782269291196,
+        "simulatedDistribution": {
+          "count": 400,
+          "min": 4175932,
+          "p10": 4565789.0,
+          "median": 4880694.5,
+          "mean": 4878483.6875,
+          "p90": 5209335.5,
+          "max": 5617027
+        }
+      },
+      {
+        "values": {
+          "ticksPerState": 165,
+          "startTicks": 55,
+          "petKnightBase": 10,
+          "bossNormal": 2,
+          "bossSpecial": 5,
+          "bossMiss": 0,
+          "stun": 1,
+          "petCritPlusOneProb": 0.0
+        },
+        "loss": 0.0024580631057440155,
+        "accuracy": 99.75419368942559,
+        "biasPercent": 0.34755270193127735,
+        "simulatedDistribution": {
+          "count": 400,
+          "min": 4175932,
+          "p10": 4569214.5,
+          "median": 4899556.5,
+          "mean": 4892733.8075,
+          "p90": 5211749.4,
+          "max": 5744106
+        }
+      },
+      {
+        "values": {
+          "ticksPerState": 165,
+          "startTicks": 55,
+          "petKnightBase": 10,
+          "bossNormal": 2,
+          "bossSpecial": 5,
+          "bossMiss": 1,
+          "stun": 1,
+          "petCritPlusOneProb": 0.0
+        },
+        "loss": 0.0024580631057440155,
+        "accuracy": 99.75419368942559,
+        "biasPercent": 0.34755270193127735,
+        "simulatedDistribution": {
+          "count": 400,
+          "min": 4175932,
+          "p10": 4569214.5,
+          "median": 4899556.5,
+          "mean": 4892733.8075,
+          "p90": 5211749.4,
+          "max": 5744106
+        }
+      },
+      {
+        "values": {
+          "ticksPerState": 165,
+          "startTicks": 55,
+          "petKnightBase": 10,
+          "bossNormal": 2,
+          "bossSpecial": 5,
+          "bossMiss": 1,
+          "stun": 0,
+          "petCritPlusOneProb": 0.0
+        },
+        "loss": 0.0024580631057440155,
+        "accuracy": 99.75419368942559,
+        "biasPercent": 0.34755270193127735,
+        "simulatedDistribution": {
+          "count": 400,
+          "min": 4175932,
+          "p10": 4569214.5,
+          "median": 4899556.5,
+          "mean": 4892733.8075,
+          "p90": 5211749.4,
+          "max": 5744106
+        }
+      },
+      {
+        "values": {
+          "ticksPerState": 165,
+          "startTicks": 55,
+          "petKnightBase": 10,
+          "bossNormal": 2,
+          "bossSpecial": 5,
+          "bossMiss": 0,
+          "stun": 0,
+          "petCritPlusOneProb": 0.0
+        },
+        "loss": 0.0024580631057440155,
+        "accuracy": 99.75419368942559,
+        "biasPercent": 0.34755270193127735,
+        "simulatedDistribution": {
+          "count": 400,
+          "min": 4175932,
+          "p10": 4569214.5,
+          "median": 4899556.5,
+          "mean": 4892733.8075,
+          "p90": 5211749.4,
+          "max": 5744106
+        }
+      },
+      {
+        "values": {
+          "ticksPerState": 165,
+          "startTicks": 55,
+          "petKnightBase": 10,
+          "bossNormal": 2,
+          "bossSpecial": 3,
+          "bossMiss": 0,
+          "stun": 0,
+          "petCritPlusOneProb": 0.1
+        },
+        "loss": 0.0033195956679289195,
+        "accuracy": 99.66804043320711,
+        "biasPercent": -0.20049913471675854,
+        "simulatedDistribution": {
+          "count": 400,
+          "min": 3938603,
+          "p10": 4572513.0,
+          "median": 4864653.0,
+          "mean": 4866011.9625,
+          "p90": 5181235.100000001,
+          "max": 5735450
+        }
+      },
+      {
+        "values": {
+          "ticksPerState": 165,
+          "startTicks": 55,
+          "petKnightBase": 10,
+          "bossNormal": 2,
+          "bossSpecial": 3,
+          "bossMiss": 0,
+          "stun": 1,
+          "petCritPlusOneProb": 0.1
+        },
+        "loss": 0.0033195956679289195,
+        "accuracy": 99.66804043320711,
+        "biasPercent": -0.20049913471675854,
+        "simulatedDistribution": {
+          "count": 400,
+          "min": 3938603,
+          "p10": 4572513.0,
+          "median": 4864653.0,
+          "mean": 4866011.9625,
+          "p90": 5181235.100000001,
+          "max": 5735450
+        }
+      }
+    ]
+  }
+}

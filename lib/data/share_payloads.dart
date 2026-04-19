@@ -110,6 +110,8 @@ class ResultsSharePayload {
   final String? petElement2Id;
   final List<List<String>> knightElementPairs;
   final String exportedAtIso;
+  final String? appVersion;
+  final String? appBuildNumber;
 
   const ResultsSharePayload({
     this.cycloneUseGemsForSpecials = true,
@@ -127,12 +129,18 @@ class ResultsSharePayload {
     required this.petElement2Id,
     required this.knightElementPairs,
     required this.exportedAtIso,
+    this.appVersion,
+    this.appBuildNumber,
   });
 
   Map<String, Object?> toJson() => <String, Object?>{
         'kind': kind,
         'v': schemaVersion,
         'exportedAtIso': exportedAtIso,
+        if (appVersion != null && appVersion!.trim().isNotEmpty)
+          'appVersion': appVersion!.trim(),
+        if (appBuildNumber != null && appBuildNumber!.trim().isNotEmpty)
+          'appBuildNumber': appBuildNumber!.trim(),
         'cycloneUseGemsForSpecials': cycloneUseGemsForSpecials,
         'isPremium': isPremium,
         'debugEnabled': debugEnabled,
@@ -219,6 +227,8 @@ class ResultsSharePayload {
       exportedAtIso: (j['exportedAtIso'] as String?)?.trim().isNotEmpty == true
           ? (j['exportedAtIso'] as String).trim()
           : DateTime.now().toIso8601String(),
+      appVersion: (j['appVersion'] as String?)?.trim(),
+      appBuildNumber: (j['appBuildNumber'] as String?)?.trim(),
     );
   }
 

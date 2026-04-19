@@ -1,5 +1,5 @@
 // lib/core/battle_outcome.dart
-import 'package:flutter/foundation.dart';
+import 'package:meta/meta.dart';
 
 @immutable
 class SimulationCheckpoint {

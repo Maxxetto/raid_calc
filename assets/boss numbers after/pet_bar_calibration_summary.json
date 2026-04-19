@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-04-19T20:07:36.718765Z",
+  "sourceCount": 2,
+  "status": "mixed_results",
+  "sources": [
+    {
+      "sourceFile": "assets/boss numbers\\2026-04-13_blitz_l6.json",
+      "mode": "blitz",
+      "level": 6,
+      "bossElements": [
+        "fire",
+        "air"
+      ],
+      "observedScoreCount": 40,
+      "bestCandidate": {
+        "ticksPerState": 165,
+        "startTicks": 165,
+        "petKnightBase": 10,
+        "bossNormal": 3,
+        "bossSpecial": 4,
+        "bossMiss": 0,
+        "stun": 1,
+        "petCritPlusOneProb": 0.0
+      },
+      "loss": 0.003460954038829771,
+      "accuracy": 99.65390459611703,
+      "biasPercent": -0.07148277963349653
+    },
+    {
+      "sourceFile": "assets/boss numbers\\2026-04-17_raid_l4.json",
+      "mode": "raid",
+      "level": 4,
+      "bossElements": [
+        "fire",
+        "water"
+      ],
+      "observedScoreCount": 400,
+      "bestCandidate": {
+        "ticksPerState": 165,
+        "startTicks": 55,
+        "petKnightBase": 10,
+        "bossNormal": 2,
+        "bossSpecial": 4,
+        "bossMiss": 1,
+        "stun": 1,
+        "petCritPlusOneProb": 0.0
+      },
+      "loss": 0.0007813610392894791,
+      "accuracy": 99.92186389607105,
+      "biasPercent": 0.055289782269291196
+    }
+  ],
+  "recommendation": {
+    "ticksPerState": {
+      "values": [
+        165
+      ],
+      "stable": true
+    },
+    "startTicks": {
+      "values": [
+        55,
+        165
+      ],
+      "stable": false
+    },
+    "petKnightBase": {
+      "values": [
+        10
+      ],
+      "stable": true
+    },
+    "bossNormal": {
+      "values": [
+        2,
+        3
+      ],
+      "stable": false
+    },
+    "bossSpecial": {
+      "values": [
+        4
+      ],
+      "stable": true
+    },
+    "bossMiss": {
+      "values": [
+        0,
+        1
+      ],
+      "stable": false
+    },
+    "stun": {
+      "values": [
+        0,
+        1
+      ],
+      "stable": false
+    },
+    "petCritPlusOneProb": {
+      "values": [
+        0.0
+      ],
+      "stable": true
+    }
+  },
+  "note": "This summary suggests candidate pet bar values only; it does not modify pet_bar_rules.json."
+}

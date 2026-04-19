@@ -1,5 +1,5 @@
 // lib/data/config_models.dart
-import 'package:flutter/foundation.dart';
+import 'package:meta/meta.dart';
 
 import '../core/sim_types.dart';
 import 'pet_effect_models.dart';
