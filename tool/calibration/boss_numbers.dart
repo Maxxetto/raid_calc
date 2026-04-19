@@ -196,9 +196,19 @@ class BossNumberCandidateRanges {
     Map<String, Object?> json,
     String path,
   ) {
+    final ticksPerState = _requiredIntList(json, 'ticksPerState', path);
+    final startTicks = _requiredIntList(json, 'startTicks', path);
+    if (ticksPerState.length != 1 ||
+        startTicks.length != 1 ||
+        startTicks.single != ticksPerState.single) {
+      throw FormatException(
+        'petBarCalibration.startTicks must be locked to one full pet bar '
+        'state and equal ticksPerState: $path',
+      );
+    }
     return BossNumberCandidateRanges(
-      ticksPerState: _requiredIntList(json, 'ticksPerState', path),
-      startTicks: _requiredIntList(json, 'startTicks', path),
+      ticksPerState: ticksPerState,
+      startTicks: startTicks,
       petKnightBaseTicks: _requiredIntList(json, 'petKnightBaseTicks', path),
       bossNormalTicks: _requiredIntList(json, 'bossNormalTicks', path),
       bossSpecialTicks: _requiredIntList(json, 'bossSpecialTicks', path),

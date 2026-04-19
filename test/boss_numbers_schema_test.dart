@@ -57,8 +57,8 @@ void _validateBossNumberFile(
   }
 
   final pet = _requiredMap(setup, 'pet', path);
-  _expectStringList(pet['elements'], minLength: 1, maxLength: 2,
-      reason: '$path pet.elements');
+  _expectStringList(pet['elements'],
+      minLength: 1, maxLength: 2, reason: '$path pet.elements');
   _expectNonNegativeNumber(pet['atk'], '$path pet.atk');
   _expectNonNegativeNumber(pet['elementalAtk'], '$path pet.elementalAtk');
   _expectNonNegativeNumber(pet['elementalDef'], '$path pet.elementalDef');
@@ -100,6 +100,15 @@ void _validateBossNumberFile(
           reason: '$path petBarCalibration.$key');
     }
   }
+  final ticksPerState = (ranges['ticksPerState'] as List).cast<Object?>();
+  final startTicks = (ranges['startTicks'] as List).cast<Object?>();
+  expect(ticksPerState, hasLength(1),
+      reason: '$path petBarCalibration.ticksPerState');
+  expect(startTicks, hasLength(1),
+      reason: '$path petBarCalibration.startTicks');
+  expect(
+      (startTicks.single as num).toInt(), (ticksPerState.single as num).toInt(),
+      reason: '$path startTicks must equal one full pet bar state');
 
   final scores = (root['observedScores'] as List?) ?? const <Object?>[];
   expect(scores, isNotEmpty, reason: '$path observedScores');

@@ -66,7 +66,7 @@
     "enabled": true,
     "candidateRanges": {
       "ticksPerState": [165],
-      "startTicks": [0, 55, 110, 165, 220, 275, 330],
+      "startTicks": [165],
       "petKnightBaseTicks": [10, 11, 12, 13, 14],
       "bossNormalTicks": [1, 2, 3],
       "bossSpecialTicks": [3, 4, 5],

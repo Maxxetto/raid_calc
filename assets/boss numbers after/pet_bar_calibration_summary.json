@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-04-19T20:07:36.718765Z",
+  "generatedAt": "2026-04-19T20:19:03.236420Z",
   "sourceCount": 2,
   "status": "mixed_results",
   "sources": [
@@ -20,7 +20,7 @@
         "bossNormal": 3,
         "bossSpecial": 4,
         "bossMiss": 0,
-        "stun": 1,
+        "stun": 0,
         "petCritPlusOneProb": 0.0
       },
       "loss": 0.003460954038829771,
@@ -38,17 +38,17 @@
       "observedScoreCount": 400,
       "bestCandidate": {
         "ticksPerState": 165,
-        "startTicks": 55,
+        "startTicks": 165,
         "petKnightBase": 10,
-        "bossNormal": 2,
-        "bossSpecial": 4,
+        "bossNormal": 1,
+        "bossSpecial": 5,
         "bossMiss": 1,
         "stun": 1,
-        "petCritPlusOneProb": 0.0
+        "petCritPlusOneProb": 0.1
       },
-      "loss": 0.0007813610392894791,
-      "accuracy": 99.92186389607105,
-      "biasPercent": 0.055289782269291196
+      "loss": 0.024185794230766427,
+      "accuracy": 97.58142057692336,
+      "biasPercent": 2.515815918263264
     }
   ],
   "recommendation": {
@@ -60,10 +60,9 @@
     },
     "startTicks": {
       "values": [
-        55,
         165
       ],
-      "stable": false
+      "stable": true
     },
     "petKnightBase": {
       "values": [
@@ -73,16 +72,17 @@
     },
     "bossNormal": {
       "values": [
-        2,
+        1,
         3
       ],
       "stable": false
     },
     "bossSpecial": {
       "values": [
-        4
+        4,
+        5
       ],
-      "stable": true
+      "stable": false
     },
     "bossMiss": {
       "values": [
@@ -100,9 +100,10 @@
     },
     "petCritPlusOneProb": {
       "values": [
-        0.0
+        0.0,
+        0.1
       ],
-      "stable": true
+      "stable": false
     }
   },
   "note": "This summary suggests candidate pet bar values only; it does not modify pet_bar_rules.json."
