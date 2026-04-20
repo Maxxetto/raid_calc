@@ -47,17 +47,17 @@ void main() {
     expect(find.text('Friend Codes'), findsOneWidget);
     expect(find.text('Hall of Fame'), findsOneWidget);
     expect(find.textContaining('Maxxetto', findRichText: true), findsOneWidget);
-    expect(find.text('Volskaya'), findsNothing);
+    expect(find.text('Gareth'), findsNothing);
 
     await tester.tap(find.text('Hall of Fame').hitTestable());
     await tester.pumpAndSettle();
 
-    expect(find.textContaining('Volskaya'), findsWidgets);
-    expect(find.textContaining('Volskaya Century'), findsOneWidget);
+    expect(find.textContaining('Gareth'), findsWidgets);
+    expect(find.textContaining('Soul of Gareth'), findsOneWidget);
 
     final copyButton = find.byKey(
       const ValueKey(
-        'hall_of_fame.copy_source.2026-04-03_raid_worldwide_top50',
+        'hall_of_fame.copy_source.2026-03-20_raid_worldwide_top50',
       ),
     );
     await tester.ensureVisible(copyButton);
@@ -66,7 +66,7 @@ void main() {
 
     expect(
       copiedText,
-      contains('/r/Knightsanddragons/comments/1sl7tre/'),
+      contains('/r/Knightsanddragons/comments/1sl7t3u/'),
     );
   });
 }

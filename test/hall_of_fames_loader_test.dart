@@ -12,6 +12,26 @@ void main() {
     final list = await HallOfFamesLoader.load();
 
     expect(list, isNotEmpty);
+    final gareth = list.firstWhere(
+      (item) => item.id == '2026-03-20_raid_worldwide_top50',
+    );
+    expect(gareth.winnerName, 'Gareth');
+    expect(gareth.armorName, 'Soul of Gareth');
+    expect(gareth.rankLimit, 50);
+    expect(gareth.mode, 'raid');
+
+    final tempest = list.firstWhere(
+      (item) => item.id == '2026-03-06_raid_worldwide_top50',
+    );
+    expect(tempest.winnerName, 'TempestTKF');
+    expect(tempest.armorName, "TempestTKF's Legend");
+
+    final bruh = list.firstWhere(
+      (item) => item.id == '2026-02-20_raid_worldwide_top50',
+    );
+    expect(bruh.winnerName, 'BRUH Captain');
+    expect(bruh.armorName, "BRUH Captain's Soul");
+
     final entry = list.firstWhere(
       (item) => item.id == '2026-04-03_raid_worldwide_top50',
     );
