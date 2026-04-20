@@ -52,8 +52,8 @@ void main() {
     final warLabel = warIt.evaluate().isNotEmpty ? warIt : warEn;
     expect(warLabel, findsOneWidget);
 
-    final friendIt = find.text('Codici Amici');
-    final friendEn = find.text('Friend Codes');
+    final friendIt = find.text('Amici');
+    final friendEn = find.text('Friends');
     final friendLabel = friendIt.evaluate().isNotEmpty ? friendIt : friendEn;
     expect(friendLabel, findsOneWidget);
 

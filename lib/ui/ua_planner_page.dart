@@ -31,7 +31,8 @@ class UaPlannerPage extends StatefulWidget {
   State<UaPlannerPage> createState() => _UaPlannerPageState();
 }
 
-class _UaPlannerPageState extends State<UaPlannerPage> {
+class _UaPlannerPageState extends State<UaPlannerPage>
+    with WidgetsBindingObserver {
   static const String _plannerExportKind = 'ua_planner.state';
   static const int _plannerExportVersion = 1;
   static const List<_UaField> _fields = <_UaField>[
@@ -194,6 +195,8 @@ class _UaPlannerPageState extends State<UaPlannerPage> {
   UaRuleset? _uaRuleset;
   bool _showHiddenMonths = false;
   bool _plannerLocked = false;
+  bool _restoreCompleted = false;
+  bool _changedBeforeRestoreCompleted = false;
   final Set<String> _hiddenMonthKeys = <String>{};
 
   late final List<_UaMonth> _months = List<_UaMonth>.generate(
@@ -248,17 +251,35 @@ class _UaPlannerPageState extends State<UaPlannerPage> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     unawaited(_loadUaRuleset());
     unawaited(_restorePlannerState());
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    unawaited(_flushPlannerState());
     for (final ctl in _inputControllers.values) {
       ctl.dispose();
     }
     _inputControllers.clear();
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.inactive ||
+        state == AppLifecycleState.paused ||
+        state == AppLifecycleState.detached ||
+        state == AppLifecycleState.hidden) {
+      unawaited(_flushPlannerState());
+    }
+  }
+
+  Future<void> _flushPlannerState() async {
+    if (!_restoreCompleted && !_changedBeforeRestoreCompleted) return;
+    await UaPlannerStorage.save(_exportPlannerState());
   }
 
   static List<DateTime> _buildPlannerMonths() {
@@ -441,6 +462,9 @@ class _UaPlannerPageState extends State<UaPlannerPage> {
   }
 
   Future<void> _persistPlannerState() async {
+    if (!_restoreCompleted) {
+      _changedBeforeRestoreCompleted = true;
+    }
     await UaPlannerStorage.save(_exportPlannerState());
   }
 
@@ -618,10 +642,19 @@ class _UaPlannerPageState extends State<UaPlannerPage> {
 
   Future<void> _restorePlannerState() async {
     final raw = await UaPlannerStorage.load();
-    if (!mounted || raw == null) return;
+    if (!mounted) return;
+    if (_changedBeforeRestoreCompleted) {
+      _restoreCompleted = true;
+      return;
+    }
+    if (raw == null) {
+      _restoreCompleted = true;
+      return;
+    }
 
     setState(() {
       _applyPlannerState(raw);
+      _restoreCompleted = true;
     });
   }
 

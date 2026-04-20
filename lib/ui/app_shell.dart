@@ -197,7 +197,7 @@ class _AppShellState extends State<AppShell> {
             ),
             NavigationDestination(
               icon: const Icon(Icons.group_add_outlined),
-              label: t('nav.friend_codes', 'Friend Codes'),
+              label: t('nav.friends', 'Friends'),
             ),
             NavigationDestination(
               icon: const Icon(Icons.event_note),

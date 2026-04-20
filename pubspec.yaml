@@ -47,4 +47,5 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/hall_of_fames/
     - assets/langs/

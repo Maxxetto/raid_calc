@@ -105,6 +105,15 @@ class ResultsPage extends StatelessWidget {
     return stats.meanGemsSpent;
   }
 
+  double? get _pointsPerSecond {
+    final tstats = stats.timing;
+    if (!_hasPremiumTimingData || tstats == null) return null;
+    final runSeconds = tstats.meanRunSeconds;
+    if (!runSeconds.isFinite || runSeconds <= 0) return null;
+    if (stats.mean <= 0) return null;
+    return stats.mean / runSeconds;
+  }
+
   List<double>? get _estimatedKnightContributionTotals {
     final tstats = stats.timing;
     if (!_hasPremiumTimingData || tstats == null) return null;
@@ -405,6 +414,13 @@ class ResultsPage extends StatelessWidget {
               label: t('mean', 'Mean score'),
               value: _fmtInt(stats.mean),
             ),
+            if (_pointsPerSecond != null)
+              _metricCard(
+                context,
+                key: const ValueKey('results.summary.points_per_second'),
+                label: t('results.bulk.points_per_second', 'Points/second'),
+                value: _dash(_pointsPerSecond),
+              ),
             _metricCard(
               context,
               label: t('expected_range', 'Expected range (+/-8%)'),
@@ -1086,11 +1102,13 @@ class ResultsPage extends StatelessWidget {
 
   Widget _metricCard(
     BuildContext context, {
+    Key? key,
     required String label,
     required String value,
   }) {
     final theme = Theme.of(context);
     return Container(
+      key: key,
       constraints: const BoxConstraints(minWidth: 160, maxWidth: 220),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(

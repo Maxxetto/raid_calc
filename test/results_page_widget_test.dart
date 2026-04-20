@@ -505,6 +505,84 @@ void main() {
     );
   });
 
+  testWidgets('Results summary shows points per second for premium timing only',
+      (tester) async {
+    final pre = _buildPrecomputed();
+    const stats = SimStats(
+      mean: 100,
+      median: 98,
+      min: 90,
+      max: 110,
+      timing: TimingStats(
+        meanRunSeconds: 10,
+        meanBossSeconds: 3,
+        meanKnightSeconds: [1, 1, 1],
+        meanSurvivalSeconds: [1, 1, 1],
+        kNormalCount: [1, 1, 1],
+        kNormalSeconds: [1, 1, 1],
+        kSpecialCount: [0, 0, 0],
+        kSpecialSeconds: [0, 0, 0],
+        kStunCount: [0, 0, 0],
+        kStunSeconds: [0, 0, 0],
+        kMissCount: [0, 0, 0],
+        kMissSeconds: [0, 0, 0],
+        bNormalCount: [0, 0, 0],
+        bNormalSeconds: [0, 0, 0],
+        bSpecialCount: [0, 0, 0],
+        bSpecialSeconds: [0, 0, 0],
+        bMissCount: [0, 0, 0],
+        bMissSeconds: [0, 0, 0],
+      ),
+    );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: ResultsPage(
+          pre: pre,
+          knightIds: const ['K1', 'K2', 'K3'],
+          stats: stats,
+          labels: const {},
+          isPremium: true,
+          debugEnabled: false,
+        ),
+      ),
+    );
+
+    await tester.pumpAndSettle();
+
+    final metric = find.byKey(
+      const ValueKey('results.summary.points_per_second'),
+    );
+    expect(metric, findsOneWidget);
+    expect(
+      find.descendant(of: metric, matching: find.text('Points/second')),
+      findsOneWidget,
+    );
+    expect(
+      find.descendant(of: metric, matching: find.text('10.00')),
+      findsOneWidget,
+    );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: ResultsPage(
+          pre: pre,
+          knightIds: const ['K1', 'K2', 'K3'],
+          stats: stats,
+          labels: const {},
+          isPremium: false,
+          debugEnabled: false,
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(
+      find.byKey(const ValueKey('results.summary.points_per_second')),
+      findsNothing,
+    );
+  });
+
   testWidgets(
       'Non-premium graph view keeps score charts and hides timing charts',
       (tester) async {
