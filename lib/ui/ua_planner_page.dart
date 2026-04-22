@@ -197,6 +197,9 @@ class _UaPlannerPageState extends State<UaPlannerPage>
   bool _plannerLocked = false;
   bool _restoreCompleted = false;
   bool _changedBeforeRestoreCompleted = false;
+  Future<void>? _pendingPlannerPersist;
+  int? _calendarFilterYear;
+  int? _calendarFilterMonth;
   final Set<String> _hiddenMonthKeys = <String>{};
 
   late final List<_UaMonth> _months = List<_UaMonth>.generate(
@@ -222,6 +225,7 @@ class _UaPlannerPageState extends State<UaPlannerPage>
         eventDatesByType: <String, List<DateTime>>{
           for (final type in _eventTypes)
             type.id: _eventDatesForMonth(type.id, y, m),
+          'blitz_arena': _eventDatesForMonth('blitz_arena', y, m),
         },
         scoreInputs: <String, String>{
           for (final type in _eventTypes)
@@ -279,6 +283,10 @@ class _UaPlannerPageState extends State<UaPlannerPage>
 
   Future<void> _flushPlannerState() async {
     if (!_restoreCompleted && !_changedBeforeRestoreCompleted) return;
+    final pending = _pendingPlannerPersist;
+    if (pending != null) {
+      await pending;
+    }
     await UaPlannerStorage.save(_exportPlannerState());
   }
 
@@ -346,6 +354,7 @@ class _UaPlannerPageState extends State<UaPlannerPage>
       'raid': <DateTime>[],
       'war_blitz': <DateTime>[],
       'war': <DateTime>[],
+      'blitz_arena': <DateTime>[],
     };
     final heroicMondays = _heroicDatesAll
         .map((d) => _dateKey(d.subtract(const Duration(days: 1))))
@@ -365,6 +374,10 @@ class _UaPlannerPageState extends State<UaPlannerPage>
         }
       } else {
         map['war_blitz']!.add(d);
+        final wednesday = d.add(const Duration(days: 2));
+        if (!wednesday.isAfter(end)) {
+          map['blitz_arena']!.add(wednesday);
+        }
         if (!friday.isAfter(end)) {
           map['war']!.add(friday);
         }
@@ -421,6 +434,10 @@ class _UaPlannerPageState extends State<UaPlannerPage>
       'settings': <String, Object?>{
         'showHiddenMonths': _showHiddenMonths,
         'plannerLocked': _plannerLocked,
+        if (_calendarFilterYear != null)
+          'calendarFilterYear': _calendarFilterYear,
+        if (_calendarFilterMonth != null)
+          'calendarFilterMonth': _calendarFilterMonth,
         'hiddenMonthKeys': _hiddenMonthKeys.toList(growable: false),
       },
       'months': <Object?>[
@@ -465,7 +482,15 @@ class _UaPlannerPageState extends State<UaPlannerPage>
     if (!_restoreCompleted) {
       _changedBeforeRestoreCompleted = true;
     }
-    await UaPlannerStorage.save(_exportPlannerState());
+    final save = UaPlannerStorage.save(_exportPlannerState());
+    _pendingPlannerPersist = save;
+    try {
+      await save;
+    } finally {
+      if (identical(_pendingPlannerPersist, save)) {
+        _pendingPlannerPersist = null;
+      }
+    }
   }
 
   Map<String, Object?> _exportPlannerPayload() {
@@ -539,6 +564,9 @@ class _UaPlannerPageState extends State<UaPlannerPage>
         const <String, Object?>{};
     _showHiddenMonths = settings['showHiddenMonths'] == true;
     _plannerLocked = settings['plannerLocked'] == true;
+    _calendarFilterYear = (settings['calendarFilterYear'] as num?)?.toInt();
+    _calendarFilterMonth = (settings['calendarFilterMonth'] as num?)?.toInt();
+    _normalizeCalendarFilter();
     _hiddenMonthKeys.addAll(
       ((settings['hiddenMonthKeys'] as List?)?.cast<Object?>() ??
               const <Object?>[])
@@ -589,6 +617,9 @@ class _UaPlannerPageState extends State<UaPlannerPage>
               const <String, Object?>{};
       for (final key in target.heroicFlags.keys) {
         target.heroicFlags[key] = heroicFlags[key] == true;
+      }
+      if (target.heroicFlags.values.any((v) => v)) {
+        target.flags['heroic'] = true;
       }
 
       final scoreInputs =
@@ -788,6 +819,13 @@ class _UaPlannerPageState extends State<UaPlannerPage>
     }
   }
 
+  void _togglePlannerLock() {
+    setState(() {
+      _plannerLocked = !_plannerLocked;
+    });
+    unawaited(_persistPlannerState());
+  }
+
   Future<void> _loadUaRuleset() async {
     try {
       final catalog = await UaPlannerRulesLoader.load();
@@ -886,6 +924,73 @@ class _UaPlannerPageState extends State<UaPlannerPage>
     final first = _months.first;
     final last = _months.last;
     return '${_monthYearLabel(first)} - ${_monthYearLabel(last)}';
+  }
+
+  List<int> get _calendarFilterYears {
+    return _months.map((m) => m.year).toSet().toList(growable: false)..sort();
+  }
+
+  List<int> _calendarFilterMonthsForYear(int year) {
+    return _months
+        .where((m) => m.year == year)
+        .map((m) => m.month)
+        .toSet()
+        .toList(growable: false)
+      ..sort();
+  }
+
+  void _ensureCalendarFilterInitialized() {
+    if (_calendarFilterYear != null && _calendarFilterMonth != null) {
+      _normalizeCalendarFilter();
+      return;
+    }
+    final now = DateTime.now();
+    _UaMonth? current;
+    for (final month in _months) {
+      if (month.year == now.year && month.month == now.month) {
+        current = month;
+        break;
+      }
+    }
+    final fallback = current ?? _months.first;
+    _calendarFilterYear = fallback.year;
+    _calendarFilterMonth = fallback.month;
+  }
+
+  void _normalizeCalendarFilter() {
+    final years = _calendarFilterYears;
+    if (years.isEmpty) return;
+    if (_calendarFilterYear == null || !years.contains(_calendarFilterYear)) {
+      _calendarFilterYear = years.first;
+    }
+    final months = _calendarFilterMonthsForYear(_calendarFilterYear!);
+    if (_calendarFilterMonth == null ||
+        !months.contains(_calendarFilterMonth)) {
+      _calendarFilterMonth = months.first;
+    }
+  }
+
+  List<_UaMonth> get _calendarFilteredMonths {
+    _ensureCalendarFilterInitialized();
+    return _months
+        .where((m) =>
+            m.year == _calendarFilterYear && m.month == _calendarFilterMonth)
+        .toList(growable: false);
+  }
+
+  void _setCalendarFilter({int? year, int? month}) {
+    if (year != null) {
+      _calendarFilterYear = year;
+      final months = _calendarFilterMonthsForYear(year);
+      if (!months.contains(_calendarFilterMonth)) {
+        _calendarFilterMonth = months.first;
+      }
+    }
+    if (month != null) {
+      _calendarFilterMonth = month;
+    }
+    _normalizeCalendarFilter();
+    unawaited(_persistPlannerState());
   }
 
   String _cycleRangeLabel(_UaMonth startMonth) {
@@ -1182,6 +1287,491 @@ class _UaPlannerPageState extends State<UaPlannerPage>
     }
   }
 
+  String _eventTypeLabel(_UaEventType type) {
+    return t(type.labelKey, type.fallback);
+  }
+
+  Color _calendarMarkerColor(String id) {
+    switch (id) {
+      case 'war':
+        return const Color(0xFFDC2626);
+      case 'war_blitz':
+        return const Color(0xFFF97316);
+      case 'raid':
+        return const Color(0xFF2563EB);
+      case 'raid_blitz':
+        return const Color(0xFF0EA5E9);
+      case 'heroic':
+        return const Color(0xFF16A34A);
+      case 'blitz_arena':
+        return const Color(0xFFD946EF);
+      default:
+        return Theme.of(context).colorScheme.primary;
+    }
+  }
+
+  List<_CalendarMarker> _calendarMarkersForDay(_UaMonth month, DateTime date) {
+    final markers = <_CalendarMarker>[];
+    final key = _dateKey(date);
+
+    for (final type in _eventTypes) {
+      final dates = month.eventDatesByType[type.id] ?? const <DateTime>[];
+      if (dates.any((d) => _dateKey(d) == key)) {
+        markers.add(
+          _CalendarMarker(
+            id: type.id,
+            label: switch (type.id) {
+              'raid_blitz' => 'RB',
+              'raid' => 'R',
+              'war_blitz' => 'WB',
+              'war' => 'W',
+              _ => type.fallback,
+            },
+            tooltip: _eventTypeLabel(type),
+          ),
+        );
+      }
+    }
+
+    if (month.heroicDates.any((d) => _dateKey(d) == key)) {
+      markers.add(
+        _CalendarMarker(
+          id: 'heroic',
+          label: 'H',
+          tooltip: t('ua_planner.field.heroic', 'Heroic'),
+        ),
+      );
+    }
+
+    final blitzArenaDates =
+        month.eventDatesByType['blitz_arena'] ?? const <DateTime>[];
+    if (blitzArenaDates.any((d) => _dateKey(d) == key)) {
+      markers.add(
+        _CalendarMarker(
+          id: 'blitz_arena',
+          label: 'BA',
+          tooltip: t('ua_planner.field.blitz_arena', 'Blitz Arena'),
+        ),
+      );
+    }
+
+    return markers;
+  }
+
+  Future<void> _showCalendarView() async {
+    _ensureCalendarFilterInitialized();
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      showDragHandle: true,
+      builder: (ctx) {
+        return StatefulBuilder(
+          builder: (ctx, modalSetState) {
+            final theme = Theme.of(ctx);
+            final height = MediaQuery.sizeOf(ctx).height * 0.88;
+            final visibleMonths = _calendarFilteredMonths;
+            return SafeArea(
+              child: SizedBox(
+                height: height,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  t(
+                                    'ua_planner.calendar_view',
+                                    'Calendar View',
+                                  ),
+                                  style: theme.textTheme.titleLarge?.copyWith(
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                                ),
+                                const SizedBox(height: 2),
+                                Text(
+                                  _plannerRangeLabel(),
+                                  style: theme.textTheme.bodyMedium?.copyWith(
+                                    color: theme.colorScheme.onSurfaceVariant,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          IconButton(
+                            tooltip: MaterialLocalizations.of(ctx)
+                                .closeButtonTooltip,
+                            onPressed: () => Navigator.of(ctx).pop(),
+                            icon: const Icon(Icons.close),
+                          ),
+                        ],
+                      ),
+                    ),
+                    _calendarFilterControls(ctx, modalSetState),
+                    const SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [
+                          _calendarLegendChip(
+                            ctx,
+                            _CalendarMarker(
+                              id: 'war',
+                              label: 'W',
+                              tooltip: t('ua_planner.field.war', 'War'),
+                            ),
+                          ),
+                          _calendarLegendChip(
+                            ctx,
+                            _CalendarMarker(
+                              id: 'war_blitz',
+                              label: 'WB',
+                              tooltip: t(
+                                'ua_planner.field.war_blitz',
+                                'War Blitz',
+                              ),
+                            ),
+                          ),
+                          _calendarLegendChip(
+                            ctx,
+                            _CalendarMarker(
+                              id: 'raid',
+                              label: 'R',
+                              tooltip: t('ua_planner.field.raid', 'Raid'),
+                            ),
+                          ),
+                          _calendarLegendChip(
+                            ctx,
+                            _CalendarMarker(
+                              id: 'raid_blitz',
+                              label: 'RB',
+                              tooltip: t(
+                                'ua_planner.field.raid_blitz',
+                                'Raid Blitz',
+                              ),
+                            ),
+                          ),
+                          _calendarLegendChip(
+                            ctx,
+                            _CalendarMarker(
+                              id: 'heroic',
+                              label: 'H',
+                              tooltip: t('ua_planner.field.heroic', 'Heroic'),
+                            ),
+                          ),
+                          _calendarLegendChip(
+                            ctx,
+                            _CalendarMarker(
+                              id: 'blitz_arena',
+                              label: 'BA',
+                              tooltip: t(
+                                'ua_planner.field.blitz_arena',
+                                'Blitz Arena',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    Expanded(
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          final width = constraints.maxWidth;
+                          final crossAxisCount = width >= 980
+                              ? 3
+                              : width >= 640
+                                  ? 2
+                                  : 1;
+                          return GridView.builder(
+                            key: const ValueKey('ua_calendar_view_sheet'),
+                            padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: crossAxisCount,
+                              crossAxisSpacing: 12,
+                              mainAxisSpacing: 12,
+                              mainAxisExtent: 330,
+                            ),
+                            itemCount: visibleMonths.length,
+                            itemBuilder: (context, index) {
+                              return _calendarMonthCard(
+                                context,
+                                visibleMonths[index],
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  Widget _calendarFilterControls(
+    BuildContext context,
+    void Function(void Function()) modalSetState,
+  ) {
+    final years = _calendarFilterYears;
+    final selectedYear = _calendarFilterYear ?? years.first;
+    final months = _calendarFilterMonthsForYear(selectedYear);
+    final selectedMonth = _calendarFilterMonth ?? months.first;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Row(
+        children: [
+          Expanded(
+            child: DropdownButtonFormField<int>(
+              key: const ValueKey('ua_calendar_month_filter'),
+              initialValue: selectedMonth,
+              decoration: InputDecoration(
+                labelText: t('ua_planner.calendar.month', 'Month'),
+                isDense: true,
+              ),
+              items: [
+                for (final month in months)
+                  DropdownMenuItem<int>(
+                    value: month,
+                    child: Text(_monthLabel(month)),
+                  ),
+              ],
+              onChanged: (value) {
+                if (value == null) return;
+                _setCalendarFilter(month: value);
+                modalSetState(() {});
+              },
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: DropdownButtonFormField<int>(
+              key: const ValueKey('ua_calendar_year_filter'),
+              initialValue: selectedYear,
+              decoration: InputDecoration(
+                labelText: t('ua_planner.calendar.year', 'Year'),
+                isDense: true,
+              ),
+              items: [
+                for (final year in years)
+                  DropdownMenuItem<int>(
+                    value: year,
+                    child: Text('$year'),
+                  ),
+              ],
+              onChanged: (value) {
+                if (value == null) return;
+                _setCalendarFilter(year: value);
+                modalSetState(() {});
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _calendarLegendChip(BuildContext context, _CalendarMarker marker) {
+    final color = _calendarMarkerColor(marker.id);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: color.withValues(alpha: 0.42)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            marker.label,
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                  color: color,
+                  fontWeight: FontWeight.w900,
+                ),
+          ),
+          const SizedBox(width: 6),
+          Text(marker.tooltip),
+        ],
+      ),
+    );
+  }
+
+  Widget _calendarMonthCard(BuildContext context, _UaMonth month) {
+    final theme = Theme.of(context);
+    final firstDay = DateTime(month.year, month.month, 1);
+    final daysInMonth = DateTime(month.year, month.month + 1, 0).day;
+    final firstColumn = firstDay.weekday % 7; // Sunday = 0.
+    final cells = <int?>[
+      for (int i = 0; i < firstColumn; i++) null,
+      for (int day = 1; day <= daysInMonth; day++) day,
+    ];
+    while (cells.length < 42) {
+      cells.add(null);
+    }
+
+    return Card(
+      margin: EdgeInsets.zero,
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    _monthYearLabel(month),
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ),
+                Chip(
+                  label: Text(
+                    _elementLabel(month.elementId),
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  backgroundColor: _elementColor(context, month.elementId),
+                  visualDensity: VisualDensity.compact,
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                for (final label in const <String>[
+                  'S',
+                  'M',
+                  'T',
+                  'W',
+                  'T',
+                  'F',
+                  'S',
+                ])
+                  Expanded(
+                    child: Center(
+                      child: Text(
+                        label,
+                        style: theme.textTheme.labelMedium?.copyWith(
+                          color: theme.colorScheme.onSurfaceVariant,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+            const SizedBox(height: 4),
+            for (int row = 0; row < 6; row++)
+              Expanded(
+                child: Row(
+                  children: [
+                    for (int col = 0; col < 7; col++)
+                      Expanded(
+                        child: _calendarDayCell(
+                          context,
+                          month,
+                          cells[(row * 7) + col],
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _calendarDayCell(
+    BuildContext context,
+    _UaMonth month,
+    int? day,
+  ) {
+    final theme = Theme.of(context);
+    if (day == null) {
+      return const SizedBox.expand();
+    }
+
+    final date = DateTime(month.year, month.month, day);
+    final markers = _calendarMarkersForDay(month, date);
+
+    return Container(
+      margin: const EdgeInsets.all(1),
+      padding: const EdgeInsets.all(3),
+      decoration: BoxDecoration(
+        color: markers.isEmpty
+            ? Colors.transparent
+            : theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.55),
+        borderRadius: BorderRadius.circular(6),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '$day',
+            style: theme.textTheme.labelSmall?.copyWith(
+              fontWeight: markers.isEmpty ? FontWeight.w600 : FontWeight.w900,
+            ),
+          ),
+          if (markers.isNotEmpty) const SizedBox(height: 2),
+          if (markers.isNotEmpty)
+            Expanded(
+              child: Column(
+                children: [
+                  for (int i = 0; i < markers.length; i++) ...[
+                    if (i > 0) const SizedBox(height: 2),
+                    Expanded(
+                      child: Tooltip(
+                        message: markers[i].tooltip,
+                        child: Container(
+                          width: double.infinity,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: _calendarMarkerColor(markers[i].id),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              markers[i].label,
+                              style: theme.textTheme.labelSmall?.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w900,
+                                fontSize: 11.0,
+                                letterSpacing: 0,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
   Widget _statusRow({
     required BuildContext context,
     required String title,
@@ -1346,6 +1936,11 @@ class _UaPlannerPageState extends State<UaPlannerPage>
   void _setFieldFlag(_UaMonth month, String fieldId, bool value) {
     if (!_isMonthEditable(month)) return;
     month.flags[fieldId] = value;
+    if (fieldId == 'heroic' && !value) {
+      for (final key in month.heroicFlags.keys) {
+        month.heroicFlags[key] = false;
+      }
+    }
     _normalizeCraftFlags(month);
     unawaited(_persistPlannerState());
   }
@@ -1373,6 +1968,9 @@ class _UaPlannerPageState extends State<UaPlannerPage>
 
   void _setHeroicFlag(_UaMonth month, String dateKey, bool value) {
     if (!_isMonthEditable(month)) return;
+    if (value) {
+      month.flags['heroic'] = true;
+    }
     month.heroicFlags[dateKey] = value;
     _normalizeCraftFlags(month);
     unawaited(_persistPlannerState());
@@ -2002,57 +2600,44 @@ class _UaPlannerPageState extends State<UaPlannerPage>
       appBar: AppBar(
         title: Text(t('nav.ua_planner', 'UA Planner')),
         actions: [
-          IconButton(
-            key: const ValueKey('ua_planner_lock'),
-            tooltip: _plannerLocked
-                ? t('ua_planner.lock.tooltip.unlock', 'Unlock planner')
-                : t('ua_planner.lock.tooltip.lock', 'Lock planner'),
-            visualDensity: VisualDensity.compact,
-            icon: Icon(_plannerLocked ? Icons.lock : Icons.lock_open),
-            onPressed: () {
-              setState(() {
-                _plannerLocked = !_plannerLocked;
-              });
-              unawaited(_persistPlannerState());
-            },
-          ),
-          PopupMenuButton<String>(
-            key: const ValueKey('ua_planner_tools'),
-            tooltip: t('ua_planner.tools.tooltip', 'Planner tools'),
-            onSelected: (value) {
-              if (value == 'export') {
-                unawaited(_exportPlannerToClipboard());
-              } else if (value == 'import') {
-                unawaited(_importPlannerFromClipboard());
-              }
-            },
-            itemBuilder: (ctx) => [
-              PopupMenuItem<String>(
-                value: 'export',
-                child: Text(
-                  t(
-                    'ua_planner.tools.export',
-                    'Export planner state',
-                  ),
-                ),
-              ),
-              PopupMenuItem<String>(
-                value: 'import',
-                enabled: !_plannerLocked,
-                child: Text(
-                  t(
-                    'ua_planner.tools.import',
-                    'Import planner state',
-                  ),
-                ),
-              ),
-            ],
-          ),
           AppBarShortcutsMenuButton(
             buttonKey: const ValueKey('app-shortcuts-menu'),
             tooltip: t('shortcuts.menu.tooltip', 'Quick actions'),
             title: t('shortcuts.menu.title', 'Quick actions'),
             items: [
+              AppShortcutSheetItem(
+                icon: Icons.calendar_month_outlined,
+                label: t('ua_planner.calendar_view', 'Calendar View'),
+                tileKey: const ValueKey('ua_planner_calendar_view'),
+                onTap: () => unawaited(_showCalendarView()),
+              ),
+              AppShortcutSheetItem(
+                icon: _plannerLocked ? Icons.lock : Icons.lock_open,
+                label: _plannerLocked
+                    ? t('ua_planner.lock.tooltip.unlock', 'Unlock planner')
+                    : t('ua_planner.lock.tooltip.lock', 'Lock planner'),
+                tileKey: const ValueKey('ua_planner_lock'),
+                onTap: _togglePlannerLock,
+              ),
+              AppShortcutSheetItem(
+                icon: Icons.ios_share_rounded,
+                label: t(
+                  'ua_planner.tools.export',
+                  'Export planner state',
+                ),
+                tileKey: const ValueKey('ua_planner_export_state'),
+                onTap: () => unawaited(_exportPlannerToClipboard()),
+              ),
+              AppShortcutSheetItem(
+                icon: Icons.file_download_outlined,
+                label: t(
+                  'ua_planner.tools.import',
+                  'Import planner state',
+                ),
+                enabled: !_plannerLocked,
+                tileKey: const ValueKey('ua_planner_import_state'),
+                onTap: () => unawaited(_importPlannerFromClipboard()),
+              ),
               AppShortcutSheetItem(
                 icon: widget.isPremium ? Icons.star : Icons.star_border,
                 iconColor: widget.isPremium ? theme.colorScheme.primary : null,
@@ -2929,6 +3514,18 @@ class _UaEventType {
     required this.labelKey,
     required this.fallback,
     required this.includeIndividualPlacement,
+  });
+}
+
+class _CalendarMarker {
+  final String id;
+  final String label;
+  final String tooltip;
+
+  const _CalendarMarker({
+    required this.id,
+    required this.label,
+    required this.tooltip,
   });
 }
 

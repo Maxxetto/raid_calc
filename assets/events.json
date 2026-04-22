@@ -420,6 +420,128 @@
           "buyLimit": 1
         }
       ]
+    },
+    {
+      "id": "ultimate_week_2026_04",
+      "name": "Ultimate Week 04/2026",
+      "startDate": "2026-04-20",
+      "endDate": "2026-04-30",
+      "hideAfterDays": 7,
+      "materials": [
+        {
+          "id": "tertius_core",
+          "label": "[S117] Tertius Core"
+        }
+      ],
+      "rows": [
+        {
+          "activity": "Rare Spawn",
+          "startDate": "2026-04-20",
+          "endDate": "2026-04-30",
+          "values": {
+            "tertius_core": "INF"
+          }
+        },
+        {
+          "activity": "Blitz Guild War",
+          "startDate": "2026-04-20",
+          "endDate": "2026-04-21",
+          "values": {
+            "tertius_core": 900
+          }
+        },
+        {
+          "activity": "Hunting Grounds",
+          "startDate": "2026-04-22",
+          "endDate": "2026-04-24",
+          "values": {
+            "tertius_core": "TBD"
+          }
+        },
+        {
+          "activity": "Guild War",
+          "startDate": "2026-04-24",
+          "endDate": "2026-04-27",
+          "values": {
+            "tertius_core": "TBD"
+          }
+        },
+        {
+          "activity": "Blitz Raid Boss",
+          "startDate": "2026-04-27",
+          "endDate": "2026-04-28",
+          "values": {
+            "tertius_core": "TBD"
+          }
+        }
+      ],
+      "specialEventShop": [
+        {
+          "name": "Ultimate Tertius",
+          "cost": { "amount": 1000, "currencyId": "tertius_core", "currencyLabel": "Tertius Core" },
+          "buyLimit": 1
+        },
+        {
+          "name": "Tertius Ring",
+          "cost": { "amount": 1000, "currencyId": "tertius_core", "currencyLabel": "Tertius Core" },
+          "buyLimit": 1
+        },
+        {
+          "name": "Tertius Amulet",
+          "cost": { "amount": 1000, "currencyId": "tertius_core", "currencyLabel": "Tertius Core" },
+          "buyLimit": 1
+        },
+        {
+          "name": "Ultimate Secundus",
+          "cost": { "amount": 500, "currencyId": "tertius_core", "currencyLabel": "Tertius Core" },
+          "buyLimit": 1
+        },
+        {
+          "name": "Secundus Ring",
+          "cost": { "amount": 500, "currencyId": "tertius_core", "currencyLabel": "Tertius Core" },
+          "buyLimit": 1
+        },
+        {
+          "name": "Secundus Amulet",
+          "cost": { "amount": 500, "currencyId": "tertius_core", "currencyLabel": "Tertius Core" },
+          "buyLimit": 1
+        },
+        {
+          "name": "[S67SF] On (F/S)",
+          "cost": { "amount": 850, "currencyId": "tertius_core", "currencyLabel": "Tertius Core" },
+          "buyLimit": 1
+        },
+        {
+          "name": "[S67SF] Mau (F/F)",
+          "cost": { "amount": 850, "currencyId": "tertius_core", "currencyLabel": "Tertius Core" },
+          "buyLimit": 1
+        },
+        {
+          "name": "Fusion Stone x5",
+          "cost": { "amount": 1, "currencyId": "tertius_core", "currencyLabel": "Tertius Core" },
+          "buyLimit": "INF"
+        },
+        {
+          "name": "Fire Fusion Boost Armor IV (5*)",
+          "cost": { "amount": 250, "currencyId": "tertius_core", "currencyLabel": "Tertius Core" },
+          "buyLimit": 5
+        },
+        {
+          "name": "Fire Fusion Boost Ring IV (5*)",
+          "cost": { "amount": 250, "currencyId": "tertius_core", "currencyLabel": "Tertius Core" },
+          "buyLimit": 5
+        },
+        {
+          "name": "Fire Fusion Boost Amulet IV (5*)",
+          "cost": { "amount": 250, "currencyId": "tertius_core", "currencyLabel": "Tertius Core" },
+          "buyLimit": 5
+        },
+        {
+          "name": "Fire Fusion Pet",
+          "cost": { "amount": 350, "currencyId": "tertius_core", "currencyLabel": "Tertius Core" },
+          "buyLimit": 5
+        }
+      ]
     }
   ]
 }

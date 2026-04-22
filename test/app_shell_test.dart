@@ -47,25 +47,16 @@ void main() {
 
     expect(find.byType(NavigationBar), findsOneWidget);
 
-    final warIt = find.text('Guerra');
-    final warEn = find.text('War');
-    final warLabel = warIt.evaluate().isNotEmpty ? warIt : warEn;
+    final warLabel = find.text('War');
     expect(warLabel, findsOneWidget);
 
-    final friendIt = find.text('Amici');
-    final friendEn = find.text('Friends');
-    final friendLabel = friendIt.evaluate().isNotEmpty ? friendIt : friendEn;
+    final friendLabel = find.text('Friends');
     expect(friendLabel, findsOneWidget);
 
     await tester.tap(warLabel);
     await tester.pumpAndSettle();
 
-    final titleIt = find.text('Guerra');
-    final titleEn = find.text('War');
-    expect(
-      titleIt.evaluate().isNotEmpty || titleEn.evaluate().isNotEmpty,
-      isTrue,
-    );
+    expect(find.text('War'), findsWidgets);
   });
 
   testWidgets('Top shortcuts do not force navigation back to Raid',
@@ -78,9 +69,7 @@ void main() {
 
     await tester.pumpAndSettle(const Duration(seconds: 2));
 
-    final warIt = find.text('Guerra');
-    final warEn = find.text('War');
-    final warLabel = warIt.evaluate().isNotEmpty ? warIt : warEn;
+    final warLabel = find.text('War');
     await tester.tap(warLabel);
     await tester.pumpAndSettle();
 
@@ -99,11 +88,6 @@ void main() {
     await tester.tap(english);
     await tester.pumpAndSettle();
 
-    final titleIt = find.text('Guerra');
-    final titleEn = find.text('War');
-    expect(
-      titleIt.evaluate().isNotEmpty || titleEn.evaluate().isNotEmpty,
-      isTrue,
-    );
+    expect(find.text('War'), findsWidgets);
   });
 }

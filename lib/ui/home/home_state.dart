@@ -32,7 +32,7 @@ class HomeState extends ChangeNotifier {
   static const int maxMilestoneTargetPoints = 200000000000;
 
   // i18n
-  String lang = 'it';
+  String lang = 'en';
   I18n? i18n;
 
   // Theme
@@ -340,17 +340,15 @@ class HomeState extends ChangeNotifier {
   }
 
   void _bindTextControllers() {
-    milestoneTargetPoints =
-        parsePositiveInt(
-          milestoneTargetCtl.text,
-          fallback: defaultMilestoneTargetPoints,
-        );
+    milestoneTargetPoints = parsePositiveInt(
+      milestoneTargetCtl.text,
+      fallback: defaultMilestoneTargetPoints,
+    );
     milestoneTargetCtl.addListener(() {
-      milestoneTargetPoints =
-          parsePositiveInt(
-            milestoneTargetCtl.text,
-            fallback: defaultMilestoneTargetPoints,
-          );
+      milestoneTargetPoints = parsePositiveInt(
+        milestoneTargetCtl.text,
+        fallback: defaultMilestoneTargetPoints,
+      );
     });
 
     startEnergies = parseNonNegativeInt(startEnergiesCtl.text, fallback: 0);

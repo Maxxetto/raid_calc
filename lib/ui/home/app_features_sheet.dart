@@ -317,15 +317,17 @@ const List<_AppFeatureHelpEntryDef> _appFeatureEntryDefs =
     keyStem: 'app_features.ua_planner',
     titleFallback: 'UA Planner',
     summaryFallback:
-        'Track monthly UA progress, event rewards, placements and bonus conditions with export and import support.',
+        'Track monthly UA progress, event rewards, placements, bonus conditions and event cadence with Calendar View, export and import support.',
     quickStepFallbacks: <String>[
       'Open UA Planner.',
       'Enable the events you are playing that month.',
       'Enter score and placement values to see Elite and Elite+ progress.',
+      'Open Calendar View from the top quick actions to review War, Raid, Heroic and Blitz Arena dates.',
     ],
     bestForFallbacks: <String>[
       'monthly planning',
       'piece forecasting',
+      'calendar-based event tracking',
     ],
   ),
   _AppFeatureHelpEntryDef(
@@ -333,15 +335,17 @@ const List<_AppFeatureHelpEntryDef> _appFeatureEntryDefs =
     keyStem: 'app_features.news_shop',
     titleFallback: 'News and Event Shop',
     summaryFallback:
-        'Follow event schedules, track completed rows and calculate required shop currencies from your selected items.',
+        'Follow event schedules, track completed rows and calculate required shop currencies from event-specific shop data and your selected items.',
     quickStepFallbacks: <String>[
       'Open the News tab.',
       'Switch between Active, Ended and Upcoming events.',
-      'Use the event shop planner to total the currencies you still need.',
+      'Open an event with shop data, select shop items and quantities, then review the required currencies.',
+      'Enter current inventory when needed so the planner can show what remains after owned resources.',
     ],
     bestForFallbacks: <String>[
       'event tracking',
       'shop planning',
+      'currency budgeting',
     ],
   ),
 ];

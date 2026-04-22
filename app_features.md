@@ -264,30 +264,41 @@ Note:
 ## UA Planner
 
 Summary:
-Track monthly UA progress, event rewards, placements and bonus conditions with export and import support.
+Track monthly UA progress, event rewards, placements, bonus conditions and the full event cadence with Calendar View, export and import support.
 
 Quick use:
 1. Open `UA Planner`.
 2. Enable the events you are playing that month.
 3. Enter score and placement values to see Elite and Elite+ progress.
+4. Open `Calendar View` from the top quick actions to review War, War Blitz, Raid, Raid Blitz, Heroic and Blitz Arena dates across the planner range.
 
 Best for:
 - monthly planning
 - piece forecasting
+- calendar-based event tracking
+
+Note:
+- The top quick actions also include planner lock, export and import.
+- Heroic date selections are saved per date, so individual Heroic runs remain restorable across app restarts.
 
 ## News and Event Shop
 
 Summary:
-Follow event schedules, track completed rows and calculate required shop currencies from your selected items.
+Follow event schedules, track completed rows and calculate required shop currencies from event-specific shop data and your selected items.
 
 Quick use:
 1. Open the `News` tab.
 2. Switch between `Active`, `Ended` and `Upcoming`.
-3. Use the event shop planner to total the currencies you still need.
+3. Open an event with shop data, select the shop items and quantities you want, then review the required currencies.
+4. Enter current inventory when needed so the planner can show what remains after owned resources.
 
 Best for:
 - event tracking
 - shop planning
+- currency budgeting
+
+Note:
+- Event shop planners can use the active event's own item limits, currencies and tracked table rewards.
 
 ## Friend Codes
 

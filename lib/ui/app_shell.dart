@@ -56,7 +56,7 @@ class _AppShellState extends State<AppShell> {
   Future<void> _bootstrapShell() async {
     final last = await LastSessionStorage.load();
     final lang = (last?.homeState['lang'] as String?)?.trim();
-    final resolved = (lang == null || lang.isEmpty) ? 'it' : lang;
+    final resolved = (lang == null || lang.isEmpty) ? 'en' : lang;
     final i18n = await I18n.fromAssets(resolved);
     final stored = (last?.homeState['themeId'] as String?)?.trim();
     final amoled = (last?.homeState['amoledMode'] as bool?) ?? false;

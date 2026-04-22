@@ -1,6 +1,6 @@
 name: raid_calc
 description: Raid Calculator for KnD
-version: 1.4.13+125
+version: 1.5.1+129
 
 environment:
   sdk: ">=3.3.0 <4.0.0"
