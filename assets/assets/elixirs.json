@@ -1,0 +1,298 @@
+﻿{
+    "elixirs":  [
+                    {
+                        "name":  "Common",
+                        "quantity":  0,
+                        "gamemode":  "Raid",
+                        "score_multiplier":  0.05,
+                        "duration_minutes":  5
+                    },
+                    {
+                        "name":  "Common II",
+                        "quantity":  0,
+                        "gamemode":  "Raid",
+                        "score_multiplier":  0.1,
+                        "duration_minutes":  5
+                    },
+                    {
+                        "name":  "Uncommon",
+                        "quantity":  0,
+                        "gamemode":  "Raid",
+                        "score_multiplier":  0.1,
+                        "duration_minutes":  5
+                    },
+                    {
+                        "name":  "Uncommon II",
+                        "quantity":  0,
+                        "gamemode":  "Raid",
+                        "score_multiplier":  0.15,
+                        "duration_minutes":  5
+                    },
+                    {
+                        "name":  "Rare",
+                        "quantity":  0,
+                        "gamemode":  "Raid",
+                        "score_multiplier":  0.15,
+                        "duration_minutes":  10
+                    },
+                    {
+                        "name":  "Rare II",
+                        "quantity":  0,
+                        "gamemode":  "Raid",
+                        "score_multiplier":  0.25,
+                        "duration_minutes":  10
+                    },
+                    {
+                        "name":  "Legendary",
+                        "quantity":  0,
+                        "gamemode":  "Raid",
+                        "score_multiplier":  0.25,
+                        "duration_minutes":  15
+                    },
+                    {
+                        "name":  "Legendary II",
+                        "quantity":  0,
+                        "gamemode":  "Raid",
+                        "score_multiplier":  0.35,
+                        "duration_minutes":  15
+                    },
+                    {
+                        "name":  "Legendary II+",
+                        "quantity":  0,
+                        "gamemode":  "Raid",
+                        "score_multiplier":  0.0,
+                        "duration_minutes":  0
+                    },
+                    {
+                        "name":  "Jolly Epic",
+                        "quantity":  0,
+                        "gamemode":  "Raid",
+                        "score_multiplier":  0.34,
+                        "duration_minutes":  12
+                    },
+                    {
+                        "name":  "Epic II",
+                        "quantity":  0,
+                        "gamemode":  "Raid",
+                        "score_multiplier":  0.45,
+                        "duration_minutes":  12
+                    },
+                    {
+                        "name":  "Knightmare II",
+                        "quantity":  0,
+                        "gamemode":  "Raid",
+                        "score_multiplier":  0.0,
+                        "duration_minutes":  0
+                    },
+                    {
+                        "name":  "Lavatide",
+                        "quantity":  0,
+                        "gamemode":  "Raid",
+                        "score_multiplier":  0.53,
+                        "duration_minutes":  10
+                    },
+                    {
+                        "name":  "Wraith",
+                        "quantity":  0,
+                        "gamemode":  "Raid",
+                        "score_multiplier":  0.56,
+                        "duration_minutes":  9
+                    },
+                    {
+                        "name":  "Common",
+                        "quantity":  0,
+                        "gamemode":  "War",
+                        "score_multiplier":  0.1,
+                        "duration_minutes":  10
+                    },
+                    {
+                        "name":  "Common II",
+                        "quantity":  0,
+                        "gamemode":  "War",
+                        "score_multiplier":  0.25,
+                        "duration_minutes":  15
+                    },
+                    {
+                        "name":  "Uncommon",
+                        "quantity":  0,
+                        "gamemode":  "War",
+                        "score_multiplier":  0.15,
+                        "duration_minutes":  20
+                    },
+                    {
+                        "name":  "Uncommon II",
+                        "quantity":  0,
+                        "gamemode":  "War",
+                        "score_multiplier":  0.3,
+                        "duration_minutes":  20
+                    },
+                    {
+                        "name":  "Rare",
+                        "quantity":  0,
+                        "gamemode":  "War",
+                        "score_multiplier":  0.2,
+                        "duration_minutes":  25
+                    },
+                    {
+                        "name":  "Rare II",
+                        "quantity":  0,
+                        "gamemode":  "War",
+                        "score_multiplier":  0.35,
+                        "duration_minutes":  25
+                    },
+                    {
+                        "name":  "Legendary",
+                        "quantity":  0,
+                        "gamemode":  "War",
+                        "score_multiplier":  0.25,
+                        "duration_minutes":  30
+                    },
+                    {
+                        "name":  "Legendary II",
+                        "quantity":  0,
+                        "gamemode":  "War",
+                        "score_multiplier":  0.4,
+                        "duration_minutes":  30
+                    },
+                    {
+                        "name":  "Legendary II+",
+                        "quantity":  0,
+                        "gamemode":  "War",
+                        "score_multiplier":  0.65,
+                        "duration_minutes":  30
+                    },
+                    {
+                        "name":  "Jolly Epic",
+                        "quantity":  0,
+                        "gamemode":  "War",
+                        "score_multiplier":  0.0,
+                        "duration_minutes":  0
+                    },
+                    {
+                        "name":  "Epic II",
+                        "quantity":  0,
+                        "gamemode":  "War",
+                        "score_multiplier":  0.5,
+                        "duration_minutes":  30
+                    },
+                    {
+                        "name":  "Knightmare II",
+                        "quantity":  0,
+                        "gamemode":  "War",
+                        "score_multiplier":  0.0,
+                        "duration_minutes":  0
+                    },
+                    {
+                        "name":  "Lavatide",
+                        "quantity":  0,
+                        "gamemode":  "War",
+                        "score_multiplier":  0.63,
+                        "duration_minutes":  25
+                    },
+                    {
+                        "name":  "Wraith",
+                        "quantity":  0,
+                        "gamemode":  "War",
+                        "score_multiplier":  0.66,
+                        "duration_minutes":  24
+                    },
+                    {
+                        "name":  "Common",
+                        "quantity":  0,
+                        "gamemode":  "Arena",
+                        "score_multiplier":  0.05,
+                        "duration_minutes":  5
+                    },
+                    {
+                        "name":  "Common II",
+                        "quantity":  0,
+                        "gamemode":  "Arena",
+                        "score_multiplier":  0.15,
+                        "duration_minutes":  5
+                    },
+                    {
+                        "name":  "Uncommon",
+                        "quantity":  0,
+                        "gamemode":  "Arena",
+                        "score_multiplier":  0.1,
+                        "duration_minutes":  5
+                    },
+                    {
+                        "name":  "Uncommon II",
+                        "quantity":  0,
+                        "gamemode":  "Arena",
+                        "score_multiplier":  0.2,
+                        "duration_minutes":  5
+                    },
+                    {
+                        "name":  "Rare",
+                        "quantity":  0,
+                        "gamemode":  "Arena",
+                        "score_multiplier":  0.15,
+                        "duration_minutes":  10
+                    },
+                    {
+                        "name":  "Rare II",
+                        "quantity":  0,
+                        "gamemode":  "Arena",
+                        "score_multiplier":  0.25,
+                        "duration_minutes":  10
+                    },
+                    {
+                        "name":  "Legendary",
+                        "quantity":  0,
+                        "gamemode":  "Arena",
+                        "score_multiplier":  0.25,
+                        "duration_minutes":  15
+                    },
+                    {
+                        "name":  "Legendary II",
+                        "quantity":  0,
+                        "gamemode":  "Arena",
+                        "score_multiplier":  0.32,
+                        "duration_minutes":  15
+                    },
+                    {
+                        "name":  "Legendary II+",
+                        "quantity":  0,
+                        "gamemode":  "Arena",
+                        "score_multiplier":  0.0,
+                        "duration_minutes":  0
+                    },
+                    {
+                        "name":  "Jolly Epic",
+                        "quantity":  0,
+                        "gamemode":  "Arena",
+                        "score_multiplier":  0.0,
+                        "duration_minutes":  0
+                    },
+                    {
+                        "name":  "Epic II",
+                        "quantity":  0,
+                        "gamemode":  "Arena",
+                        "score_multiplier":  0.4,
+                        "duration_minutes":  15
+                    },
+                    {
+                        "name":  "Knightmare II",
+                        "quantity":  0,
+                        "gamemode":  "Arena",
+                        "score_multiplier":  0.0,
+                        "duration_minutes":  0
+                    },
+                    {
+                        "name":  "Lavatide",
+                        "quantity":  0,
+                        "gamemode":  "Arena",
+                        "score_multiplier":  0.5,
+                        "duration_minutes":  12
+                    },
+                    {
+                        "name":  "Wraith",
+                        "quantity":  0,
+                        "gamemode":  "Arena",
+                        "score_multiplier":  0.55,
+                        "duration_minutes":  10
+                    }
+                ]
+}

@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-13T08:17:57.516027Z",
+  "items": [
+    {
+      "id": "web-portal-v1",
+      "lang": "en",
+      "section": "changelog",
+      "title": "Web portal V1",
+      "summary": "Initial portal structure for news, guides, changelog, FAQ and feature docs.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "changelog",
+        "portal"
+      ],
+      "pinned": false,
+      "translationOf": "web-portal-v1",
+      "url": "/raid_calc/portal/en/changelog/web-portal-v1/"
+    },
+    {
+      "id": "web-app-faq",
+      "lang": "en",
+      "section": "faq",
+      "title": "Web app FAQ",
+      "summary": "Quick answers about browser storage, Premium tools and supported sections.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "faq",
+        "web"
+      ],
+      "pinned": false,
+      "translationOf": "web-app-faq",
+      "url": "/raid_calc/portal/en/faq/web-app-faq/"
+    },
+    {
+      "id": "web-suite-overview",
+      "lang": "en",
+      "section": "features",
+      "title": "Web suite overview",
+      "summary": "Overview of the free tools currently available in the browser version.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "features",
+        "web"
+      ],
+      "pinned": false,
+      "translationOf": "web-suite-overview",
+      "url": "/raid_calc/portal/en/features/web-suite-overview/"
+    },
+    {
+      "id": "getting-started-web",
+      "lang": "en",
+      "section": "guides",
+      "title": "Getting started on web",
+      "summary": "How to open the web app, keep data local and share setups between devices.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "guide",
+        "web"
+      ],
+      "pinned": false,
+      "translationOf": "getting-started-web",
+      "url": "/raid_calc/portal/en/guides/getting-started-web/"
+    },
+    {
+      "id": "web-beta-launch",
+      "lang": "en",
+      "section": "news",
+      "title": "Web app beta is live",
+      "summary": "The Raid Calculator web app is now available as a browser beta with Raid, War, UA, Guild, Friends and News tools.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "web",
+        "beta",
+        "release"
+      ],
+      "pinned": true,
+      "translationOf": "web-beta-launch",
+      "url": "/raid_calc/portal/en/news/web-beta-launch/"
+    },
+    {
+      "id": "web-portal-v1",
+      "lang": "it",
+      "section": "changelog",
+      "title": "Portale web V1",
+      "summary": "Prima struttura portale per news, guide, changelog, FAQ e documenti feature.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "changelog",
+        "portal"
+      ],
+      "pinned": false,
+      "translationOf": "web-portal-v1",
+      "url": "/raid_calc/portal/it/changelog/web-portal-v1/"
+    },
+    {
+      "id": "web-app-faq",
+      "lang": "it",
+      "section": "faq",
+      "title": "FAQ web app",
+      "summary": "Risposte rapide su salvataggio browser, strumenti Premium e sezioni supportate.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "faq",
+        "web"
+      ],
+      "pinned": false,
+      "translationOf": "web-app-faq",
+      "url": "/raid_calc/portal/it/faq/web-app-faq/"
+    },
+    {
+      "id": "web-suite-overview",
+      "lang": "it",
+      "section": "features",
+      "title": "Panoramica web suite",
+      "summary": "Panoramica degli strumenti free disponibili nella versione browser.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "features",
+        "web"
+      ],
+      "pinned": false,
+      "translationOf": "web-suite-overview",
+      "url": "/raid_calc/portal/it/features/web-suite-overview/"
+    },
+    {
+      "id": "getting-started-web",
+      "lang": "it",
+      "section": "guides",
+      "title": "Iniziare con la web app",
+      "summary": "Come aprire la web app, mantenere i dati locali e condividere setup tra dispositivi.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "guide",
+        "web"
+      ],
+      "pinned": false,
+      "translationOf": "getting-started-web",
+      "url": "/raid_calc/portal/it/guides/getting-started-web/"
+    },
+    {
+      "id": "web-beta-launch",
+      "lang": "it",
+      "section": "news",
+      "title": "La beta web e online",
+      "summary": "La web app di Raid Calculator e ora disponibile come beta browser con strumenti Raid, War, UA, Guild, Friends e News.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "web",
+        "beta",
+        "release"
+      ],
+      "pinned": true,
+      "translationOf": "web-beta-launch",
+      "url": "/raid_calc/portal/it/news/web-beta-launch/"
+    }
+  ]
+}

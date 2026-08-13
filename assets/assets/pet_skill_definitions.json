@@ -1,0 +1,193 @@
+{
+    "schemaVersion":  1,
+    "definitions":  [
+                        {
+                            "name":  "Elemental Weakness",
+                            "descriptionKey":  "pet_skill.description.elemental_weakness",
+                            "valueOrder":  [
+                                               "enemyAttackReductionPercent",
+                                               "turns"
+                                           ],
+                            "valueLabels":  {
+                                                "enemyAttackReductionPercent":  "Enemy ATK -",
+                                                "turns":  "Turns"
+                                            }
+                        },
+                        {
+                            "name":  "Shadow Slash",
+                            "descriptionKey":  "pet_skill.description.shadow_slash",
+                            "valueOrder":  [
+                                               "petAttack"
+                                           ],
+                            "valueLabels":  {
+                                                "petAttack":  "Pet ATK"
+                                            }
+                        },
+                        {
+                            "name":  "Special Regeneration",
+                            "descriptionKey":  "pet_skill.description.special_regeneration",
+                            "valueOrder":  [
+                                               "meterChargePercent"
+                                           ],
+                            "valueLabels":  {
+                                                "meterChargePercent":  "Charge rate +"
+                                            }
+                        },
+                        {
+                            "name":  "Special Regeneration (inf)",
+                            "descriptionKey":  "pet_skill.description.special_regeneration_inf",
+                            "valueOrder":  [
+                                               "meterChargePercent"
+                                           ],
+                            "valueLabels":  {
+                                                "meterChargePercent":  "Charge rate +"
+                                            }
+                        },
+                        {
+                            "name":  "Special Regen",
+                            "descriptionKey":  "pet_skill.description.special_regeneration",
+                            "valueOrder":  [
+                                               "meterChargePercent"
+                                           ],
+                            "valueLabels":  {
+                                                "meterChargePercent":  "Charge rate +"
+                                            }
+                        },
+                        {
+                            "name":  "Revenge Strike",
+                            "descriptionKey":  "pet_skill.description.revenge_strike",
+                            "valueOrder":  [
+                                               "petAttackCap"
+                                           ],
+                            "valueLabels":  {
+                                                "petAttackCap":  "Pet ATK cap"
+                                            }
+                        },
+                        {
+                            "name":  "Durable Rock Shield",
+                            "descriptionKey":  "pet_skill.description.durable_rock_shield",
+                            "valueOrder":  [
+                                               "defenseBoostPercent",
+                                               "turns"
+                                           ],
+                            "valueLabels":  {
+                                                "defenseBoostPercent":  "DEF +",
+                                                "turns":  "Turns"
+                                            }
+                        },
+                        {
+                            "name":  "Soul Burn",
+                            "descriptionKey":  "pet_skill.description.soul_burn",
+                            "valueOrder":  [
+                                               "flatDamage",
+                                               "damageOverTime",
+                                               "turns"
+                                           ],
+                            "valueLabels":  {
+                                                "flatDamage":  "Damage",
+                                                "damageOverTime":  "Curse damage",
+                                                "turns":  "Turns"
+                                            }
+                        },
+                        {
+                            "name":  "Death Blow",
+                            "descriptionKey":  "pet_skill.description.death_blow"
+                        },
+                        {
+                            "name":  "Burning Barrage",
+                            "valueOrder":  [
+                                               "petAttack",
+                                               "turns"
+                                           ],
+                            "valueLabels":  {
+                                                "petAttack":  "Pet ATK",
+                                                "turns":  "Turns"
+                                            }
+                        },
+                        {
+                            "name":  "Vampiric Attack",
+                            "descriptionKey":  "pet_skill.description.vampiric_attack",
+                            "valueOrder":  [
+                                               "flatDamage",
+                                               "stealPercent"
+                                           ],
+                            "valueLabels":  {
+                                                "flatDamage":  "Damage",
+                                                "stealPercent":  "Steal"
+                                            }
+                        },
+                        {
+                            "name":  "Leech Strike",
+                            "descriptionKey":  "pet_skill.description.vampiric_attack",
+                            "valueOrder":  [
+                                               "flatDamage",
+                                               "stealPercent"
+                                           ],
+                            "valueLabels":  {
+                                                "flatDamage":  "Damage",
+                                                "stealPercent":  "Steal"
+                                            }
+                        },
+                        {
+                            "name":  "Ready to Crit",
+                            "descriptionKey":  "pet_skill.description.ready_to_crit",
+                            "valueOrder":  [
+                                               "critChancePercent",
+                                               "turns"
+                                           ],
+                            "valueLabels":  {
+                                                "critChancePercent":  "Crit chance +",
+                                                "turns":  "Turns"
+                                            }
+                        },
+                        {
+                            "name":  "Cyclone Air Boost",
+                            "descriptionKey":  "pet_skill.description.cyclone_air_boost",
+                            "valueOrder":  [
+                                               "attackBoostPercent",
+                                               "turns"
+                                           ],
+                            "valueLabels":  {
+                                                "attackBoostPercent":  "Knight ATK +",
+                                                "turns":  "Turns"
+                                            }
+                        },
+                        {
+                            "name":  "Cyclone Earth Boost",
+                            "descriptionKey":  "pet_skill.description.cyclone_earth_boost",
+                            "valueOrder":  [
+                                               "attackBoostPercent",
+                                               "turns"
+                                           ],
+                            "valueLabels":  {
+                                                "attackBoostPercent":  "Knight ATK +",
+                                                "turns":  "Turns"
+                                            }
+                        },
+                        {
+                            "name":  "Shatter Shield",
+                            "descriptionKey":  "pet_skill.description.shatter_shield",
+                            "valueOrder":  [
+                                               "baseShieldHp",
+                                               "bonusShieldHp"
+                                           ],
+                            "valueLabels":  {
+                                                "baseShieldHp":  "Base shield",
+                                                "bonusShieldHp":  "Bonus shield"
+                                            }
+                        },
+                        {
+                            "name":  "Fortune\u0027s Call",
+                            "descriptionKey":  "pet_skill.description.fortunes_call"
+                        },
+                        {
+                            "name":  "Thorn Shield",
+                            "valueOrder":  [
+                                               "turns"
+                                           ],
+                            "valueLabels":  {
+                                                "turns":  "Turns"
+                                            }
+                        }
+                    ]
+}

@@ -1,0 +1,712 @@
+{
+  "enabled": true,
+  "ticksPerState": 165,
+  "startTicks": 165,
+  "petCritPlusOneProb": 0.1,
+  "bossNormal": {
+    "2": 1.0
+  },
+  "bossSpecial": {
+    "4": 1.0
+  },
+  "bossMiss": {
+    "1": 1.0
+  },
+  "stun": {
+    "1": 1.0
+  },
+  "petKnightBase": {
+    "12": 1.0
+  },
+  "modes": {
+    "normal": true,
+    "specialRegen": true,
+    "specialRegenPlusEw": true,
+    "specialRegenEw": true,
+    "shatterShield": true,
+    "cycloneBoost": true,
+    "durableRockShield": true,
+    "epic": true
+  },
+  "requireFirstKnightMatchForSrModes": true,
+  "scopedRules": {
+    "raid": {
+      "normal": {
+        "enabled": true,
+        "ticksPerState": 165,
+        "startTicks": 165,
+        "petCritPlusOneProb": 0.1,
+        "bossNormal": {
+          "2": 1.0
+        },
+        "bossSpecial": {
+          "4": 1.0
+        },
+        "bossMiss": {
+          "1": 1.0
+        },
+        "stun": {
+          "1": 1.0
+        },
+        "petKnightBase": {
+          "12": 1.0
+        },
+        "modes": {
+          "normal": true,
+          "specialRegen": true,
+          "specialRegenPlusEw": true,
+          "specialRegenEw": true,
+          "shatterShield": true,
+          "cycloneBoost": true,
+          "durableRockShield": true,
+          "epic": true
+        },
+        "requireFirstKnightMatchForSrModes": true
+      },
+      "specialRegen": {
+        "enabled": true,
+        "ticksPerState": 165,
+        "startTicks": 165,
+        "petCritPlusOneProb": 0.1,
+        "bossNormal": {
+          "2": 1.0
+        },
+        "bossSpecial": {
+          "4": 1.0
+        },
+        "bossMiss": {
+          "1": 1.0
+        },
+        "stun": {
+          "1": 1.0
+        },
+        "petKnightBase": {
+          "12": 1.0
+        },
+        "modes": {
+          "normal": true,
+          "specialRegen": true,
+          "specialRegenPlusEw": true,
+          "specialRegenEw": true,
+          "shatterShield": true,
+          "cycloneBoost": true,
+          "durableRockShield": true,
+          "epic": true
+        },
+        "requireFirstKnightMatchForSrModes": true
+      },
+      "specialRegenPlusEw": {
+        "enabled": true,
+        "ticksPerState": 165,
+        "startTicks": 165,
+        "petCritPlusOneProb": 0.1,
+        "bossNormal": {
+          "2": 1.0
+        },
+        "bossSpecial": {
+          "4": 1.0
+        },
+        "bossMiss": {
+          "1": 1.0
+        },
+        "stun": {
+          "1": 1.0
+        },
+        "petKnightBase": {
+          "12": 1.0
+        },
+        "modes": {
+          "normal": true,
+          "specialRegen": true,
+          "specialRegenPlusEw": true,
+          "specialRegenEw": true,
+          "shatterShield": true,
+          "cycloneBoost": true,
+          "durableRockShield": true,
+          "epic": true
+        },
+        "requireFirstKnightMatchForSrModes": true
+      },
+      "specialRegenEw": {
+        "enabled": true,
+        "ticksPerState": 165,
+        "startTicks": 165,
+        "petCritPlusOneProb": 0.1,
+        "bossNormal": {
+          "2": 1.0
+        },
+        "bossSpecial": {
+          "4": 1.0
+        },
+        "bossMiss": {
+          "1": 1.0
+        },
+        "stun": {
+          "1": 1.0
+        },
+        "petKnightBase": {
+          "12": 1.0
+        },
+        "modes": {
+          "normal": true,
+          "specialRegen": true,
+          "specialRegenPlusEw": true,
+          "specialRegenEw": true,
+          "shatterShield": true,
+          "cycloneBoost": true,
+          "durableRockShield": true,
+          "epic": true
+        },
+        "requireFirstKnightMatchForSrModes": true
+      },
+      "shatterShield": {
+        "enabled": true,
+        "ticksPerState": 165,
+        "startTicks": 165,
+        "petCritPlusOneProb": 0.1,
+        "bossNormal": {
+          "2": 1.0
+        },
+        "bossSpecial": {
+          "4": 1.0
+        },
+        "bossMiss": {
+          "1": 1.0
+        },
+        "stun": {
+          "1": 1.0
+        },
+        "petKnightBase": {
+          "12": 1.0
+        },
+        "modes": {
+          "normal": true,
+          "specialRegen": true,
+          "specialRegenPlusEw": true,
+          "specialRegenEw": true,
+          "shatterShield": true,
+          "cycloneBoost": true,
+          "durableRockShield": true,
+          "epic": true
+        },
+        "requireFirstKnightMatchForSrModes": true
+      },
+      "cycloneBoost": {
+        "enabled": true,
+        "ticksPerState": 165,
+        "startTicks": 165,
+        "petCritPlusOneProb": 0.1,
+        "bossNormal": {
+          "2": 1.0
+        },
+        "bossSpecial": {
+          "4": 1.0
+        },
+        "bossMiss": {
+          "1": 1.0
+        },
+        "stun": {
+          "1": 1.0
+        },
+        "petKnightBase": {
+          "12": 1.0
+        },
+        "modes": {
+          "normal": true,
+          "specialRegen": true,
+          "specialRegenPlusEw": true,
+          "specialRegenEw": true,
+          "shatterShield": true,
+          "cycloneBoost": true,
+          "durableRockShield": true,
+          "epic": true
+        },
+        "requireFirstKnightMatchForSrModes": true
+      },
+      "durableRockShield": {
+        "enabled": true,
+        "ticksPerState": 165,
+        "startTicks": 165,
+        "petCritPlusOneProb": 0.1,
+        "bossNormal": {
+          "2": 1.0
+        },
+        "bossSpecial": {
+          "4": 1.0
+        },
+        "bossMiss": {
+          "1": 1.0
+        },
+        "stun": {
+          "1": 1.0
+        },
+        "petKnightBase": {
+          "12": 1.0
+        },
+        "modes": {
+          "normal": true,
+          "specialRegen": true,
+          "specialRegenPlusEw": true,
+          "specialRegenEw": true,
+          "shatterShield": true,
+          "cycloneBoost": true,
+          "durableRockShield": true,
+          "epic": true
+        },
+        "requireFirstKnightMatchForSrModes": true
+      }
+    },
+    "blitz": {
+      "normal": {
+        "enabled": true,
+        "ticksPerState": 165,
+        "startTicks": 165,
+        "petCritPlusOneProb": 0.1,
+        "bossNormal": {
+          "2": 1.0
+        },
+        "bossSpecial": {
+          "4": 1.0
+        },
+        "bossMiss": {
+          "1": 1.0
+        },
+        "stun": {
+          "1": 1.0
+        },
+        "petKnightBase": {
+          "12": 1.0
+        },
+        "modes": {
+          "normal": true,
+          "specialRegen": true,
+          "specialRegenPlusEw": true,
+          "specialRegenEw": true,
+          "shatterShield": true,
+          "cycloneBoost": true,
+          "durableRockShield": true,
+          "epic": true
+        },
+        "requireFirstKnightMatchForSrModes": true
+      },
+      "specialRegen": {
+        "enabled": true,
+        "ticksPerState": 165,
+        "startTicks": 165,
+        "petCritPlusOneProb": 0.1,
+        "bossNormal": {
+          "2": 1.0
+        },
+        "bossSpecial": {
+          "4": 1.0
+        },
+        "bossMiss": {
+          "1": 1.0
+        },
+        "stun": {
+          "1": 1.0
+        },
+        "petKnightBase": {
+          "12": 1.0
+        },
+        "modes": {
+          "normal": true,
+          "specialRegen": true,
+          "specialRegenPlusEw": true,
+          "specialRegenEw": true,
+          "shatterShield": true,
+          "cycloneBoost": true,
+          "durableRockShield": true,
+          "epic": true
+        },
+        "requireFirstKnightMatchForSrModes": true
+      },
+      "specialRegenPlusEw": {
+        "enabled": true,
+        "ticksPerState": 165,
+        "startTicks": 165,
+        "petCritPlusOneProb": 0.1,
+        "bossNormal": {
+          "2": 1.0
+        },
+        "bossSpecial": {
+          "4": 1.0
+        },
+        "bossMiss": {
+          "1": 1.0
+        },
+        "stun": {
+          "1": 1.0
+        },
+        "petKnightBase": {
+          "12": 1.0
+        },
+        "modes": {
+          "normal": true,
+          "specialRegen": true,
+          "specialRegenPlusEw": true,
+          "specialRegenEw": true,
+          "shatterShield": true,
+          "cycloneBoost": true,
+          "durableRockShield": true,
+          "epic": true
+        },
+        "requireFirstKnightMatchForSrModes": true
+      },
+      "specialRegenEw": {
+        "enabled": true,
+        "ticksPerState": 165,
+        "startTicks": 165,
+        "petCritPlusOneProb": 0.1,
+        "bossNormal": {
+          "2": 1.0
+        },
+        "bossSpecial": {
+          "4": 1.0
+        },
+        "bossMiss": {
+          "1": 1.0
+        },
+        "stun": {
+          "1": 1.0
+        },
+        "petKnightBase": {
+          "12": 1.0
+        },
+        "modes": {
+          "normal": true,
+          "specialRegen": true,
+          "specialRegenPlusEw": true,
+          "specialRegenEw": true,
+          "shatterShield": true,
+          "cycloneBoost": true,
+          "durableRockShield": true,
+          "epic": true
+        },
+        "requireFirstKnightMatchForSrModes": true
+      },
+      "shatterShield": {
+        "enabled": true,
+        "ticksPerState": 165,
+        "startTicks": 165,
+        "petCritPlusOneProb": 0.1,
+        "bossNormal": {
+          "2": 1.0
+        },
+        "bossSpecial": {
+          "4": 1.0
+        },
+        "bossMiss": {
+          "1": 1.0
+        },
+        "stun": {
+          "1": 1.0
+        },
+        "petKnightBase": {
+          "12": 1.0
+        },
+        "modes": {
+          "normal": true,
+          "specialRegen": true,
+          "specialRegenPlusEw": true,
+          "specialRegenEw": true,
+          "shatterShield": true,
+          "cycloneBoost": true,
+          "durableRockShield": true,
+          "epic": true
+        },
+        "requireFirstKnightMatchForSrModes": true
+      },
+      "cycloneBoost": {
+        "enabled": true,
+        "ticksPerState": 165,
+        "startTicks": 165,
+        "petCritPlusOneProb": 0.1,
+        "bossNormal": {
+          "2": 1.0
+        },
+        "bossSpecial": {
+          "4": 1.0
+        },
+        "bossMiss": {
+          "1": 1.0
+        },
+        "stun": {
+          "1": 1.0
+        },
+        "petKnightBase": {
+          "12": 1.0
+        },
+        "modes": {
+          "normal": true,
+          "specialRegen": true,
+          "specialRegenPlusEw": true,
+          "specialRegenEw": true,
+          "shatterShield": true,
+          "cycloneBoost": true,
+          "durableRockShield": true,
+          "epic": true
+        },
+        "requireFirstKnightMatchForSrModes": true
+      },
+      "durableRockShield": {
+        "enabled": true,
+        "ticksPerState": 165,
+        "startTicks": 165,
+        "petCritPlusOneProb": 0.1,
+        "bossNormal": {
+          "2": 1.0
+        },
+        "bossSpecial": {
+          "4": 1.0
+        },
+        "bossMiss": {
+          "1": 1.0
+        },
+        "stun": {
+          "1": 1.0
+        },
+        "petKnightBase": {
+          "12": 1.0
+        },
+        "modes": {
+          "normal": true,
+          "specialRegen": true,
+          "specialRegenPlusEw": true,
+          "specialRegenEw": true,
+          "shatterShield": true,
+          "cycloneBoost": true,
+          "durableRockShield": true,
+          "epic": true
+        },
+        "requireFirstKnightMatchForSrModes": true
+      }
+    },
+    "epic": {
+      "normal": {
+        "enabled": true,
+        "ticksPerState": 165,
+        "startTicks": 165,
+        "petCritPlusOneProb": 0.1,
+        "bossNormal": {
+          "2": 1.0
+        },
+        "bossSpecial": {
+          "4": 1.0
+        },
+        "bossMiss": {
+          "1": 1.0
+        },
+        "stun": {
+          "1": 1.0
+        },
+        "petKnightBase": {
+          "12": 1.0
+        },
+        "modes": {
+          "normal": true,
+          "specialRegen": true,
+          "specialRegenPlusEw": true,
+          "specialRegenEw": true,
+          "shatterShield": true,
+          "cycloneBoost": true,
+          "durableRockShield": true,
+          "epic": true
+        },
+        "requireFirstKnightMatchForSrModes": true
+      },
+      "specialRegen": {
+        "enabled": true,
+        "ticksPerState": 165,
+        "startTicks": 165,
+        "petCritPlusOneProb": 0.1,
+        "bossNormal": {
+          "2": 1.0
+        },
+        "bossSpecial": {
+          "4": 1.0
+        },
+        "bossMiss": {
+          "1": 1.0
+        },
+        "stun": {
+          "1": 1.0
+        },
+        "petKnightBase": {
+          "12": 1.0
+        },
+        "modes": {
+          "normal": true,
+          "specialRegen": true,
+          "specialRegenPlusEw": true,
+          "specialRegenEw": true,
+          "shatterShield": true,
+          "cycloneBoost": true,
+          "durableRockShield": true,
+          "epic": true
+        },
+        "requireFirstKnightMatchForSrModes": true
+      },
+      "specialRegenPlusEw": {
+        "enabled": true,
+        "ticksPerState": 165,
+        "startTicks": 165,
+        "petCritPlusOneProb": 0.1,
+        "bossNormal": {
+          "2": 1.0
+        },
+        "bossSpecial": {
+          "4": 1.0
+        },
+        "bossMiss": {
+          "1": 1.0
+        },
+        "stun": {
+          "1": 1.0
+        },
+        "petKnightBase": {
+          "12": 1.0
+        },
+        "modes": {
+          "normal": true,
+          "specialRegen": true,
+          "specialRegenPlusEw": true,
+          "specialRegenEw": true,
+          "shatterShield": true,
+          "cycloneBoost": true,
+          "durableRockShield": true,
+          "epic": true
+        },
+        "requireFirstKnightMatchForSrModes": true
+      },
+      "specialRegenEw": {
+        "enabled": true,
+        "ticksPerState": 165,
+        "startTicks": 165,
+        "petCritPlusOneProb": 0.1,
+        "bossNormal": {
+          "2": 1.0
+        },
+        "bossSpecial": {
+          "4": 1.0
+        },
+        "bossMiss": {
+          "1": 1.0
+        },
+        "stun": {
+          "1": 1.0
+        },
+        "petKnightBase": {
+          "12": 1.0
+        },
+        "modes": {
+          "normal": true,
+          "specialRegen": true,
+          "specialRegenPlusEw": true,
+          "specialRegenEw": true,
+          "shatterShield": true,
+          "cycloneBoost": true,
+          "durableRockShield": true,
+          "epic": true
+        },
+        "requireFirstKnightMatchForSrModes": true
+      },
+      "shatterShield": {
+        "enabled": true,
+        "ticksPerState": 165,
+        "startTicks": 165,
+        "petCritPlusOneProb": 0.1,
+        "bossNormal": {
+          "2": 1.0
+        },
+        "bossSpecial": {
+          "4": 1.0
+        },
+        "bossMiss": {
+          "1": 1.0
+        },
+        "stun": {
+          "1": 1.0
+        },
+        "petKnightBase": {
+          "12": 1.0
+        },
+        "modes": {
+          "normal": true,
+          "specialRegen": true,
+          "specialRegenPlusEw": true,
+          "specialRegenEw": true,
+          "shatterShield": true,
+          "cycloneBoost": true,
+          "durableRockShield": true,
+          "epic": true
+        },
+        "requireFirstKnightMatchForSrModes": true
+      },
+      "cycloneBoost": {
+        "enabled": true,
+        "ticksPerState": 165,
+        "startTicks": 165,
+        "petCritPlusOneProb": 0.1,
+        "bossNormal": {
+          "2": 1.0
+        },
+        "bossSpecial": {
+          "4": 1.0
+        },
+        "bossMiss": {
+          "1": 1.0
+        },
+        "stun": {
+          "1": 1.0
+        },
+        "petKnightBase": {
+          "12": 1.0
+        },
+        "modes": {
+          "normal": true,
+          "specialRegen": true,
+          "specialRegenPlusEw": true,
+          "specialRegenEw": true,
+          "shatterShield": true,
+          "cycloneBoost": true,
+          "durableRockShield": true,
+          "epic": true
+        },
+        "requireFirstKnightMatchForSrModes": true
+      },
+      "durableRockShield": {
+        "enabled": true,
+        "ticksPerState": 165,
+        "startTicks": 165,
+        "petCritPlusOneProb": 0.1,
+        "bossNormal": {
+          "2": 1.0
+        },
+        "bossSpecial": {
+          "4": 1.0
+        },
+        "bossMiss": {
+          "1": 1.0
+        },
+        "stun": {
+          "1": 1.0
+        },
+        "petKnightBase": {
+          "12": 1.0
+        },
+        "modes": {
+          "normal": true,
+          "specialRegen": true,
+          "specialRegenPlusEw": true,
+          "specialRegenEw": true,
+          "shatterShield": true,
+          "cycloneBoost": true,
+          "durableRockShield": true,
+          "epic": true
+        },
+        "requireFirstKnightMatchForSrModes": true
+      }
+    }
+  }
+}

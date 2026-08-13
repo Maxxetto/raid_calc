@@ -1,0 +1,82 @@
+{
+    "schemaVersion":  4,
+    "formatVersion":  1,
+    "rarity":  "4 stars",
+    "families":  [
+                     {
+                         "id":  "mudferret",
+                         "familyTag":  "",
+                         "rarity":  "4 stars",
+                         "tiers":  [
+                                       {
+                                           "id":  "IV",
+                                           "name":  "Mudferret",
+                                           "element":  "earth",
+                                           "tier":  "IV",
+                                           "skill11":  "Durable Rock Shield",
+                                           "skill12":  "Shatter Shield",
+                                           "skill2":  "Leech Strike",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 80",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0051",
+                                                                "skillSetRef":  "ss0054"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s3_wispy",
+                         "familyTag":  "S3",
+                         "rarity":  "4 stars",
+                         "tiers":  [
+                                       {
+                                           "id":  "I",
+                                           "name":  "[S3] Wispy",
+                                           "element":  "spirit",
+                                           "tier":  "I",
+                                           "skill11":  "Shadow Slash",
+                                           "skill12":  "None",
+                                           "skill2":  "None",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level_1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level_1",
+                                                                "statsRef":  "st0057",
+                                                                "skillSetRef":  "ss0058"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s3_fireball",
+                         "familyTag":  "S3",
+                         "rarity":  "4 stars",
+                         "tiers":  [
+                                       {
+                                           "id":  "I",
+                                           "name":  "[S3] Fireball",
+                                           "element":  "fire",
+                                           "tier":  "I",
+                                           "skill11":  "Burning Barrage",
+                                           "skill12":  "None",
+                                           "skill2":  "None",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level_1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level_1",
+                                                                "statsRef":  "st0058",
+                                                                "skillSetRef":  "ss0059"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     }
+                 ]
+}

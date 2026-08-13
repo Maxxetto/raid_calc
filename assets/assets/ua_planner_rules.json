@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "rulesets": [
+    {
+      "id": "ua_2021_v1",
+      "label": "UA Ruleset (Nov 2021 baseline)",
+      "source": "Cheat Sheet for Elite Pieces - Knights and Dragons (as of November 2021)",
+      "maintenanceModeSafe": true,
+      "active": true,
+      "appUpdateRequiredOnChange": true,
+      "supportedRange": {
+        "fromYear": 2025,
+        "fromMonth": 11,
+        "toYear": 2028,
+        "toMonth": 12
+      },
+      "calendarPattern": {
+        "description": "Fixed weekly pattern. Monday=Blitz, Tuesday=Heroic every 14 days, Friday=normal. Heroic weeks are Raid weeks, non-Heroic weeks are War weeks.",
+        "assignPiecesToMonthBy": "eventStartDate",
+        "heroicCadenceDays": 14,
+        "heroicAnchorDate": "2026-03-03",
+        "blitzWeekday": "monday",
+        "heroicWeekday": "tuesday",
+        "normalWeekday": "friday",
+        "heroicWeeksAreRaidWeeks": true,
+        "nonHeroicWeeksAreWarWeeks": true
+      },
+      "uaCycle": {
+        "lengthMonths": 5,
+        "sequence": ["fire", "spirit", "earth", "air", "water"],
+        "referenceCycleNumber": 15,
+        "referenceYear": 2026,
+        "referenceMonth": 3
+      },
+      "chips": {
+        "areSectionTriggersOnly": true,
+        "doNotAddPiecesDirectly": true
+      },
+      "eventRules": {
+        "weekend_raid": {
+          "enabled": true,
+          "scoreMilestones": [
+            { "minPoints": 50000000, "pieces": 1 },
+            { "minPoints": 200000000, "pieces": 1 }
+          ],
+          "guildPlacementTiers": [
+            { "rankFrom": 1, "rankTo": 1, "pieces": 4 },
+            { "rankFrom": 2, "rankTo": 2, "pieces": 3 },
+            { "rankFrom": 3, "rankTo": 3, "pieces": 2 },
+            { "rankFrom": 4, "rankTo": 7, "pieces": 1 }
+          ],
+          "individualPlacementTiers": [
+            { "rankFrom": 1, "rankTo": 1, "pieces": 4 },
+            { "rankFrom": 2, "rankTo": 2, "pieces": 3 },
+            { "rankFrom": 3, "rankTo": 3, "pieces": 2 },
+            { "rankFrom": 4, "rankTo": 7, "pieces": 1 }
+          ],
+          "allSourcesCumulative": true
+        },
+        "blitz_raid": {
+          "enabled": true,
+          "scoreMilestones": [
+            { "minPoints": 8200000, "pieces": 1 }
+          ],
+          "guildPlacementTiers": [],
+          "individualPlacementTiers": [
+            { "rankFrom": 1, "rankTo": 1, "pieces": 2 },
+            { "rankFrom": 2, "rankTo": 3, "pieces": 1 }
+          ],
+          "allSourcesCumulative": true
+        },
+        "weekend_war": {
+          "enabled": true,
+          "scoreMilestones": [
+            { "minPoints": 105000, "pieces": 1 },
+            { "minPoints": 260000, "pieces": 1 },
+            { "minPoints": 475000, "pieces": 1 },
+            { "minPoints": 931000, "pieces": 1 },
+            { "minPoints": 1825000, "pieces": 1 }
+          ],
+          "guildPlacementTiers": [
+            { "rankFrom": 1, "rankTo": 1, "pieces": 3 },
+            { "rankFrom": 2, "rankTo": 2, "pieces": 2 },
+            { "rankFrom": 3, "rankTo": 10, "pieces": 1 }
+          ],
+          "individualPlacementTiers": [],
+          "allSourcesCumulative": true
+        },
+        "blitz_war": {
+          "enabled": true,
+          "scoreMilestones": [
+            { "minPoints": 105000, "pieces": 1 },
+            { "minPoints": 260000, "pieces": 1 },
+            {
+              "minPoints": 475000,
+              "pieces": 1,
+              "excludeOnFirstBlitzOfMonth": true
+            }
+          ],
+          "guildPlacementTiers": [
+            {
+              "rankFrom": 1,
+              "rankTo": 1,
+              "pieces": 1,
+              "excludeOnFirstBlitzOfMonth": true
+            },
+            {
+              "rankFrom": 2,
+              "rankTo": 2,
+              "pieces": 1,
+              "excludeOnFirstBlitzOfMonth": true
+            }
+          ],
+          "individualPlacementTiers": [],
+          "allSourcesCumulative": true
+        },
+        "heroic": {
+          "enabled": true,
+          "piecesPerCompletedHeroic": 1,
+          "checkboxOnly": true,
+          "tip": "Buy from Heroic Shop with 100 scrolls."
+        }
+      },
+      "bonusRules": {
+        "headstart": [
+          {
+            "id": "headstart_prev_month",
+            "label": "Crafted Elite+ of previous month",
+            "pieces": 1
+          },
+          {
+            "id": "headstart_prev_two_months",
+            "label": "Crafted Elite+ of previous two months",
+            "pieces": 1,
+            "dependsOn": "headstart_prev_month"
+          }
+        ],
+        "eb_collection": [
+          {
+            "id": "eb_current_month",
+            "label": "Obtained T20 armor of the current month",
+            "pieces": 1
+          },
+          {
+            "id": "eb_current_and_past",
+            "label": "Obtained T20 armor of current and past month",
+            "pieces": 1,
+            "dependsOn": "eb_current_month"
+          }
+        ]
+      },
+      "optionalFeatures": {
+        "decaAnniversary": false,
+        "premiumOnlyFeaturesInPlanner": false
+      }
+    }
+  ]
+}
