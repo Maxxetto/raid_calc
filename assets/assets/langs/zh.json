@@ -336,7 +336,7 @@
   "news.events.empty_filtered": "此分区当前没有可用活动。",
   "news.portal.open": "打开",
   "news.portal.guides_subtitle": "Guides and app documentation from the web portal.",
-  "news.portal.recent_subtitle": "来自网页门户的更新、指南和版本说明。",
+  "news.portal.recent_subtitle": "来自网页门户的更新和版本说明。",
   "news.portal.recent_title": "最近新闻",
   "news.portal.section.changelog": "Changelog",
   "news.portal.section.faq": "FAQ",

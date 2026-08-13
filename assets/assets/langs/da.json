@@ -294,7 +294,7 @@
   "news.events.empty_filtered": "Ingen begivenheder tilgængelige i denne sektion lige nu.",
   "news.portal.open": "Aabn",
   "news.portal.guides_subtitle": "Guides and app documentation from the web portal.",
-  "news.portal.recent_subtitle": "Opdateringer, guides og udgivelsesnoter fra webportalen.",
+  "news.portal.recent_subtitle": "Opdateringer og udgivelsesnoter fra webportalen.",
   "news.portal.recent_title": "Seneste nyheder",
   "news.portal.section.changelog": "Changelog",
   "news.portal.section.faq": "FAQ",
