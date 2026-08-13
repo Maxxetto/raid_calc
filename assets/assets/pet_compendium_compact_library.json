@@ -449,6 +449,27 @@
                               "petAttack":  9206,
                               "petAttackStat":  1393,
                               "petDefenseStat":  1174
+                          },
+                          {
+                              "id":  "st0065",
+                              "level":  1,
+                              "petAttack":  4944,
+                              "petAttackStat":  1047,
+                              "petDefenseStat":  838
+                          },
+                          {
+                              "id":  "st0066",
+                              "level":  1,
+                              "petAttack":  4044,
+                              "petAttackStat":  1047,
+                              "petDefenseStat":  838
+                          },
+                          {
+                              "id":  "st0067",
+                              "level":  1,
+                              "petAttack":  3794,
+                              "petAttackStat":  961,
+                              "petDefenseStat":  670
                           }
                       ],
     "skillPayloads":  [
@@ -939,6 +960,20 @@
                                              "baseShieldHp":  188,
                                              "bonusShieldHp":  51
                                          }
+                          },
+                          {
+                              "id":  "sp0067",
+                              "name":  "Revenge Strike",
+                              "values":  {
+                                             "petAttackCap":  8645
+                                         }
+                          },
+                          {
+                              "id":  "sp0068",
+                              "name":  "Shadow Slash",
+                              "values":  {
+                                             "petAttack":  6125
+                                         }
                           }
                       ],
     "skillSets":  [
@@ -1326,6 +1361,12 @@
                           "skill11":  "sp0007",
                           "skill12":  "sp0065",
                           "skill2":  "sp0066"
+                      },
+                      {
+                          "id":  "ss0067",
+                          "skill11":  "sp0067",
+                          "skill12":  "sp0068",
+                          "skill2":  "sp0003"
                       }
                   ]
 }

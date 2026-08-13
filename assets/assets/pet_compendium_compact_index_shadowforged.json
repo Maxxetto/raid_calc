@@ -523,6 +523,110 @@
                                    ]
                      },
                      {
+                         "id":  "s73sf_cerbom",
+                         "familyTag":  "S73SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S73SF] Cerbom",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0065",
+                                                                "skillSetRef":  "ss0019"
+                                                            }
+                                                        ],
+                                           "secondElement":  "earth"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s74sf_nibbles",
+                         "familyTag":  "S74SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S74SF] Nibbles",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0066",
+                                                                "skillSetRef":  "ss0007"
+                                                            }
+                                                        ],
+                                           "secondElement":  "air"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s75sf_saizeek",
+                         "familyTag":  "S75SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "IV",
+                                           "name":  "[S75SF] Saizeek",
+                                           "element":  "air",
+                                           "tier":  "IV",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0067",
+                                                                "skillSetRef":  "ss0067"
+                                                            }
+                                                        ],
+                                           "secondElement":  "water"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s76sf_unturex",
+                         "familyTag":  "S76SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S76SF] Unturex",
+                                           "element":  "water",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Special Regeneration (inf)",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0066",
+                                                                "skillSetRef":  "ss0021"
+                                                            }
+                                                        ],
+                                           "secondElement":  "fire"
+                                       }
+                                   ]
+                     },
+                     {
                          "id":  "s77sf_etzeron",
                          "familyTag":  "S77SF",
                          "rarity":  "Shadowforged",
@@ -594,6 +698,32 @@
                                                                 "valueSource":  "level1",
                                                                 "statsRef":  "st0032",
                                                                 "skillSetRef":  "ss0046"
+                                                            }
+                                                        ],
+                                           "secondElement":  "spirit"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s77sf_ovidox",
+                         "familyTag":  "S77SF",
+                         "rarity":  "Shadowforged",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S77SF] Ovidox",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0032",
+                                                                "skillSetRef":  "ss0022"
                                                             }
                                                         ],
                                            "secondElement":  "spirit"

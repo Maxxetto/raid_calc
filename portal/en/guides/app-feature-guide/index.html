@@ -14,6 +14,7 @@
     code, pre { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
     pre { overflow: auto; padding: 12px; border: 1px solid color-mix(in srgb, CanvasText 22%, transparent); border-radius: 8px; }
     blockquote { margin-left: 0; padding-left: 14px; border-left: 4px solid color-mix(in srgb, CanvasText 25%, transparent); }
+    img { display: block; max-width: 100%; height: auto; margin: 16px 0; border-radius: 8px; border: 1px solid color-mix(in srgb, CanvasText 18%, transparent); }
   </style>
 </head>
 <body>
@@ -180,7 +181,7 @@
 <li>plan shop purchases;</li>
 <li>check how much currency remains after your owned resources.</li>
 </ul>
-<p>Recent news appears below the event cards for release notes and app updates. The Guides block appears after Recent news, at the bottom of the News tab, so app guides stay easy to find. On Android, portal blocks appear only when GitHub Pages is reachable. If the phone is offline, the News tab keeps working with local event data.</p>
+<p>Recent news appears below the event cards for release notes and app updates. The Guides block appears after Recent news, at the bottom of the News tab, so app guides stay easy to find. On Android and web, portal content tries GitHub Pages first, then a local cache, then the bundled fallback. If the phone is offline, the News tab keeps working with local event data.</p>
 <h2>Themes, language and AMOLED</h2>
 <p>The app supports themes, AMOLED mode and multiple languages. Theme and language choices are saved locally.</p>
 <p>If something looks visually wrong after changing theme, it is worth reporting, especially on shared features such as Guild, UA, War and News.</p>

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-13T14:18:17.033138Z",
+  "generatedAt": "2026-08-13T14:55:28.912066Z",
   "items": [
     {
       "id": "web-portal-v1",
@@ -83,6 +83,24 @@
       "pinned": false,
       "translationOf": "getting-started-web",
       "url": "/raid_calc/portal/en/guides/getting-started-web/"
+    },
+    {
+      "id": "shadowforged-pets-shop-2026-08",
+      "lang": "en",
+      "section": "news",
+      "title": "New Shadowforged pets available in the in-game shop",
+      "summary": "Five Shadowforged pets have been spotted in the in-game shop, including Unturex, a strong Water/Fire option with infinite Special Regeneration.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "news",
+        "pets",
+        "shadowforged",
+        "shop"
+      ],
+      "pinned": true,
+      "translationOf": "shadowforged-pets-shop-2026-08",
+      "url": "/raid_calc/portal/en/news/shadowforged-pets-shop-2026-08/"
     },
     {
       "id": "web-beta-launch",
@@ -182,6 +200,24 @@
       "pinned": false,
       "translationOf": "getting-started-web",
       "url": "/raid_calc/portal/it/guides/getting-started-web/"
+    },
+    {
+      "id": "shadowforged-pets-shop-2026-08",
+      "lang": "it",
+      "section": "news",
+      "title": "Nuovi Shadowforged pets disponibili nello shop in-game",
+      "summary": "Cinque Shadowforged pets sono stati avvistati nello shop in-game, incluso Unturex, una forte opzione Acqua/Fuoco con Special Regeneration infinita.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "news",
+        "pets",
+        "shadowforged",
+        "shop"
+      ],
+      "pinned": true,
+      "translationOf": "shadowforged-pets-shop-2026-08",
+      "url": "/raid_calc/portal/it/news/shadowforged-pets-shop-2026-08/"
     },
     {
       "id": "web-beta-launch",
