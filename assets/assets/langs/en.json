@@ -337,6 +337,7 @@
   "news.events.empty": "No active or recently ended events.",
   "news.events.empty_filtered": "No events available in this section right now.",
   "news.portal.open": "Open",
+  "news.portal.guides_subtitle": "Guides and app documentation from the web portal.",
   "news.portal.recent_subtitle": "Updates, guides and release notes from the web portal.",
   "news.portal.recent_title": "Recent news",
   "news.portal.section.changelog": "Changelog",

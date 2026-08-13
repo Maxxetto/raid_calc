@@ -293,6 +293,7 @@
   "news.events.empty": "No hay eventos activos o finalizados recientemente.",
   "news.events.empty_filtered": "No hay eventos disponibles en esta seccion en este momento.",
   "news.portal.open": "Abrir",
+  "news.portal.guides_subtitle": "Guides and app documentation from the web portal.",
   "news.portal.recent_subtitle": "Actualizaciones, guias y notas de version del portal web.",
   "news.portal.recent_title": "Noticias recientes",
   "news.portal.section.changelog": "Changelog",

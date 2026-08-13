@@ -335,6 +335,7 @@
   "news.events.empty": "لا توجد أحداث نشطة أو منتهية مؤخرًا.",
   "news.events.empty_filtered": "لا توجد أحداث متاحة في هذا القسم حاليًا.",
   "news.portal.open": "Open",
+  "news.portal.guides_subtitle": "Guides and app documentation from the web portal.",
   "news.portal.recent_subtitle": "Updates, guides and release notes from the web portal.",
   "news.portal.recent_title": "Recent news",
   "news.portal.section.changelog": "Changelog",

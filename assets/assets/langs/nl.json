@@ -293,6 +293,7 @@
   "news.events.empty": "Geen actieve of recent beeindigde evenementen.",
   "news.events.empty_filtered": "Er zijn momenteel geen evenementen beschikbaar in deze sectie.",
   "news.portal.open": "Openen",
+  "news.portal.guides_subtitle": "Guides and app documentation from the web portal.",
   "news.portal.recent_subtitle": "Updates, gidsen en release notes van het webportaal.",
   "news.portal.recent_title": "Recent nieuws",
   "news.portal.section.changelog": "Changelog",
