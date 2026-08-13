@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guida completa a Raid Calculator</title>
+  <style>
+    :root { color-scheme: light dark; font-family: system-ui, -apple-system, Segoe UI, sans-serif; }
+    body { margin: 0; padding: 28px; line-height: 1.55; background: Canvas; color: CanvasText; }
+    main { max-width: 820px; margin: 0 auto; }
+    nav { margin-bottom: 24px; color: color-mix(in srgb, CanvasText 72%, transparent); }
+    a { color: LinkText; }
+    li { margin: 0 0 14px; }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    pre { overflow: auto; padding: 12px; border: 1px solid color-mix(in srgb, CanvasText 22%, transparent); border-radius: 8px; }
+    blockquote { margin-left: 0; padding-left: 14px; border-left: 4px solid color-mix(in srgb, CanvasText 25%, transparent); }
+  </style>
+</head>
+<body>
+<main>
+<nav><a href="/raid_calc/">App</a> / <a href="/raid_calc/portal/it/">Portal</a> / <a href="/raid_calc/portal/it/guides/">Guide</a></nav>
+<article>
+<h1>Guida completa a Raid Calculator</h1>
+<p>Raid Calculator e una suite locale di pianificazione per Raid, Blitz, Epic, War, UA, gestione guild, Friend Codes e tracking eventi. Serve a pianificare prima di spendere energia, gemme o tempo in gioco.</p>
+<p>La maggior parte dei dati resta sul device o nello storage del browser. Non esiste account sync, quindi export e backup sono importanti.</p>
+<h2>App Android e web app</h2>
+<p>La app Android e la versione completa. Include tutto il set mobile, supporto Premium, import OCR screenshot, overlay OCR Android e Guild Gallery.</p>
+<p>La web app e una versione gratuita da browser. Include i principali strumenti free, ma non include funzioni Premium mobile, overlay OCR Android o immagini Guild Gallery.</p>
+<p>Usa Android quando vuoi la app completa. Usa web quando vuoi accesso rapido da browser, pianificazione desktop o una versione leggera da condividere.</p>
+<h2>Raid, Blitz ed Epic</h2>
+<p>La tab Raid e il simulatore principale. Permette di costruire un setup con modalita boss, livello boss, knight, armor, pet, skill pet, elixir e numero di simulazioni.</p>
+<p>Usala quando vuoi:</p>
+<ul>
+<li>stimare il punteggio atteso prima di giocare;</li>
+<li>confrontare build knight, armor o pet diverse;</li>
+<li>testare contesti Raid, Blitz ed Epic;</li>
+<li>capire se un setup e stabile o molto variabile.</li>
+</ul>
+<p>Workflow consigliato:</p>
+<p>1. Scegli Raid, Blitz o Epic e imposta il contesto boss. 2. Inserisci stats, elementi, stun e armor dei knight. 3. Configura stats pet, skill e comportamento della pet bar. 4. Aggiungi elixir solo se userai davvero quel piano. 5. Avvia la simulazione, poi leggi sia media sia range.</p>
+<p>Consiglio: non valutare un setup solo dal miglior risultato. Un setup con media leggermente piu bassa ma range piu stretto puo essere piu affidabile nella pianificazione reale.</p>
+<h2>Risultati e Graph View</h2>
+<p>Le pagine risultati mostrano summary, range punteggio, breakdown e tabelle dettagliate. Graph View aggiunge grafici che aiutano a capire la forma del risultato, non solo il numero finale.</p>
+<p>Graph View e utile per:</p>
+<ul>
+<li>vedere la consistenza del punteggio;</li>
+<li>controllare probabilita di soglia;</li>
+<li>confrontare piu setup visivamente;</li>
+<li>capire quale knight o fonte crea piu pressione sul risultato.</li>
+</ul>
+<p>Se vuoi condividere un risultato con un compagno di guild, usa gli strumenti export del report: l&#39;altra persona potra rivedere lo stesso risultato localmente.</p>
+<h2>Setup salvati e Bulk Simulate</h2>
+<p>I setup salvati servono per le build che vuoi riutilizzare. Puoi salvare, caricare, rinominare, esportare e importare setup in JSON.</p>
+<p>Usali per:</p>
+<ul>
+<li>tenere pronte build per boss diversi;</li>
+<li>confrontare varianti pet o armor;</li>
+<li>condividere un setup con un altro player;</li>
+<li>preparare Bulk Simulate.</li>
+</ul>
+<p>Bulk Simulate confronta piu setup salvati in una sola passata. E ideale quando hai gia alcuni candidati seri e vuoi un confronto piu pulito rispetto a run separate.</p>
+<h2>Debug battle log</h2>
+<p>Debug esegue una battaglia deterministica e mostra un log turno per turno. Serve per investigare, non per la pianificazione normale.</p>
+<p>Usalo quando:</p>
+<ul>
+<li>una interazione skill sembra strana;</li>
+<li>un risultato sembra troppo basso o troppo alto;</li>
+<li>vuoi copiare un log dettagliato per troubleshooting.</li>
+</ul>
+<p>Debug e una funzione Premium mobile e non e disponibile come feature Premium su web.</p>
+<h2>Pet tools e Pet Compendium</h2>
+<p>Gli strumenti Pet permettono di configurare stats pet, elementi, skill slot, valori skill custom e ordine della pet bar.</p>
+<p>Il Pet Compendium aiuta a trovare pet piu velocemente. Puoi cercare per pet, famiglia o skill e importare il pet direttamente nel setup.</p>
+<p>Consigli pratici:</p>
+<ul>
+<li>controlla che gli elementi del pet siano coerenti con il setup;</li>
+<li>rivedi i valori skill custom se stai testando condizioni particolari;</li>
+<li>salva i pet favoriti quando riusi spesso le stesse famiglie.</li>
+</ul>
+<h2>Wargear, favoriti e Universal Armor Score</h2>
+<p>Wargear Wardrobe aiuta a cercare e importare armor maxate. Puoi filtrare per elemento, ruolo, guild rank, bonus elemento guild e versione Base o Plus.</p>
+<p>Le armor importate possono mostrare badge per ruolo, rank e versione. Toccando quei badge cambi contesto armor e ricalcoli rapidamente le stats.</p>
+<p>Universal Armor Score e uno score armor contestuale e rapido. Reagisce a boss, pet, slot knight e stats finali armor. Usalo come scorciatoia per decidere cosa vale la pena simulare dopo.</p>
+<p>Importante: Universal Armor Score e una guida, non una simulazione completa. Quando la scelta conta davvero, simula il setup finale.</p>
+<p>Wardrobe Simulate testa combinazioni armor generate dai favoriti usando il simulatore reale e mostra i migliori candidati. E Premium-only su Android.</p>
+<h2>Import OCR screenshot e overlay OCR Android</h2>
+<p>Su Android, l&#39;import OCR screenshot puo leggere stats knight da una schermata. Puoi regolare i crop e controllare i numeri rilevati prima di applicarli.</p>
+<p>L&#39;overlay OCR Android e un workflow solo mobile che puo lavorare sopra il gioco e aiutare a trasferire informazioni party nella app. Richiede permesso overlay Android e permesso screen capture.</p>
+<p>Questi strumenti non sono disponibili su web.</p>
+<p>Consiglio: controlla sempre i risultati OCR prima di salvare o simulare. OCR fa risparmiare tempo, ma non va trattato come infallibile.</p>
+<h2>War Calculator</h2>
+<p>La tab War aiuta a pianificare milestone, attacchi normali, Power Attacks, energia, gemme, point set server, Strip, Frenzy ed elixir.</p>
+<p>Usala per rispondere a domande come:</p>
+<ul>
+<li>quanti attacchi servono;</li>
+<li>quanta energia manca;</li>
+<li>quante gemme costerebbe un target;</li>
+<li>se una strategia Power Attack conviene;</li>
+<li>come cambiano i valori tra EU e Global.</li>
+</ul>
+<p>Il Raid Guild Planner dentro War e uno strumento Premium mobile per pianificare score guild e boss kill. Non e disponibile come feature Premium su web.</p>
+<h2>UA Planner</h2>
+<p>UA Planner aiuta a tracciare progresso mensile, reward evento, placement, condizioni bonus e calendario eventi.</p>
+<p>Usalo per:</p>
+<ul>
+<li>prevedere progresso Elite ed Elite Plus;</li>
+<li>pianificare il mese;</li>
+<li>tracciare score e placement;</li>
+<li>controllare date War, War Blitz, Raid, Raid Blitz, Heroic e Blitz Arena;</li>
+<li>esportare o importare lo stato planner.</li>
+</ul>
+<p>Consiglio: aggiorna UA Planner durante il mese. Funziona molto meglio come foglio vivo di pianificazione che come calcolatore dell&#39;ultimo giorno.</p>
+<h2>Guild Planner</h2>
+<p>Guild Planner e pensato per manager di guild e player che aiutano a organizzare roster. Supporta fino a 5 guild.</p>
+<p>Ogni guild puo avere:</p>
+<ul>
+<li>fino a 40 membri attivi;</li>
+<li>fino a 30 membri in waiting list;</li>
+<li>rank cap per roster attivo: 1 GM, 1 GS, 1 GC e 10 HC;</li>
+<li>minimo score globale e override personali;</li>
+<li>strike con storico;</li>
+<li>buddying per note di copertura score;</li>
+<li>import&#47;export modulare.</li>
+</ul>
+<p>Workflow consigliato:</p>
+<p>1. Crea una guild. 2. Aggiungi membri direttamente dalla schermata guild. 3. Usa Search se il profilo esiste gia, oppure Create member se devi crearne uno. 4. Imposta rank e minimi personali solo dove servono. 5. Usa gli strike come promemoria manuali. 6. Usa buddying quando un player copre score per un altro.</p>
+<p>Su Android, Guild Gallery salva album screenshot evento e puo esportare immagini nei backup ZIP. Su web, Gallery e disabilitata e i backup Guild sono solo JSON.</p>
+<h2>Friends</h2>
+<p>La tab Friends e un archivio friend code cercabile. Puoi filtrare per server e piattaforma, poi copiare i codici rapidamente.</p>
+<p>Usala quando ti serve:</p>
+<ul>
+<li>trovare velocemente un friend code;</li>
+<li>avere riferimenti contatto attivi;</li>
+<li>consultare dati Hall of Fame caricati da asset locali.</li>
+</ul>
+<h2>News ed Event Shop</h2>
+<p>La tab News mostra eventi attivi, conclusi di recente e upcoming da dati locali. Event Shop Planner aiuta a calcolare currency shop necessarie in base agli item selezionati e all&#39;inventario attuale.</p>
+<p>Usala per:</p>
+<ul>
+<li>seguire finestre evento;</li>
+<li>segnare righe evento completate;</li>
+<li>pianificare acquisti shop;</li>
+<li>capire quanta currency manca dopo le risorse gia possedute.</li>
+</ul>
+<p>Recent news e guide possono apparire anche tramite il portale GitHub Pages. Su Android, il banner Recent news compare solo se il portale e raggiungibile. Se il telefono e offline, la tab News continua a funzionare con dati evento locali.</p>
+<h2>Temi, lingua e AMOLED</h2>
+<p>La app supporta temi, modalita AMOLED e piu lingue. Tema e lingua vengono salvati localmente.</p>
+<p>Se qualcosa sembra visivamente sbagliato dopo un cambio tema, vale la pena segnalarlo, soprattutto nelle feature condivise come Guild, UA, War e News.</p>
+<h2>Premium su Android</h2>
+<p>Premium passa dal flusso store Android. Puo sbloccare feature mobile-only come Debug, capacita setup estesa, strumenti planner Premium, friends Epic, limiti estesi per favoriti&#47;elixir e metriche extra dove disponibili.</p>
+<p>Premium non e attivo su web. La web app resta gratuita, locale e informativa.</p>
+<h2>Backup e sicurezza dati</h2>
+<p>Dato che la app e local-first, i backup sono importanti.</p>
+<p>Buone abitudini:</p>
+<ul>
+<li>esporta setup importanti prima di cancellare dati app o browser;</li>
+<li>esporta Guild prima di riorganizzare roster grandi;</li>
+<li>usa export ZIP Guild su Android quando contano le immagini Gallery;</li>
+<li>usa JSON export&#47;import quando ti sposti tra device;</li>
+<li>ricorda che i dati browser possono sparire se cancelli lo storage del sito.</li>
+</ul>
+<h2>Guida rapida per sezione</h2>
+<ul>
+<li>Raid: simula setup Raid, Blitz ed Epic.</li>
+<li>War: pianifica attacchi, energia, gemme e milestone.</li>
+<li>UA Planner: traccia progresso UA mensile e calendario eventi.</li>
+<li>Guild: gestisci roster, strike, buddying e backup.</li>
+<li>Friends: cerca e copia friend code.</li>
+<li>News: segui eventi e pianifica currency event shop.</li>
+</ul>
+<p>Parti dalla sezione che risponde alla domanda che hai in mente. La app rende al meglio quando viene usata come compagna di pianificazione prima di spendere risorse in gioco.</p>
+
+</article>
+
+</main>
+</body>
+</html>

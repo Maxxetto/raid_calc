@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-13T08:17:57.516027Z",
+  "generatedAt": "2026-08-13T10:35:05.443937Z",
   "items": [
     {
       "id": "web-portal-v1",
@@ -49,6 +49,24 @@
       "pinned": false,
       "translationOf": "web-suite-overview",
       "url": "/raid_calc/portal/en/features/web-suite-overview/"
+    },
+    {
+      "id": "app-feature-guide",
+      "lang": "en",
+      "section": "guides",
+      "title": "Complete Raid Calculator app guide",
+      "summary": "Learn what each Raid Calculator section does, how to use the main tools, and which features are available on Android and web.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "guide",
+        "features",
+        "mobile",
+        "web"
+      ],
+      "pinned": false,
+      "translationOf": "app-feature-guide",
+      "url": "/raid_calc/portal/en/guides/app-feature-guide/"
     },
     {
       "id": "getting-started-web",
@@ -130,6 +148,24 @@
       "pinned": false,
       "translationOf": "web-suite-overview",
       "url": "/raid_calc/portal/it/features/web-suite-overview/"
+    },
+    {
+      "id": "app-feature-guide",
+      "lang": "it",
+      "section": "guides",
+      "title": "Guida completa a Raid Calculator",
+      "summary": "Scopri cosa fa ogni sezione di Raid Calculator, come usare gli strumenti principali e quali funzioni sono disponibili su Android e web.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "guide",
+        "features",
+        "mobile",
+        "web"
+      ],
+      "pinned": false,
+      "translationOf": "app-feature-guide",
+      "url": "/raid_calc/portal/it/guides/app-feature-guide/"
     },
     {
       "id": "getting-started-web",
