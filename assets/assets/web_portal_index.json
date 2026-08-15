@@ -1,7 +1,42 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-13T19:29:41.644849Z",
+  "generatedAt": "2026-08-15T20:42:10.735159Z",
   "items": [
+    {
+      "id": "shadowforged-pets-shop-2026-08",
+      "lang": "de",
+      "section": "news",
+      "title": "Neue Shadowforged-Pets im In-Game-Shop verfuegbar",
+      "summary": "Fuenf Shadowforged-Pets wurden im In-Game-Shop gesichtet, darunter Unturex, eine starke Wasser/Feuer-Option mit unendlicher Special Regeneration.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "news",
+        "pets",
+        "shadowforged",
+        "shop"
+      ],
+      "pinned": true,
+      "translationOf": "shadowforged-pets-shop-2026-08",
+      "url": "/raid_calc/portal/de/news/shadowforged-pets-shop-2026-08/"
+    },
+    {
+      "id": "web-beta-launch",
+      "lang": "de",
+      "section": "news",
+      "title": "Die Web-Beta ist online",
+      "summary": "Die Raid Calculator Web-App ist jetzt als Browser-Beta mit Raid-, War-, UA-, Guild-, Friends- und News-Tools verfuegbar.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "web",
+        "beta",
+        "release"
+      ],
+      "pinned": true,
+      "translationOf": "web-beta-launch",
+      "url": "/raid_calc/portal/de/news/web-beta-launch/"
+    },
     {
       "id": "web-portal-v1",
       "lang": "en",
@@ -118,6 +153,41 @@
       "pinned": true,
       "translationOf": "web-beta-launch",
       "url": "/raid_calc/portal/en/news/web-beta-launch/"
+    },
+    {
+      "id": "shadowforged-pets-shop-2026-08",
+      "lang": "fr",
+      "section": "news",
+      "title": "Nouveaux familiers Shadowforged disponibles dans la boutique en jeu",
+      "summary": "Cinq familiers Shadowforged ont ete apercus dans la boutique en jeu, dont Unturex, une option Eau/Feu forte avec Special Regeneration infinie.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "news",
+        "pets",
+        "shadowforged",
+        "shop"
+      ],
+      "pinned": true,
+      "translationOf": "shadowforged-pets-shop-2026-08",
+      "url": "/raid_calc/portal/fr/news/shadowforged-pets-shop-2026-08/"
+    },
+    {
+      "id": "web-beta-launch",
+      "lang": "fr",
+      "section": "news",
+      "title": "La beta web est en ligne",
+      "summary": "La web app Raid Calculator est disponible en beta navigateur avec les outils Raid, War, UA, Guild, Friends et News.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "web",
+        "beta",
+        "release"
+      ],
+      "pinned": true,
+      "translationOf": "web-beta-launch",
+      "url": "/raid_calc/portal/fr/news/web-beta-launch/"
     },
     {
       "id": "web-portal-v1",
