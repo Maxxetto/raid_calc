@@ -1,7 +1,25 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-15T22:05:03.442891Z",
+  "generatedAt": "2026-08-18T20:27:55.486195Z",
   "items": [
+    {
+      "id": "kasper-design-submissions",
+      "lang": "de",
+      "section": "guides",
+      "title": "Community-Armor und Designideen einreichen",
+      "summary": "Kasper534 pflegt ein Community-Dokument, um Armor- und Designideen zu sammeln, zu teilen und an Deca weiterzugeben.",
+      "date": "2026-08-18",
+      "status": "published",
+      "tags": [
+        "guide",
+        "community",
+        "designs",
+        "kasper"
+      ],
+      "pinned": true,
+      "translationOf": "kasper-design-submissions",
+      "url": "/raid_calc/portal/de/guides/kasper-design-submissions/"
+    },
     {
       "id": "season-122-fire-datamine-2026-09",
       "lang": "de",
@@ -105,6 +123,24 @@
       "url": "/raid_calc/portal/en/features/web-suite-overview/"
     },
     {
+      "id": "kasper-design-submissions",
+      "lang": "en",
+      "section": "guides",
+      "title": "Submit community armor and design ideas",
+      "summary": "Kasper534 maintains a community document for armor and art design ideas that can be shared and forwarded to Deca.",
+      "date": "2026-08-18",
+      "status": "published",
+      "tags": [
+        "guide",
+        "community",
+        "designs",
+        "kasper"
+      ],
+      "pinned": true,
+      "translationOf": "kasper-design-submissions",
+      "url": "/raid_calc/portal/en/guides/kasper-design-submissions/"
+    },
+    {
       "id": "app-feature-guide",
       "lang": "en",
       "section": "guides",
@@ -191,6 +227,24 @@
       "pinned": true,
       "translationOf": "web-beta-launch",
       "url": "/raid_calc/portal/en/news/web-beta-launch/"
+    },
+    {
+      "id": "kasper-design-submissions",
+      "lang": "fr",
+      "section": "guides",
+      "title": "Proposer des armures et designs de la communaute",
+      "summary": "Kasper534 maintient un document communautaire pour rassembler des idees d'armures et de designs a partager et transmettre a Deca.",
+      "date": "2026-08-18",
+      "status": "published",
+      "tags": [
+        "guide",
+        "community",
+        "designs",
+        "kasper"
+      ],
+      "pinned": true,
+      "translationOf": "kasper-design-submissions",
+      "url": "/raid_calc/portal/fr/guides/kasper-design-submissions/"
     },
     {
       "id": "season-122-fire-datamine-2026-09",
@@ -293,6 +347,24 @@
       "pinned": false,
       "translationOf": "web-suite-overview",
       "url": "/raid_calc/portal/it/features/web-suite-overview/"
+    },
+    {
+      "id": "kasper-design-submissions",
+      "lang": "it",
+      "section": "guides",
+      "title": "Proporre armor e design della community",
+      "summary": "Kasper534 mantiene un documento community per raccogliere idee di armor e design da condividere e inoltrare a Deca.",
+      "date": "2026-08-18",
+      "status": "published",
+      "tags": [
+        "guide",
+        "community",
+        "designs",
+        "kasper"
+      ],
+      "pinned": true,
+      "translationOf": "kasper-design-submissions",
+      "url": "/raid_calc/portal/it/guides/kasper-design-submissions/"
     },
     {
       "id": "app-feature-guide",
