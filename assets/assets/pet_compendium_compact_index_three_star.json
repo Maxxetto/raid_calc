@@ -1,0 +1,32 @@
+{
+    "schemaVersion":  4,
+    "formatVersion":  1,
+    "rarity":  "3 stars",
+    "families":  [
+                     {
+                         "id":  "macetail",
+                         "familyTag":  "",
+                         "rarity":  "3 stars",
+                         "tiers":  [
+                                       {
+                                           "id":  "IV",
+                                           "name":  "Macetail",
+                                           "element":  "earth",
+                                           "tier":  "IV",
+                                           "skill11":  "Thorn Shield",
+                                           "skill12":  "None",
+                                           "skill2":  "Shatter Shield",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 70",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0056",
+                                                                "skillSetRef":  "ss0057"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     }
+                 ]
+}

@@ -1,0 +1,1632 @@
+{
+    "schemaVersion":  4,
+    "formatVersion":  1,
+    "rarity":  "Primal",
+    "families":  [
+                     {
+                         "id":  "s52p_surxok",
+                         "familyTag":  "S52P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S52P] Surxok",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0008",
+                                                                "skillSetRef":  "ss0001"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s53p_robigar",
+                         "familyTag":  "S53P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S53P] Robigar",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0008",
+                                                                "skillSetRef":  "ss0002"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s54p_melisar",
+                         "familyTag":  "S54P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S54P] Melisar",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 90",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0009",
+                                                                "skillSetRef":  "ss0003"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s55p_torezz",
+                         "familyTag":  "S55P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S55P] Torezz",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Elemental Weakness",
+                                           "skill2":  "Cyclone Air Boost",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 90",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0052",
+                                                                "skillSetRef":  "ss0052"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s56p_volodo",
+                         "familyTag":  "S56P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S56P] Volodo",
+                                           "element":  "water",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0008",
+                                                                "skillSetRef":  "ss0005"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s57p_komor",
+                         "familyTag":  "S57P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S57P] Komor",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0010",
+                                                                "skillSetRef":  "ss0006"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s58p_chava",
+                         "familyTag":  "S58P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S58P] Chava",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0010",
+                                                                "skillSetRef":  "ss0007"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s59p_shrumo",
+                         "familyTag":  "S59P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S59P] Shrumo",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Cyclone Earth Boost",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0010",
+                                                                "skillSetRef":  "ss0008"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s60p_bubba",
+                         "familyTag":  "S60P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S60P] Bubba",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0010",
+                                                                "skillSetRef":  "ss0006"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s61p_manray",
+                         "familyTag":  "S61P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S61P] Manray",
+                                           "element":  "water",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Special Regeneration (inf)",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0010",
+                                                                "skillSetRef":  "ss0009"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s62p_kapre",
+                         "familyTag":  "S62P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S62P] Kapre",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0011",
+                                                                "skillSetRef":  "ss0005"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s63p_alux",
+                         "familyTag":  "S63P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S63P] Alux",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0011",
+                                                                "skillSetRef":  "ss0006"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s64p_azebon",
+                         "familyTag":  "S64P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S64P] Azebon",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0011",
+                                                                "skillSetRef":  "ss0010"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s65p_gemox",
+                         "familyTag":  "S65P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S65P] Gemox",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0011",
+                                                                "skillSetRef":  "ss0011"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s66p_seraph",
+                         "familyTag":  "S66P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S66P] Seraph",
+                                           "element":  "water",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0011",
+                                                                "skillSetRef":  "ss0012"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s67p_grenic",
+                         "familyTag":  "S67P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S67P] Grenic",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0012",
+                                                                "skillSetRef":  "ss0013"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s68p_atum",
+                         "familyTag":  "S68P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S68P] Atum",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Special Regeneration (inf)",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0012",
+                                                                "skillSetRef":  "ss0014"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s69p_enyum",
+                         "familyTag":  "S69P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S69P] Enyum",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0012",
+                                                                "skillSetRef":  "ss0015"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s70p_pocida",
+                         "familyTag":  "S70P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S70P] Pocida",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Special Regeneration (inf)",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0012",
+                                                                "skillSetRef":  "ss0016"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s71p_grizzos",
+                         "familyTag":  "S71P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S71P] Grizzos",
+                                           "element":  "water",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0012",
+                                                                "skillSetRef":  "ss0017"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s72p_bren",
+                         "familyTag":  "S72P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S72P] Bren",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0013",
+                                                                "skillSetRef":  "ss0018"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s73p_groucher",
+                         "familyTag":  "S73P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S73P] Groucher",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0013",
+                                                                "skillSetRef":  "ss0019"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s74p_iflon",
+                         "familyTag":  "S74P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S74P] Iflon",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0013",
+                                                                "skillSetRef":  "ss0007"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s75p_xenax",
+                         "familyTag":  "S75P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S75P] Xenax",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0013",
+                                                                "skillSetRef":  "ss0020"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s76p_yahor",
+                         "familyTag":  "S76P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S76P] Yahor",
+                                           "element":  "water",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Special Regeneration (inf)",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0013",
+                                                                "skillSetRef":  "ss0021"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s77p_fengom",
+                         "familyTag":  "S77P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S77P] Fengom",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0014",
+                                                                "skillSetRef":  "ss0022"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s78p_bashon",
+                         "familyTag":  "S78P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S78P] Bashon",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0014",
+                                                                "skillSetRef":  "ss0023"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s79p_peryza",
+                         "familyTag":  "S79P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S79P] Peryza",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0014",
+                                                                "skillSetRef":  "ss0018"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s80p_aetrok",
+                         "familyTag":  "S80P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "IV",
+                                           "name":  "[S80P] Aetrok",
+                                           "element":  "air",
+                                           "tier":  "IV",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Special Regeneration (inf)",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "max",
+                                                                "label":  "Max 90",
+                                                                "valueSource":  "max",
+                                                                "statsRef":  "st0015",
+                                                                "skillSetRef":  "ss0024"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s81p_bitenex",
+                         "familyTag":  "S81P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S81P] Bitenex",
+                                           "element":  "water",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0014",
+                                                                "skillSetRef":  "ss0020"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s82p_pyrochimer",
+                         "familyTag":  "S82P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S82P] Pyrochimer",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0016",
+                                                                "skillSetRef":  "ss0017"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s83p_mistowisp",
+                         "familyTag":  "S83P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S83P] Mistowisp",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Special Regeneration (inf)",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0016",
+                                                                "skillSetRef":  "ss0021"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s84p_liminasor",
+                         "familyTag":  "S84P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S84P] Liminasor",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0016",
+                                                                "skillSetRef":  "ss0020"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s85p_athenox",
+                         "familyTag":  "S85P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S85P] Athenox",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0016",
+                                                                "skillSetRef":  "ss0018"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s86p_xitrom",
+                         "familyTag":  "S86P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S86P] Xitrom",
+                                           "element":  "water",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0016",
+                                                                "skillSetRef":  "ss0022"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s87p_qrazor",
+                         "familyTag":  "S87P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S87P] Qrazor",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Special Regeneration (inf)",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0017",
+                                                                "skillSetRef":  "ss0021"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s88p_gyarado",
+                         "familyTag":  "S88P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S88P] Gyarado",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0017",
+                                                                "skillSetRef":  "ss0022"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s89p_clionor",
+                         "familyTag":  "S89P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S89P] Clionor",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0017",
+                                                                "skillSetRef":  "ss0007"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s90p_galeonix",
+                         "familyTag":  "S90P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S90P] Galeonix",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0017",
+                                                                "skillSetRef":  "ss0020"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s91p_tornadus",
+                         "familyTag":  "S91P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S91P] Tornadus",
+                                           "element":  "water",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0017",
+                                                                "skillSetRef":  "ss0019"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s92p_ignisor",
+                         "familyTag":  "S92P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S92P] Ignisor",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0018",
+                                                                "skillSetRef":  "ss0022"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s93p_duskatol",
+                         "familyTag":  "S93P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S93P] Duskatol",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0018",
+                                                                "skillSetRef":  "ss0023"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s94p_rhyhorn",
+                         "familyTag":  "S94P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S94P] Rhyhorn",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0018",
+                                                                "skillSetRef":  "ss0018"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s95p_nihlgrim",
+                         "familyTag":  "S95P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S95P] Nihlgrim",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0018",
+                                                                "skillSetRef":  "ss0017"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s96p_hydragon",
+                         "familyTag":  "S96P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                            "name":  "[S96P] Hydragon",
+                                            "element":  "water",
+                                            "tier":  "V",
+                                            "skill11":  "Elemental Weakness",
+                                            "skill12":  "Shadow Slash",
+                                            "skill2":  "Special Regeneration",
+                                            "profiles":  [
+                                                             {
+                                                                 "id":  "max90",
+                                                                 "label":  "Max 90",
+                                                                 "valueSource":  "max90",
+                                                                 "statsRef":  "st0054",
+                                                                 "skillSetRef":  "ss0055"
+                                                             }
+                                                         ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s97p_scythrax",
+                         "familyTag":  "S97P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S97P] Scythrax",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0019",
+                                                                "skillSetRef":  "ss0018"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s98p_votexira",
+                         "familyTag":  "S98P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S98P] Votexira",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0019",
+                                                                "skillSetRef":  "ss0007"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s99p_thalrok",
+                         "familyTag":  "S99P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S99P] Thalrok",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0019",
+                                                                "skillSetRef":  "ss0026"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s100p_garwin",
+                         "familyTag":  "S100P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S100P] Garwin",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0019",
+                                                                "skillSetRef":  "ss0027"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s101p_selmor",
+                         "familyTag":  "S101P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S101P] Selmor",
+                                           "element":  "water",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Revenge Strike",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0019",
+                                                                "skillSetRef":  "ss0013"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s102p_lavafang",
+                         "familyTag":  "S102P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S102P] Lavafang",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0020",
+                                                                "skillSetRef":  "ss0028"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s103p_shadrel",
+                         "familyTag":  "S103P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S103P] Shadrel",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0020",
+                                                                "skillSetRef":  "ss0020"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s104p_krinet",
+                         "familyTag":  "S104P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S104P] Krinet",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0020",
+                                                                "skillSetRef":  "ss0029"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s105p_aurivox",
+                         "familyTag":  "S105P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S105P] Aurivox",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0020",
+                                                                "skillSetRef":  "ss0030"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s106p_jotrox",
+                         "familyTag":  "S106P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S106P] Jotrox",
+                                           "element":  "water",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0020",
+                                                                "skillSetRef":  "ss0031"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s107p_botuko",
+                         "familyTag":  "S107P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S107P] Botuko",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0021",
+                                                                "skillSetRef":  "ss0023"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s108p_onyxol",
+                         "familyTag":  "S108P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S108P] Onyxol",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0021",
+                                                                "skillSetRef":  "ss0032"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s109p_barkoro",
+                         "familyTag":  "S109P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S109P] Barkoro",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0021",
+                                                                "skillSetRef":  "ss0033"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s110p_mistral",
+                         "familyTag":  "S110P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S110P] Mistral",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0021",
+                                                                "skillSetRef":  "ss0034"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s111p_dramony",
+                         "familyTag":  "S111P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S111P] Dramony",
+                                           "element":  "water",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0021",
+                                                                "skillSetRef":  "ss0035"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s112p_nefaris",
+                         "familyTag":  "S112P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S112P] Nefaris",
+                                           "element":  "fire",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0022",
+                                                                "skillSetRef":  "ss0036"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s113p_kyolton",
+                         "familyTag":  "S113P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S113P] Kyolton",
+                                           "element":  "spirit",
+                                           "tier":  "V",
+                                           "skill11":  "Death Blow",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0022",
+                                                                "skillSetRef":  "ss0037"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s114p_madoric",
+                         "familyTag":  "S114P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S114P] Madoric",
+                                           "element":  "earth",
+                                           "tier":  "V",
+                                           "skill11":  "Elemental Weakness",
+                                           "skill12":  "Durable Rock Shield",
+                                           "skill2":  "Ready to Crit",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0022",
+                                                                "skillSetRef":  "ss0028"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s115p_nymbrel",
+                         "familyTag":  "S115P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S115P] Nymbrel",
+                                           "element":  "air",
+                                           "tier":  "V",
+                                           "skill11":  "Revenge Strike",
+                                           "skill12":  "Shadow Slash",
+                                           "skill2":  "Soul Burn",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0022",
+                                                                "skillSetRef":  "ss0020"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "s116p_icepuff",
+                         "familyTag":  "S116P",
+                         "rarity":  "Primal",
+                         "tiers":  [
+                                       {
+                                           "id":  "V",
+                                           "name":  "[S116P] Icepuff",
+                                           "element":  "water",
+                                           "tier":  "V",
+                                           "skill11":  "Special Regeneration",
+                                           "skill12":  "Vampiric Attack",
+                                           "skill2":  "Shadow Slash",
+                                           "profiles":  [
+                                                            {
+                                                                "id":  "level1",
+                                                                "label":  "Level 1",
+                                                                "valueSource":  "level1",
+                                                                "statsRef":  "st0022",
+                                                                "skillSetRef":  "ss0029"
+                                                            }
+                                                        ]
+                                       }
+                                   ]
+                     }
+                 ]
+}

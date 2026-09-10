@@ -1,0 +1,35 @@
+EW damage reference dataset
+Saved on: 2026-04-05
+
+Boss Raid Lv. 4 22210 ATK F/S with W/E Pet 65.2% Elemental Weakness
+1. F/W 62655 DEF Damage Taken 43 Damage Crit Taken 65 Damage Taken with EW 2 Damage Taken Crit with EW 3 Damage to boss 22932
+2. W/W 65039 DEF Damage Taken 41 Damage Crit Taken 62 Damage Taken with EW 2 Damage Taken Crit with EW 3 Damage to boss 22857
+3. W/W 70878 DEF Damage Taken 38 Damage Crit Taken 57 Damage Taken with EW 1 Damage Taken Crit with EW 2 Damage to boss 24869
+
+Boss Raid Lv. 4 22210 ATK F/S with F Pet 34.65% Elemental Weakness
+1. F/W 62287 DEF Damage Taken 43 Damage Crit Taken 65 Damage Taken with EW 21 Damage Taken Crit with EW 32 Damage to boss 22763
+2. W/W 63907 DEF Damage Taken 42 Damage Crit Taken 63 Damage Taken with EW 20 Damage Taken Crit with EW 31 Damage to boss 22467
+3. W/W 69746 DEF Damage Taken 38 Damage Crit Taken 58 Damage Taken with EW 18 Damage Taken Crit with EW 28 Damage to boss 24476
+
+Boss Raid Lv. 3 17470 ATK F/S with W/E Pet 65.2% Elemental Weakness
+1. F/W 62655 DEF Damage Taken 34 Damage Crit Taken 51 Damage Taken with EW 1 Damage Taken Crit with EW 2 Damage to boss 24122
+2. W/W 65039 DEF Damage Taken 32 Damage Crit Taken 49 Damage Taken with EW 1 Damage Taken Crit with EW 2 Damage to boss 24044
+3. W/W 70878 DEF Damage Taken 30 Damage Crit Taken 45 Damage Taken with EW 1 Damage Taken Crit with EW 2 Damage to boss 26156
+
+Boss Raid Lv. 4 22210 ATK F/S with W/E Pet 65.2% Elemental Weakness
+1. A/A 67231 DEF Damage Taken 40 Damage Crit Taken 60 Damage Taken with EW 2 Damage Taken Crit with EW 3 Damage to boss 12298
+2. E/E 74314 DEF Damage Taken 54 Damage Crit Taken 82 Damage Taken with EW 2 Damage Taken Crit with EW 4 Damage to boss 8733
+3. S/S 69439 DEF Damage Taken 58 Damage Crit Taken 88 Damage Taken with EW 3 Damage Taken Crit with EW 4 Damage to boss 8700
+
+Boss Raid Lv. 3 17470 ATK F/S with W/E Pet 65.2% Elemental Weakness
+1. A/A 67231 DEF Damage Taken 31 Damage Crit Taken 47 Damage Taken with EW 1 Damage Taken Crit with EW 2 Damage to boss 12938
+2. E/E 74314 DEF Damage Taken 43 Damage Crit Taken 64 Damage Taken with EW 2 Damage Taken Crit with EW 3 Damage to boss 9185
+3. S/S 69439 DEF Damage Taken 46 Damage Crit Taken 69 Damage Taken with EW 2 Damage Taken Crit with EW 3 Damage to boss 9152
+
+Boss Raid Lv. 4 22210 ATK F/S with S/S Pet 65.2% Elemental Weakness
+1. A/A 67231 DEF Damage Taken 40 Damage Crit Taken 60 Damage Taken with EW 13 Damage Taken Crit with EW 20 Damage to boss 12298
+2. E/E 74314 DEF Damage Taken 54 Damage Crit Taken 82 Damage Taken with EW 18 Damage Taken Crit with EW 28 Damage to boss 8733
+3. S/S 71787 DEF Damage Taken 56 Damage Crit Taken 85 Damage Taken with EW 19 Damage Taken Crit with EW 29 Damage to boss 9107
+
+Boss Raid Lv. 4 22210 ATK F/S with S/S Pet 65.2% Elemental Weakness
+1. F/W 61523 DEF Damage Taken 44 Damage Crit Taken 66 Damage Taken with EW 15 Damage Taken Crit with EW 22 Damage to boss 22539 (oppure 22639 non mi ricordo bene).

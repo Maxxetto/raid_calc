@@ -1,0 +1,742 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-10T13:06:43.849759Z",
+  "items": [
+    {
+      "id": "kasper-design-submissions",
+      "lang": "de",
+      "section": "guides",
+      "title": "Community-Armor und Designideen einreichen",
+      "summary": "Kasper534 pflegt ein Community-Dokument, um Armor- und Designideen zu sammeln, zu teilen und an Deca weiterzugeben.",
+      "date": "2026-08-18",
+      "status": "published",
+      "tags": [
+        "guide",
+        "community",
+        "designs",
+        "kasper"
+      ],
+      "pinned": true,
+      "translationOf": "kasper-design-submissions",
+      "url": "/raid_calc/portal/de/guides/kasper-design-submissions/"
+    },
+    {
+      "id": "mini-raid-boss-stats-update-2026-09",
+      "lang": "de",
+      "section": "news",
+      "title": "Mini Raid Boss Stats und Schwierigkeit aktualisiert",
+      "summary": "DECA hat die Stats fuer Mini Raid Boss (Blitz Raid Boss) Events erhoeht. Der Simulator nutzt jetzt die neuen Attack- und Defense-Werte.",
+      "date": "2026-09-10",
+      "status": "published",
+      "tags": [
+        "news",
+        "raid",
+        "boss-stats",
+        "difficulty",
+        "blitz"
+      ],
+      "pinned": true,
+      "translationOf": "mini-raid-boss-stats-update-2026-09",
+      "url": "/raid_calc/portal/de/news/mini-raid-boss-stats-update-2026-09/"
+    },
+    {
+      "id": "big-raid-boss-stats-update-2026-09",
+      "lang": "de",
+      "section": "news",
+      "title": "Stats und Schwierigkeit der big Raid Bosses aktualisiert",
+      "summary": "DECA hat die Stats fuer big Raid Boss Events erhoeht. Der Simulator nutzt jetzt die neuen Attack- und Defense-Werte.",
+      "date": "2026-09-04",
+      "status": "published",
+      "tags": [
+        "news",
+        "raid",
+        "boss-stats",
+        "difficulty"
+      ],
+      "pinned": true,
+      "translationOf": "big-raid-boss-stats-update-2026-09",
+      "url": "/raid_calc/portal/de/news/big-raid-boss-stats-update-2026-09/"
+    },
+    {
+      "id": "new-ultimate-armor-stats-placeholder-2026-09",
+      "lang": "de",
+      "section": "news",
+      "title": "Infoseite fuer die neue Ultimate Armor geoeffnet",
+      "summary": "Eine eigene Seite fuer die naechste Ultimate Armor ist verfuegbar. Exakte Stats und Bilder werden nach Bestaetigung ergaenzt.",
+      "date": "2026-09-04",
+      "status": "published",
+      "tags": [
+        "news",
+        "ultimate-armor",
+        "ua"
+      ],
+      "pinned": true,
+      "translationOf": "new-ultimate-armor-stats-placeholder-2026-09",
+      "url": "/raid_calc/portal/de/news/new-ultimate-armor-stats-placeholder-2026-09/"
+    },
+    {
+      "id": "coral-tempest-2026-08",
+      "lang": "de",
+      "section": "news",
+      "title": "Coral Tempest Event: Zeitplan, Waehrungen und Belohnungen",
+      "summary": "Das Coral Tempest Event laeuft vom 26. August bis 16. September 2026, mit der neuen Trench Leviathan Armor, zwei Shadowforged Pets und drei Boss Collections.",
+      "date": "2026-08-26",
+      "status": "published",
+      "tags": [
+        "news",
+        "event",
+        "coral-tempest"
+      ],
+      "pinned": true,
+      "translationOf": "coral-tempest-2026-08",
+      "url": "/raid_calc/portal/de/news/coral-tempest-2026-08/"
+    },
+    {
+      "id": "season-122-fire-datamine-2026-09",
+      "lang": "de",
+      "section": "news",
+      "title": "UA 16 LEAK + Datamine Saison 122: Feuer-Saison",
+      "summary": "Der September-2026-Datamine deutet auf Season 122 als Feuer-Saison hin und zeigt offenbar die 16. Ultimate Armor.",
+      "date": "2026-08-15",
+      "status": "published",
+      "tags": [
+        "news",
+        "datamine",
+        "season122",
+        "fire",
+        "ultimate-armor"
+      ],
+      "pinned": true,
+      "translationOf": "season-122-fire-datamine-2026-09",
+      "url": "/raid_calc/portal/de/news/season-122-fire-datamine-2026-09/"
+    },
+    {
+      "id": "shadowforged-pets-shop-2026-08",
+      "lang": "de",
+      "section": "news",
+      "title": "Neue Shadowforged-Pets im In-Game-Shop verfuegbar",
+      "summary": "Fuenf Shadowforged-Pets wurden im In-Game-Shop gesichtet, darunter Unturex, eine starke Wasser/Feuer-Option mit unendlicher Special Regeneration.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "news",
+        "pets",
+        "shadowforged",
+        "shop"
+      ],
+      "pinned": true,
+      "translationOf": "shadowforged-pets-shop-2026-08",
+      "url": "/raid_calc/portal/de/news/shadowforged-pets-shop-2026-08/"
+    },
+    {
+      "id": "web-beta-launch",
+      "lang": "de",
+      "section": "news",
+      "title": "Die Web-Beta ist online",
+      "summary": "Die Raid Calculator Web-App ist jetzt als Browser-Beta mit Raid-, War-, UA-, Guild-, Friends- und News-Tools verfuegbar.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "web",
+        "beta",
+        "release"
+      ],
+      "pinned": true,
+      "translationOf": "web-beta-launch",
+      "url": "/raid_calc/portal/de/news/web-beta-launch/"
+    },
+    {
+      "id": "web-portal-v1",
+      "lang": "en",
+      "section": "changelog",
+      "title": "Web portal V1",
+      "summary": "Initial portal structure for news, guides, changelog, FAQ and feature docs.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "changelog",
+        "portal"
+      ],
+      "pinned": false,
+      "translationOf": "web-portal-v1",
+      "url": "/raid_calc/portal/en/changelog/web-portal-v1/"
+    },
+    {
+      "id": "web-app-faq",
+      "lang": "en",
+      "section": "faq",
+      "title": "Web app FAQ",
+      "summary": "Quick answers about browser storage, Premium tools and supported sections.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "faq",
+        "web"
+      ],
+      "pinned": false,
+      "translationOf": "web-app-faq",
+      "url": "/raid_calc/portal/en/faq/web-app-faq/"
+    },
+    {
+      "id": "web-suite-overview",
+      "lang": "en",
+      "section": "features",
+      "title": "Web suite overview",
+      "summary": "Overview of the free tools currently available in the browser version.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "features",
+        "web"
+      ],
+      "pinned": false,
+      "translationOf": "web-suite-overview",
+      "url": "/raid_calc/portal/en/features/web-suite-overview/"
+    },
+    {
+      "id": "kasper-design-submissions",
+      "lang": "en",
+      "section": "guides",
+      "title": "Submit community armor and design ideas",
+      "summary": "Kasper534 maintains a community document for armor and art design ideas that can be shared and forwarded to Deca.",
+      "date": "2026-08-18",
+      "status": "published",
+      "tags": [
+        "guide",
+        "community",
+        "designs",
+        "kasper"
+      ],
+      "pinned": true,
+      "translationOf": "kasper-design-submissions",
+      "url": "/raid_calc/portal/en/guides/kasper-design-submissions/"
+    },
+    {
+      "id": "getting-started-web",
+      "lang": "en",
+      "section": "guides",
+      "title": "Getting started on web",
+      "summary": "How to open the web app, keep data local and share setups between devices.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "guide",
+        "web"
+      ],
+      "pinned": false,
+      "translationOf": "getting-started-web",
+      "url": "/raid_calc/portal/en/guides/getting-started-web/"
+    },
+    {
+      "id": "app-feature-guide",
+      "lang": "en",
+      "section": "guides",
+      "title": "Complete Raid Calculator app guide",
+      "summary": "Learn what each Raid Calculator section does, how to use the main tools, and which features are available on Android and web.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "guide",
+        "features",
+        "mobile",
+        "web"
+      ],
+      "pinned": false,
+      "translationOf": "app-feature-guide",
+      "url": "/raid_calc/portal/en/guides/app-feature-guide/"
+    },
+    {
+      "id": "mini-raid-boss-stats-update-2026-09",
+      "lang": "en",
+      "section": "news",
+      "title": "Mini Raid Boss stats and difficulty updated",
+      "summary": "DECA has increased the stats for Mini Raid Boss (Blitz Raid Boss) events. The simulator now uses the new Attack and Defense values.",
+      "date": "2026-09-10",
+      "status": "published",
+      "tags": [
+        "news",
+        "raid",
+        "boss-stats",
+        "difficulty",
+        "blitz"
+      ],
+      "pinned": true,
+      "translationOf": "mini-raid-boss-stats-update-2026-09",
+      "url": "/raid_calc/portal/en/news/mini-raid-boss-stats-update-2026-09/"
+    },
+    {
+      "id": "big-raid-boss-stats-update-2026-09",
+      "lang": "en",
+      "section": "news",
+      "title": "Big Raid Boss stats and difficulty updated",
+      "summary": "DECA has increased the stats for big Raid Boss events. The simulator now uses the new Attack and Defense values.",
+      "date": "2026-09-04",
+      "status": "published",
+      "tags": [
+        "news",
+        "raid",
+        "boss-stats",
+        "difficulty"
+      ],
+      "pinned": true,
+      "translationOf": "big-raid-boss-stats-update-2026-09",
+      "url": "/raid_calc/portal/en/news/big-raid-boss-stats-update-2026-09/"
+    },
+    {
+      "id": "new-ultimate-armor-stats-placeholder-2026-09",
+      "lang": "en",
+      "section": "news",
+      "title": "New Ultimate Armor info page opened",
+      "summary": "A dedicated page for the next Ultimate Armor is now available. Exact stats and images will be added once they are confirmed.",
+      "date": "2026-09-04",
+      "status": "published",
+      "tags": [
+        "news",
+        "ultimate-armor",
+        "ua"
+      ],
+      "pinned": true,
+      "translationOf": "new-ultimate-armor-stats-placeholder-2026-09",
+      "url": "/raid_calc/portal/en/news/new-ultimate-armor-stats-placeholder-2026-09/"
+    },
+    {
+      "id": "coral-tempest-2026-08",
+      "lang": "en",
+      "section": "news",
+      "title": "Coral Tempest event: schedule, currencies and rewards",
+      "summary": "The Coral Tempest event runs August 26 to September 16, 2026, with new Trench Leviathan armor, two Shadowforged pets and three Boss Collections.",
+      "date": "2026-08-26",
+      "status": "published",
+      "tags": [
+        "news",
+        "event",
+        "coral-tempest"
+      ],
+      "pinned": true,
+      "translationOf": "coral-tempest-2026-08",
+      "url": "/raid_calc/portal/en/news/coral-tempest-2026-08/"
+    },
+    {
+      "id": "season-122-fire-datamine-2026-09",
+      "lang": "en",
+      "section": "news",
+      "title": "UA 16 LEAK + Season 122 Fire datamine preview",
+      "summary": "September 2026 datamine assets point to Season 122 as a Fire season and show what appears to be the 16th Ultimate Armor.",
+      "date": "2026-08-15",
+      "status": "published",
+      "tags": [
+        "news",
+        "datamine",
+        "season122",
+        "fire",
+        "ultimate-armor"
+      ],
+      "pinned": true,
+      "translationOf": "season-122-fire-datamine-2026-09",
+      "url": "/raid_calc/portal/en/news/season-122-fire-datamine-2026-09/"
+    },
+    {
+      "id": "shadowforged-pets-shop-2026-08",
+      "lang": "en",
+      "section": "news",
+      "title": "New Shadowforged pets available in the in-game shop",
+      "summary": "Five Shadowforged pets have been spotted in the in-game shop, including Unturex, a strong Water/Fire option with infinite Special Regeneration.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "news",
+        "pets",
+        "shadowforged",
+        "shop"
+      ],
+      "pinned": true,
+      "translationOf": "shadowforged-pets-shop-2026-08",
+      "url": "/raid_calc/portal/en/news/shadowforged-pets-shop-2026-08/"
+    },
+    {
+      "id": "web-beta-launch",
+      "lang": "en",
+      "section": "news",
+      "title": "Web app beta is live",
+      "summary": "The Raid Calculator web app is now available as a browser beta with Raid, War, UA, Guild, Friends and News tools.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "web",
+        "beta",
+        "release"
+      ],
+      "pinned": true,
+      "translationOf": "web-beta-launch",
+      "url": "/raid_calc/portal/en/news/web-beta-launch/"
+    },
+    {
+      "id": "kasper-design-submissions",
+      "lang": "fr",
+      "section": "guides",
+      "title": "Proposer des armures et designs de la communaute",
+      "summary": "Kasper534 maintient un document communautaire pour rassembler des idees d'armures et de designs a partager et transmettre a Deca.",
+      "date": "2026-08-18",
+      "status": "published",
+      "tags": [
+        "guide",
+        "community",
+        "designs",
+        "kasper"
+      ],
+      "pinned": true,
+      "translationOf": "kasper-design-submissions",
+      "url": "/raid_calc/portal/fr/guides/kasper-design-submissions/"
+    },
+    {
+      "id": "mini-raid-boss-stats-update-2026-09",
+      "lang": "fr",
+      "section": "news",
+      "title": "Stats et difficulte du Mini Raid Boss mises a jour",
+      "summary": "DECA a augmente les stats des evenements Mini Raid Boss (Blitz Raid Boss). Le simulateur utilise maintenant les nouvelles valeurs Attack et Defense.",
+      "date": "2026-09-10",
+      "status": "published",
+      "tags": [
+        "news",
+        "raid",
+        "boss-stats",
+        "difficulty",
+        "blitz"
+      ],
+      "pinned": true,
+      "translationOf": "mini-raid-boss-stats-update-2026-09",
+      "url": "/raid_calc/portal/fr/news/mini-raid-boss-stats-update-2026-09/"
+    },
+    {
+      "id": "big-raid-boss-stats-update-2026-09",
+      "lang": "fr",
+      "section": "news",
+      "title": "Stats et difficulte des big Raid Boss mises a jour",
+      "summary": "DECA a augmente les stats des big Raid Boss. Le simulateur utilise maintenant les nouvelles valeurs Attack et Defense.",
+      "date": "2026-09-04",
+      "status": "published",
+      "tags": [
+        "news",
+        "raid",
+        "boss-stats",
+        "difficulty"
+      ],
+      "pinned": true,
+      "translationOf": "big-raid-boss-stats-update-2026-09",
+      "url": "/raid_calc/portal/fr/news/big-raid-boss-stats-update-2026-09/"
+    },
+    {
+      "id": "new-ultimate-armor-stats-placeholder-2026-09",
+      "lang": "fr",
+      "section": "news",
+      "title": "Page d'information ouverte pour la nouvelle Ultimate Armor",
+      "summary": "Une page dediee a la prochaine Ultimate Armor est disponible. Les stats exactes et les images seront ajoutees apres confirmation.",
+      "date": "2026-09-04",
+      "status": "published",
+      "tags": [
+        "news",
+        "ultimate-armor",
+        "ua"
+      ],
+      "pinned": true,
+      "translationOf": "new-ultimate-armor-stats-placeholder-2026-09",
+      "url": "/raid_calc/portal/fr/news/new-ultimate-armor-stats-placeholder-2026-09/"
+    },
+    {
+      "id": "coral-tempest-2026-08",
+      "lang": "fr",
+      "section": "news",
+      "title": "Evenement Coral Tempest : calendrier, monnaies et recompenses",
+      "summary": "L'evenement Coral Tempest se deroule du 26 aout au 16 septembre 2026, avec la nouvelle armure Trench Leviathan, deux pets Shadowforged et trois Boss Collections.",
+      "date": "2026-08-26",
+      "status": "published",
+      "tags": [
+        "news",
+        "event",
+        "coral-tempest"
+      ],
+      "pinned": true,
+      "translationOf": "coral-tempest-2026-08",
+      "url": "/raid_calc/portal/fr/news/coral-tempest-2026-08/"
+    },
+    {
+      "id": "season-122-fire-datamine-2026-09",
+      "lang": "fr",
+      "section": "news",
+      "title": "UA 16 LEAK + Datamine Saison 122 : saison Feu",
+      "summary": "Le datamine de septembre 2026 indique que la Saison 122 sera une saison Feu et montre ce qui semble etre la 16e Ultimate Armor.",
+      "date": "2026-08-15",
+      "status": "published",
+      "tags": [
+        "news",
+        "datamine",
+        "season122",
+        "fire",
+        "ultimate-armor"
+      ],
+      "pinned": true,
+      "translationOf": "season-122-fire-datamine-2026-09",
+      "url": "/raid_calc/portal/fr/news/season-122-fire-datamine-2026-09/"
+    },
+    {
+      "id": "web-beta-launch",
+      "lang": "fr",
+      "section": "news",
+      "title": "La beta web est en ligne",
+      "summary": "La web app Raid Calculator est disponible en beta navigateur avec les outils Raid, War, UA, Guild, Friends et News.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "web",
+        "beta",
+        "release"
+      ],
+      "pinned": true,
+      "translationOf": "web-beta-launch",
+      "url": "/raid_calc/portal/fr/news/web-beta-launch/"
+    },
+    {
+      "id": "shadowforged-pets-shop-2026-08",
+      "lang": "fr",
+      "section": "news",
+      "title": "Nouveaux familiers Shadowforged disponibles dans la boutique en jeu",
+      "summary": "Cinq familiers Shadowforged ont ete apercus dans la boutique en jeu, dont Unturex, une option Eau/Feu forte avec Special Regeneration infinie.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "news",
+        "pets",
+        "shadowforged",
+        "shop"
+      ],
+      "pinned": true,
+      "translationOf": "shadowforged-pets-shop-2026-08",
+      "url": "/raid_calc/portal/fr/news/shadowforged-pets-shop-2026-08/"
+    },
+    {
+      "id": "web-portal-v1",
+      "lang": "it",
+      "section": "changelog",
+      "title": "Portale web V1",
+      "summary": "Prima struttura portale per news, guide, changelog, FAQ e documenti feature.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "changelog",
+        "portal"
+      ],
+      "pinned": false,
+      "translationOf": "web-portal-v1",
+      "url": "/raid_calc/portal/it/changelog/web-portal-v1/"
+    },
+    {
+      "id": "web-app-faq",
+      "lang": "it",
+      "section": "faq",
+      "title": "FAQ web app",
+      "summary": "Risposte rapide su salvataggio browser, strumenti Premium e sezioni supportate.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "faq",
+        "web"
+      ],
+      "pinned": false,
+      "translationOf": "web-app-faq",
+      "url": "/raid_calc/portal/it/faq/web-app-faq/"
+    },
+    {
+      "id": "web-suite-overview",
+      "lang": "it",
+      "section": "features",
+      "title": "Panoramica web suite",
+      "summary": "Panoramica degli strumenti free disponibili nella versione browser.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "features",
+        "web"
+      ],
+      "pinned": false,
+      "translationOf": "web-suite-overview",
+      "url": "/raid_calc/portal/it/features/web-suite-overview/"
+    },
+    {
+      "id": "kasper-design-submissions",
+      "lang": "it",
+      "section": "guides",
+      "title": "Proporre armor e design della community",
+      "summary": "Kasper534 mantiene un documento community per raccogliere idee di armor e design da condividere e inoltrare a Deca.",
+      "date": "2026-08-18",
+      "status": "published",
+      "tags": [
+        "guide",
+        "community",
+        "designs",
+        "kasper"
+      ],
+      "pinned": true,
+      "translationOf": "kasper-design-submissions",
+      "url": "/raid_calc/portal/it/guides/kasper-design-submissions/"
+    },
+    {
+      "id": "app-feature-guide",
+      "lang": "it",
+      "section": "guides",
+      "title": "Guida completa a Raid Calculator",
+      "summary": "Scopri cosa fa ogni sezione di Raid Calculator, come usare gli strumenti principali e quali funzioni sono disponibili su Android e web.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "guide",
+        "features",
+        "mobile",
+        "web"
+      ],
+      "pinned": false,
+      "translationOf": "app-feature-guide",
+      "url": "/raid_calc/portal/it/guides/app-feature-guide/"
+    },
+    {
+      "id": "getting-started-web",
+      "lang": "it",
+      "section": "guides",
+      "title": "Iniziare con la web app",
+      "summary": "Come aprire la web app, mantenere i dati locali e condividere setup tra dispositivi.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "guide",
+        "web"
+      ],
+      "pinned": false,
+      "translationOf": "getting-started-web",
+      "url": "/raid_calc/portal/it/guides/getting-started-web/"
+    },
+    {
+      "id": "mini-raid-boss-stats-update-2026-09",
+      "lang": "it",
+      "section": "news",
+      "title": "Stats e difficolta del Mini Raid Boss aggiornate",
+      "summary": "DECA ha aumentato le stats degli eventi Mini Raid Boss (Blitz Raid Boss). Il simulatore ora usa i nuovi valori di Attack e Defense.",
+      "date": "2026-09-10",
+      "status": "published",
+      "tags": [
+        "news",
+        "raid",
+        "boss-stats",
+        "difficulty",
+        "blitz"
+      ],
+      "pinned": true,
+      "translationOf": "mini-raid-boss-stats-update-2026-09",
+      "url": "/raid_calc/portal/it/news/mini-raid-boss-stats-update-2026-09/"
+    },
+    {
+      "id": "big-raid-boss-stats-update-2026-09",
+      "lang": "it",
+      "section": "news",
+      "title": "Stats e difficolta dei big Raid Boss aggiornate",
+      "summary": "DECA ha aumentato le stats dei big Raid Boss. Il simulatore ora usa i nuovi valori di Attack e Defense.",
+      "date": "2026-09-04",
+      "status": "published",
+      "tags": [
+        "news",
+        "raid",
+        "boss-stats",
+        "difficulty"
+      ],
+      "pinned": true,
+      "translationOf": "big-raid-boss-stats-update-2026-09",
+      "url": "/raid_calc/portal/it/news/big-raid-boss-stats-update-2026-09/"
+    },
+    {
+      "id": "new-ultimate-armor-stats-placeholder-2026-09",
+      "lang": "it",
+      "section": "news",
+      "title": "Pagina info nuova Ultimate Armor aperta",
+      "summary": "La pagina dedicata alla prossima Ultimate Armor e disponibile. Stats esatte e immagini verranno aggiunte quando saranno confermate.",
+      "date": "2026-09-04",
+      "status": "published",
+      "tags": [
+        "news",
+        "ultimate-armor",
+        "ua"
+      ],
+      "pinned": true,
+      "translationOf": "new-ultimate-armor-stats-placeholder-2026-09",
+      "url": "/raid_calc/portal/it/news/new-ultimate-armor-stats-placeholder-2026-09/"
+    },
+    {
+      "id": "coral-tempest-2026-08",
+      "lang": "it",
+      "section": "news",
+      "title": "Evento Coral Tempest: calendario, valute e ricompense",
+      "summary": "L'evento Coral Tempest va dal 26 agosto al 16 settembre 2026, con la nuova armor Trench Leviathan, due pet Shadowforged e tre Boss Collection.",
+      "date": "2026-08-26",
+      "status": "published",
+      "tags": [
+        "news",
+        "event",
+        "coral-tempest"
+      ],
+      "pinned": true,
+      "translationOf": "coral-tempest-2026-08",
+      "url": "/raid_calc/portal/it/news/coral-tempest-2026-08/"
+    },
+    {
+      "id": "season-122-fire-datamine-2026-09",
+      "lang": "it",
+      "section": "news",
+      "title": "UA 16 LEAK + Datamine Season 122: stagione Fuoco",
+      "summary": "Il datamine di settembre 2026 indica la Season 122 come stagione Fuoco e mostra quella che sembra essere la 16esima Ultimate Armor.",
+      "date": "2026-08-15",
+      "status": "published",
+      "tags": [
+        "news",
+        "datamine",
+        "season122",
+        "fire",
+        "ultimate-armor"
+      ],
+      "pinned": true,
+      "translationOf": "season-122-fire-datamine-2026-09",
+      "url": "/raid_calc/portal/it/news/season-122-fire-datamine-2026-09/"
+    },
+    {
+      "id": "shadowforged-pets-shop-2026-08",
+      "lang": "it",
+      "section": "news",
+      "title": "Nuovi Shadowforged pets disponibili nello shop in-game",
+      "summary": "Cinque Shadowforged pets sono stati avvistati nello shop in-game, incluso Unturex, una forte opzione Acqua/Fuoco con Special Regeneration infinita.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "news",
+        "pets",
+        "shadowforged",
+        "shop"
+      ],
+      "pinned": true,
+      "translationOf": "shadowforged-pets-shop-2026-08",
+      "url": "/raid_calc/portal/it/news/shadowforged-pets-shop-2026-08/"
+    },
+    {
+      "id": "web-beta-launch",
+      "lang": "it",
+      "section": "news",
+      "title": "La beta web e online",
+      "summary": "La web app di Raid Calculator e ora disponibile come beta browser con strumenti Raid, War, UA, Guild, Friends e News.",
+      "date": "2026-08-13",
+      "status": "published",
+      "tags": [
+        "web",
+        "beta",
+        "release"
+      ],
+      "pinned": true,
+      "translationOf": "web-beta-launch",
+      "url": "/raid_calc/portal/it/news/web-beta-launch/"
+    }
+  ]
+}
